@@ -14,7 +14,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {TemplatesModule} from './templates/templates.module';
 import {ReferencesModule} from './references/references.module';
 import {GroupsModule} from './groups/groups.module';
-import {MatCardModule} from '@angular/material/card';
+import {CreateTemplateModule} from './templates/create-template/create-template.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +31,7 @@ import {MatCardModule} from '@angular/material/card';
     MatSliderModule,
     AppRoutingModule,
     TemplatesModule,
+    CreateTemplateModule,
     ReferencesModule,
     GroupsModule,
     BrowserAnimationsModule

@@ -45,6 +45,12 @@
 }
 
 ::ng-deep {
+
+  .container-fluid .mat-card {
+    border: 1px solid #e6ecf5;
+    box-shadow: none;
+  }
+
   .mat-form-field-wrapper {
     padding: 0;
     margin: 8px;
@@ -122,8 +128,8 @@
     box-shadow: none;
   }
 
-
   .mat-drawer-inner-container .mat-toolbar {
     place-content: center;
   }
+
 }

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 
 export interface PeriodicElement {
     name: string;
@@ -26,12 +27,13 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-    selector: 'app-templates',
-    templateUrl: './templates.component.html',
-    styleUrls: ['./templates.component.scss']
+  selector: 'app-templates',
+  templateUrl: './templates.component.html',
+  styleUrls: ['./templates.component.scss']
 })
 export class TemplatesComponent {
-    displayedColumns: string[] = ['name', 'text', 'edit'];
-    dataSource = ELEMENT_DATA;
+
+  displayedColumns: string[] = ['name', 'text', 'edit'];
+  dataSource = ELEMENT_DATA;
 
 }
