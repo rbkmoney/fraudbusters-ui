@@ -9,7 +9,7 @@ export class AppComponent {
 
   title = 'fraudbusters-ui';
   menuItems: { name: string; route: string , icon: string}[] = [
-    {name: 'Templates', route: '/templates', icon: 'list'},
+    {name: 'Templates', route: '/templates', icon: 'business'},
     {name: 'References', route: '/references', icon: 'share'},
     {name: 'Groups', route: '/groups', icon: 'group_work'}
   ];
