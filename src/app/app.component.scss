@@ -6,8 +6,9 @@
   height: 48px;
 }
 
+
 .mat-drawer-side {
-  width: 250px;
+  width: 200px;
 }
 
 ::ng-deep .mat-toolbar {
@@ -86,6 +87,11 @@
     .mat-list-item-content {
       color: #888da8;
     }
+
+    .mat-icon {
+      padding-bottom: 4px;
+      margin: 0 14px 0 14px;
+    }
   }
 
   .mat-list-option:hover, .mat-list-option:focus, .mat-nav-list .mat-list-item:hover, .mat-nav-list .mat-list-item:focus, .mat-action-list .mat-list-item:hover, .mat-action-list .mat-list-item:focus {
@@ -116,4 +122,8 @@
     box-shadow: none;
   }
 
+
+  .mat-drawer-inner-container .mat-toolbar {
+    place-content: center;
+  }
 }

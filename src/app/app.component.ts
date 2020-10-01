@@ -8,10 +8,10 @@ import {Component} from '@angular/core';
 export class AppComponent {
 
   title = 'fraudbusters-ui';
-  menuItems: { name: string; route: string }[] = [
-    {name: 'Templates', route: '/templates'},
-    {name: 'References', route: '/references'},
-    {name: 'Groups', route: '/groups'}
+  menuItems: { name: string; route: string , icon: string}[] = [
+    {name: 'Templates', route: '/templates', icon: 'list'},
+    {name: 'References', route: '/references', icon: 'share'},
+    {name: 'Groups', route: '/groups', icon: 'group_work'}
   ];
 
 }

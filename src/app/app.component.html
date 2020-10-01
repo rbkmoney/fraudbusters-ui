@@ -10,6 +10,7 @@
         *ngFor="let item of menuItems"
         [routerLink]="item.route"
         [routerLinkActive]="['active']">
+        <mat-icon>{{item.icon}}</mat-icon>
         {{ item.name }}
       </mat-list-item>
     </mat-nav-list>
