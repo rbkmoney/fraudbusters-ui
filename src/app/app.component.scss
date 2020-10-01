@@ -1,0 +1,119 @@
+.toolbar {
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+  height: 48px;
+}
+
+.mat-drawer-side {
+  width: 250px;
+}
+
+::ng-deep .mat-toolbar {
+  background: none;
+
+  &.mat-primary {
+    background: #fff;
+    color: #888da8;
+  }
+
+  .mat-button, .mat-stroked-button {
+    margin: 8px;
+    border: 1px solid #e6ecf5;
+  }
+
+  &.toolbar.mat-primary.mat-toolbar-single-row {
+    border-bottom: 1px solid #e6ecf5;
+    border-bottom-color: rgb(230, 236, 245);
+  }
+
+}
+
+.content {
+  background: #f6f7fb;
+}
+
+.container-fluid {
+  padding: 0px 20px 20px 20px;
+  min-height: calc(100vh - 134px);
+}
+
+.mat-drawer-side {
+  border-right: solid 1px #e6ecf5;
+}
+
+::ng-deep {
+  .mat-form-field-wrapper {
+    padding: 0;
+    margin: 8px;
+  }
+
+  .mat-form-field-underline {
+    visibility: hidden;
+  }
+
+  .mat-toolbar {
+    .mat-form-field-appearance-fill .mat-form-field-flex {
+      background: none;
+      padding: 0 0 0 0;
+    }
+
+    .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
+      transform: none;
+    }
+  }
+
+  .mat-form-field-appearance-fill .mat-form-field-infix, .mat-form-field-appearance-legacy .mat-form-field-infix, .mat-form-field-appearance-outline .mat-form-field-infix {
+    border: 1px solid #e6ecf5;
+    font-size: 13px;
+    padding: 10px 20px;
+    border-radius: 4px;
+
+    &:hover {
+      color: #515365;
+      background-color: #edf2f8;
+      border-color: #e6ecf5;
+    }
+  }
+
+  .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding: 0;
+  }
+
+
+  .mat-nav-list {
+    .mat-list-item-content {
+      color: #888da8;
+    }
+  }
+
+  .mat-list-option:hover, .mat-list-option:focus, .mat-nav-list .mat-list-item:hover, .mat-nav-list .mat-list-item:focus, .mat-action-list .mat-list-item:hover, .mat-action-list .mat-list-item:focus {
+    background: none;
+
+    .mat-list-item-content {
+      color: #000;
+    }
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-flex {
+    .mat-form-field-outline-end, .mat-form-field-outline-start, .mat-form-field-outline-gap {
+      border: none;
+    }
+  }
+
+  mat-row, mat-header-row, mat-footer-row, th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+    border-bottom-color: #e6ecf5;
+  }
+
+  .mat-header-cell {
+    color: #888da8;
+  }
+
+  .mat-select-panel:not([class*=mat-elevation-z]) {
+    border: 1px solid #e6ecf5;
+    font-size: 13px;
+    box-shadow: none;
+  }
+
+}

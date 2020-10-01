@@ -1,10 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-const routes: Routes = [];
+import {TemplatesComponent} from './templates/templates.component';
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(
+      [
+        {
+          path: '',
+          redirectTo: '/templates',
+          pathMatch: 'full',
+        }
+      ],
+      { paramsInheritanceStrategy: 'always' }
+    ),
+  ],  exports: [RouterModule]
 })
 export class AppRoutingModule { }
