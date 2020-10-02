@@ -15,11 +15,14 @@ import {MatSortModule} from '@angular/material/sort';
 import {TemplatesService} from './templates.service';
 import {ConfigService} from '../core/config.service';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import {RemoveTemplateDialogComponent} from './remove-template-dialog/remove-template-dialog.component';
 
 
 @NgModule({
   declarations: [
-    TemplatesComponent
+    TemplatesComponent,
+    RemoveTemplateDialogComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +37,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatToolbarModule,
     MatPaginatorModule,
     MatSortModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [TemplatesService, ConfigService]
 })
