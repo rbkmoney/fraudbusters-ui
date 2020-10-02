@@ -10,7 +10,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {CreateTemplateComponent} from './create-template/create-template.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 
 @NgModule({
@@ -27,7 +28,9 @@ import {CreateTemplateComponent} from './create-template/create-template.compone
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 export class TemplatesModule {
