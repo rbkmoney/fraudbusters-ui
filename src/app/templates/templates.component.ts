@@ -23,12 +23,12 @@ export class TemplatesComponent implements OnInit {
   ngOnInit() {
     this.operationTypes = Object.keys(OperationType).filter(k => typeof OperationType[k as any] === "number");;
     this.operationType = this.operationTypes[0];
-    this.search(this.operationType);
+    this.search();
   }
 
-  search(type: OperationType) {
+  search() {
     this.isLoading = true;
-    this.templateService.getTemplates(type).subscribe(
+    this.templateService.getTemplates((OperationType as any)[this.operationType]).subscribe(
       (templates) => {
         this.isLoading = false;
         this.templates = templates.reverse();
