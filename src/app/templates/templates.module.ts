@@ -12,6 +12,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import {TemplatesService} from './templates.service';
+import {ConfigService} from '../core/config.service';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -30,8 +33,10 @@ import {MatSortModule} from '@angular/material/sort';
     MatInputModule,
     MatToolbarModule,
     MatPaginatorModule,
-    MatSortModule
-  ]
+    MatSortModule,
+    MatSnackBarModule
+  ],
+  providers: [TemplatesService, ConfigService]
 })
 export class TemplatesModule {
 }

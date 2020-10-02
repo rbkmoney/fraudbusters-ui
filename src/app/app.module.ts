@@ -15,6 +15,7 @@ import {TemplatesModule} from './templates/templates.module';
 import {ReferencesModule} from './references/references.module';
 import {GroupsModule} from './groups/groups.module';
 import {CreateTemplateModule} from './templates/create-template/create-template.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {CreateTemplateModule} from './templates/create-template/create-template.
     CreateTemplateModule,
     ReferencesModule,
     GroupsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
