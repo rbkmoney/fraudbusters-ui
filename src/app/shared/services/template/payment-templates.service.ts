@@ -19,7 +19,7 @@ export class PaymentTemplatesService implements ITemplatesService {
   }
 
   findTemplates(params?: SearchTemplateParams): Observable<Template[]> {
-    return this.http.get<Template[]>(`${this.fbManagementEndpoint}/template`, {
+    return this.http.get<Template[]>(`${this.fbManagementEndpoint}/template/filter/`, {
       params: this.paramsUtilService.filterParameters(params),
     });
   }

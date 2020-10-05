@@ -17,6 +17,7 @@ import {ConfigService} from '../core/config.service';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {RemoveTemplateDialogComponent} from './remove-template-dialog/remove-template-dialog.component';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {RemoveTemplateDialogComponent} from './remove-template-dialog/remove-tem
     MatPaginatorModule,
     MatSortModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ],
   providers: [TemplatesService, ConfigService]
 })

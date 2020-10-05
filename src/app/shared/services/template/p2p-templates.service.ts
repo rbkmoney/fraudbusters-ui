@@ -20,7 +20,7 @@ export class P2pTemplatesService implements ITemplatesService {
   }
 
   findTemplates(params?: SearchTemplateParams): Observable<Template[]> {    // Initialize Params Object
-    return this.http.get<Template[]>(`${this.fbManagementEndpoint}/p2p/template`, {
+    return this.http.get<Template[]>(`${this.fbManagementEndpoint}/p2p/template/filter/`, {
       params: this.paramsUtilService.filterParameters(params),
     });
   }
