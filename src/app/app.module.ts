@@ -16,6 +16,7 @@ import {ReferencesModule} from './references/references.module';
 import {GroupsModule} from './groups/groups.module';
 import {CreateTemplateModule} from './templates/create-template/create-template.module';
 import {HttpClientModule} from '@angular/common/http';
+import {CoreModule} from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {HttpClientModule} from '@angular/common/http';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    CoreModule,
     MatMenuModule,
     MatSidenavModule,
     MatListModule,

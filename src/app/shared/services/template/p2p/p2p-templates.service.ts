@@ -1,16 +1,17 @@
 import {Injectable} from '@angular/core';
 import {ITemplatesService} from '../itemplates.service';
-import {Template} from '../../../../templates/model/template';
 import {HttpClient} from '@angular/common/http';
 import {ConfigService} from '../../../../core/config.service';
-import {Observable} from 'rxjs';
 import {SearchTemplateParams} from '../model/SearchTemplateParams';
+import {Observable} from 'rxjs';
+import {Template} from '../../../../templates/model/template';
 import {ParamsUtilService} from '../../utils/params-util.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentTemplatesService implements ITemplatesService {
+export class P2pTemplatesService implements ITemplatesService {
 
   private readonly fbManagementEndpoint: string;
 
@@ -18,8 +19,8 @@ export class PaymentTemplatesService implements ITemplatesService {
     this.fbManagementEndpoint = configService.config.fbManagementEndpoint;
   }
 
-  findTemplates(params?: SearchTemplateParams): Observable<Template[]> {
-    return this.http.get<Template[]>(`${this.fbManagementEndpoint}/template`, {
+  findTemplates(params?: SearchTemplateParams): Observable<Template[]> {    // Initialize Params Object
+    return this.http.get<Template[]>(`${this.fbManagementEndpoint}/p2p/template`, {
       params: this.paramsUtilService.filterParameters(params),
     });
   }
