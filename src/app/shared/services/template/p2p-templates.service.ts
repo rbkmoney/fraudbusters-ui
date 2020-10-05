@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {ITemplatesService} from '../itemplates.service';
+import {ITemplatesService} from './itemplates.service';
 import {HttpClient} from '@angular/common/http';
-import {ConfigService} from '../../../../core/config.service';
-import {SearchTemplateParams} from '../model/SearchTemplateParams';
+import {ConfigService} from '../../../core/config.service';
+import {SearchTemplateParams} from './model/SearchTemplateParams';
 import {Observable} from 'rxjs';
-import {Template} from '../../../../templates/model/template';
-import {ParamsUtilService} from '../../utils/params-util.service';
+import {Template} from '../../../templates/model/template';
+import {ParamsUtilService} from '../utils/params-util.service';
 
 
 @Injectable({

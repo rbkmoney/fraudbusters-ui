@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {OperationType} from '../constants/operation-type';
-import {PaymentTemplatesService} from './template/payment/payment-templates.service';
+import {PaymentTemplatesService} from './template/payment-templates.service';
 import {ITemplatesService} from './template/itemplates.service';
 
 @Injectable({

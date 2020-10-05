@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {ITemplatesService} from '../itemplates.service';
-import {Template} from '../../../../templates/model/template';
+import {ITemplatesService} from './itemplates.service';
+import {Template} from '../../../templates/model/template';
 import {HttpClient} from '@angular/common/http';
-import {ConfigService} from '../../../../core/config.service';
+import {ConfigService} from '../../../core/config.service';
 import {Observable} from 'rxjs';
-import {SearchTemplateParams} from '../model/SearchTemplateParams';
-import {ParamsUtilService} from '../../utils/params-util.service';
+import {SearchTemplateParams} from './model/SearchTemplateParams';
+import {ParamsUtilService} from '../utils/params-util.service';
 
 @Injectable({
   providedIn: 'root'
