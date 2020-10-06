@@ -1,11 +1,10 @@
-import {Template} from './template';
+import { Template } from './template';
 
 export class ValidateTemplate extends Template {
+    errors: string[];
 
-  errors: string[];
-
-  constructor(id: string, template: string, errors: string[]) {
-    super(id, template);
-    this.errors = errors;
-  }
+    constructor(id: string, template: string, errors: string[]) {
+        super(id, template);
+        this.errors = errors;
+    }
 }

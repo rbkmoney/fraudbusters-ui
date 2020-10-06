@@ -9,16 +9,21 @@
 <div class="row">
     <div class="col-md-12">
         <mat-card>
-          <mat-card-content>
-            <mat-form-field class="full-width" appearance="outline">
-              <input matInput placeholder="Name" label="name" [ngModel]="template.id" name="name"/>
-            </mat-form-field>
+            <mat-card-content>
+                <mat-form-field class="full-width" appearance="outline">
+                    <input matInput placeholder="Name" label="name" [ngModel]="template.id" name="name" />
+                </mat-form-field>
 
-            <mat-form-field class="full-width" appearance="outline">
-                      <textarea matInput placeholder="Templates rules" label="rules"
-                                [ngModel]="template.template" name="template"></textarea>
-            </mat-form-field>
-          </mat-card-content>
+                <mat-form-field class="full-width" appearance="outline">
+                    <textarea
+                        matInput
+                        placeholder="Templates rules"
+                        label="rules"
+                        [ngModel]="template.template"
+                        name="template"
+                    ></textarea>
+                </mat-form-field>
+            </mat-card-content>
         </mat-card>
     </div>
 </div>

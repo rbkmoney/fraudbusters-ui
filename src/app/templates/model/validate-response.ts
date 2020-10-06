@@ -1,7 +1,5 @@
-import {ValidateError} from './validate-error';
+import { ValidateError } from './validate-error';
 
 export class ValidateResponse {
-
-  validateResults: ValidateError[];
-
+    validateResults: ValidateError[];
 }

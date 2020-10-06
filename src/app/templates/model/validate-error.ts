@@ -1,6 +1,4 @@
 export class ValidateError {
-
-  errors: string[];
-  id: string;
-
+    errors: string[];
+    id: string;
 }
