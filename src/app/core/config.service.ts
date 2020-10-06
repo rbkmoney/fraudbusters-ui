@@ -1,23 +1,22 @@
-import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 export interface AppConfig {
-  fbManagementEndpoint: string;
+    fbManagementEndpoint: string;
 }
 
 @Injectable()
 export class ConfigService {
-  config: AppConfig;
+    config: AppConfig;
 
-  constructor(private http: HttpClient) {
-  }
+    constructor(private http: HttpClient) {}
 
-  load() {
-    return new Promise((resolve) => {
-      this.http.get<AppConfig>('assets/appConfig.json').subscribe((config) => {
-        this.config = config;
-        resolve();
-      });
-    });
-  }
+    load(): Promise<AppConfig> {
+        return new Promise((resolve) => {
+            this.http.get<AppConfig>('assets/appConfig.json').subscribe((config) => {
+                this.config = config;
+                resolve();
+            });
+        });
+    }
 }

@@ -1,21 +1,19 @@
-import {Injectable} from '@angular/core';
-import {HttpParams} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class ParamsUtilService {
+    constructor() {}
 
-  constructor() {
-  }
-
-  public filterParameters(params: any): HttpParams {
-    let searchParams = new HttpParams();
-    if (params) {
-      Object.keys(params).forEach((key) => {
-        searchParams = params[key] ? searchParams.set(key, params[key]) : searchParams;
-      });
+    public filterParameters(params: any): HttpParams {
+        let searchParams = new HttpParams();
+        if (params) {
+            Object.keys(params).forEach((key) => {
+                searchParams = params[key] ? searchParams.set(key, params[key]) : searchParams;
+            });
+        }
+        return searchParams;
     }
-    return searchParams;
-  }
 }
