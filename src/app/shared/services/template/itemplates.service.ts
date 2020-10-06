@@ -1,8 +1,7 @@
-import {Template} from '../../../templates/model/template';
-import {SortOrder} from '../../constants/sort-order';
-import {Observable} from 'rxjs';
-import {SearchTemplateParams} from './model/SearchTemplateParams';
+import { Template } from '../../../templates/model/template';
+import { Observable } from 'rxjs';
+import { SearchTemplateParams } from './model/SearchTemplateParams';
 
 export interface ITemplatesService {
-  findTemplates: (params?: SearchTemplateParams) => Observable<Template[]>;
+    findTemplates: (params?: SearchTemplateParams) => Observable<Template[]>;
 }
