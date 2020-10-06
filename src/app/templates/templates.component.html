@@ -1,0 +1,54 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <h3>Templates</h3>
+    <mat-form-field appearance="fill">
+      <mat-select [(value)]="operationType" (selectionChange)="search()">
+        <mat-option *ngFor="let typeItem of operationTypes" value="{{ typeItem }}">{{typeItem}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-stroked-button color="primary" [routerLink]="'/templates/new'">New</button>
+    <span class="example-spacer"></span>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <input matInput placeholder="Search" >
+    </mat-form-field>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="row">
+  <div class="col-md-12">
+    <mat-card>
+      <mat-card-content>
+        <table mat-table [dataSource]="templates" class="mat-elevation-z8" matSort>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header width="300px"> Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+          <ng-container matColumnDef="text">
+            <th mat-header-cell *matHeaderCellDef> Template</th>
+            <td mat-cell *matCellDef="let element"> {{element.template}} </td>
+          </ng-container>
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="accent">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="openDialog()">
+                <mat-icon>clear</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-toolbar>
+          <mat-toolbar-row class="justify-content-center">
+            <button mat-stroked-button color="primary" [routerLink]="'/templates/new'">
+              <span class="material-icons">more_horiz</span>
+            </button>
+          </mat-toolbar-row>
+        </mat-toolbar>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
