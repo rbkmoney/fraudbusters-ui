@@ -29,7 +29,7 @@ export class TemplatesComponent implements OnInit {
 
   openDialog(template): void {
     const dialogRef = this.dialog.open(RemoveTemplateDialogComponent, {
-      width: '250px',
+      width: '350px',
       data: {template: template, operationType: this.operationType}
     });
 
@@ -93,4 +93,9 @@ export class TemplatesComponent implements OnInit {
   navigateToNew() {
     this.router.navigate(['/templates/new'], {fragment: this.operationType});
   }
+
+  navigateToEdit(id) {
+    this.router.navigate([`/templates/${id}`], {fragment: this.operationType});
+  }
+
 }

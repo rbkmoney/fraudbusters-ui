@@ -8,11 +8,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {CreateTemplateComponent} from './create-template.component';
 import {FormsModule} from '@angular/forms';
+import {EditTemplateComponent} from './edit-template.component';
 
 @NgModule({
-  declarations: [CreateTemplateComponent],
+  declarations: [EditTemplateComponent],
   imports: [
     CommonModule,
     MatTableModule,
@@ -23,7 +23,8 @@ import {FormsModule} from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatToolbarModule,
-    FormsModule,
+    FormsModule
   ],
 })
-export class CreateTemplateModule {}
+export class EditTemplateModule {
+}

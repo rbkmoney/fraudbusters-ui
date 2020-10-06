@@ -19,7 +19,8 @@ export class TemplatesService {
   getTemplates(type: OperationType, size?: number, nameRegexp?: string, lastInListName?: string, sortOrder?: SortOrder): Observable<Template[]> {
     return this.operationTemplateService
       .findTemplateService(type)
-      .findTemplates(new SearchTemplateParams(nameRegexp, lastInListName, size, SortOrder[sortOrder]));
+      .findTemplates(new SearchTemplateParams(nameRegexp, lastInListName, size,
+        sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC]));
   }
 
   deleteTemplate(type: OperationType, template: Template): Observable<string> {

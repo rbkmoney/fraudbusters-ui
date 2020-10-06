@@ -17,6 +17,7 @@ import { GroupsModule } from './groups/groups.module';
 import { CreateTemplateModule } from './templates/create-template/create-template.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
+import {EditTemplateModule} from './templates/edit-template/edit-template.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -33,6 +34,7 @@ import { CoreModule } from './core/core.module';
         AppRoutingModule,
         TemplatesModule,
         CreateTemplateModule,
+        EditTemplateModule,
         ReferencesModule,
         GroupsModule,
         BrowserAnimationsModule,

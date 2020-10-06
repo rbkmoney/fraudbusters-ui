@@ -23,7 +23,7 @@ import {FormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     TemplatesComponent,
-    RemoveTemplateDialogComponent
+    RemoveTemplateDialogComponent,
   ],
   imports: [
     CommonModule,
