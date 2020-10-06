@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ITemplatesService} from './itemplates.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ConfigService} from '../../../core/config.service';
 import {SearchTemplateParams} from './model/SearchTemplateParams';
 import {Observable} from 'rxjs';
@@ -25,4 +25,13 @@ export class P2pTemplatesService implements ITemplatesService {
     });
   }
 
+  deleteTemplate(template: Template): Observable<string> {
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: Template
+    };
+    return this.http.delete<string>(`${this.fbManagementEndpoint}/p2p/template/`, options);
+  }
 }

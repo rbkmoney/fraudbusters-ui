@@ -33,7 +33,7 @@
               <button mat-icon-button color="accent">
                 <mat-icon>edit</mat-icon>
               </button>
-              <button mat-icon-button color="warn" (click)="openDialog()">
+              <button mat-icon-button color="warn" (click)="openDialog(element)">
                 <mat-icon>clear</mat-icon>
               </button>
             </td>
@@ -43,7 +43,7 @@
         </table>
         <mat-toolbar>
           <mat-toolbar-row class="justify-content-center">
-            <button mat-stroked-button color="primary" [routerLink]="'/templates/new'">
+            <button mat-stroked-button color="primary" (click)="loadMore()">
               <span class="material-icons">more_horiz</span>
             </button>
           </mat-toolbar-row>

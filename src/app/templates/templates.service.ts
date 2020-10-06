@@ -19,4 +19,10 @@ export class TemplatesService {
       .findTemplateService(type)
       .findTemplates(new SearchTemplateParams(nameRegexp, lastInListName, size, SortOrder[sortOrder]));
   }
+
+  deleteTemplate(type: OperationType, template: Template): Observable<string> {
+    return this.operationTemplateService
+      .findTemplateService(type)
+      .deleteTemplate(template);
+  }
 }

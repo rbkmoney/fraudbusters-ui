@@ -26,9 +26,10 @@ export class TemplatesComponent implements OnInit {
   constructor(private templateService: TemplatesService, private snackBar: MatSnackBar, public dialog: MatDialog) {
   }
 
-  openDialog(): void {
+  openDialog(template): void {
     const dialogRef = this.dialog.open(RemoveTemplateDialogComponent, {
       width: '250px',
+      data: {template: template, operationType: this.operationType}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -42,10 +43,12 @@ export class TemplatesComponent implements OnInit {
     this.search();
   }
 
+  private readonly _size = 2;
+
   search() {
     this.isLoading = true;
-    this.templateService.getTemplates((OperationType as any)[this.operationType], 20, this.searchTemplateName, null,
-     this.sortType).subscribe(
+    this.templateService.getTemplates((OperationType as any)[this.operationType], this._size, this.searchTemplateName, null,
+      this.sortType).subscribe(
       (templates) => {
         this.isLoading = false;
         this.templates = templates.reverse();
@@ -69,8 +72,21 @@ export class TemplatesComponent implements OnInit {
     this.search();
   }
 
-  delete(templateName) {
-    console.log(templateName);
+  loadMore() {
+    this.isLoading = true;
+    this.templateService.getTemplates((OperationType as any)[this.operationType], this._size, this.searchTemplateName, this.templates[this.templates.length - 1].id,
+      this.sortType).subscribe(
+      (templates) => {
+        this.isLoading = false;
+        this.templates = this.templates.concat(templates);
+      },
+      (error: HttpErrorResponse) => {
+        this.isLoading = false;
+        this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
+          duration: 1500,
+        });
+      }
+    );
   }
 
 }

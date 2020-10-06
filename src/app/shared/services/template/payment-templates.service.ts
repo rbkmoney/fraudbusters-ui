@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ITemplatesService} from './itemplates.service';
 import {Template} from '../../../templates/model/template';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ConfigService} from '../../../core/config.service';
 import {Observable} from 'rxjs';
 import {SearchTemplateParams} from './model/SearchTemplateParams';
@@ -22,6 +22,18 @@ export class PaymentTemplatesService implements ITemplatesService {
     return this.http.get<Template[]>(`${this.fbManagementEndpoint}/template/filter/`, {
       params: this.paramsUtilService.filterParameters(params),
     });
+  }
+
+  deleteTemplate(template: Template): Observable<string> {
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }),
+      body: template,
+      mode: 'no-cors'
+    };
+    return this.http.delete<string>(`${this.fbManagementEndpoint}/template`, options);
   }
 
 }
