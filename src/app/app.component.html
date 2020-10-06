@@ -1,29 +1,26 @@
 <mat-sidenav-container>
-  <mat-sidenav role="navigation" #sidenav mode="side" fixedInViewport="true" opened="true">
-    <mat-toolbar color="primary" class="toolbar">
-      <a href="/index.html">
-        <img src="../assets/img/logo.svg" alt="logo">
-      </a>
-    </mat-toolbar>
-    <mat-nav-list>
-      <mat-list-item
-        *ngFor="let item of menuItems"
-        [routerLink]="item.route"
-        [routerLinkActive]="['active']">
-        <mat-icon>{{item.icon}}</mat-icon>
-        {{ item.name }}
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
+    <mat-sidenav role="navigation" #sidenav mode="side" fixedInViewport="true" opened="true">
+        <mat-toolbar color="primary" class="toolbar">
+            <a href="/index.html">
+                <img src="../assets/img/logo.svg" alt="logo" />
+            </a>
+        </mat-toolbar>
+        <mat-nav-list>
+            <mat-list-item *ngFor="let item of menuItems" [routerLink]="item.route" [routerLinkActive]="['active']">
+                <mat-icon>{{ item.icon }}</mat-icon>
+                {{ item.name }}
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
 
-  <mat-sidenav-content role="main" class="content">
-    <mat-toolbar color="primary" class="toolbar">
-      <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </mat-toolbar>
-    <div class="container-fluid">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
+    <mat-sidenav-content role="main" class="content">
+        <mat-toolbar color="primary" class="toolbar">
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </mat-toolbar>
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
 </mat-sidenav-container>
