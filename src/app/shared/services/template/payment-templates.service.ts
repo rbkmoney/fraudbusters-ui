@@ -6,6 +6,8 @@ import {ConfigService} from '../../../core/config.service';
 import {Observable} from 'rxjs';
 import {SearchTemplateParams} from './model/SearchTemplateParams';
 import {ParamsUtilService} from '../utils/params-util.service';
+import {ValidateTemplate} from '../../../templates/model/validate-template';
+import {ValidateResponse} from '../../../templates/model/validate-response';
 
 @Injectable({
   providedIn: 'root'
@@ -28,12 +30,31 @@ export class PaymentTemplatesService implements ITemplatesService {
     let options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
       }),
       body: template,
       mode: 'no-cors'
     };
     return this.http.delete<string>(`${this.fbManagementEndpoint}/template`, options);
+  }
+
+  saveTemplate(template: Template): Observable<ValidateTemplate> {
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: template
+    };
+    return this.http.post<ValidateTemplate>(`${this.fbManagementEndpoint}/template`, options);
+  }
+
+  validateTemplates(templates: Template[]): Observable<ValidateResponse> {
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: templates
+    };
+    return this.http.post<ValidateResponse>(`${this.fbManagementEndpoint}/validateTemplate`, options);
   }
 
 }

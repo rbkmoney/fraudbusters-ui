@@ -6,7 +6,7 @@
         <mat-option *ngFor="let typeItem of operationTypes" value="{{ typeItem }}">{{typeItem}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-stroked-button color="primary" [routerLink]="'/templates/new'">New</button>
+    <button mat-stroked-button color="primary" (click)="navigateToNew()" >New</button>
     <span class="example-spacer"></span>
     <mat-form-field class="example-full-width" appearance="outline">
       <input matInput placeholder="Search" [ngModel]="searchTemplateName" (ngModelChange)="changeSearch($event)">

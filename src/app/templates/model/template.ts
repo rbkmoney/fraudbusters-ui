@@ -1,9 +1,9 @@
 export class Template {
-    name: string;
+    id: string;
     template: string;
 
-    constructor(name: string, template: string) {
-        this.name = name;
+    constructor(id: string, template: string) {
+        this.id = id;
         this.template = template;
     }
 }

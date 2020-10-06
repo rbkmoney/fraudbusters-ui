@@ -5,6 +5,8 @@ import {Observable} from 'rxjs';
 import {OperationTypeManagementService} from '../shared/services/operation-type-management.service';
 import {SortOrder} from '../shared/constants/sort-order';
 import {SearchTemplateParams} from '../shared/services/template/model/SearchTemplateParams';
+import {ValidateTemplate} from './model/validate-template';
+import {ValidateResponse} from './model/validate-response';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +26,17 @@ export class TemplatesService {
     return this.operationTemplateService
       .findTemplateService(type)
       .deleteTemplate(template);
+  }
+
+  saveTemplate(type: OperationType, template: Template): Observable<ValidateTemplate> {
+    return this.operationTemplateService
+      .findTemplateService(type)
+      .saveTemplate(template);
+  }
+
+  validateTemplate(type: OperationType, templates: Template[]): Observable<ValidateResponse> {
+    return this.operationTemplateService
+      .findTemplateService(type)
+      .validateTemplates(templates);
   }
 }

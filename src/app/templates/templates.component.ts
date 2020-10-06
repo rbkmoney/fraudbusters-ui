@@ -7,6 +7,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {RemoveTemplateDialogComponent} from './remove-template-dialog/remove-template-dialog.component';
 import {SortOrder} from '../shared/constants/sort-order';
 import {Sort} from '@angular/material/sort';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-templates',
@@ -23,7 +24,7 @@ export class TemplatesComponent implements OnInit {
   searchTemplateName;
   sortType = SortOrder.DESC;
 
-  constructor(private templateService: TemplatesService, private snackBar: MatSnackBar, public dialog: MatDialog) {
+  constructor(private router: Router, private templateService: TemplatesService, private snackBar: MatSnackBar, public dialog: MatDialog) {
   }
 
   openDialog(template): void {
@@ -89,4 +90,7 @@ export class TemplatesComponent implements OnInit {
     );
   }
 
+  navigateToNew() {
+    this.router.navigate(['/templates/new'], {fragment: this.operationType});
+  }
 }
