@@ -1,3 +1,3 @@
 {
-    "fbManagementEndpoint": "https://iddqd.rbk.money/papi/v1"
+    "fbManagementEndpoint": "http://localhost:8080/fb-management/v1"
 }

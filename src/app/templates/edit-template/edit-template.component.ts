@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { OperationType } from '../../shared/constants/operation-type';
+import { ActivatedRoute } from '@angular/router';
 import { TemplatesService } from '../templates.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
-import { OperationType } from '../../shared/constants/operation-type';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Template } from '../model/template';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 
 @Component({
-    selector: 'app-create-template',
-    templateUrl: './create-template.component.html',
-    styleUrls: ['./create-template.component.scss'],
+    selector: 'app-edit-template',
+    templateUrl: './edit-template.component.html',
+    styleUrls: ['./edit-template.component.scss'],
 })
-export class CreateTemplateComponent implements OnInit {
+export class EditTemplateComponent implements OnInit {
     private operationType: OperationType;
-    template = new Template('', '');
+    template: Template;
+    templateId;
 
     constructor(
         private route: ActivatedRoute,
@@ -24,12 +25,25 @@ export class CreateTemplateComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.getOperationTypeFromFragment();
+        this.preloadData();
+        this.templateService.getTemplates(this.operationType, 1, this.templateId).subscribe(
+            (templates) => {
+                this.template = templates.reverse()[0];
+            },
+            (error: HttpErrorResponse) => {
+                this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
+                    duration: 1500,
+                });
+            }
+        );
     }
 
-    getOperationTypeFromFragment() {
+    private preloadData() {
         this.route.fragment.subscribe((fragment: string) => {
             this.operationType = OperationType[fragment];
+        });
+        this.route.params.subscribe(({ id }) => {
+            this.templateId = id;
         });
     }
 
