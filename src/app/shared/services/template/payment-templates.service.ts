@@ -31,7 +31,6 @@ export class PaymentTemplatesService implements ITemplatesService {
                 'Content-Type': 'application/json',
             }),
             body: template,
-            mode: 'no-cors',
         };
         return this.http.delete<string>(`${this.fbManagementEndpoint}/template`, options);
     }

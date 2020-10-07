@@ -8,6 +8,7 @@ import { RemoveTemplateDialogComponent } from './remove-template-dialog/remove-t
 import { SortOrder } from '../shared/constants/sort-order';
 import { Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { ErrorHandlerService } from '../shared/services/utils/error-handler.service';
 
 @Component({
     selector: 'app-templates',
@@ -25,6 +26,7 @@ export class TemplatesComponent implements OnInit {
 
     constructor(
         private router: Router,
+        private errorHandlerService: ErrorHandlerService,
         private templateService: TemplatesService,
         private snackBar: MatSnackBar,
         public dialog: MatDialog
@@ -66,9 +68,7 @@ export class TemplatesComponent implements OnInit {
                 },
                 (error: HttpErrorResponse) => {
                     this.isLoading = false;
-                    this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-                        duration: 1500,
-                    });
+                    this.errorHandlerService.handleError(error, this.snackBar);
                 }
             );
     }
@@ -100,9 +100,7 @@ export class TemplatesComponent implements OnInit {
                 },
                 (error: HttpErrorResponse) => {
                     this.isLoading = false;
-                    this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-                        duration: 1500,
-                    });
+                    this.errorHandlerService.handleError(error, this.snackBar);
                 }
             );
     }

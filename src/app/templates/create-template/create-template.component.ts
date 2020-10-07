@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { OperationType } from '../../shared/constants/operation-type';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Template } from '../model/template';
+import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 
 @Component({
     selector: 'app-create-template',
@@ -18,6 +19,7 @@ export class CreateTemplateComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private templateService: TemplatesService,
+        private errorHandlerService: ErrorHandlerService,
         private snackBar: MatSnackBar
     ) {}
 
@@ -36,11 +38,7 @@ export class CreateTemplateComponent implements OnInit {
             (id) => {
                 console.log(id);
             },
-            (error: HttpErrorResponse) => {
-                this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-                    duration: 1500,
-                });
-            }
+            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
     }
 
@@ -51,11 +49,7 @@ export class CreateTemplateComponent implements OnInit {
                     duration: 1500,
                 });
             },
-            (error: HttpErrorResponse) => {
-                this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-                    duration: 1500,
-                });
-            }
+            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
     }
 }
