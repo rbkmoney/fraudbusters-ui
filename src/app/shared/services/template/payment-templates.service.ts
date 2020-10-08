@@ -26,32 +26,23 @@ export class PaymentTemplatesService implements ITemplatesService {
     }
 
     deleteTemplate(template: Template): Observable<string> {
-        let options = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-            }),
-            body: template,
-        };
-        return this.http.delete<string>(`${this.fbManagementEndpoint}/template`, options);
+        return this.http.delete<string>(
+            `${this.fbManagementEndpoint}/template`,
+            this.paramsUtilService.initHttpRequestWithBody(template)
+        );
     }
 
     saveTemplate(template: Template): Observable<ValidateTemplate> {
-        let options = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-            }),
-            body: template,
-        };
-        return this.http.post<ValidateTemplate>(`${this.fbManagementEndpoint}/template`, options);
+        return this.http.post<ValidateTemplate>(
+            `${this.fbManagementEndpoint}/template`,
+            this.paramsUtilService.initHttpRequestWithBody(template)
+        );
     }
 
     validateTemplates(templates: Template[]): Observable<ValidateResponse> {
-        let options = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-            }),
-            body: templates,
-        };
-        return this.http.post<ValidateResponse>(`${this.fbManagementEndpoint}/validateTemplate`, options);
+        return this.http.post<ValidateResponse>(
+            `${this.fbManagementEndpoint}/validateTemplate`,
+            this.paramsUtilService.initHttpRequestWithBody(templates)
+        );
     }
 }

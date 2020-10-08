@@ -30,7 +30,7 @@ export class RemoveTemplateDialogComponent {
         this.dialogRef.close();
     }
 
-    delete() {
+    delete(): void {
         this.templateService
             .deleteTemplate((OperationType as any)[this.data.operationType], this.data.template)
             .subscribe(

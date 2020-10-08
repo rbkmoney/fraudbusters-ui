@@ -16,6 +16,13 @@ import { ErrorHandlerService } from '../shared/services/utils/error-handler.serv
     styleUrls: ['./templates.component.scss'],
 })
 export class TemplatesComponent implements OnInit {
+    constructor(
+        private router: Router,
+        private errorHandlerService: ErrorHandlerService,
+        private templateService: TemplatesService,
+        private snackBar: MatSnackBar,
+        public dialog: MatDialog
+    ) {}
     isLoading = false;
     displayedColumns: string[] = ['id', 'text', 'edit'];
     templates = [];
@@ -24,18 +31,12 @@ export class TemplatesComponent implements OnInit {
     searchTemplateName;
     sortType = SortOrder.DESC;
 
-    constructor(
-        private router: Router,
-        private errorHandlerService: ErrorHandlerService,
-        private templateService: TemplatesService,
-        private snackBar: MatSnackBar,
-        public dialog: MatDialog
-    ) {}
+    private readonly SIZE = 2;
 
-    openDialog(template): void {
+    openDialog(removeTemplate): void {
         const dialogRef = this.dialog.open(RemoveTemplateDialogComponent, {
             width: '350px',
-            data: { template: template, operationType: this.operationType },
+            data: { template: removeTemplate, operationType: this.operationType },
         });
 
         dialogRef.afterClosed().subscribe((result) => {
@@ -43,20 +44,18 @@ export class TemplatesComponent implements OnInit {
         });
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.operationTypes = Object.keys(OperationType).filter((k) => typeof OperationType[k as any] === 'number');
         this.operationType = this.operationTypes[0];
         this.search();
     }
 
-    private readonly _size = 2;
-
-    search() {
+    search(): void {
         this.isLoading = true;
         this.templateService
             .getTemplates(
                 (OperationType as any)[this.operationType],
-                this._size,
+                this.SIZE,
                 this.searchTemplateName,
                 null,
                 this.sortType
@@ -73,22 +72,22 @@ export class TemplatesComponent implements OnInit {
             );
     }
 
-    changeSearch(newValue) {
+    changeSearch(newValue): void {
         this.searchTemplateName = newValue;
         this.search();
     }
 
-    sortData(sort: Sort) {
+    sortData(sort: Sort): void {
         this.sortType = sort.direction === 'asc' ? SortOrder.ASC : SortOrder.DESC;
         this.search();
     }
 
-    loadMore() {
+    loadMore(): void {
         this.isLoading = true;
         this.templateService
             .getTemplates(
                 (OperationType as any)[this.operationType],
-                this._size,
+                this.SIZE,
                 this.searchTemplateName,
                 this.templates[this.templates.length - 1].id,
                 this.sortType
@@ -105,11 +104,11 @@ export class TemplatesComponent implements OnInit {
             );
     }
 
-    navigateToNew() {
+    navigateToNew(): void {
         this.router.navigate(['/templates/new'], { fragment: this.operationType });
     }
 
-    navigateToEdit(id) {
+    navigateToEdit(id): void {
         this.router.navigate([`/templates/${id}`], { fragment: this.operationType });
     }
 }
