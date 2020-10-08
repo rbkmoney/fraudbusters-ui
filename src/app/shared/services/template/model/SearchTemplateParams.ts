@@ -1,5 +1,3 @@
-import { SortOrder } from '../../../constants/sort-order';
-
 export class SearchTemplateParams {
     id?: string;
     lastId?: string;
