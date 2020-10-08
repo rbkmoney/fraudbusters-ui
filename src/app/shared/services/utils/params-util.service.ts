@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root',
@@ -15,5 +15,14 @@ export class ParamsUtilService {
             });
         }
         return searchParams;
+    }
+
+    public initHttpRequestWithBody(bodyParam: any) {
+        return {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+            }),
+            body: bodyParam,
+        };
     }
 }

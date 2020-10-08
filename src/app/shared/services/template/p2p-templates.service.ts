@@ -9,6 +9,15 @@ import { ParamsUtilService } from '../utils/params-util.service';
 import { ValidateResponse } from '../../../templates/model/validate-response';
 import { ValidateTemplate } from '../../../templates/model/validate-template';
 
+function initHttpReuaestWithBody() {
+    return {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+        }),
+        body: Template,
+    };
+}
+
 @Injectable({
     providedIn: 'root',
 })
@@ -20,39 +29,29 @@ export class P2pTemplatesService implements ITemplatesService {
     }
 
     findTemplates(params?: SearchTemplateParams): Observable<Template[]> {
-        // Initialize Params Object
         return this.http.get<Template[]>(`${this.fbManagementEndpoint}/p2p/template/filter/`, {
             params: this.paramsUtilService.filterParameters(params),
         });
     }
 
     deleteTemplate(template: Template): Observable<string> {
-        let options = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-            }),
-            body: Template,
-        };
-        return this.http.delete<string>(`${this.fbManagementEndpoint}/p2p/template/`, options);
+        return this.http.delete<string>(
+            `${this.fbManagementEndpoint}/p2p/template/`,
+            this.paramsUtilService.initHttpRequestWithBody(template)
+        );
     }
 
     saveTemplate(template: Template): Observable<ValidateTemplate> {
-        let options = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-            }),
-            body: template,
-        };
-        return this.http.post<ValidateTemplate>(`${this.fbManagementEndpoint}/p2p/template`, options);
+        return this.http.post<ValidateTemplate>(
+            `${this.fbManagementEndpoint}/p2p/template`,
+            this.paramsUtilService.initHttpRequestWithBody(template)
+        );
     }
 
     validateTemplates(templates: Template[]): Observable<ValidateResponse> {
-        let options = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-            }),
-            body: templates,
-        };
-        return this.http.post<ValidateResponse>(`${this.fbManagementEndpoint}/p2p/validateTemplate`, options);
+        return this.http.post<ValidateResponse>(
+            `${this.fbManagementEndpoint}/p2p/validateTemplate`,
+            this.paramsUtilService.initHttpRequestWithBody(templates)
+        );
     }
 }
