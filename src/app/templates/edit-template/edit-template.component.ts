@@ -38,7 +38,7 @@ export class EditTemplateComponent implements OnInit {
         );
     }
 
-    private preloadData() {
+    private preloadData(): void {
         this.route.fragment.subscribe((fragment: string) => {
             this.operationType = OperationType[fragment];
         });
@@ -47,7 +47,7 @@ export class EditTemplateComponent implements OnInit {
         });
     }
 
-    save() {
+    save(): void {
         this.templateService.saveTemplate(this.operationType, this.template).subscribe(
             (id) => {
                 console.log(id);
@@ -56,7 +56,7 @@ export class EditTemplateComponent implements OnInit {
         );
     }
 
-    validate() {
+    validate(): void {
         this.templateService.validateTemplate(this.operationType, [this.template]).subscribe(
             (response) => {
                 this.snackBar.open(`${response.validateResults[0].id}: ${response.validateResults[0].errors}`, 'OK', {

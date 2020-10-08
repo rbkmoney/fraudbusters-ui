@@ -9,15 +9,6 @@ import { ParamsUtilService } from '../utils/params-util.service';
 import { ValidateResponse } from '../../../templates/model/validate-response';
 import { ValidateTemplate } from '../../../templates/model/validate-template';
 
-function initHttpReuaestWithBody() {
-    return {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-        }),
-        body: Template,
-    };
-}
-
 @Injectable({
     providedIn: 'root',
 })
