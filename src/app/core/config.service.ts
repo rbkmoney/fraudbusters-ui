@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 export interface AppConfig {
     fbManagementEndpoint: string;
+    pageSize: number;
 }
 
 @Injectable()

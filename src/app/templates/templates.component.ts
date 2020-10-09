@@ -9,6 +9,8 @@ import { SortOrder } from '../shared/constants/sort-order';
 import { Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { ErrorHandlerService } from '../shared/services/utils/error-handler.service';
+import { ParamsUtilService } from '../shared/services/utils/params-util.service';
+import { ConfigService } from '../core/config.service';
 
 @Component({
     selector: 'app-templates',
@@ -16,13 +18,20 @@ import { ErrorHandlerService } from '../shared/services/utils/error-handler.serv
     styleUrls: ['./templates.component.scss'],
 })
 export class TemplatesComponent implements OnInit {
+    private SIZE: number;
+
     constructor(
         private router: Router,
         private errorHandlerService: ErrorHandlerService,
         private templateService: TemplatesService,
         private snackBar: MatSnackBar,
-        public dialog: MatDialog
-    ) {}
+        public dialog: MatDialog,
+        configService: ConfigService
+    ) {
+        this.SIZE = configService.config.pageSize;
+    }
+
+    isLoadMore = false;
     isLoading = false;
     displayedColumns: string[] = ['id', 'text', 'edit'];
     templates = [];
@@ -30,8 +39,6 @@ export class TemplatesComponent implements OnInit {
     operationType;
     searchTemplateName;
     sortType = SortOrder.DESC;
-
-    private readonly SIZE = 2;
 
     openDialog(removeTemplate): void {
         const dialogRef = this.dialog.open(RemoveTemplateDialogComponent, {
@@ -61,9 +68,10 @@ export class TemplatesComponent implements OnInit {
                 this.sortType
             )
             .subscribe(
-                (templates) => {
+                (templatesResponse) => {
                     this.isLoading = false;
-                    this.templates = templates.reverse();
+                    this.templates = templatesResponse.templateModels;
+                    this.isLoadMore = this.templates.length < templatesResponse.count;
                 },
                 (error: HttpErrorResponse) => {
                     this.isLoading = false;
@@ -93,9 +101,10 @@ export class TemplatesComponent implements OnInit {
                 this.sortType
             )
             .subscribe(
-                (templates) => {
+                (templatesResponse) => {
                     this.isLoading = false;
-                    this.templates = this.templates.concat(templates);
+                    this.templates = this.templates.concat(templatesResponse.templateModels);
+                    this.isLoadMore = this.templates.length < templatesResponse.count;
                 },
                 (error: HttpErrorResponse) => {
                     this.isLoading = false;

@@ -52,7 +52,7 @@
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
                 </table>
-                <mat-toolbar>
+                <mat-toolbar *ngIf="isLoadMore">
                     <mat-toolbar-row class="justify-content-center">
                         <button mat-stroked-button color="primary" (click)="loadMore()">
                             <span class="material-icons">more_horiz</span>
