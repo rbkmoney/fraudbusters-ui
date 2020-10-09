@@ -27,8 +27,8 @@ export class EditTemplateComponent implements OnInit {
     ngOnInit(): void {
         this.preloadData();
         this.templateService.getTemplates(this.operationType, 1, this.templateId).subscribe(
-            (templates) => {
-                this.template = templates.reverse()[0];
+            (templatesResponse) => {
+                this.template = templatesResponse.templateModels[0];
             },
             (error: HttpErrorResponse) => {
                 this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {

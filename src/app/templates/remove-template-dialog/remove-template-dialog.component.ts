@@ -32,7 +32,7 @@ export class RemoveTemplateDialogComponent {
 
     delete(): void {
         this.templateService
-            .deleteTemplate((OperationType as any)[this.data.operationType], this.data.template)
+            .deleteTemplate((OperationType as any)[this.data.operationType], this.data.template.id)
             .subscribe(
                 (id) => console.log(id),
                 (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
