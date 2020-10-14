@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { TemplatesService } from '../templates.service';
+import { ReferencesService } from '../references.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { OperationType } from '../../shared/constants/operation-type';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Template } from '../model/template';
+import { P2pReference, PaymentReference } from '../model/reference';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 
 @Component({
-    selector: 'app-create-template',
-    templateUrl: './create-template.component.html',
-    styleUrls: ['./create-template.component.scss'],
+    selector: 'app-create-reference',
+    templateUrl: './create-reference.component.html',
+    styleUrls: ['./create-reference.component.scss'],
 })
-export class CreateTemplateComponent implements OnInit {
-    private operationType: OperationType;
-    template = new Template('', '');
+export class CreateReferenceComponent implements OnInit {
+    operationType: OperationType;
+    reference: PaymentReference | P2pReference;
 
     constructor(
         private route: ActivatedRoute,
-        private templateService: TemplatesService,
+        private referenceService: ReferencesService,
         private errorHandlerService: ErrorHandlerService,
         private snackBar: MatSnackBar
     ) {}
@@ -30,12 +30,15 @@ export class CreateTemplateComponent implements OnInit {
     getOperationTypeFromFragment(): void {
         this.route.fragment.subscribe((fragment: string) => {
             this.operationType = OperationType[fragment];
+            this.reference = this.operationType === OperationType.Payment ?
+              new PaymentReference('', '', '') :
+              new P2pReference( '', '');
         });
     }
 
     save(): void {
-        console.log(this.template);
-        this.templateService.saveTemplate(this.operationType, this.template).subscribe(
+        console.log(this.reference);
+        this.referenceService.saveReference(this.operationType, this.reference).subscribe(
             (id) => {
                 console.log(id);
             },
@@ -43,14 +46,12 @@ export class CreateTemplateComponent implements OnInit {
         );
     }
 
-    validate(): void {
-        this.templateService.validateTemplate(this.operationType, [this.template]).subscribe(
-            (response) => {
-                this.snackBar.open(`${response.validateResults[0].id}: ${response.validateResults[0].errors}`, 'OK', {
-                    duration: 1500,
-                });
-            },
-            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
-        );
-    }
+
+  isPaymentReference(): boolean {
+    return this.operationType === OperationType.Payment;
+  }
+
+  isP2pReference(): boolean {
+    return this.operationType === OperationType.PeerToPeer;
+  }
 }

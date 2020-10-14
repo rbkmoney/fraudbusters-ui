@@ -52,7 +52,7 @@ export class TemplatesComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.operationTypes = Object.keys(OperationType).filter((k) => typeof OperationType[k as any] === 'number');
+        this.operationTypes = Object.keys(OperationType);
         this.operationType = this.operationTypes[0];
         this.search();
     }
