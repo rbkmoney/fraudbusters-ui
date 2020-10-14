@@ -26,7 +26,9 @@ export class P2pReferencesService implements IReferencesService {
     }
 
     deleteReference(reference: Reference): Observable<string> {
-        return this.http.delete<string>(`${this.fbManagementEndpoint}/p2p/template/${reference.templateId}/reference/${reference.id}`);
+        return this.http.delete<string>(
+            `${this.fbManagementEndpoint}/p2p/template/${reference.templateId}/reference/${reference.id}`
+        );
     }
 
     saveReference(reference: Reference): Observable<string> {
@@ -36,5 +38,4 @@ export class P2pReferencesService implements IReferencesService {
             new HttpRequestModel()
         );
     }
-
 }

@@ -25,9 +25,11 @@ export class PaymentReferencesService implements IReferencesService {
         });
     }
 
-  deleteReference(reference: Reference): Observable<string> {
-    return this.http.delete<string>(`${this.fbManagementEndpoint}/template/${reference.templateId}/reference/${reference.id}`);
-  }
+    deleteReference(reference: Reference): Observable<string> {
+        return this.http.delete<string>(
+            `${this.fbManagementEndpoint}/template/${reference.templateId}/reference/${reference.id}`
+        );
+    }
 
     saveReference(reference: Reference): Observable<string> {
         return this.http.post<string>(

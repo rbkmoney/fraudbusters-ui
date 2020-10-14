@@ -3,31 +3,30 @@ export class Reference {
     templateId: string;
     isDefault: boolean;
     isGlobal: boolean;
-  // todo add isDefault and isGlobal to constructor
-  constructor(templateId) {
-    this.templateId = templateId;
-    this.isDefault = false;
-    this.isGlobal = false;
-  }
-
+    // todo add isDefault and isGlobal to constructor
+    constructor(templateId) {
+        this.templateId = templateId;
+        this.isDefault = false;
+        this.isGlobal = false;
+    }
 }
 
 export class P2pReference extends Reference {
-  identityId: string;
+    identityId: string;
 
-  constructor(templateId, identityId) {
-    super(templateId);
-    this.identityId = identityId;
-  }
+    constructor(templateId, identityId) {
+        super(templateId);
+        this.identityId = identityId;
+    }
 }
 
 export class PaymentReference extends Reference {
-  partyId: string;
-  shopId: string;
+    partyId: string;
+    shopId: string;
 
-  constructor(templateId, partyId, shopId) {
-    super(templateId);
-    this.partyId = partyId;
-    this.shopId = shopId;
-  }
+    constructor(templateId, partyId, shopId) {
+        super(templateId);
+        this.partyId = partyId;
+        this.shopId = shopId;
+    }
 }

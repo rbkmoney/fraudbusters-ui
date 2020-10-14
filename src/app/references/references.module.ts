@@ -22,10 +22,12 @@ import { CreateReferenceComponent } from './create-reference/create-reference.co
 import { EditReferenceComponent } from './edit-reference/edit-reference.component';
 
 @NgModule({
-    declarations: [ReferencesComponent,
-      RemoveReferenceDialogComponent,
-      CreateReferenceComponent,
-      EditReferenceComponent],
+    declarations: [
+        ReferencesComponent,
+        RemoveReferenceDialogComponent,
+        CreateReferenceComponent,
+        EditReferenceComponent,
+    ],
     imports: [
         CommonModule,
         ReferencesRoutingModule,

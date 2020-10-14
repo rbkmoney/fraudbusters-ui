@@ -57,11 +57,11 @@ export class EditReferenceComponent implements OnInit {
         );
     }
 
-  isPaymentReference(): boolean {
-    return this.operationType === OperationType.Payment;
-  }
+    isPaymentReference(): boolean {
+        return this.operationType === OperationType.Payment;
+    }
 
-  isP2pReference(): boolean {
-    return this.operationType === OperationType.PeerToPeer;
-  }
+    isP2pReference(): boolean {
+        return this.operationType === OperationType.PeerToPeer;
+    }
 }

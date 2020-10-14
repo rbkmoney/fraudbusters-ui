@@ -60,13 +60,13 @@ export class ReferencesComponent implements OnInit {
         this.selectionChange();
     }
 
-  selectionChange(): void {
-      if (this.operationType === OperationType.Payment) {
-        this.displayedColumns.next(['templateId', 'partyId', 'shopId', 'edit']);
-      } else {
-        this.displayedColumns.next(['templateId', 'identityId', 'edit']);
-      }
-      this.search();
+    selectionChange(): void {
+        if (this.operationType === OperationType.Payment) {
+            this.displayedColumns.next(['templateId', 'partyId', 'shopId', 'edit']);
+        } else {
+            this.displayedColumns.next(['templateId', 'identityId', 'edit']);
+        }
+        this.search();
     }
 
     search(): void {
@@ -133,11 +133,11 @@ export class ReferencesComponent implements OnInit {
         this.router.navigate([`/references/${id}`], { fragment: this.operationType });
     }
 
-  isP2pReference(): boolean {
-    return this.operationType === OperationType.PeerToPeer;
-  }
+    isP2pReference(): boolean {
+        return this.operationType === OperationType.PeerToPeer;
+    }
 
-  isPaymentReference(): boolean {
-    return this.operationType === OperationType.Payment;
-  }
+    isPaymentReference(): boolean {
+        return this.operationType === OperationType.Payment;
+    }
 }

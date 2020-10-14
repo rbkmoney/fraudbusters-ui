@@ -30,9 +30,10 @@ export class CreateReferenceComponent implements OnInit {
     getOperationTypeFromFragment(): void {
         this.route.fragment.subscribe((fragment: string) => {
             this.operationType = OperationType[fragment];
-            this.reference = this.operationType === OperationType.Payment ?
-              new PaymentReference('', '', '') :
-              new P2pReference( '', '');
+            this.reference =
+                this.operationType === OperationType.Payment
+                    ? new PaymentReference('', '', '')
+                    : new P2pReference('', '');
         });
     }
 
@@ -46,12 +47,11 @@ export class CreateReferenceComponent implements OnInit {
         );
     }
 
+    isPaymentReference(): boolean {
+        return this.operationType === OperationType.Payment;
+    }
 
-  isPaymentReference(): boolean {
-    return this.operationType === OperationType.Payment;
-  }
-
-  isP2pReference(): boolean {
-    return this.operationType === OperationType.PeerToPeer;
-  }
+    isP2pReference(): boolean {
+        return this.operationType === OperationType.PeerToPeer;
+    }
 }

@@ -39,5 +39,4 @@ export class ReferencesService {
     saveReference(type: OperationType, reference: Reference): Observable<string> {
         return this.operationReferenceService.findReferenceService(type).saveReference(reference);
     }
-
 }
