@@ -9,6 +9,7 @@ import { ParamsUtilService } from '../utils/params-util.service';
 import { ValidateResponse } from '../../../templates/model/validate-response';
 import { ValidateTemplate } from '../../../templates/model/validate-template';
 import { TemplatesResponse } from '../../../templates/model/templates-response';
+import { HttpRequestModel } from '../../model/HttpRequestModel';
 
 @Injectable({
     providedIn: 'root',
@@ -33,14 +34,16 @@ export class P2pTemplatesService implements ITemplatesService {
     saveTemplate(template: Template): Observable<ValidateTemplate> {
         return this.http.post<ValidateTemplate>(
             `${this.fbManagementEndpoint}/p2p/template`,
-            this.paramsUtilService.initHttpRequestWithBody(template)
+            template,
+            new HttpRequestModel()
         );
     }
 
     validateTemplates(templates: Template[]): Observable<ValidateResponse> {
         return this.http.post<ValidateResponse>(
             `${this.fbManagementEndpoint}/p2p/template/validate`,
-            this.paramsUtilService.initHttpRequestWithBody(templates)
+            templates,
+            new HttpRequestModel()
         );
     }
 }

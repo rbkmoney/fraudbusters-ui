@@ -1,34 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { OperationType } from '../../shared/constants/operation-type';
 import { ActivatedRoute } from '@angular/router';
-import { TemplatesService } from '../templates.service';
+import { ReferencesService } from '../references.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Template } from '../model/template';
+import { P2pReference, PaymentReference } from '../model/reference';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { OperationTypeComponent } from '../../shared/model/OperationTypeComponent';
 
 @Component({
-    selector: 'app-edit-template',
-    templateUrl: './edit-template.component.html',
-    styleUrls: ['./edit-template.component.scss'],
+    selector: 'app-edit-reference',
+    templateUrl: './edit-reference.component.html',
+    styleUrls: ['./edit-reference.component.scss'],
 })
-export class EditTemplateComponent implements OnInit {
-    private operationType: OperationType;
-    template: Template;
-    templateId;
+export class EditReferenceComponent extends OperationTypeComponent implements OnInit {
+    reference: PaymentReference | P2pReference;
+    referenceId;
 
     constructor(
         private route: ActivatedRoute,
-        private templateService: TemplatesService,
+        private referenceService: ReferencesService,
         private errorHandlerService: ErrorHandlerService,
         private snackBar: MatSnackBar
-    ) {}
+    ) {
+        super();
+    }
 
     ngOnInit(): void {
         this.preloadData();
-        this.templateService.getTemplates(this.operationType, 1, this.templateId).subscribe(
-            (templatesResponse) => {
-                this.template = templatesResponse.templateModels[0];
+        this.referenceService.getReferences(this.operationType, 1, this.referenceId).subscribe(
+            (referencesResponse) => {
+                this.reference = referencesResponse.referenceModels[0];
             },
             (error: HttpErrorResponse) => {
                 this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
@@ -43,26 +45,15 @@ export class EditTemplateComponent implements OnInit {
             this.operationType = OperationType[fragment];
         });
         this.route.params.subscribe(({ id }) => {
-            this.templateId = id;
+            this.referenceId = id;
         });
     }
 
     save(): void {
-        console.log(this.template);
-        this.templateService.saveTemplate(this.operationType, this.template).subscribe(
+        console.log(this.reference);
+        this.referenceService.saveReference(this.operationType, this.reference).subscribe(
             (id) => {
                 console.log(id);
-            },
-            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
-        );
-    }
-
-    validate(): void {
-        this.templateService.validateTemplate(this.operationType, [this.template]).subscribe(
-            (response) => {
-                this.snackBar.open(`${response.validateResults[0].id}: ${response.validateResults[0].errors}`, 'OK', {
-                    duration: 1500,
-                });
             },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
