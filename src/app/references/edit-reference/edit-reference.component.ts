@@ -6,14 +6,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { P2pReference, PaymentReference } from '../model/reference';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { OperationTypeComponent } from '../../shared/model/OperationTypeComponent';
 
 @Component({
     selector: 'app-edit-reference',
     templateUrl: './edit-reference.component.html',
     styleUrls: ['./edit-reference.component.scss'],
 })
-export class EditReferenceComponent implements OnInit {
-    private operationType: OperationType;
+export class EditReferenceComponent extends OperationTypeComponent implements OnInit {
     reference: PaymentReference | P2pReference;
     referenceId;
 
@@ -22,7 +22,9 @@ export class EditReferenceComponent implements OnInit {
         private referenceService: ReferencesService,
         private errorHandlerService: ErrorHandlerService,
         private snackBar: MatSnackBar
-    ) {}
+    ) {
+        super();
+    }
 
     ngOnInit(): void {
         this.preloadData();
@@ -55,13 +57,5 @@ export class EditReferenceComponent implements OnInit {
             },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
-    }
-
-    isPaymentReference(): boolean {
-        return this.operationType === OperationType.Payment;
-    }
-
-    isP2pReference(): boolean {
-        return this.operationType === OperationType.PeerToPeer;
     }
 }

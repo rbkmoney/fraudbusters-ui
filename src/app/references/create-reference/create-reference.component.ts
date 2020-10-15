@@ -6,14 +6,14 @@ import { OperationType } from '../../shared/constants/operation-type';
 import { HttpErrorResponse } from '@angular/common/http';
 import { P2pReference, PaymentReference } from '../model/reference';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { OperationTypeComponent } from '../../shared/model/OperationTypeComponent';
 
 @Component({
     selector: 'app-create-reference',
     templateUrl: './create-reference.component.html',
     styleUrls: ['./create-reference.component.scss'],
 })
-export class CreateReferenceComponent implements OnInit {
-    operationType: OperationType;
+export class CreateReferenceComponent extends OperationTypeComponent implements OnInit {
     reference: PaymentReference | P2pReference;
 
     constructor(
@@ -21,7 +21,9 @@ export class CreateReferenceComponent implements OnInit {
         private referenceService: ReferencesService,
         private errorHandlerService: ErrorHandlerService,
         private snackBar: MatSnackBar
-    ) {}
+    ) {
+        super();
+    }
 
     ngOnInit(): void {
         this.getOperationTypeFromFragment();
@@ -45,13 +47,5 @@ export class CreateReferenceComponent implements OnInit {
             },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
-    }
-
-    isPaymentReference(): boolean {
-        return this.operationType === OperationType.Payment;
-    }
-
-    isP2pReference(): boolean {
-        return this.operationType === OperationType.PeerToPeer;
     }
 }

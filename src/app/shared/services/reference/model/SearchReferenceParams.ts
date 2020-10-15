@@ -1,13 +1,7 @@
-export class SearchReferenceParams {
-    id?: string;
-    lastId?: string;
-    size?: number;
-    sortOrder: string;
+import { SearchParams } from '../../../model/SearchParams';
 
+export class SearchReferenceParams extends SearchParams {
     constructor(id: string, lastId: string, size: number, sortOrder: string) {
-        this.id = id;
-        this.lastId = lastId;
-        this.size = size;
-        this.sortOrder = sortOrder;
+        super(id, lastId, size, sortOrder);
     }
 }

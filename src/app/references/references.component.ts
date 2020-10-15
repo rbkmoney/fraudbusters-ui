@@ -13,13 +13,14 @@ import { ConfigService } from '../core/config.service';
 import { ReplaySubject, Subject } from 'rxjs';
 import { P2pReference } from './model/reference';
 import { MatSelectChange } from '@angular/material/select';
+import { OperationTypeComponent } from '../shared/model/OperationTypeComponent';
 
 @Component({
     selector: 'app-references',
     templateUrl: './references.component.html',
     styleUrls: ['./references.component.scss'],
 })
-export class ReferencesComponent implements OnInit {
+export class ReferencesComponent extends OperationTypeComponent implements OnInit {
     private SIZE: number;
 
     constructor(
@@ -30,6 +31,7 @@ export class ReferencesComponent implements OnInit {
         public dialog: MatDialog,
         configService: ConfigService
     ) {
+        super();
         this.SIZE = configService.config.pageSize;
         this.displayedColumns.next(['templateId', 'edit']);
     }
@@ -39,7 +41,6 @@ export class ReferencesComponent implements OnInit {
     references = [];
     displayedColumns = new ReplaySubject<string[]>();
     operationTypes = [];
-    operationType;
     searchReferenceName;
     sortType = SortOrder.DESC;
 
@@ -131,13 +132,5 @@ export class ReferencesComponent implements OnInit {
 
     navigateToEdit(id): void {
         this.router.navigate([`/references/${id}`], { fragment: this.operationType });
-    }
-
-    isP2pReference(): boolean {
-        return this.operationType === OperationType.PeerToPeer;
-    }
-
-    isPaymentReference(): boolean {
-        return this.operationType === OperationType.Payment;
     }
 }

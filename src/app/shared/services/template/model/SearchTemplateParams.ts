@@ -1,13 +1,7 @@
-export class SearchTemplateParams {
-    id?: string;
-    lastId?: string;
-    size?: number;
-    sortOrder: string;
+import { SearchParams } from '../../../model/SearchParams';
 
+export class SearchTemplateParams extends SearchParams {
     constructor(id: string, lastId: string, size: number, sortOrder: string) {
-        this.id = id;
-        this.lastId = lastId;
-        this.size = size;
-        this.sortOrder = sortOrder;
+        super(id, lastId, size, sortOrder);
     }
 }
