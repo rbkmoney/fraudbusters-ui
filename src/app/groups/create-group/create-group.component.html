@@ -19,9 +19,10 @@
                     class="fb-table"
                     matSort
                     *ngIf="newGroup.priorityTemplates.length > 0"
+                    (matSortChange)="sortData($event, newGroup)"
                 >
                     <ng-container matColumnDef="id">
-                        <th mat-header-cell *matHeaderCellDef width="300px">Id</th>
+                        <th mat-header-cell *matHeaderCellDef width="300px" mat-sort-header>Id</th>
                         <td mat-cell *matCellDef="let element">
                             <input
                                 matInput

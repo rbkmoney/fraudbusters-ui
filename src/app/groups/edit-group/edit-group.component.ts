@@ -7,6 +7,9 @@ import { ErrorHandlerService } from '../../shared/services/utils/error-handler.s
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Group } from '../model/group';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Sort } from '@angular/material/sort';
+import { GroupUtilsService } from '../utils/group-utils.service';
+import { TemplatesService } from '../../templates/templates.service';
 
 @Component({
     selector: 'app-edit-group',
@@ -18,13 +21,14 @@ export class EditGroupComponent implements OnInit {
     editGroup: Group;
     displayedColumns: string[] = ['id', 'priority', 'edit'];
     operationType: OperationType;
-    options: string[] = ['One', 'Two', 'Three'];
-    filteredOptions;
+    options: string[] = [];
 
     constructor(
         private route: ActivatedRoute,
         private groupsService: GroupsService,
         private errorHandlerService: ErrorHandlerService,
+        private templatesService: TemplatesService,
+        private groupUtilsService: GroupUtilsService,
         private snackBar: MatSnackBar
     ) {}
 
@@ -51,15 +55,16 @@ export class EditGroupComponent implements OnInit {
         });
     }
 
-    getOperationTypeFromFragment(): void {
-        this.route.fragment.subscribe((fragment: string) => {
-            this.operationType = OperationType[fragment];
-        });
+    save(): void {
+        this.groupsService.saveGroup(this.operationType, this.editGroup).subscribe(
+            (id) => {
+                console.log(id);
+            },
+            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
+        );
     }
 
-    save(): void {}
-
-    addReference(): void {}
+    navigateReference(): void {}
 
     addTemplate(): void {
         this.editGroup.priorityTemplates = this.editGroup.priorityTemplates.concat([new PriorityIdModel('', 0)]);
@@ -70,7 +75,19 @@ export class EditGroupComponent implements OnInit {
     }
 
     doFilter(value): void {
-        const regex = new RegExp('/^/' + value, 'g');
-        this.filteredOptions = this.options.filter((option) => regex.test(option));
+        this.templatesService.getTemplatesName(this.operationType, value).subscribe(
+            (names) => {
+                this.options = names;
+            },
+            (error: HttpErrorResponse) => {
+                this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
+                    duration: 1500,
+                });
+            }
+        );
+    }
+
+    sortData(sort: Sort, group: Group): void {
+        this.groupUtilsService.sortData(sort, group);
     }
 }

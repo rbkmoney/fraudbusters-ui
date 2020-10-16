@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PriorityIdModel } from '../model/priority-id-model';
 import { OperationType } from '../../shared/constants/operation-type';
 import { ActivatedRoute } from '@angular/router';
@@ -8,6 +8,8 @@ import { GroupsService } from '../groups.service';
 import { Group } from '../model/group';
 import { TemplatesService } from '../../templates/templates.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatSort, Sort } from '@angular/material/sort';
+import { GroupUtilsService } from '../utils/group-utils.service';
 
 @Component({
     selector: 'app-create-group',
@@ -25,6 +27,7 @@ export class CreateGroupComponent implements OnInit {
         private groupsService: GroupsService,
         private templatesService: TemplatesService,
         private errorHandlerService: ErrorHandlerService,
+        private groupUtilsService: GroupUtilsService,
         private snackBar: MatSnackBar
     ) {}
 
@@ -78,5 +81,9 @@ export class CreateGroupComponent implements OnInit {
                 });
             }
         );
+    }
+
+    sortData(sort: Sort, group: Group): void {
+        this.groupUtilsService.sortData(sort, group);
     }
 }

@@ -2,7 +2,7 @@
     <mat-toolbar-row>
         <h3>Edit group</h3>
         <button mat-stroked-button color="primary" (click)="save()">Save</button>
-        <button mat-stroked-button color="accent" (click)="addReference()">Reference</button>
+        <button mat-stroked-button color="accent" (click)="navigateReference()">Reference</button>
     </mat-toolbar-row>
 </mat-toolbar>
 
@@ -19,9 +19,10 @@
                     class="fb-table"
                     matSort
                     *ngIf="editGroup.priorityTemplates.length > 0"
+                    (matSortChange)="sortData($event, editGroup)"
                 >
                     <ng-container matColumnDef="id">
-                        <th mat-header-cell *matHeaderCellDef width="300px">Id</th>
+                        <th mat-header-cell *matHeaderCellDef width="300px" mat-sort-header>Id</th>
                         <td mat-cell *matCellDef="let element">
                             <input
                                 matInput
