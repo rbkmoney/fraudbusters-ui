@@ -34,6 +34,7 @@ export class CreateTemplateComponent implements OnInit {
     }
 
     save(): void {
+        console.log(this.template);
         this.templateService.saveTemplate(this.operationType, this.template).subscribe(
             (id) => {
                 console.log(id);

@@ -1,4 +1,4 @@
 export enum OperationType {
-    Payment,
-    PeerToPeer,
+    Payment = 'Payment',
+    PeerToPeer = 'PeerToPeer',
 }
