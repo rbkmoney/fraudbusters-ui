@@ -30,6 +30,12 @@ export class PaymentTemplatesService implements ITemplatesService {
         return this.http.delete<string>(`${this.fbManagementEndpoint}/template/${id}`);
     }
 
+    getTemplatesName(nameRegexp?: string): Observable<string[]> {
+        return this.http.get<string[]>(`${this.fbManagementEndpoint}/template/names`, {
+            params: this.paramsUtilService.filterParameters({ regexpName: nameRegexp + '%' }),
+        });
+    }
+
     saveTemplate(template: Template): Observable<ValidateTemplate> {
         return this.http.post<ValidateTemplate>(
             `${this.fbManagementEndpoint}/template`,

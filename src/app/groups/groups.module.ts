@@ -31,9 +31,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { GroupsRoutingModule } from './groups-routing.module';
+import { CreateGroupComponent } from './create-group/create-group.component';
+import { GroupsService } from './groups.service';
+import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-dialog.component';
+import { EditGroupComponent } from './edit-group/edit-group.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
-    declarations: [GroupsComponent],
+    declarations: [GroupsComponent, CreateGroupComponent, RemoveGroupDialogComponent, EditGroupComponent],
     imports: [
         CommonModule,
         GroupsRoutingModule,
@@ -47,10 +52,12 @@ import { GroupsRoutingModule } from './groups-routing.module';
         MatToolbarModule,
         MatPaginatorModule,
         MatSortModule,
+        MatListModule,
         MatSnackBarModule,
         MatDialogModule,
+        MatAutocompleteModule,
         FormsModule,
     ],
-    providers: [TemplatesService, ConfigService],
+    providers: [GroupsService, ConfigService],
 })
 export class GroupsModule {}

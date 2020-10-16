@@ -5,11 +5,11 @@ import { SearchTemplateParams } from './model/SearchTemplateParams';
 import { ValidateTemplate } from '../../../templates/model/validate-template';
 import { ValidateResponse } from '../../../templates/model/validate-response';
 import { TemplatesResponse } from '../../../templates/model/templates-response';
+import { Group } from '../../../groups/model/group';
 
-export interface ITemplatesService {
-    findTemplates: (params?: SearchTemplateParams) => Observable<TemplatesResponse>;
-    deleteTemplate(id: string): Observable<string>;
-    saveTemplate(template: Template): Observable<ValidateTemplate>;
-    validateTemplates(templates: Template[]): Observable<ValidateResponse>;
-    getTemplatesName(nameRegexp?: string): Observable<string[]>;
+export interface IGroupsService {
+    findGroups(id: string): Observable<Group[]>;
+    getGroupById(id: string): Observable<Group>;
+    deleteGroup(id: string): Observable<string>;
+    saveGroup(group: Group): Observable<string>;
 }

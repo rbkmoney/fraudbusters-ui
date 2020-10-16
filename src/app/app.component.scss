@@ -168,9 +168,7 @@
     }
 
     .fb-table {
-        table {
-            width: 100%;
-        }
+        width: 100%;
 
         .mat-table {
             box-shadow: none;
@@ -197,6 +195,14 @@
             background: red;
             border-color: #d4deee;
             font-weight: 500;
+        }
+    }
+
+    mat-form-field.mat-form-field.full-width {
+        width: 100%;
+
+        textarea {
+            min-height: 400px;
         }
     }
 }
