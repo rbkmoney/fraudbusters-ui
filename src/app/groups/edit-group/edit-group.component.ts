@@ -38,11 +38,7 @@ export class EditGroupComponent implements OnInit {
             (group) => {
                 this.editGroup = group;
             },
-            (error: HttpErrorResponse) => {
-                this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-                    duration: 1500,
-                });
-            }
+            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
     }
 
@@ -58,7 +54,9 @@ export class EditGroupComponent implements OnInit {
     save(): void {
         this.groupsService.saveGroup(this.operationType, this.editGroup).subscribe(
             (id) => {
-                console.log(id);
+                this.snackBar.open(`Saved success: ${id}`, 'OK', {
+                    duration: 1500,
+                });
             },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
@@ -79,11 +77,7 @@ export class EditGroupComponent implements OnInit {
             (names) => {
                 this.options = names;
             },
-            (error: HttpErrorResponse) => {
-                this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-                    duration: 1500,
-                });
-            }
+            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
     }
 

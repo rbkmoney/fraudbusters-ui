@@ -11,6 +11,7 @@ import { ValidateResponse } from '../../../templates/model/validate-response';
 import { TemplatesResponse } from '../../../templates/model/templates-response';
 import { IGroupsService } from './igroups.service';
 import { Group } from '../../../groups/model/group';
+import { HttpRequestModel } from '../../model/HttpRequestModel';
 
 @Injectable({
     providedIn: 'root',
@@ -37,9 +38,6 @@ export class P2pGroupsService implements IGroupsService {
     }
 
     saveGroup(group: Group): Observable<string> {
-        return this.http.post<string>(
-            `${this.fbManagementEndpoint}/p2p/group`,
-            this.paramsUtilService.initHttpRequestWithBody(group)
-        );
+        return this.http.post<string>(`${this.fbManagementEndpoint}/p2p/group`, group, new HttpRequestModel());
     }
 }

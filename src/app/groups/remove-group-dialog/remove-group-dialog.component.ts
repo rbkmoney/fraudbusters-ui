@@ -31,7 +31,11 @@ export class RemoveGroupDialogComponent {
 
     delete(): void {
         this.groupsService.deleteGroup((OperationType as any)[this.data.operationType], this.data.id).subscribe(
-            (id) => console.log(id),
+            (id) => {
+                this.snackBar.open(`Delete group success: ${id}`, 'OK', {
+                    duration: 1500,
+                });
+            },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
         this.dialogRef.close();

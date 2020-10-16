@@ -41,7 +41,7 @@ export class GroupsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.operationTypes = Object.keys(OperationType).filter((k) => typeof OperationType[k as any] === 'number');
+        this.operationTypes = Object.keys(OperationType);
         this.operationType = this.operationTypes[0];
         this.search();
     }
@@ -53,10 +53,7 @@ export class GroupsComponent implements OnInit {
                 this.isLoading = false;
                 this.groups = groups;
             },
-            (error: HttpErrorResponse) => {
-                this.isLoading = false;
-                this.errorHandlerService.handleError(error, this.snackBar);
-            }
+            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
     }
 
@@ -87,11 +84,11 @@ export class GroupsComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe((result) => {
-            console.log('The dialog was closed');
+            this.search();
         });
     }
 
-    mapTeplateName(priorityIdModel: PriorityIdModel[]): string[] {
+    mapTemplateName(priorityIdModel: PriorityIdModel[]): string[] {
         return priorityIdModel.map((value) => value.id + ' - ' + value.priority);
     }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PriorityIdModel } from '../model/priority-id-model';
 import { OperationType } from '../../shared/constants/operation-type';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GroupsService } from '../groups.service';
@@ -23,6 +23,7 @@ export class CreateGroupComponent implements OnInit {
     options: string[] = [];
 
     constructor(
+        private router: Router,
         private route: ActivatedRoute,
         private groupsService: GroupsService,
         private templatesService: TemplatesService,
@@ -37,11 +38,7 @@ export class CreateGroupComponent implements OnInit {
             (names) => {
                 this.options = names;
             },
-            (error: HttpErrorResponse) => {
-                this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-                    duration: 1500,
-                });
-            }
+            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
     }
 
@@ -54,7 +51,10 @@ export class CreateGroupComponent implements OnInit {
     save(): void {
         this.groupsService.saveGroup(this.operationType, this.newGroup).subscribe(
             (id) => {
-                console.log(id);
+                this.navigateToEdit(id);
+                this.snackBar.open(`Saved success: ${id}`, 'OK', {
+                    duration: 1500,
+                });
             },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
@@ -75,12 +75,12 @@ export class CreateGroupComponent implements OnInit {
             (names) => {
                 this.options = names;
             },
-            (error: HttpErrorResponse) => {
-                this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-                    duration: 1500,
-                });
-            }
+            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
+    }
+
+    navigateToEdit(id): void {
+        this.router.navigate([`../groups/${id}`], { fragment: this.operationType.toString() });
     }
 
     sortData(sort: Sort, group: Group): void {
