@@ -11,6 +11,7 @@ import { Sort } from '@angular/material/sort';
 import { GroupsService } from './groups.service';
 import { PriorityIdModel } from './model/priority-id-model';
 import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-dialog.component';
+import { GroupUtilsService } from './utils/group-utils.service';
 
 @Component({
     selector: 'app-groups',
@@ -27,12 +28,12 @@ export class GroupsComponent implements OnInit {
     operationTypes = [];
     operationType;
     searchField;
-    sortType = SortOrder.DESC;
 
     constructor(
         private router: Router,
         private errorHandlerService: ErrorHandlerService,
         private groupsService: GroupsService,
+        private groupUtilsService: GroupUtilsService,
         private snackBar: MatSnackBar,
         public dialog: MatDialog,
         configService: ConfigService
@@ -58,8 +59,7 @@ export class GroupsComponent implements OnInit {
     }
 
     sortData(sort: Sort): void {
-        this.sortType = sort.direction === 'asc' ? SortOrder.ASC : SortOrder.DESC;
-        this.search();
+        this.groups = this.groupUtilsService.sortGroups(sort, this.groups);
     }
 
     changeSearch(newValue): void {
