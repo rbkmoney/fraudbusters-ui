@@ -42,8 +42,11 @@ init:
 	echo -e "//npm.pkg.github.com/:_authToken=$(NPM_TOKEN)" >> .npmrc
 	npm ci
 
-build: lint compile
+build: check lint
 	npm run build
 
 lint:
 	npm run lint
+
+check:
+	npm run prettier
