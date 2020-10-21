@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IReferencesService } from './ireferences.service';
-import { Reference } from '../../../references/model/reference';
+import { PaymentReference, Reference } from '../../../references/model/reference';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../../../core/config.service';
 import { Observable } from 'rxjs';
@@ -25,9 +25,10 @@ export class PaymentReferencesService implements IReferencesService {
         });
     }
 
-    deleteReference(reference: Reference): Observable<string> {
+    deleteReference(reference: PaymentReference): Observable<string> {
         return this.http.delete<string>(
-            `${this.fbManagementEndpoint}/template/${reference.templateId}/reference/${reference.id}`
+            `${this.fbManagementEndpoint}/template/${reference.templateId}/reference`,
+          { params: { shopId: reference.shopId, partyId: reference.partyId} }
         );
     }
 
