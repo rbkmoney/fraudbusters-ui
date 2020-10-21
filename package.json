@@ -7,6 +7,11 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
+    "prettier-preset": "prettier \"**/*.{html,js,ts,css,scss,md,json,prettierrc,svg,huskyrc}\"",
+    "prettier": "npm run prettier-preset -- --list-different",
+    "prettier:fix": "npm run prettier-preset -- --write",
+    "fix": "npm run lint:fix; npm run prettier:fix",
     "e2e": "ng e2e",
     "postinstall": "ngcc"
   },
