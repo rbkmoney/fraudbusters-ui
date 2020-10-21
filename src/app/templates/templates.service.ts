@@ -38,6 +38,10 @@ export class TemplatesService {
         return this.operationTemplateService.findTemplateService(type).deleteTemplate(id);
     }
 
+    getTemplatesName(type: OperationType, regexp?: string): Observable<string[]> {
+        return this.operationTemplateService.findTemplateService(type).getTemplatesName(regexp);
+    }
+
     saveTemplate(type: OperationType, template: Template): Observable<ValidateTemplate> {
         return this.operationTemplateService.findTemplateService(type).saveTemplate(template);
     }

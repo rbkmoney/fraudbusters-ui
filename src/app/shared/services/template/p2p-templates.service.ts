@@ -39,6 +39,12 @@ export class P2pTemplatesService implements ITemplatesService {
         );
     }
 
+    getTemplatesName(nameRegexp: string): Observable<string[]> {
+        return this.http.get<string[]>(`${this.fbManagementEndpoint}/p2p/template/names`, {
+            params: this.paramsUtilService.filterParameters({ regexpName: nameRegexp }),
+        });
+    }
+
     validateTemplates(templates: Template[]): Observable<ValidateResponse> {
         return this.http.post<ValidateResponse>(
             `${this.fbManagementEndpoint}/p2p/template/validate`,

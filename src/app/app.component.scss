@@ -162,4 +162,47 @@
     .justify-content-center {
         justify-content: center;
     }
+
+    .fb-spacer {
+        flex: 1 1 auto;
+    }
+
+    .fb-table {
+        width: 100%;
+
+        .mat-table {
+            box-shadow: none;
+        }
+
+        .mat-drawer-container {
+            background: #f6f7fb;
+        }
+
+        .mat-column-edit,
+        .mat-column-delete {
+            width: 80px;
+        }
+
+        .mat-column-text {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            max-width: 300px;
+        }
+
+        .mat-form-field-flex {
+            color: #515365;
+            background: red;
+            border-color: #d4deee;
+            font-weight: 500;
+        }
+    }
+
+    mat-form-field.mat-form-field.full-width {
+        width: 100%;
+
+        textarea {
+            min-height: 400px;
+        }
+    }
 }

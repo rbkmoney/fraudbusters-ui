@@ -30,11 +30,7 @@ export class EditTemplateComponent implements OnInit {
             (templatesResponse) => {
                 this.template = templatesResponse.templateModels[0];
             },
-            (error: HttpErrorResponse) => {
-                this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-                    duration: 1500,
-                });
-            }
+            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
     }
 
@@ -51,7 +47,9 @@ export class EditTemplateComponent implements OnInit {
         console.log(this.template);
         this.templateService.saveTemplate(this.operationType, this.template).subscribe(
             (id) => {
-                console.log(id);
+                this.snackBar.open(`Saved success: ${id.id}`, 'OK', {
+                    duration: 1500,
+                });
             },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
