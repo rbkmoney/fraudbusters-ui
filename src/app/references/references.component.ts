@@ -10,9 +10,7 @@ import { Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { ErrorHandlerService } from '../shared/services/utils/error-handler.service';
 import { ConfigService } from '../core/config.service';
-import { ReplaySubject, Subject } from 'rxjs';
-import { P2pReference } from './model/reference';
-import { MatSelectChange } from '@angular/material/select';
+import { ReplaySubject } from 'rxjs';
 import { OperationTypeComponent } from '../shared/model/OperationTypeComponent';
 
 @Component({

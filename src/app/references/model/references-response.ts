@@ -1,4 +1,5 @@
-import { P2pReference, PaymentReference } from './reference';
+import { PaymentReference } from './payment-reference';
+import { P2pReference } from './p2p-reference';
 
 export class ReferencesResponse {
     count: number;
