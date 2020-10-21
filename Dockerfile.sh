@@ -1,7 +1,7 @@
 #!/bin/bash
 cat <<EOF
 FROM $BASE_IMAGE
-MAINTAINER Ildar Galeev <k.struzhkin@rbkmoney.com>
+MAINTAINER Konstantin Struzhkin <k.struzhkin@rbkmoney.com>
 COPY dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/vhosts.d/fraudbusters-ui.conf
 EXPOSE 8080

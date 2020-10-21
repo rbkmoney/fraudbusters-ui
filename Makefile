@@ -42,9 +42,6 @@ init:
 	echo -e "//npm.pkg.github.com/:_authToken=$(NPM_TOKEN)" >> .npmrc
 	npm ci
 
-compile:
-	npm run compile-thrift
-
 build: check lint compile
 	npm run build
 
