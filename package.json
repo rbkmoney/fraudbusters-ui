@@ -60,6 +60,6 @@
     }
   },
   "lint-staged": {
-    "*.{html,js,css,md}": "prettier --write"
+    "*.{html,js,ts,css,scss,md,json,prettierrc,svg,huskyrc}": "prettier --write"
   }
 }
