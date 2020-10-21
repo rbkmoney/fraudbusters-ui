@@ -26,10 +26,9 @@ export class P2pReferencesService implements IReferencesService {
     }
 
     deleteReference(reference: P2pReference): Observable<string> {
-        return this.http.delete<string>(
-            `${this.fbManagementEndpoint}/p2p/template/${reference.templateId}/reference`,
-          { params: { identityId: reference.identityId} }
-        );
+        return this.http.delete<string>(`${this.fbManagementEndpoint}/p2p/template/${reference.templateId}/reference`, {
+            params: { identityId: reference.identityId },
+        });
     }
 
     saveReference(reference: Reference): Observable<string> {

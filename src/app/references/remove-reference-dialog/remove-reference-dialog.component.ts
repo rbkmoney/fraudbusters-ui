@@ -31,12 +31,10 @@ export class RemoveReferenceDialogComponent {
     }
 
     delete(): void {
-        this.referenceService
-            .deleteReference(this.data.operationType, this.data.reference)
-            .subscribe(
-                (id) => console.log(id),
-                (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
-            );
+        this.referenceService.deleteReference(this.data.operationType, this.data.reference).subscribe(
+            (id) => console.log(id),
+            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
+        );
         this.dialogRef.close();
     }
 }

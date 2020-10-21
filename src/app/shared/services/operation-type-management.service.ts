@@ -20,7 +20,7 @@ export class OperationTypeManagementService {
         private paymentGroupsService: PaymentGroupsService,
         private p2pGroupsService: P2pGroupsService,
         private paymentReferenceService: PaymentReferencesService,
-        private p2pReferenceService: P2pReferencesService,
+        private p2pReferenceService: P2pReferencesService
     ) {}
 
     findTemplateService(type: OperationType): ITemplatesService {
