@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../../../core/config.service';
 import { SearchReferenceParams } from './model/SearchReferenceParams';
 import { Observable } from 'rxjs';
-import { Reference } from '../../../references/model/reference';
+import { P2pReference, Reference } from '../../../references/model/reference';
 import { ParamsUtilService } from '../utils/params-util.service';
 import { ReferencesResponse } from '../../../references/model/references-response';
 import { HttpRequestModel } from '../../model/HttpRequestModel';
@@ -25,9 +25,10 @@ export class P2pReferencesService implements IReferencesService {
         });
     }
 
-    deleteReference(reference: Reference): Observable<string> {
+    deleteReference(reference: P2pReference): Observable<string> {
         return this.http.delete<string>(
-            `${this.fbManagementEndpoint}/p2p/template/${reference.templateId}/reference/${reference.id}`
+            `${this.fbManagementEndpoint}/p2p/template/${reference.templateId}/reference`,
+          { params: { identityId: reference.identityId} }
         );
     }
 

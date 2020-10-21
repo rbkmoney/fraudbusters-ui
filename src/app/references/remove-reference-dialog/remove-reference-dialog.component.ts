@@ -32,7 +32,7 @@ export class RemoveReferenceDialogComponent {
 
     delete(): void {
         this.referenceService
-            .deleteReference((OperationType as any)[this.data.operationType], this.data.reference)
+            .deleteReference(this.data.operationType, this.data.reference)
             .subscribe(
                 (id) => console.log(id),
                 (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)

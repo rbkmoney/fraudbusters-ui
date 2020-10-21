@@ -6,8 +6,8 @@ export class Reference {
     // todo add isDefault and isGlobal to constructor
     constructor(templateId) {
         this.templateId = templateId;
-        this.isDefault = false;
-        this.isGlobal = false;
+        this.isDefault = true;
+        this.isGlobal = true;
     }
 }
 
