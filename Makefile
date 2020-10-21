@@ -47,6 +47,3 @@ build: check lint compile
 
 lint:
 	npm run lint
-
-check:
-	npm run prettier
