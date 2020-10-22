@@ -11,5 +11,6 @@ export class AppComponent {
         { name: 'Templates', route: '/templates', icon: 'business' },
         { name: 'References', route: '/references', icon: 'share' },
         { name: 'Groups', route: '/groups', icon: 'group_work' },
+        { name: 'Groups reference', route: '/groups-reference', icon: 'leak_remove' },
     ];
 }
