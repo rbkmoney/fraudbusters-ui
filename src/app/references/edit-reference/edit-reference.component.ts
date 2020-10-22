@@ -4,9 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { ReferencesService } from '../references.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
-import { P2pReference, PaymentReference } from '../model/reference';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { OperationTypeComponent } from '../../shared/model/OperationTypeComponent';
+import { PaymentReference } from '../model/payment-reference';
+import { P2pReference } from '../model/p2p-reference';
 
 @Component({
     selector: 'app-edit-reference',
