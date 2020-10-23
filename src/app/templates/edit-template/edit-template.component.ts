@@ -64,7 +64,7 @@ export class EditTemplateComponent implements OnInit {
                         : 'All rule success',
                     'OK',
                     {
-                        duration: 1500,
+                        duration: 120500,
                     }
                 );
             },

@@ -8,6 +8,7 @@ import { SearchTemplateParams } from '../shared/services/template/model/SearchTe
 import { ValidateTemplate } from './model/validate-template';
 import { ValidateResponse } from './model/validate-response';
 import { TemplatesResponse } from './model/templates-response';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
     providedIn: 'root',
