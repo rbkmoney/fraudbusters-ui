@@ -58,9 +58,15 @@ export class EditTemplateComponent implements OnInit {
     validate(): void {
         this.templateService.validateTemplate(this.operationType, [this.template]).subscribe(
             (response) => {
-                this.snackBar.open(`${response.validateResults[0].id}: ${response.validateResults[0].errors}`, 'OK', {
-                    duration: 1500,
-                });
+                this.snackBar.open(
+                    response.validateResults.length > 0
+                        ? `${response.validateResults[0].id}: ${response.validateResults[0].errors}`
+                        : 'All rule success',
+                    'OK',
+                    {
+                        duration: 1500,
+                    }
+                );
             },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
