@@ -9,6 +9,7 @@ import { ConfigService } from '../core/config.service';
 import { ReplaySubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { GroupsReferenceService } from './groups-reference.service';
+import { SortOrder } from '../shared/constants/sort-order';
 
 @Component({
     selector: 'app-groups-reference',
@@ -38,6 +39,7 @@ export class GroupsReferenceComponent implements OnInit {
     isLoadMore = false;
     references = [];
     displayedColumns = new ReplaySubject<string[]>();
+    sortType = SortOrder.DESC;
 
     ngOnInit(): void {
         this.operationTypes = Object.keys(OperationType);
@@ -56,21 +58,19 @@ export class GroupsReferenceComponent implements OnInit {
 
     search(): void {
         this.groupsReferenceService
-            .getTemplates(
+            .getGroupsReferences(
                 (OperationType as any)[this.operationType],
                 this.SIZE,
-                this.searchTemplateName,
+                this.searchValue,
                 null,
                 this.sortType
             )
             .subscribe(
-                (templatesResponse) => {
-                    this.isLoading = false;
-                    this.templates = templatesResponse.templateModels;
-                    this.isLoadMore = this.templates.length < templatesResponse.count;
+                (groupsReferenceResponse) => {
+                    this.groupReferences = groupsReferenceResponse.groupsReferenceModels;
+                    this.isLoadMore = this.groupReferences.length < groupsReferenceResponse.count;
                 },
                 (error: HttpErrorResponse) => {
-                    this.isLoading = false;
                     this.errorHandlerService.handleError(error, this.snackBar);
                 }
             );

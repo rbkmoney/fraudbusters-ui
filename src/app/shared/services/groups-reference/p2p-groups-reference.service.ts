@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../../../core/config.service';
 import { Observable } from 'rxjs';
-import { SearchReferenceParams } from './model/SearchReferenceParams';
 import { ParamsUtilService } from '../utils/params-util.service';
-import { ReferencesResponse } from '../../../references/model/references-response';
-import { PaymentReference } from '../../../references/model/payment-reference';
-import { Reference } from '../../../references/model/reference';
 import { IGroupsReferenceService } from './igroups-reference.service';
+import { GroupsReferenceResponse } from '../../../groups-reference/model/groups-reference-response';
+import { GroupReferenceModel } from '../../../groups-reference/model/groups-reference';
+import { HttpRequestModel } from '../../model/HttpRequestModel';
+import { SearchParams } from '../../model/SearchParams';
 
 @Injectable({
     providedIn: 'root',
@@ -19,22 +19,24 @@ export class P2pGroupsReferenceService implements IGroupsReferenceService {
         this.fbManagementEndpoint = configService.config.fbManagementEndpoint;
     }
 
-    findReferences(params?: SearchReferenceParams): Observable<ReferencesResponse> {
-        return this.http.get<ReferencesResponse>(`${this.fbManagementEndpoint}/reference/filter/`, {
+    findGroups(params?: SearchParams): Observable<GroupsReferenceResponse> {
+        return this.http.get<GroupsReferenceResponse>(`${this.fbManagementEndpoint}/p2p/group/reference/filter`, {
             params: this.paramsUtilService.filterParameters(params),
         });
     }
 
-    deleteReference(reference: PaymentReference): Observable<string> {
-        return this.http.delete(`${this.fbManagementEndpoint}/template/${reference.templateId}/reference`, {
-            params: { shopId: reference.shopId, partyId: reference.partyId },
+    deleteGroupReference(groupId: string, partyId: string, shopId: string): Observable<string> {
+        return this.http.delete(`${this.fbManagementEndpoint}/p2p/group/${groupId}/reference`, {
+            params: { shopId: shopId, partyId: partyId },
             responseType: 'text',
         });
     }
 
-    saveReference(reference: Reference): Observable<string> {
-        return this.http.post(`${this.fbManagementEndpoint}/template/${reference.templateId}/reference`, reference, {
-            responseType: 'text',
-        });
+    saveGroupReference(groupId: string, groupReferenceModels: GroupReferenceModel[]): Observable<string[]> {
+        return this.http.post<string[]>(
+            `${this.fbManagementEndpoint}/p2p/group/${groupId}/reference`,
+            groupReferenceModels,
+            new HttpRequestModel()
+        );
     }
 }

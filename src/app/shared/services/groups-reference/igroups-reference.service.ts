@@ -1,11 +1,12 @@
 import { Observable } from 'rxjs';
 import { GroupReferenceModel } from '../../../groups-reference/model/groups-reference';
-import { SearchTemplateParams } from '../template/model/SearchTemplateParams';
+import { GroupsReferenceResponse } from '../../../groups-reference/model/groups-reference-response';
+import { SearchParams } from '../../model/SearchParams';
 
 export interface IGroupsReferenceService {
-    findGroups(params?: SearchTemplateParams): Observable<GroupReferenceModel[]>;
+    findGroups(params?: SearchParams): Observable<GroupsReferenceResponse>;
 
-    deleteGroup(id: string): Observable<string>;
+    deleteGroupReference(groupId: string, partyId: string, shopId: string): Observable<string>;
 
-    saveGroup(reference: GroupReferenceModel): Observable<string>;
+    saveGroupReference(groupId: string, groupReferenceModels: GroupReferenceModel[]): Observable<string[]>;
 }

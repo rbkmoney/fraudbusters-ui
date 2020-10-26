@@ -4,11 +4,10 @@ import { OperationType } from '../shared/constants/operation-type';
 import { Observable } from 'rxjs';
 import { OperationTypeManagementService } from '../shared/services/operation-type-management.service';
 import { SortOrder } from '../shared/constants/sort-order';
-import { SearchTemplateParams } from '../shared/services/template/model/SearchTemplateParams';
 import { ValidateTemplate } from './model/validate-template';
 import { ValidateResponse } from './model/validate-response';
 import { TemplatesResponse } from './model/templates-response';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { SearchParams } from '../shared/model/SearchParams';
 
 @Injectable({
     providedIn: 'root',
@@ -26,7 +25,7 @@ export class TemplatesService {
         return this.operationTemplateService
             .findTemplateService(type)
             .findTemplates(
-                new SearchTemplateParams(
+                new SearchParams(
                     nameRegexp,
                     lastInListName,
                     size,

@@ -1,5 +1,3 @@
-import { Reference } from './reference';
-
 export class GroupReferenceModel {
     groupId: string;
 

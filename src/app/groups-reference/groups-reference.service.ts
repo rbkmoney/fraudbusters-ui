@@ -6,6 +6,7 @@ import { ReferencesResponse } from '../references/model/references-response';
 import { SearchReferenceParams } from '../shared/services/reference/model/SearchReferenceParams';
 import { Reference } from '../references/model/reference';
 import { OperationTypeManagementService } from '../shared/services/operation-type-management.service';
+import { GroupsReferenceResponse } from './model/groups-reference-response';
 
 @Injectable({
     providedIn: 'root',
@@ -19,10 +20,10 @@ export class GroupsReferenceService {
         nameRegexp?: string,
         lastInListName?: string,
         sortOrder?: SortOrder
-    ): Observable<ReferencesResponse> {
+    ): Observable<GroupsReferenceResponse> {
         return this.operationReferenceService
-            .findReferenceService(type)
-            .findReferences(
+            .findGroupsReferenceService(type)
+            .findGroups(
                 new SearchReferenceParams(
                     nameRegexp,
                     lastInListName,
