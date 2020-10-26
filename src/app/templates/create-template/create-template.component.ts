@@ -6,6 +6,7 @@ import { OperationType } from '../../shared/constants/operation-type';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Template } from '../model/template';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { ValidateResponseHandler } from '../../shared/services/utils/validate-response-handler.service';
 
 @Component({
     selector: 'app-create-template',
@@ -20,6 +21,7 @@ export class CreateTemplateComponent implements OnInit {
         private route: ActivatedRoute,
         private templateService: TemplatesService,
         private errorHandlerService: ErrorHandlerService,
+        private validateResponseHandler: ValidateResponseHandler,
         private snackBar: MatSnackBar
     ) {}
 
@@ -46,15 +48,9 @@ export class CreateTemplateComponent implements OnInit {
     validate(): void {
         this.templateService.validateTemplate(this.operationType, [this.template]).subscribe(
             (response) => {
-                this.snackBar.open(
-                    response.validateResults.length > 0
-                        ? `${response.validateResults[0].id}: ${response.validateResults[0].errors}`
-                        : 'All rule success',
-                    'OK',
-                    {
-                        duration: 1500,
-                    }
-                );
+                this.snackBar.open(this.validateResponseHandler.checkValidateResponse(response), 'OK', {
+                    duration: 3000,
+                });
             },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );

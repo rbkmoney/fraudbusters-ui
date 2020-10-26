@@ -47,6 +47,19 @@
     .container-fluid .mat-card {
         border: 1px solid #e6ecf5;
         box-shadow: none;
+
+        .mat-form-field-wrapper {
+            margin-top: 30px;
+        }
+
+        .mat-form-field-label-wrapper {
+            font-size: 18px;
+            top: -1.3em;
+
+            span {
+                color: #888da8;
+            }
+        }
     }
 
     .mat-form-field-wrapper {
@@ -88,14 +101,14 @@
             &:active {
                 outline: 0 none;
                 box-shadow: none;
-                border-color: #3daef3;
+                border-color: #673ab7;
             }
         }
 
         &.mat-focused .mat-form-field-infix {
             outline: 0 none;
             box-shadow: none;
-            border-color: #3daef3;
+            border-color: #673ab7;
         }
     }
 
@@ -204,5 +217,11 @@
         textarea {
             min-height: 400px;
         }
+    }
+
+    .mat-button.mat-accent,
+    .mat-icon-button.mat-accent,
+    .mat-stroked-button.mat-accent {
+        color: #37cd8f;
     }
 }

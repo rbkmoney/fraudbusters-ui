@@ -7,6 +7,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfigService } from '../core/config.service';
 import { ReplaySubject } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { GroupsReferenceService } from './groups-reference.service';
 
 @Component({
     selector: 'app-groups-reference',
@@ -24,7 +26,7 @@ export class GroupsReferenceComponent implements OnInit {
     constructor(
         private router: Router,
         private errorHandlerService: ErrorHandlerService,
-        private referenceService: ReferencesService,
+        private groupsReferenceService: GroupsReferenceService,
         private snackBar: MatSnackBar,
         public dialog: MatDialog,
         configService: ConfigService
@@ -52,7 +54,27 @@ export class GroupsReferenceComponent implements OnInit {
         this.search();
     }
 
-    search(): void {}
+    search(): void {
+        this.groupsReferenceService
+            .getTemplates(
+                (OperationType as any)[this.operationType],
+                this.SIZE,
+                this.searchTemplateName,
+                null,
+                this.sortType
+            )
+            .subscribe(
+                (templatesResponse) => {
+                    this.isLoading = false;
+                    this.templates = templatesResponse.templateModels;
+                    this.isLoadMore = this.templates.length < templatesResponse.count;
+                },
+                (error: HttpErrorResponse) => {
+                    this.isLoading = false;
+                    this.errorHandlerService.handleError(error, this.snackBar);
+                }
+            );
+    }
 
     changeSearch(event): void {}
 

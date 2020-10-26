@@ -20,6 +20,7 @@ import { RemoveReferenceDialogComponent } from './remove-reference-dialog/remove
 import { FormsModule } from '@angular/forms';
 import { CreateReferenceComponent } from './create-reference/create-reference.component';
 import { EditReferenceComponent } from './edit-reference/edit-reference.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import { EditReferenceComponent } from './edit-reference/edit-reference.componen
         MatSortModule,
         MatSnackBarModule,
         MatDialogModule,
+        MatGridListModule,
         FormsModule,
     ],
     providers: [ReferencesService, ConfigService],
