@@ -107,7 +107,8 @@ export class GroupsReferenceComponent implements OnInit {
                 this.SIZE,
                 this.searchValue,
                 this.groupReferences[this.groupReferences.length - 1].id,
-                this.sortType
+                this.sortType,
+                this.groupReferences[this.groupReferences.length - 1].groupId
             )
             .subscribe(
                 (groupsReferenceResponse) => {
