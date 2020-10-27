@@ -34,8 +34,6 @@ import { GroupsReferenceModule } from './groups-reference/groups-reference.modul
         MatSliderModule,
         AppRoutingModule,
         TemplatesModule,
-        CreateTemplateModule,
-        EditTemplateModule,
         ReferencesModule,
         GroupsModule,
         GroupsReferenceModule,
