@@ -12,6 +12,7 @@ import { GroupsReferenceService } from './groups-reference.service';
 import { SortOrder } from '../shared/constants/sort-order';
 import { RemoveReferenceDialogComponent } from '../references/remove-reference-dialog/remove-reference-dialog.component';
 import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-dialog/remove-group-reference-dialog.component';
+import { Sort } from '@angular/material/sort';
 
 @Component({
     selector: 'app-groups-reference',
@@ -78,9 +79,15 @@ export class GroupsReferenceComponent implements OnInit {
             );
     }
 
-    changeSearch(event): void {}
+    changeSearch(newValue): void {
+        this.searchValue = newValue;
+        this.search();
+    }
 
-    sortData(event): void {}
+    sortData(sort: Sort): void {
+        this.sortType = sort.direction === 'asc' ? SortOrder.ASC : SortOrder.DESC;
+        this.search();
+    }
 
     openDialog(removeReference): void {
         const dialogRef = this.dialog.open(RemoveGroupReferenceDialogComponent, {
@@ -93,7 +100,25 @@ export class GroupsReferenceComponent implements OnInit {
         });
     }
 
-    loadMore(): void {}
+    loadMore(): void {
+        this.groupsReferenceService
+            .getGroupsReferences(
+                (OperationType as any)[this.operationType],
+                this.SIZE,
+                this.searchValue,
+                this.groupReferences[this.groupReferences.length - 1].id,
+                this.sortType
+            )
+            .subscribe(
+                (groupsReferenceResponse) => {
+                    this.groupReferences = this.groupReferences.concat(groupsReferenceResponse.groupsReferenceModels);
+                    this.isLoadMore = this.groupReferences.length < groupsReferenceResponse.count;
+                },
+                (error: HttpErrorResponse) => {
+                    this.errorHandlerService.handleError(error, this.snackBar);
+                }
+            );
+    }
 
     navigateToNew(): void {
         this.router.navigate(['/groups-reference/new'], { fragment: this.operationType });

@@ -1,7 +1,9 @@
 export class GroupReferenceModel {
+    id: number;
     groupId: string;
 
-    constructor(groupId) {
+    constructor(id: number, groupId: string) {
+        this.id = id;
         this.groupId = groupId;
     }
 }

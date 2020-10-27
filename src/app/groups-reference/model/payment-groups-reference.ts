@@ -4,8 +4,8 @@ export class PaymentGroupReferenceModel extends GroupReferenceModel {
     partyId: string;
     shopId: string;
 
-    constructor(groupId, partyId: string, shopId: string) {
-        super(groupId);
+    constructor(id, groupId, partyId: string, shopId: string) {
+        super(id, groupId);
         this.partyId = partyId;
         this.shopId = shopId;
     }

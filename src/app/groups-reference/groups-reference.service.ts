@@ -3,11 +3,12 @@ import { OperationType } from '../shared/constants/operation-type';
 import { SortOrder } from '../shared/constants/sort-order';
 import { Observable } from 'rxjs';
 import { ReferencesResponse } from '../references/model/references-response';
-import { SearchReferenceParams } from '../shared/services/reference/model/SearchReferenceParams';
+import { SearchReferenceParams } from '../shared/services/reference/model/search-reference-params';
 import { Reference } from '../references/model/reference';
 import { OperationTypeManagementService } from '../shared/services/operation-type-management.service';
 import { GroupsReferenceResponse } from './model/groups-reference-response';
 import { GroupReferenceModel } from './model/groups-reference';
+import { SearchGroupsReferenceParams } from '../shared/services/groups-reference/model/search-group-reference-params';
 
 @Injectable({
     providedIn: 'root',
@@ -20,16 +21,18 @@ export class GroupsReferenceService {
         size?: number,
         nameRegexp?: string,
         lastInListName?: string,
-        sortOrder?: SortOrder
+        sortOrder?: SortOrder,
+        sortFieldValue?: string
     ): Observable<GroupsReferenceResponse> {
         return this.operationReferenceService
             .findGroupsReferenceService(type)
             .findGroups(
-                new SearchReferenceParams(
+                new SearchGroupsReferenceParams(
                     nameRegexp,
                     lastInListName,
                     size,
-                    sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC]
+                    sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC],
+                    sortFieldValue
                 )
             );
     }

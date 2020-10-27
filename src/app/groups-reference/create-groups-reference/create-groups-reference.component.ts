@@ -8,7 +8,6 @@ import { PaymentGroupReferenceModel } from '../model/payment-groups-reference';
 import { P2pGroupReferenceModel } from '../model/p2p-groups-reference';
 import { OperationTypeComponent } from '../../shared/model/OperationTypeComponent';
 import { GroupsReferenceService } from '../groups-reference.service';
-import { GroupReferenceModel } from '../model/groups-reference';
 
 @Component({
     selector: 'app-create-groups-reference',
@@ -41,8 +40,10 @@ export class CreateGroupsReferenceComponent extends OperationTypeComponent imple
 
     addNewReference(): void {
         this.operationType === OperationType.Payment
-            ? (this.paymentReferences = this.paymentReferences.concat([new PaymentGroupReferenceModel('', '', '')]))
-            : (this.p2pReferences = this.p2pReferences.concat([new P2pGroupReferenceModel('', '')]));
+            ? (this.paymentReferences = this.paymentReferences.concat([
+                  new PaymentGroupReferenceModel(null, '', '', ''),
+              ]))
+            : (this.p2pReferences = this.p2pReferences.concat([new P2pGroupReferenceModel(null, '', '')]));
     }
 
     save(): void {

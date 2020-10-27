@@ -1,6 +1,6 @@
 import { Reference } from '../../../references/model/reference';
 import { Observable } from 'rxjs';
-import { SearchReferenceParams } from './model/SearchReferenceParams';
+import { SearchReferenceParams } from './model/search-reference-params';
 import { ReferencesResponse } from '../../../references/model/references-response';
 
 export interface IReferencesService {

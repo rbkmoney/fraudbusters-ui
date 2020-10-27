@@ -3,8 +3,8 @@ import { GroupReferenceModel } from './groups-reference';
 export class P2pGroupReferenceModel extends GroupReferenceModel {
     identityId: string;
 
-    constructor(groupId, identityId: string) {
-        super(groupId);
+    constructor(id, groupId, identityId: string) {
+        super(id, groupId);
         this.identityId = identityId;
     }
 }

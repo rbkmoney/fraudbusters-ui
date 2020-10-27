@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IReferencesService } from './ireferences.service';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../../../core/config.service';
-import { SearchReferenceParams } from './model/SearchReferenceParams';
+import { SearchReferenceParams } from './model/search-reference-params';
 import { Observable } from 'rxjs';
 import { ParamsUtilService } from '../utils/params-util.service';
 import { ReferencesResponse } from '../../../references/model/references-response';
