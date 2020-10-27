@@ -7,6 +7,7 @@ import { SearchReferenceParams } from '../shared/services/reference/model/Search
 import { Reference } from '../references/model/reference';
 import { OperationTypeManagementService } from '../shared/services/operation-type-management.service';
 import { GroupsReferenceResponse } from './model/groups-reference-response';
+import { GroupReferenceModel } from './model/groups-reference';
 
 @Injectable({
     providedIn: 'root',
@@ -33,11 +34,11 @@ export class GroupsReferenceService {
             );
     }
 
-    deleteGroupsReference(type: OperationType, reference: Reference): Observable<string> {
-        return this.operationReferenceService.findReferenceService(type).deleteReference(reference);
+    deleteGroupsReference(type: OperationType, reference: GroupReferenceModel): Observable<string> {
+        return this.operationReferenceService.findGroupsReferenceService(type).deleteGroupReference(reference);
     }
 
-    saveGroupsReference(type: OperationType, reference: Reference): Observable<string> {
-        return this.operationReferenceService.findReferenceService(type).saveReference(reference);
+    saveGroupsReference(type: OperationType, references: GroupReferenceModel[]): Observable<string[]> {
+        return this.operationReferenceService.findGroupsReferenceService(type).saveGroupReference(references);
     }
 }

@@ -18,9 +18,15 @@ import { GroupsReferenceComponent } from './groups-reference.component';
 import { GroupsReferenceRoutingModule } from './groups-reference-routing.module';
 import { CreateGroupsReferenceComponent } from './create-groups-reference/create-groups-reference.component';
 import { EditGroupsReferenceComponent } from './edit-groups-reference/edit-groups-reference.component';
+import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-dialog/remove-group-reference-dialog.component';
 
 @NgModule({
-    declarations: [GroupsReferenceComponent, CreateGroupsReferenceComponent, EditGroupsReferenceComponent],
+    declarations: [
+        GroupsReferenceComponent,
+        CreateGroupsReferenceComponent,
+        EditGroupsReferenceComponent,
+        RemoveGroupReferenceDialogComponent,
+    ],
     imports: [
         CommonModule,
         GroupsReferenceRoutingModule,

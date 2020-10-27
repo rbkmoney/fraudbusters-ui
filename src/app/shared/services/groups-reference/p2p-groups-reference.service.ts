@@ -8,6 +8,7 @@ import { GroupsReferenceResponse } from '../../../groups-reference/model/groups-
 import { GroupReferenceModel } from '../../../groups-reference/model/groups-reference';
 import { HttpRequestModel } from '../../model/HttpRequestModel';
 import { SearchParams } from '../../model/SearchParams';
+import { P2pGroupReferenceModel } from '../../../groups-reference/model/p2p-groups-reference';
 
 @Injectable({
     providedIn: 'root',
@@ -25,16 +26,16 @@ export class P2pGroupsReferenceService implements IGroupsReferenceService {
         });
     }
 
-    deleteGroupReference(groupId: string, partyId: string, shopId: string): Observable<string> {
-        return this.http.delete(`${this.fbManagementEndpoint}/p2p/group/${groupId}/reference`, {
-            params: { shopId: shopId, partyId: partyId },
+    deleteGroupReference(reference: P2pGroupReferenceModel): Observable<string> {
+        return this.http.delete(`${this.fbManagementEndpoint}/p2p/group/${reference.groupId}/reference`, {
+            params: { identityId: reference.identityId },
             responseType: 'text',
         });
     }
 
-    saveGroupReference(groupId: string, groupReferenceModels: GroupReferenceModel[]): Observable<string[]> {
+    saveGroupReference(groupReferenceModels: GroupReferenceModel[]): Observable<string[]> {
         return this.http.post<string[]>(
-            `${this.fbManagementEndpoint}/p2p/group/${groupId}/reference`,
+            `${this.fbManagementEndpoint}/p2p/group/${groupReferenceModels[0].groupId}/reference`,
             groupReferenceModels,
             new HttpRequestModel()
         );

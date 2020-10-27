@@ -10,6 +10,8 @@ import { ReplaySubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { GroupsReferenceService } from './groups-reference.service';
 import { SortOrder } from '../shared/constants/sort-order';
+import { RemoveReferenceDialogComponent } from '../references/remove-reference-dialog/remove-reference-dialog.component';
+import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-dialog/remove-group-reference-dialog.component';
 
 @Component({
     selector: 'app-groups-reference',
@@ -80,7 +82,16 @@ export class GroupsReferenceComponent implements OnInit {
 
     sortData(event): void {}
 
-    openDialog(event): void {}
+    openDialog(removeReference): void {
+        const dialogRef = this.dialog.open(RemoveGroupReferenceDialogComponent, {
+            width: '350px',
+            data: { reference: removeReference, operationType: this.operationType },
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+            this.search();
+        });
+    }
 
     loadMore(): void {}
 

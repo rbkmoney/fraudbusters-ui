@@ -8,6 +8,7 @@ import { GroupReferenceModel } from '../../../groups-reference/model/groups-refe
 import { GroupsReferenceResponse } from '../../../groups-reference/model/groups-reference-response';
 import { HttpRequestModel } from '../../model/HttpRequestModel';
 import { SearchParams } from '../../model/SearchParams';
+import { PaymentGroupReferenceModel } from '../../../groups-reference/model/payment-groups-reference';
 
 @Injectable({
     providedIn: 'root',
@@ -25,16 +26,16 @@ export class PaymentGroupsReferenceService implements IGroupsReferenceService {
         });
     }
 
-    deleteGroupReference(groupId: string, partyId: string, shopId: string): Observable<string> {
-        return this.http.delete(`${this.fbManagementEndpoint}/group/${groupId}/reference`, {
-            params: { shopId: shopId, partyId: partyId },
+    deleteGroupReference(reference: PaymentGroupReferenceModel): Observable<string> {
+        return this.http.delete(`${this.fbManagementEndpoint}/group/${reference.groupId}/reference`, {
+            params: { partyId: reference.partyId, shopId: reference.shopId },
             responseType: 'text',
         });
     }
 
-    saveGroupReference(groupId: string, groupReferenceModels: GroupReferenceModel[]): Observable<string[]> {
+    saveGroupReference(groupReferenceModels: GroupReferenceModel[]): Observable<string[]> {
         return this.http.post<string[]>(
-            `${this.fbManagementEndpoint}/group/${groupId}/reference`,
+            `${this.fbManagementEndpoint}/group/${groupReferenceModels[0].groupId}/reference`,
             groupReferenceModels,
             new HttpRequestModel()
         );
