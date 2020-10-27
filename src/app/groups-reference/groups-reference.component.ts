@@ -124,8 +124,4 @@ export class GroupsReferenceComponent implements OnInit {
     navigateToNew(): void {
         this.router.navigate(['/groups-reference/new'], { fragment: this.operationType });
     }
-
-    navigateToEdit(id): void {
-        this.router.navigate([`/groups-references/${id}`], { fragment: this.operationType });
-    }
 }
