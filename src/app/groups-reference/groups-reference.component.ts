@@ -40,7 +40,6 @@ export class GroupsReferenceComponent implements OnInit {
     }
 
     isLoadMore = false;
-    references = [];
     displayedColumns = new ReplaySubject<string[]>();
     sortType = SortOrder.DESC;
 

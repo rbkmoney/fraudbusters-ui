@@ -39,7 +39,7 @@ export class CreateGroupsReferenceComponent extends OperationTypeComponent imple
     }
 
     addNewReference(): void {
-        this.operationType === OperationType.Payment
+        this.isPaymentReference()
             ? (this.paymentReferences = this.paymentReferences.concat([
                   new PaymentGroupReferenceModel(null, '', '', ''),
               ]))
@@ -50,7 +50,7 @@ export class CreateGroupsReferenceComponent extends OperationTypeComponent imple
         this.referenceService
             .saveGroupsReference(
                 this.operationType,
-                OperationType.Payment ? this.paymentReferences : this.p2pReferences
+                this.isPaymentReference() ? this.paymentReferences : this.p2pReferences
             )
             .subscribe(
                 (id) => {
