@@ -4,12 +4,12 @@ import { Template } from '../../../templates/model/template';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../../../core/config.service';
 import { Observable } from 'rxjs';
-import { SearchTemplateParams } from './model/SearchTemplateParams';
 import { ParamsUtilService } from '../utils/params-util.service';
 import { ValidateTemplate } from '../../../templates/model/validate-template';
 import { ValidateResponse } from '../../../templates/model/validate-response';
 import { TemplatesResponse } from '../../../templates/model/templates-response';
 import { HttpRequestModel } from '../../model/HttpRequestModel';
+import { SearchParams } from '../../model/SearchParams';
 
 @Injectable({
     providedIn: 'root',
@@ -21,7 +21,7 @@ export class PaymentTemplatesService implements ITemplatesService {
         this.fbManagementEndpoint = configService.config.fbManagementEndpoint;
     }
 
-    findTemplates(params?: SearchTemplateParams): Observable<TemplatesResponse> {
+    findTemplates(params?: SearchParams): Observable<TemplatesResponse> {
         return this.http.get<TemplatesResponse>(`${this.fbManagementEndpoint}/template/filter/`, {
             params: this.paramsUtilService.filterParameters(params),
         });

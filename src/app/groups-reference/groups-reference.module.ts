@@ -1,37 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReferencesRoutingModule } from './references-routing.module';
-import { ReferencesComponent } from './references.component';
 import { MatTableModule } from '@angular/material/table';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { ReferencesService } from './references.service';
-import { ConfigService } from '../core/config.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
-import { RemoveReferenceDialogComponent } from './remove-reference-dialog/remove-reference-dialog.component';
 import { FormsModule } from '@angular/forms';
-import { CreateReferenceComponent } from './create-reference/create-reference.component';
-import { EditReferenceComponent } from './edit-reference/edit-reference.component';
-import { MatGridListModule } from '@angular/material/grid-list';
+import { ConfigService } from '../core/config.service';
+import { GroupsReferenceComponent } from './groups-reference.component';
+import { GroupsReferenceRoutingModule } from './groups-reference-routing.module';
+import { CreateGroupsReferenceComponent } from './create-groups-reference/create-groups-reference.component';
+import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-dialog/remove-group-reference-dialog.component';
 
 @NgModule({
-    declarations: [
-        ReferencesComponent,
-        RemoveReferenceDialogComponent,
-        CreateReferenceComponent,
-        EditReferenceComponent,
-    ],
+    declarations: [GroupsReferenceComponent, CreateGroupsReferenceComponent, RemoveGroupReferenceDialogComponent],
     imports: [
         CommonModule,
-        ReferencesRoutingModule,
+        GroupsReferenceRoutingModule,
         MatTableModule,
         MatCardModule,
         MatButtonModule,
@@ -44,9 +36,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
         MatSortModule,
         MatSnackBarModule,
         MatDialogModule,
-        MatGridListModule,
         FormsModule,
     ],
-    providers: [ReferencesService, ConfigService],
+    providers: [ConfigService],
 })
-export class ReferencesModule {}
+export class GroupsReferenceModule {}

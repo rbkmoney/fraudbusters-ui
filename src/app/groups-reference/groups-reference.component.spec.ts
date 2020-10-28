@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RemoveTemplateDialogComponent } from './remove-template-dialog.component';
+import { GroupsReferenceComponent } from './groups-reference.component';
 
-describe('RemoveTemplateDialogComponent', () => {
-    let component: RemoveTemplateDialogComponent;
-    let fixture: ComponentFixture<RemoveTemplateDialogComponent>;
+describe('GroupsReferenceComponent', () => {
+    let component: GroupsReferenceComponent;
+    let fixture: ComponentFixture<GroupsReferenceComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [RemoveTemplateDialogComponent],
+            declarations: [GroupsReferenceComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(RemoveTemplateDialogComponent);
+        fixture = TestBed.createComponent(GroupsReferenceComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

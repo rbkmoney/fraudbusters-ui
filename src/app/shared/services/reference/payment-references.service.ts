@@ -3,10 +3,9 @@ import { IReferencesService } from './ireferences.service';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../../../core/config.service';
 import { Observable } from 'rxjs';
-import { SearchReferenceParams } from './model/SearchReferenceParams';
+import { SearchReferenceParams } from './model/search-reference-params';
 import { ParamsUtilService } from '../utils/params-util.service';
 import { ReferencesResponse } from '../../../references/model/references-response';
-import { HttpRequestModel } from '../../model/HttpRequestModel';
 import { PaymentReference } from '../../../references/model/payment-reference';
 import { Reference } from '../../../references/model/reference';
 
@@ -27,16 +26,15 @@ export class PaymentReferencesService implements IReferencesService {
     }
 
     deleteReference(reference: PaymentReference): Observable<string> {
-        return this.http.delete<string>(`${this.fbManagementEndpoint}/template/${reference.templateId}/reference`, {
+        return this.http.delete(`${this.fbManagementEndpoint}/template/${reference.templateId}/reference`, {
             params: { shopId: reference.shopId, partyId: reference.partyId },
+            responseType: 'text',
         });
     }
 
     saveReference(reference: Reference): Observable<string> {
-        return this.http.post<string>(
-            `${this.fbManagementEndpoint}/template/${reference.templateId}/reference`,
-            reference,
-            new HttpRequestModel()
-        );
+        return this.http.post(`${this.fbManagementEndpoint}/template/${reference.templateId}/reference`, reference, {
+            responseType: 'text',
+        });
     }
 }

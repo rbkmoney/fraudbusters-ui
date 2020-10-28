@@ -1,14 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ITemplatesService } from './itemplates.service';
-import { Template } from '../../../templates/model/template';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../../../core/config.service';
 import { Observable } from 'rxjs';
-import { SearchTemplateParams } from './model/SearchTemplateParams';
 import { ParamsUtilService } from '../utils/params-util.service';
-import { ValidateTemplate } from '../../../templates/model/validate-template';
-import { ValidateResponse } from '../../../templates/model/validate-response';
-import { TemplatesResponse } from '../../../templates/model/templates-response';
 import { IGroupsService } from './igroups.service';
 import { Group } from '../../../groups/model/group';
 import { HttpRequestModel } from '../../model/HttpRequestModel';
@@ -30,7 +24,7 @@ export class P2pGroupsService implements IGroupsService {
     }
 
     deleteGroup(id: string): Observable<string> {
-        return this.http.delete<string>(`${this.fbManagementEndpoint}/p2p/group/${id}`);
+        return this.http.delete(`${this.fbManagementEndpoint}/p2p/group/${id}`, { responseType: 'text' });
     }
 
     getGroupById(id: string): Observable<Group> {

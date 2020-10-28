@@ -18,7 +18,7 @@ import { TemplatesService } from '../../templates/templates.service';
 })
 export class EditGroupComponent implements OnInit {
     editGroupId: string;
-    editGroup: Group;
+    editGroup: Group = new Group('', []);
     displayedColumns: string[] = ['id', 'priority', 'edit'];
     operationType: OperationType;
     options: string[] = [];

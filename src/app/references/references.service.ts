@@ -4,7 +4,7 @@ import { OperationType } from '../shared/constants/operation-type';
 import { Observable } from 'rxjs';
 import { OperationTypeManagementService } from '../shared/services/operation-type-management.service';
 import { SortOrder } from '../shared/constants/sort-order';
-import { SearchReferenceParams } from '../shared/services/reference/model/SearchReferenceParams';
+import { SearchReferenceParams } from '../shared/services/reference/model/search-reference-params';
 import { ReferencesResponse } from './model/references-response';
 
 @Injectable({

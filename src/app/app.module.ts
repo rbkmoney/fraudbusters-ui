@@ -18,6 +18,7 @@ import { CreateTemplateModule } from './templates/create-template/create-templat
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { EditTemplateModule } from './templates/edit-template/edit-template.module';
+import { GroupsReferenceModule } from './groups-reference/groups-reference.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -33,10 +34,9 @@ import { EditTemplateModule } from './templates/edit-template/edit-template.modu
         MatSliderModule,
         AppRoutingModule,
         TemplatesModule,
-        CreateTemplateModule,
-        EditTemplateModule,
         ReferencesModule,
         GroupsModule,
+        GroupsReferenceModule,
         BrowserAnimationsModule,
         HttpClientModule,
     ],

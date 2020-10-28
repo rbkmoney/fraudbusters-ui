@@ -5,52 +5,36 @@
     </mat-toolbar-row>
 </mat-toolbar>
 
-<div class="row">
-    <div class="col-md-12">
-        <mat-card>
-            <mat-card-content>
-                <mat-form-field class="full-width" appearance="outline">
-                    <input
-                        matInput
-                        placeholder="Template name"
-                        label="templateId"
-                        [(ngModel)]="reference.templateId"
-                        name="templateId"
-                    />
-                </mat-form-field>
-                <div *ngIf="isPaymentReference()">
-                    <mat-form-field class="full-width" appearance="outline">
-                        <input
-                            matInput
-                            placeholder="Party ID"
-                            label="partyId"
-                            [(ngModel)]="reference.partyId"
-                            name="partyId"
-                        />
-                    </mat-form-field>
+<mat-card>
+    <mat-card-content>
+        <mat-form-field floatLabel="always">
+            <input
+                matInput
+                placeholder="Template name"
+                label="templateId"
+                [(ngModel)]="reference.templateId"
+                name="templateId"
+            />
+        </mat-form-field>
+        <div *ngIf="isPaymentReference()">
+            <mat-form-field floatLabel="always">
+                <input matInput placeholder="Party ID" label="partyId" [(ngModel)]="reference.partyId" name="partyId" />
+            </mat-form-field>
 
-                    <mat-form-field class="full-width" appearance="outline">
-                        <input
-                            matInput
-                            placeholder="Shop ID"
-                            label="shopId"
-                            [(ngModel)]="reference.shopId"
-                            name="shopId"
-                        />
-                    </mat-form-field>
-                </div>
-                <div *ngIf="isP2pReference()">
-                    <mat-form-field class="full-width" appearance="outline">
-                        <input
-                            matInput
-                            placeholder="Identity ID"
-                            label="identityId"
-                            [(ngModel)]="reference.identityId"
-                            name="identityId"
-                        />
-                    </mat-form-field>
-                </div>
-            </mat-card-content>
-        </mat-card>
-    </div>
-</div>
+            <mat-form-field floatLabel="always">
+                <input matInput placeholder="Shop ID" label="shopId" [(ngModel)]="reference.shopId" name="shopId" />
+            </mat-form-field>
+        </div>
+        <div *ngIf="isP2pReference()">
+            <mat-form-field class="full-width" floatLabel="always">
+                <input
+                    matInput
+                    placeholder="Identity ID"
+                    label="identityId"
+                    [(ngModel)]="reference.identityId"
+                    name="identityId"
+                />
+            </mat-form-field>
+        </div>
+    </mat-card-content>
+</mat-card>

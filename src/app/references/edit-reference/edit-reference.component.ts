@@ -54,7 +54,9 @@ export class EditReferenceComponent extends OperationTypeComponent implements On
         console.log(this.reference);
         this.referenceService.saveReference(this.operationType, this.reference).subscribe(
             (id) => {
-                console.log(id);
+                this.snackBar.open(`Saved succeeded: ${id}`, 'OK', {
+                    duration: 1500,
+                });
             },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );

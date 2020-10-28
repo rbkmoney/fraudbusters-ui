@@ -5,8 +5,6 @@ import { Observable } from 'rxjs';
 import { ParamsUtilService } from '../utils/params-util.service';
 import { IGroupsService } from './igroups.service';
 import { Group } from '../../../groups/model/group';
-import { ValidateTemplate } from '../../../templates/model/validate-template';
-import { HttpRequestModel } from '../../model/HttpRequestModel';
 
 @Injectable({
     providedIn: 'root',
@@ -29,22 +27,10 @@ export class PaymentGroupsService implements IGroupsService {
     }
 
     deleteGroup(id: string): Observable<string> {
-        return this.http.delete(`${this.fbManagementEndpoint}/group/${id}`, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            observe: 'body',
-            responseType: 'text',
-        });
+        return this.http.delete(`${this.fbManagementEndpoint}/group/${id}`, { responseType: 'text' });
     }
 
     saveGroup(group: Group): Observable<string> {
-        return this.http.post(`${this.fbManagementEndpoint}/group`, group, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            observe: 'body',
-            responseType: 'text',
-        });
+        return this.http.post(`${this.fbManagementEndpoint}/group`, group, { responseType: 'text' });
     }
 }
