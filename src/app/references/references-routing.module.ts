@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ReferencesComponent } from './references.component';
 import { CreateReferenceComponent } from './create-reference/create-reference.component';
-import { EditReferenceComponent } from './edit-reference/edit-reference.component';
 
 @NgModule({
     imports: [
@@ -14,10 +13,6 @@ import { EditReferenceComponent } from './edit-reference/edit-reference.componen
             {
                 path: 'references/new',
                 component: CreateReferenceComponent,
-            },
-            {
-                path: 'references/:id',
-                component: EditReferenceComponent,
             },
         ]),
     ],

@@ -9,9 +9,7 @@ import { ValidateResponse } from './model/validate-response';
 import { TemplatesResponse } from './model/templates-response';
 import { SearchParams } from '../shared/model/SearchParams';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class TemplatesService {
     constructor(private operationTemplateService: OperationTypeManagementService) {}
 

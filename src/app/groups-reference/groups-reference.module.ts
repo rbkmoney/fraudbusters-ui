@@ -18,6 +18,7 @@ import { GroupsReferenceComponent } from './groups-reference.component';
 import { GroupsReferenceRoutingModule } from './groups-reference-routing.module';
 import { CreateGroupsReferenceComponent } from './create-groups-reference/create-groups-reference.component';
 import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-dialog/remove-group-reference-dialog.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
     declarations: [GroupsReferenceComponent, CreateGroupsReferenceComponent, RemoveGroupReferenceDialogComponent],
@@ -36,6 +37,7 @@ import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-di
         MatSortModule,
         MatSnackBarModule,
         MatDialogModule,
+        FlexLayoutModule,
         FormsModule,
     ],
     providers: [ConfigService],

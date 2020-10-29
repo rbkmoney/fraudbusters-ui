@@ -19,16 +19,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { RemoveReferenceDialogComponent } from './remove-reference-dialog/remove-reference-dialog.component';
 import { FormsModule } from '@angular/forms';
 import { CreateReferenceComponent } from './create-reference/create-reference.component';
-import { EditReferenceComponent } from './edit-reference/edit-reference.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
-    declarations: [
-        ReferencesComponent,
-        RemoveReferenceDialogComponent,
-        CreateReferenceComponent,
-        EditReferenceComponent,
-    ],
+    declarations: [ReferencesComponent, RemoveReferenceDialogComponent, CreateReferenceComponent],
     imports: [
         CommonModule,
         ReferencesRoutingModule,
@@ -45,6 +40,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
         MatSnackBarModule,
         MatDialogModule,
         MatGridListModule,
+        FlexLayoutModule,
         FormsModule,
     ],
     providers: [ReferencesService, ConfigService],

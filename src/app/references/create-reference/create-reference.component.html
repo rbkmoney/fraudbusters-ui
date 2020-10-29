@@ -7,34 +7,66 @@
 
 <mat-card>
     <mat-card-content>
-        <mat-form-field floatLabel="always">
-            <input
-                matInput
-                placeholder="Template name"
-                label="templateId"
-                [(ngModel)]="reference.templateId"
-                name="templateId"
-            />
-        </mat-form-field>
-        <div *ngIf="isPaymentReference()">
-            <mat-form-field floatLabel="always">
-                <input matInput placeholder="Party ID" label="partyId" [(ngModel)]="reference.partyId" name="partyId" />
-            </mat-form-field>
-
-            <mat-form-field floatLabel="always">
-                <input matInput placeholder="Shop ID" label="shopId" [(ngModel)]="reference.shopId" name="shopId" />
-            </mat-form-field>
-        </div>
-        <div *ngIf="isP2pReference()">
-            <mat-form-field class="full-width" floatLabel="always">
-                <input
-                    matInput
-                    placeholder="Identity ID"
-                    label="identityId"
-                    [(ngModel)]="reference.identityId"
-                    name="identityId"
-                />
-            </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div *ngIf="isPaymentReference()" fxFlex="90%">
+                <div fxFlex="33%">
+                    <mat-form-field floatLabel="always" class="full-width">
+                        <input
+                            matInput
+                            placeholder="Template name"
+                            label="templateId"
+                            [(ngModel)]="reference.templateId"
+                            name="templateId"
+                        />
+                    </mat-form-field>
+                </div>
+                <div fxFlex="33%">
+                    <mat-form-field floatLabel="always" class="full-width">
+                        <input
+                            matInput
+                            placeholder="Party ID"
+                            label="partyId"
+                            [(ngModel)]="reference.partyId"
+                            name="partyId"
+                        />
+                    </mat-form-field>
+                </div>
+                <div fxFlex="33%">
+                    <mat-form-field floatLabel="always" class="full-width">
+                        <input
+                            matInput
+                            placeholder="Shop ID"
+                            label="shopId"
+                            [(ngModel)]="reference.shopId"
+                            name="shopId"
+                        />
+                    </mat-form-field>
+                </div>
+            </div>
+            <div *ngIf="isP2pReference()" fxFlex="90%">
+                <div fxFlex="50%">
+                    <mat-form-field floatLabel="always" class="full-width">
+                        <input
+                            matInput
+                            placeholder="Template name"
+                            label="templateId"
+                            [(ngModel)]="reference.templateId"
+                            name="templateId"
+                        />
+                    </mat-form-field>
+                </div>
+                <div fxFlex="50%">
+                    <mat-form-field class="full-width" floatLabel="always">
+                        <input
+                            matInput
+                            placeholder="Identity ID"
+                            label="identityId"
+                            [(ngModel)]="reference.identityId"
+                            name="identityId"
+                        />
+                    </mat-form-field>
+                </div>
+            </div>
         </div>
     </mat-card-content>
 </mat-card>

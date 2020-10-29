@@ -7,52 +7,69 @@
 
 <mat-card>
     <mat-card-content>
-        <div *ngIf="isPaymentReference()">
-            <div *ngFor="let reference of paymentReferences; let i = index">
-                <mat-form-field floatLabel="always">
-                    <input
-                        matInput
-                        placeholder="Group ID"
-                        label="groupId"
-                        [(ngModel)]="reference.groupId"
-                        name="groupId"
-                    />
-                </mat-form-field>
-                <mat-form-field floatLabel="always">
-                    <input
-                        matInput
-                        placeholder="Party ID"
-                        label="partyId"
-                        [(ngModel)]="reference.partyId"
-                        name="partyId"
-                    />
-                </mat-form-field>
-
-                <mat-form-field floatLabel="always">
-                    <input matInput placeholder="Shop ID" label="shopId" [(ngModel)]="reference.shopId" name="shopId" />
-                </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <div *ngIf="isPaymentReference()" fxFlex="90%">
+                <div *ngFor="let reference of paymentReferences; let i = index">
+                    <div fxFlex="33%">
+                        <mat-form-field floatLabel="always" class="full-width">
+                            <input
+                                matInput
+                                placeholder="Group ID"
+                                label="groupId"
+                                [(ngModel)]="reference.groupId"
+                                name="groupId"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="33%">
+                        <mat-form-field floatLabel="always" class="full-width">
+                            <input
+                                matInput
+                                placeholder="Party ID"
+                                label="partyId"
+                                [(ngModel)]="reference.partyId"
+                                name="partyId"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="33%">
+                        <mat-form-field floatLabel="always" class="full-width">
+                            <input
+                                matInput
+                                placeholder="Shop ID"
+                                label="shopId"
+                                [(ngModel)]="reference.shopId"
+                                name="shopId"
+                            />
+                        </mat-form-field>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div *ngIf="isP2pReference()">
-            <div *ngFor="let reference of p2pReferences; let i = index">
-                <mat-form-field floatLabel="always">
-                    <input
-                        matInput
-                        placeholder="Group ID"
-                        label="groupId"
-                        [(ngModel)]="reference.groupId"
-                        name="groupId"
-                    />
-                </mat-form-field>
-                <mat-form-field floatLabel="always">
-                    <input
-                        matInput
-                        placeholder="Identity ID"
-                        label="identityId"
-                        [(ngModel)]="reference.identityId"
-                        name="identityId"
-                    />
-                </mat-form-field>
+            <div *ngIf="isP2pReference()" fxFlex="90%">
+                <div *ngFor="let reference of p2pReferences; let i = index">
+                    <div fxFlex="50%">
+                        <mat-form-field floatLabel="always" class="full-width">
+                            <input
+                                matInput
+                                placeholder="Group ID"
+                                label="groupId"
+                                [(ngModel)]="reference.groupId"
+                                name="groupId"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="50%">
+                        <mat-form-field floatLabel="always" class="full-width">
+                            <input
+                                matInput
+                                placeholder="Identity ID"
+                                label="identityId"
+                                [(ngModel)]="reference.identityId"
+                                name="identityId"
+                            />
+                        </mat-form-field>
+                    </div>
+                </div>
             </div>
         </div>
         <mat-toolbar>
