@@ -14,14 +14,16 @@ import { MatSliderModule } from '@angular/material/slider';
 import { TemplatesModule } from './templates/templates.module';
 import { ReferencesModule } from './references/references.module';
 import { GroupsModule } from './groups/groups.module';
-import { CreateTemplateModule } from './templates/create-template/create-template.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
-import { EditTemplateModule } from './templates/edit-template/edit-template.module';
 import { GroupsReferenceModule } from './groups-reference/groups-reference.module';
+import { WbListModule } from './wb-list/wb-list.module';
+import { MenuListItemComponent } from './menu-list-item/menu-list-item.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { NavService } from './menu-list-item/nav-service';
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, MenuListItemComponent],
     imports: [
         BrowserModule,
         MatToolbarModule,
@@ -37,10 +39,12 @@ import { GroupsReferenceModule } from './groups-reference/groups-reference.modul
         ReferencesModule,
         GroupsModule,
         GroupsReferenceModule,
+        WbListModule,
         BrowserAnimationsModule,
+        FlexLayoutModule,
         HttpClientModule,
     ],
-    providers: [],
+    providers: [NavService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

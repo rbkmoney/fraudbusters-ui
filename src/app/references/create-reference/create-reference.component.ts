@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { OperationType } from '../../shared/constants/operation-type';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { OperationTypeComponent } from '../../shared/model/OperationTypeComponent';
+import { OperationTypeComponent } from '../../shared/model/operation-type-component';
 import { PaymentReference } from '../model/payment-reference';
 import { P2pReference } from '../model/p2p-reference';
 

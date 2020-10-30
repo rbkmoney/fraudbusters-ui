@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { ErrorHandlerService } from '../shared/services/utils/error-handler.service';
 import { ConfigService } from '../core/config.service';
 import { ReplaySubject } from 'rxjs';
-import { OperationTypeComponent } from '../shared/model/OperationTypeComponent';
+import { OperationTypeComponent } from '../shared/model/operation-type-component';
 
 @Component({
     selector: 'app-references',

@@ -7,7 +7,7 @@ import { SortOrder } from '../shared/constants/sort-order';
 import { ValidateTemplate } from './model/validate-template';
 import { ValidateResponse } from './model/validate-response';
 import { TemplatesResponse } from './model/templates-response';
-import { SearchParams } from '../shared/model/SearchParams';
+import { SearchParams } from '../shared/model/search-params';
 
 @Injectable()
 export class TemplatesService {

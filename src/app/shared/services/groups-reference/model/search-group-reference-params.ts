@@ -1,4 +1,4 @@
-import { SearchParams } from '../../../model/SearchParams';
+import { SearchParams } from '../../../model/search-params';
 
 export class SearchGroupsReferenceParams extends SearchParams {
     idRegexp: string;

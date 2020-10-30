@@ -6,10 +6,7 @@
             </a>
         </mat-toolbar>
         <mat-nav-list>
-            <mat-list-item *ngFor="let item of menuItems" [routerLink]="item.route" [routerLinkActive]="['active']">
-                <mat-icon>{{ item.icon }}</mat-icon>
-                {{ item.name }}
-            </mat-list-item>
+            <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
         </mat-nav-list>
     </mat-sidenav>
 

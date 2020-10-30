@@ -8,8 +8,8 @@ import { ParamsUtilService } from '../utils/params-util.service';
 import { ValidateTemplate } from '../../../templates/model/validate-template';
 import { ValidateResponse } from '../../../templates/model/validate-response';
 import { TemplatesResponse } from '../../../templates/model/templates-response';
-import { HttpRequestModel } from '../../model/HttpRequestModel';
-import { SearchParams } from '../../model/SearchParams';
+import { HttpRequestModel } from '../../model/http-request-model';
+import { SearchParams } from '../../model/search-params';
 
 @Injectable({
     providedIn: 'root',

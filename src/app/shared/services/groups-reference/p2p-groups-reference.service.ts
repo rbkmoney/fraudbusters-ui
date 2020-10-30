@@ -6,8 +6,8 @@ import { ParamsUtilService } from '../utils/params-util.service';
 import { IGroupsReferenceService } from './igroups-reference.service';
 import { GroupsReferenceResponse } from '../../../groups-reference/model/groups-reference-response';
 import { GroupReferenceModel } from '../../../groups-reference/model/groups-reference';
-import { HttpRequestModel } from '../../model/HttpRequestModel';
-import { SearchParams } from '../../model/SearchParams';
+import { HttpRequestModel } from '../../model/http-request-model';
+import { SearchParams } from '../../model/search-params';
 import { P2pGroupReferenceModel } from '../../../groups-reference/model/p2p-groups-reference';
 
 @Injectable({

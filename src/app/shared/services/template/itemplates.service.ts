@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { ValidateTemplate } from '../../../templates/model/validate-template';
 import { ValidateResponse } from '../../../templates/model/validate-response';
 import { TemplatesResponse } from '../../../templates/model/templates-response';
-import { SearchParams } from '../../model/SearchParams';
+import { SearchParams } from '../../model/search-params';
 
 export interface ITemplatesService {
     findTemplates(params?: SearchParams): Observable<TemplatesResponse>;
