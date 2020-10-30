@@ -1,14 +1,12 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavItem } from './shared/model/nav-item';
-import { NavService } from './menu-list-item/nav-service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements AfterViewInit {
-    @ViewChild('appDrawer') appDrawer: ElementRef;
+export class AppComponent {
     title = 'fraudbusters-ui';
 
     navItems: NavItem[] = [
@@ -59,10 +57,4 @@ export class AppComponent implements AfterViewInit {
             ],
         },
     ];
-
-    constructor(private navService: NavService) {}
-
-    ngAfterViewInit(): void {
-        this.navService.appDrawer = this.appDrawer;
-    }
 }

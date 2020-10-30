@@ -20,7 +20,6 @@ import { GroupsReferenceModule } from './groups-reference/groups-reference.modul
 import { WbListModule } from './wb-list/wb-list.module';
 import { MenuListItemComponent } from './menu-list-item/menu-list-item.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { NavService } from './menu-list-item/nav-service';
 
 @NgModule({
     declarations: [AppComponent, MenuListItemComponent],
@@ -44,7 +43,7 @@ import { NavService } from './menu-list-item/nav-service';
         FlexLayoutModule,
         HttpClientModule,
     ],
-    providers: [NavService],
+    providers: [],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

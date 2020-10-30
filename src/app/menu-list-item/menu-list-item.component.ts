@@ -2,7 +2,6 @@ import { Component, HostBinding, Input } from '@angular/core';
 import { NavItem } from '../shared/model/nav-item';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
-import { NavService } from './nav-service';
 
 @Component({
     selector: 'app-menu-list-item',
@@ -22,7 +21,7 @@ export class MenuListItemComponent {
     @Input() item: NavItem;
     @Input() depth: number;
 
-    constructor(public navService: NavService, public router: Router) {
+    constructor(public router: Router) {
         if (this.depth === undefined) {
             this.depth = 0;
         }
@@ -31,7 +30,6 @@ export class MenuListItemComponent {
     onItemSelected(item: NavItem): void {
         if (!item.children || !item.children.length) {
             this.router.navigate([item.route]);
-            this.navService.closeNav();
         }
         if (item.children && item.children.length) {
             this.expanded = !this.expanded;
