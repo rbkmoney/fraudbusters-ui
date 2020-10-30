@@ -36,6 +36,7 @@ import { GroupsService } from './groups.service';
 import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-dialog.component';
 import { EditGroupComponent } from './edit-group/edit-group.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
     declarations: [GroupsComponent, CreateGroupComponent, RemoveGroupDialogComponent, EditGroupComponent],
@@ -56,6 +57,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
         MatSnackBarModule,
         MatDialogModule,
         MatAutocompleteModule,
+        FlexLayoutModule,
         FormsModule,
     ],
     providers: [GroupsService, ConfigService],

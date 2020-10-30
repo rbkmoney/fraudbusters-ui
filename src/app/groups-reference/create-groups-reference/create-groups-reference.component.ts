@@ -46,6 +46,10 @@ export class CreateGroupsReferenceComponent extends OperationTypeComponent imple
             : (this.p2pReferences = this.p2pReferences.concat([new P2pGroupReferenceModel(null, '', '')]));
     }
 
+    deleteRef(i): void {
+        this.isPaymentReference() ? this.paymentReferences.splice(i, 1) : this.p2pReferences.splice(i, 1);
+    }
+
     save(): void {
         this.referenceService
             .saveGroupsReference(
