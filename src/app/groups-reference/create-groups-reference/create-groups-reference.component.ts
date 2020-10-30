@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OperationType } from '../../shared/constants/operation-type';
@@ -19,6 +19,7 @@ export class CreateGroupsReferenceComponent extends OperationTypeComponent imple
     paymentReferences: PaymentGroupReferenceModel[] = [];
 
     constructor(
+        private router: Router,
         private route: ActivatedRoute,
         private referenceService: GroupsReferenceService,
         private errorHandlerService: ErrorHandlerService,
@@ -58,11 +59,16 @@ export class CreateGroupsReferenceComponent extends OperationTypeComponent imple
             )
             .subscribe(
                 (id) => {
+                    this.navigateToList();
                     this.snackBar.open(`Saved succeeded: ${id}`, 'OK', {
                         duration: 1500,
                     });
                 },
                 (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
             );
+    }
+
+    navigateToList(): void {
+        this.router.navigate(['../groups-reference'], { fragment: this.operationType });
     }
 }
