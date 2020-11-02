@@ -1,0 +1,10 @@
+<div mat-dialog-content>
+    <p>
+        Do you want remove from {{ this.data.listType }} list row name: {{ this.data.listRecord.listName }} value:
+        {{ this.data.listRecord.value }}
+    </p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="delete()">Ok</button>
+</div>
