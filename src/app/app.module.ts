@@ -17,8 +17,8 @@ import { GroupsModule } from './groups/groups.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { GroupsReferenceModule } from './groups-reference/groups-reference.module';
-import { WbListModule } from './wb-list/wb-list.module';
-import { MenuListItemComponent } from './menu-list-item/menu-list-item.component';
+import { WhiteListModule } from './sections/lists/white-list/white-list.module';
+import { MenuListItemComponent } from './shared/components/menu-list-item/menu-list-item.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -38,7 +38,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         ReferencesModule,
         GroupsModule,
         GroupsReferenceModule,
-        WbListModule,
+        WhiteListModule,
         BrowserAnimationsModule,
         FlexLayoutModule,
         HttpClientModule,

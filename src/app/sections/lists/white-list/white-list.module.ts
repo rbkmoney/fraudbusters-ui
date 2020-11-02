@@ -10,18 +10,22 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { ConfigService } from '../core/config.service';
+import { ConfigService } from '../../../core/config.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
-import { WbListRoutingModule } from './wb-list-routing.module';
-import { WbListComponent } from './wb-list.component';
+import { WhiteListRoutingModule } from './white-list-routing.module';
+import { WhiteListComponent } from './white-list.component';
+import { AddRowWhiteListComponent } from './add-row-white-list/add-row-white-list.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { RemoveRowWhiteListDialogComponent } from './remove-row-white-list/remove-row-white-list-dialog.component';
+import { SearchFieldService } from '../../../shared/services/utils/search-field.service';
 
 @NgModule({
-    declarations: [WbListComponent],
+    declarations: [WhiteListComponent, AddRowWhiteListComponent, RemoveRowWhiteListDialogComponent],
     imports: [
         CommonModule,
-        WbListRoutingModule,
+        WhiteListRoutingModule,
         MatTableModule,
         MatCardModule,
         MatButtonModule,
@@ -34,8 +38,9 @@ import { WbListComponent } from './wb-list.component';
         MatSortModule,
         MatSnackBarModule,
         MatDialogModule,
+        FlexLayoutModule,
         FormsModule,
     ],
-    providers: [ConfigService],
+    providers: [ConfigService, SearchFieldService],
 })
-export class WbListModule {}
+export class WhiteListModule {}

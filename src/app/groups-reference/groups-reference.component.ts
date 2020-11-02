@@ -13,6 +13,7 @@ import { SortOrder } from '../shared/constants/sort-order';
 import { RemoveReferenceDialogComponent } from '../references/remove-reference-dialog/remove-reference-dialog.component';
 import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-dialog/remove-group-reference-dialog.component';
 import { Sort } from '@angular/material/sort';
+import { SearchFieldService } from '../shared/services/utils/search-field.service';
 
 @Component({
     selector: 'app-groups-reference',
@@ -31,6 +32,7 @@ export class GroupsReferenceComponent implements OnInit {
         private router: Router,
         private errorHandlerService: ErrorHandlerService,
         private groupsReferenceService: GroupsReferenceService,
+        private searchFieldService: SearchFieldService,
         private snackBar: MatSnackBar,
         public dialog: MatDialog,
         configService: ConfigService
@@ -63,7 +65,7 @@ export class GroupsReferenceComponent implements OnInit {
             .getGroupsReferences(
                 (OperationType as any)[this.operationType],
                 this.SIZE,
-                this.searchValue,
+                this.searchFieldService.formatField(this.searchValue),
                 null,
                 this.sortType
             )

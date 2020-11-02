@@ -19,6 +19,7 @@ import { GroupsReferenceRoutingModule } from './groups-reference-routing.module'
 import { CreateGroupsReferenceComponent } from './create-groups-reference/create-groups-reference.component';
 import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-dialog/remove-group-reference-dialog.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SearchFieldService } from '../shared/services/utils/search-field.service';
 
 @NgModule({
     declarations: [GroupsReferenceComponent, CreateGroupsReferenceComponent, RemoveGroupReferenceDialogComponent],
@@ -40,6 +41,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         FlexLayoutModule,
         FormsModule,
     ],
-    providers: [ConfigService],
+    providers: [ConfigService, SearchFieldService],
 })
 export class GroupsReferenceModule {}

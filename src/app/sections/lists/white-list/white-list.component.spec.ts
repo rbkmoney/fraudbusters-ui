@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WbListComponent } from './wb-list.component';
+import { WhiteListComponent } from './white-list.component';
 
 describe('WbListComponent', () => {
-    let component: WbListComponent;
-    let fixture: ComponentFixture<WbListComponent>;
+    let component: WhiteListComponent;
+    let fixture: ComponentFixture<WhiteListComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [WbListComponent],
+            declarations: [WhiteListComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(WbListComponent);
+        fixture = TestBed.createComponent(WhiteListComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

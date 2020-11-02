@@ -40,19 +40,19 @@ export class AppComponent {
         },
         {
             displayName: 'Lists',
-            iconName: 'list',
+            iconName: 'list_alt',
             children: [
                 {
                     displayName: 'White',
-                    route: 'lists',
+                    route: 'lists/white',
                 },
                 {
                     displayName: 'Black',
-                    route: 'lists',
+                    route: 'lists/black',
                 },
                 {
                     displayName: 'Grey',
-                    route: 'lists',
+                    route: 'lists/grey',
                 },
             ],
         },

@@ -197,11 +197,16 @@
         }
     }
 
-    mat-form-field.mat-form-field.full-width {
-        width: 100%;
+    mat-form-field.mat-form-field {
+        &.full-width {
+            width: 100%;
 
-        textarea {
-            min-height: 400px;
+            textarea {
+                min-height: 400px;
+            }
+        }
+        &.search {
+            margin-top: 3px;
         }
     }
 
@@ -210,6 +215,14 @@
             .mat-list-item-content {
                 color: #000;
             }
+        }
+    }
+
+    .list-values {
+        .mat-button.mat-warn,
+        .mat-icon-button.mat-warn,
+        .mat-stroked-button.mat-warn {
+            margin-top: 27px;
         }
     }
 }
