@@ -127,20 +127,6 @@
         }
     }
 
-    mat-list-item.active,
-    .mat-list-option:hover,
-    .mat-list-option:focus,
-    .mat-nav-list .mat-list-item:hover,
-    .mat-nav-list .mat-list-item:focus,
-    .mat-action-list .mat-list-item:hover,
-    .mat-action-list .mat-list-item:focus {
-        background: none;
-
-        .mat-list-item-content {
-            color: #000;
-        }
-    }
-
     .mat-form-field-appearance-outline .mat-form-field-flex {
         .mat-form-field-outline-end,
         .mat-form-field-outline-start,
@@ -216,6 +202,14 @@
 
         textarea {
             min-height: 400px;
+        }
+    }
+
+    .mat-nav-list {
+        .mat-list-item.active {
+            .mat-list-item-content {
+                color: #000;
+            }
         }
     }
 }

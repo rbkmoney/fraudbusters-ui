@@ -1,3 +1,7 @@
-.mat-list-item.active {
-    color: #000;
+.mat-nav-list {
+    .mat-list-item.active {
+        .mat-list-item-content {
+            color: #000;
+        }
+    }
 }
