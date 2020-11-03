@@ -1,11 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorHandlerService } from '../../../../shared/services/utils/error-handler.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpErrorResponse } from '@angular/common/http';
-import { RemoveGroupReferenceDialogComponent } from '../../../../groups-reference/remove-group-reference-dialog/remove-group-reference-dialog.component';
-import { WhiteListService } from '../white-list.service';
-import { GroupReferenceModel } from '../../../../groups-reference/model/groups-reference';
+import { WbListService } from '../wb-list.service';
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { ListRecord } from '../../../../shared/services/lists/model/list-record';
 import { ListType } from '../../../../shared/constants/list-type';
@@ -18,15 +16,15 @@ export interface DialogData {
 
 @Component({
     selector: 'app-remove-row-white-list',
-    templateUrl: './remove-row-white-list-dialog.component.html',
-    styleUrls: ['./remove-row-white-list-dialog.component.scss'],
+    templateUrl: './remove-row-list-dialog.component.html',
+    styleUrls: ['./remove-row-list-dialog.component.scss'],
 })
-export class RemoveRowWhiteListDialogComponent {
+export class RemoveRowListDialogComponent {
     constructor(
-        private listsService: WhiteListService,
+        private listsService: WbListService,
         private snackBar: MatSnackBar,
         private errorHandlerService: ErrorHandlerService,
-        public dialogRef: MatDialogRef<RemoveGroupReferenceDialogComponent>,
+        public dialogRef: MatDialogRef<RemoveRowListDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData
     ) {}
 

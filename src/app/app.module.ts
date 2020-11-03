@@ -17,9 +17,13 @@ import { GroupsModule } from './groups/groups.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { GroupsReferenceModule } from './groups-reference/groups-reference.module';
-import { WhiteListModule } from './sections/lists/white-list/white-list.module';
 import { MenuListItemComponent } from './shared/components/menu-list-item/menu-list-item.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { BlackListModule } from './sections/lists/black-list/black-list.module';
+import { WhiteListModule } from './sections/lists/white-list/white-list.module';
+import { GreyListComponent } from './sections/lists/grey-list/grey-list.component';
+import { AddRowGreyListComponent } from './sections/lists/grey-list/add-row-grey-list/add-row-grey-list.component';
+import { GreyListModule } from './sections/lists/grey-list/grey-list.module';
 
 @NgModule({
     declarations: [AppComponent, MenuListItemComponent],
@@ -38,6 +42,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         ReferencesModule,
         GroupsModule,
         GroupsReferenceModule,
+        BlackListModule,
+        GreyListModule,
         WhiteListModule,
         BrowserAnimationsModule,
         FlexLayoutModule,

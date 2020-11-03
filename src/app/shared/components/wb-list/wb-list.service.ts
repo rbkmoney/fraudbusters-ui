@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
-import { OperationType } from '../../../shared/constants/operation-type';
-import { SortOrder } from '../../../shared/constants/sort-order';
+import { OperationType } from '../../constants/operation-type';
+import { SortOrder } from '../../constants/sort-order';
 import { Observable } from 'rxjs';
-import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
-import { SearchListsParams } from '../../../shared/services/lists/model/search-lists-params';
-import { ListsFilterResponse } from '../../../shared/services/lists/model/lists-filter-response';
-import { ListType } from '../../../shared/constants/list-type';
-import { ListRecord } from '../../../shared/services/lists/model/list-record';
-import { CountInfoListRecord } from '../../../shared/services/lists/model/count-info-list-record';
+import { OperationTypeManagementService } from '../../services/operation-type-management.service';
+import { SearchListsParams } from '../../services/lists/model/search-lists-params';
+import { ListsFilterResponse } from '../../services/lists/model/lists-filter-response';
+import { ListType } from '../../constants/list-type';
+import { ListRecord } from '../../services/lists/model/list-record';
+import { CountInfoListRecord } from '../../services/lists/model/count-info-list-record';
 
-@Injectable({
-    providedIn: 'root',
-})
-export class WhiteListService {
+@Injectable()
+export class WbListService {
     constructor(private operationTypeManagementService: OperationTypeManagementService) {}
 
     findLists(
@@ -48,10 +46,7 @@ export class WhiteListService {
         return this.operationTypeManagementService.findListsService(type).getNames(listType);
     }
 
-    saveListRow(type: OperationType, listType: ListType, rows: ListRecord[]): Observable<string[]> {
-        return this.operationTypeManagementService.findListsService(type).saveListsRows(
-            listType,
-            rows.map((value) => new CountInfoListRecord(value))
-        );
+    saveListRow(type: OperationType, listType: ListType, rows: CountInfoListRecord[]): Observable<string[]> {
+        return this.operationTypeManagementService.findListsService(type).saveListsRows(listType, rows);
     }
 }
