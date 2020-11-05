@@ -15,6 +15,8 @@ import { IGroupsReferenceService } from './groups-reference/igroups-reference.se
 import { IListsService } from './lists/ilists.service';
 import { PaymentListsService } from './lists/payment-lists.service';
 import { P2pListsService } from './lists/p2p-lists.service';
+import { PaymentEmulationTemplateService } from './emulation/payment-emulation-template-service';
+import { IEmulationTemplateService } from './emulation/iemulation-template.service';
 
 @Injectable({
     providedIn: 'root',
@@ -30,7 +32,8 @@ export class OperationTypeManagementService {
         private paymentGroupsReferenceService: PaymentGroupsReferenceService,
         private p2pGroupsReferenceService: P2pGroupsReferenceService,
         private paymentListsService: PaymentListsService,
-        private p2pListsService: P2pListsService
+        private p2pListsService: P2pListsService,
+        private paymentEmulationTemplateServiceImpl: PaymentEmulationTemplateService
     ) {}
 
     findTemplateService(type: OperationType): ITemplatesService {
@@ -83,6 +86,17 @@ export class OperationTypeManagementService {
                 return this.paymentListsService;
             case OperationType.PeerToPeer:
                 return this.p2pListsService;
+            default:
+                throw new Error(`Unknown type of operations: ${type}`);
+        }
+    }
+
+    findEmulationService(type: OperationType): IEmulationTemplateService {
+        switch (type) {
+            case OperationType.Payment:
+                return this.paymentEmulationTemplateServiceImpl;
+            case OperationType.PeerToPeer:
+                throw new Error(`Unknown type of operations: ${type}`);
             default:
                 throw new Error(`Unknown type of operations: ${type}`);
         }

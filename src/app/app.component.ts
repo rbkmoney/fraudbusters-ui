@@ -61,5 +61,10 @@ export class AppComponent {
             iconName: 'publish',
             route: 'load/fraud',
         },
+        {
+            displayName: 'Emulation template',
+            iconName: 'accessibility_new',
+            route: 'emulation/template',
+        },
     ];
 }
