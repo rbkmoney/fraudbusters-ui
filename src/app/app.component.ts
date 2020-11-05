@@ -56,5 +56,10 @@ export class AppComponent {
                 },
             ],
         },
+        {
+            displayName: 'Load fraud',
+            iconName: 'publish',
+            route: 'load/fraud',
+        },
     ];
 }

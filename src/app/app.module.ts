@@ -21,9 +21,8 @@ import { MenuListItemComponent } from './shared/components/menu-list-item/menu-l
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BlackListModule } from './sections/lists/black-list/black-list.module';
 import { WhiteListModule } from './sections/lists/white-list/white-list.module';
-import { GreyListComponent } from './sections/lists/grey-list/grey-list.component';
-import { AddRowGreyListComponent } from './sections/lists/grey-list/add-row-grey-list/add-row-grey-list.component';
 import { GreyListModule } from './sections/lists/grey-list/grey-list.module';
+import { FraudUploaderListModule } from './sections/load/fraud-uploader/fraud-uploader.module';
 
 @NgModule({
     declarations: [AppComponent, MenuListItemComponent],
@@ -42,6 +41,7 @@ import { GreyListModule } from './sections/lists/grey-list/grey-list.module';
         ReferencesModule,
         GroupsModule,
         GroupsReferenceModule,
+        FraudUploaderListModule,
         BlackListModule,
         GreyListModule,
         WhiteListModule,
