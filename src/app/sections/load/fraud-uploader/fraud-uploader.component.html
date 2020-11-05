@@ -22,7 +22,6 @@
                     <h3>or</h3>
                     <label for="fileDropRef">Browse for file</label>
                 </div>
-
                 <div class="files-list">
                     <div class="single-file" *ngFor="let file of files; let i = index">
                         <div class="file-icon" style="width: 50px">
@@ -37,7 +36,6 @@
                             </p>
                             <app-progress [progress]="file?.progress"></app-progress>
                         </div>
-
                         <div class="delete" (click)="deleteFile(i)">
                             <span class="material-icons"> delete_forever </span>
                         </div>

@@ -56,8 +56,8 @@ export class FraudUploaderComponent {
                 } else {
                     this.files[index].progress += 5;
                 }
-            }, 100);
-        }, 100);
+            }, 300);
+        }, 300);
     }
 
     deleteFile(index: number): void {
