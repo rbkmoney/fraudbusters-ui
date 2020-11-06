@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';

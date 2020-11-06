@@ -9,7 +9,6 @@ import { SortOrder } from '../../shared/constants/sort-order';
 import { Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
 import { ConfigService } from '../../core/config.service';
 
 @Component({

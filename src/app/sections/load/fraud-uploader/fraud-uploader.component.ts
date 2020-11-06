@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FraudUploaderService } from '../../../shared/services/fraud-uploader/fraud-uploader.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';

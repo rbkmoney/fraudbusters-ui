@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PriorityIdModel } from '../model/priority-id-model';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { GroupsService } from '../groups.service';
 import { Group } from '../model/group';
 import { TemplatesService } from '../../templates/templates.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { MatSort, Sort } from '@angular/material/sort';
+import { Sort } from '@angular/material/sort';
 import { GroupUtilsService } from '../utils/group-utils.service';
 
 @Component({

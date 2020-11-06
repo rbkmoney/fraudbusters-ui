@@ -23,7 +23,6 @@ import { BlackListModule } from './sections/lists/black-list/black-list.module';
 import { WhiteListModule } from './sections/lists/white-list/white-list.module';
 import { GreyListModule } from './sections/lists/grey-list/grey-list.module';
 import { FraudUploaderListModule } from './sections/load/fraud-uploader/fraud-uploader.module';
-import { EmulationTemplateComponent } from './sections/emulation/template/emulation-template.component';
 import { EmulationTemplateModule } from './sections/emulation/template/emulation-template.module';
 
 @NgModule({

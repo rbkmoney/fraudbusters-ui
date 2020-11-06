@@ -4,7 +4,6 @@ import { ErrorHandlerService } from '../../shared/services/utils/error-handler.s
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfigService } from '../../core/config.service';
-import { SortOrder } from '../../shared/constants/sort-order';
 import { OperationType } from '../../shared/constants/operation-type';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Sort } from '@angular/material/sort';

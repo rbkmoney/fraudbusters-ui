@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { OperationTypeComponent } from '../../../shared/model/operation-type-component';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { ActivatedRoute } from '@angular/router';
-import { ReplaySubject } from 'rxjs';
 import { Template } from '../../templates/model/template';
 import { PaymentEmulateFilter } from './model/payment-emulate-filter';
 import { P2pEmulateFilter } from './model/p2p-emulate-filter';
