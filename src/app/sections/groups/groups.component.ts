@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,13 +11,15 @@ import { GroupsService } from './groups.service';
 import { PriorityIdModel } from './model/priority-id-model';
 import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-dialog.component';
 import { GroupUtilsService } from './utils/group-utils.service';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
+import { OperationTypeComponent } from '../../shared/components/operation-type-component';
 
 @Component({
     selector: 'app-groups',
     templateUrl: './groups.component.html',
     styleUrls: ['./groups.component.scss'],
 })
-export class GroupsComponent implements OnInit {
+export class GroupsComponent extends OperationTypeComponent implements OnInit {
     private SIZE: number;
 
     isLoadMore = false;
@@ -25,36 +27,44 @@ export class GroupsComponent implements OnInit {
     displayedColumns: string[] = ['id', 'text', 'edit'];
     groups = [];
     operationTypes = [];
-    operationType;
     searchField;
 
     constructor(
         private router: Router,
+        private route: ActivatedRoute,
         private errorHandlerService: ErrorHandlerService,
         private groupsService: GroupsService,
         private groupUtilsService: GroupUtilsService,
         private snackBar: MatSnackBar,
         public dialog: MatDialog,
+        public searchFieldService: SearchFieldService,
         configService: ConfigService
     ) {
+        super();
         this.SIZE = configService.config.pageSize;
     }
 
     ngOnInit(): void {
         this.operationTypes = Object.keys(OperationType);
         this.operationType = this.operationTypes[0];
+        this.operationTypeParseFragment(this.route);
         this.search();
     }
 
     search(): void {
         this.isLoading = true;
-        this.groupsService.getGroups((OperationType as any)[this.operationType], this.searchField).subscribe(
-            (groups) => {
-                this.isLoading = false;
-                this.groups = groups;
-            },
-            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
-        );
+        this.groupsService
+            .getGroups(
+                (OperationType as any)[this.operationType],
+                this.searchFieldService.formatField(this.searchField)
+            )
+            .subscribe(
+                (groups) => {
+                    this.isLoading = false;
+                    this.groups = groups;
+                },
+                (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
+            );
     }
 
     sortData(sort: Sort): void {

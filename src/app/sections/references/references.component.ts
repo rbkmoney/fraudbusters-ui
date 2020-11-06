@@ -7,11 +7,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { RemoveReferenceDialogComponent } from './remove-reference-dialog/remove-reference-dialog.component';
 import { SortOrder } from '../../shared/constants/sort-order';
 import { Sort } from '@angular/material/sort';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { ConfigService } from '../../core/config.service';
 import { ReplaySubject } from 'rxjs';
-import { OperationTypeComponent } from '../../shared/model/operation-type-component';
+import { OperationTypeComponent } from '../../shared/components/operation-type-component';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 
 @Component({
     selector: 'app-references',
@@ -23,10 +24,12 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
 
     constructor(
         private router: Router,
+        private route: ActivatedRoute,
         private errorHandlerService: ErrorHandlerService,
         private referenceService: ReferencesService,
         private snackBar: MatSnackBar,
         public dialog: MatDialog,
+        public searchFieldService: SearchFieldService,
         configService: ConfigService
     ) {
         super();
@@ -42,6 +45,13 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
     searchReferenceName;
     sortType = SortOrder.DESC;
 
+    ngOnInit(): void {
+        this.operationTypes = Object.keys(OperationType);
+        this.operationType = this.operationTypes[0];
+        this.operationTypeParseFragment(this.route);
+        this.selectionChange();
+    }
+
     openDialog(removeReference): void {
         const dialogRef = this.dialog.open(RemoveReferenceDialogComponent, {
             width: '350px',
@@ -51,12 +61,6 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
         dialogRef.afterClosed().subscribe((result) => {
             this.search();
         });
-    }
-
-    ngOnInit(): void {
-        this.operationTypes = Object.keys(OperationType);
-        this.operationType = this.operationTypes[0];
-        this.selectionChange();
     }
 
     selectionChange(): void {
@@ -74,7 +78,7 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
             .getReferences(
                 (OperationType as any)[this.operationType],
                 this.SIZE,
-                this.searchReferenceName,
+                this.searchFieldService.formatField(this.searchReferenceName),
                 null,
                 this.sortType
             )
@@ -107,7 +111,7 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
             .getReferences(
                 (OperationType as any)[this.operationType],
                 this.SIZE,
-                this.searchReferenceName,
+                this.searchFieldService.formatField(this.searchReferenceName),
                 this.references[this.references.length - 1].id,
                 this.sortType
             )
@@ -126,9 +130,5 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
 
     navigateToNew(): void {
         this.router.navigate(['/references/new'], { fragment: this.operationType });
-    }
-
-    navigateToEdit(id): void {
-        this.router.navigate([`/references/${id}`], { fragment: this.operationType });
     }
 }

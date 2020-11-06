@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ReferencesService } from '../references.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
-import { OperationTypeComponent } from '../../../shared/model/operation-type-component';
+import { OperationTypeComponent } from '../../../shared/components/operation-type-component';
 import { PaymentReference } from '../model/payment-reference';
 import { P2pReference } from '../model/p2p-reference';
 
@@ -18,6 +18,7 @@ export class CreateReferenceComponent extends OperationTypeComponent implements 
     reference: PaymentReference | P2pReference;
 
     constructor(
+        private router: Router,
         private route: ActivatedRoute,
         private referenceService: ReferencesService,
         private errorHandlerService: ErrorHandlerService,
@@ -44,11 +45,16 @@ export class CreateReferenceComponent extends OperationTypeComponent implements 
         console.log(this.reference);
         this.referenceService.saveReference(this.operationType, this.reference).subscribe(
             (id) => {
+                this.navigateToList();
                 this.snackBar.open(`Saved succeeded: ${id}`, 'OK', {
                     duration: 1500,
                 });
             },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
+    }
+
+    navigateToList(): void {
+        this.router.navigate(['../references'], { fragment: this.operationType });
     }
 }

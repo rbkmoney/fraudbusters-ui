@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OperationType } from '../../shared/constants/operation-type';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,13 +12,14 @@ import { SortOrder } from '../../shared/constants/sort-order';
 import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-dialog/remove-group-reference-dialog.component';
 import { Sort } from '@angular/material/sort';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
+import { OperationTypeComponent } from '../../shared/components/operation-type-component';
 
 @Component({
     selector: 'app-groups-reference',
     templateUrl: './groups-reference.component.html',
     styleUrls: ['./groups-reference.component.scss'],
 })
-export class GroupsReferenceComponent implements OnInit {
+export class GroupsReferenceComponent extends OperationTypeComponent implements OnInit {
     groupReferences = [];
     searchValue = '';
     operationType: OperationType;
@@ -28,6 +29,7 @@ export class GroupsReferenceComponent implements OnInit {
 
     constructor(
         private router: Router,
+        private route: ActivatedRoute,
         private errorHandlerService: ErrorHandlerService,
         private groupsReferenceService: GroupsReferenceService,
         private searchFieldService: SearchFieldService,
@@ -35,6 +37,7 @@ export class GroupsReferenceComponent implements OnInit {
         public dialog: MatDialog,
         configService: ConfigService
     ) {
+        super();
         this.SIZE = configService.config.pageSize;
         this.displayedColumns.next(['groupId', 'edit']);
     }
@@ -46,6 +49,7 @@ export class GroupsReferenceComponent implements OnInit {
     ngOnInit(): void {
         this.operationTypes = Object.keys(OperationType);
         this.operationType = this.operationTypes[0];
+        this.operationTypeParseFragment(this.route);
         this.selectionChange();
     }
 
@@ -104,7 +108,7 @@ export class GroupsReferenceComponent implements OnInit {
             .getGroupsReferences(
                 (OperationType as any)[this.operationType],
                 this.SIZE,
-                this.searchValue,
+                this.searchFieldService.formatField(this.searchValue),
                 this.groupReferences[this.groupReferences.length - 1].id,
                 this.sortType,
                 this.groupReferences[this.groupReferences.length - 1].groupId

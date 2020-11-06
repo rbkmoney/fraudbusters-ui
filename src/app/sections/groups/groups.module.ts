@@ -23,6 +23,7 @@ import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-d
 import { EditGroupComponent } from './edit-group/edit-group.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 
 @NgModule({
     declarations: [GroupsComponent, CreateGroupComponent, RemoveGroupDialogComponent, EditGroupComponent],
@@ -46,6 +47,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         FlexLayoutModule,
         FormsModule,
     ],
-    providers: [GroupsService, ConfigService],
+    providers: [GroupsService, ConfigService, SearchFieldService],
 })
 export class GroupsModule {}

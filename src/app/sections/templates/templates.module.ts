@@ -20,6 +20,7 @@ import { RemoveTemplateDialogComponent } from './remove-template-dialog/remove-t
 import { FormsModule } from '@angular/forms';
 import { EditTemplateModule } from './edit-template/edit-template.module';
 import { CreateTemplateModule } from './create-template/create-template.module';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 
 @NgModule({
     declarations: [TemplatesComponent, RemoveTemplateDialogComponent],
@@ -42,6 +43,6 @@ import { CreateTemplateModule } from './create-template/create-template.module';
         CreateTemplateModule,
         FormsModule,
     ],
-    providers: [TemplatesService, ConfigService],
+    providers: [TemplatesService, ConfigService, SearchFieldService],
 })
 export class TemplatesModule {}

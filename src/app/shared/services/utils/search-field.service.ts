@@ -7,6 +7,6 @@ export class SearchFieldService {
     constructor() {}
 
     formatField(searchField: string): string {
-        return !!!searchField ? '' : '%' + searchField + '%';
+        return !!!searchField ? null : '%' + searchField + '%';
     }
 }

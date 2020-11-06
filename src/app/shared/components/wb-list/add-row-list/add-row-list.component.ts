@@ -6,7 +6,7 @@ import { OperationType } from '../../../constants/operation-type';
 import { HttpErrorResponse } from '@angular/common/http';
 import { P2pListRecord } from '../../../services/lists/model/p2p-list-record';
 import { PaymentListRecord } from '../../../services/lists/model/payment-list-record';
-import { OperationTypeComponent } from '../../../model/operation-type-component';
+import { OperationTypeComponent } from '../../operation-type-component';
 import { ListType } from '../../../constants/list-type';
 import { WbListService } from '../wb-list.service';
 import { Location } from '@angular/common';

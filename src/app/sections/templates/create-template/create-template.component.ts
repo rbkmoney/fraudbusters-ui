@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TemplatesService } from '../templates.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Template } from '../model/template';
@@ -18,6 +18,7 @@ export class CreateTemplateComponent implements OnInit {
     template = new Template('', '');
 
     constructor(
+        private router: Router,
         private route: ActivatedRoute,
         private templateService: TemplatesService,
         private errorHandlerService: ErrorHandlerService,
@@ -38,8 +39,8 @@ export class CreateTemplateComponent implements OnInit {
     save(): void {
         console.log(this.template);
         this.templateService.saveTemplate(this.operationType, this.template).subscribe(
-            (id) => {
-                console.log(id);
+            (template) => {
+                this.navigateToEdit(template.id);
             },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
@@ -54,5 +55,9 @@ export class CreateTemplateComponent implements OnInit {
             },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
+    }
+
+    navigateToEdit(id): void {
+        this.router.navigate([`../templates/${id}`], { fragment: this.operationType.toString() });
     }
 }

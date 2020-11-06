@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { CreateReferenceComponent } from './create-reference/create-reference.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 
 @NgModule({
     declarations: [ReferencesComponent, RemoveReferenceDialogComponent, CreateReferenceComponent],
@@ -43,6 +44,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         FlexLayoutModule,
         FormsModule,
     ],
-    providers: [ReferencesService, ConfigService],
+    providers: [ReferencesService, ConfigService, SearchFieldService],
 })
 export class ReferencesModule {}

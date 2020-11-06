@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OperationTypeComponent } from '../../../shared/model/operation-type-component';
+import { OperationTypeComponent } from '../../../shared/components/operation-type-component';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { ActivatedRoute } from '@angular/router';
 import { Template } from '../../templates/model/template';

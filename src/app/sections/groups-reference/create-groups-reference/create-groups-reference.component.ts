@@ -6,7 +6,7 @@ import { OperationType } from '../../../shared/constants/operation-type';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PaymentGroupReferenceModel } from '../model/payment-groups-reference';
 import { P2pGroupReferenceModel } from '../model/p2p-groups-reference';
-import { OperationTypeComponent } from '../../../shared/model/operation-type-component';
+import { OperationTypeComponent } from '../../../shared/components/operation-type-component';
 import { GroupsReferenceService } from '../groups-reference.service';
 
 @Component({

@@ -7,26 +7,31 @@ import { MatDialog } from '@angular/material/dialog';
 import { RemoveTemplateDialogComponent } from './remove-template-dialog/remove-template-dialog.component';
 import { SortOrder } from '../../shared/constants/sort-order';
 import { Sort } from '@angular/material/sort';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { ConfigService } from '../../core/config.service';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
+import { OperationTypeComponent } from '../../shared/components/operation-type-component';
 
 @Component({
     selector: 'app-templates',
     templateUrl: './templates.component.html',
     styleUrls: ['./templates.component.scss'],
 })
-export class TemplatesComponent implements OnInit {
+export class TemplatesComponent extends OperationTypeComponent implements OnInit {
     private SIZE: number;
 
     constructor(
         private router: Router,
+        private route: ActivatedRoute,
         private errorHandlerService: ErrorHandlerService,
         private templateService: TemplatesService,
         private snackBar: MatSnackBar,
         public dialog: MatDialog,
+        public searchFieldService: SearchFieldService,
         configService: ConfigService
     ) {
+        super();
         this.SIZE = configService.config.pageSize;
     }
 
@@ -39,6 +44,13 @@ export class TemplatesComponent implements OnInit {
     searchTemplateName;
     sortType = SortOrder.DESC;
 
+    ngOnInit(): void {
+        this.operationTypes = Object.keys(OperationType);
+        this.operationType = this.operationTypes[0];
+        this.operationTypeParseFragment(this.route);
+        this.search();
+    }
+
     openDialog(removeTemplate): void {
         const dialogRef = this.dialog.open(RemoveTemplateDialogComponent, {
             width: '350px',
@@ -50,19 +62,13 @@ export class TemplatesComponent implements OnInit {
         });
     }
 
-    ngOnInit(): void {
-        this.operationTypes = Object.keys(OperationType);
-        this.operationType = this.operationTypes[0];
-        this.search();
-    }
-
     search(): void {
         this.isLoading = true;
         this.templateService
             .getTemplates(
                 (OperationType as any)[this.operationType],
                 this.SIZE,
-                this.searchTemplateName,
+                this.searchFieldService.formatField(this.searchTemplateName),
                 null,
                 this.sortType
             )
@@ -95,7 +101,7 @@ export class TemplatesComponent implements OnInit {
             .getTemplates(
                 (OperationType as any)[this.operationType],
                 this.SIZE,
-                this.searchTemplateName,
+                this.searchFieldService.formatField(this.searchTemplateName),
                 this.templates[this.templates.length - 1].id,
                 this.sortType
             )
