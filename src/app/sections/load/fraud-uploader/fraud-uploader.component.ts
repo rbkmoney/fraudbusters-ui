@@ -4,8 +4,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { UploadFile } from './model/upload-file';
 import { UploadStatus } from './constants/upload-status';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
-import { GroupsReferenceService } from '../../groups-reference/groups-reference.service';
-import { SearchFieldService } from '../../../shared/services/utils/search-field.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -24,6 +22,9 @@ export class FraudUploaderComponent {
     ) {}
 
     uploadFileToActivity(): void {
+        if (this.files.length === 0) {
+            this.errorHandlerService.handleStringError('File for upload is not find!', this.snackBar);
+        }
         this.files
             .filter((file) => !this.uploadFiles.has(file.name))
             .forEach((item) => {
@@ -91,5 +92,9 @@ export class FraudUploaderComponent {
         const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
         const i = Math.floor(Math.log(bytes) / Math.log(k));
         return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    }
+
+    isLoadError(name: string): boolean {
+        return !!this.uploadFiles.get(name) && this.uploadFiles.get(name).status === UploadStatus.error;
     }
 }

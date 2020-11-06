@@ -28,9 +28,17 @@
                             <span class="material-icons md-36"> text_snippet </span>
                         </div>
                         <div class="info">
-                            <h4 class="name">
-                                {{ file?.name }}
-                            </h4>
+                            <div fxLayout="row">
+                                <h4 class="name">
+                                    {{ file?.name }}
+                                </h4>
+                                <mat-icon
+                                    matTooltip="{{ uploadFiles.get(file?.name).errorMessage }}"
+                                    *ngIf="isLoadError(file?.name)"
+                                    class="md-18 error"
+                                    >info</mat-icon
+                                >
+                            </div>
                             <p class="size">
                                 {{ formatBytes(file?.size) }}
                             </p>

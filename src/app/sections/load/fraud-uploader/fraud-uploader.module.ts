@@ -21,6 +21,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProgressComponent } from './progress/progress.component';
 import { DndDirective } from './dnd.directive';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
     declarations: [FraudUploaderComponent, ProgressComponent, DndDirective],
@@ -39,6 +40,7 @@ import { ErrorHandlerService } from '../../../shared/services/utils/error-handle
         MatSortModule,
         MatSnackBarModule,
         MatDialogModule,
+        MatTooltipModule,
         MatGridListModule,
         FlexLayoutModule,
     ],
