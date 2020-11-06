@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ValidateResponse } from '../../../templates/model/validate-response';
+import { ValidateResponse } from '../../../sections/templates/model/validate-response';
 
 @Injectable({
     providedIn: 'root',

@@ -5,9 +5,9 @@ import { ConfigService } from '../../../core/config.service';
 import { SearchReferenceParams } from './model/search-reference-params';
 import { Observable } from 'rxjs';
 import { ParamsUtilService } from '../utils/params-util.service';
-import { ReferencesResponse } from '../../../references/model/references-response';
-import { P2pReference } from '../../../references/model/p2p-reference';
-import { Reference } from '../../../references/model/reference';
+import { ReferencesResponse } from '../../../sections/references/model/references-response';
+import { P2pReference } from '../../../sections/references/model/p2p-reference';
+import { Reference } from '../../../sections/references/model/reference';
 
 @Injectable({
     providedIn: 'root',

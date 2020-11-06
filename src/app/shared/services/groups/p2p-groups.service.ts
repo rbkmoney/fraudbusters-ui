@@ -4,7 +4,7 @@ import { ConfigService } from '../../../core/config.service';
 import { Observable } from 'rxjs';
 import { ParamsUtilService } from '../utils/params-util.service';
 import { IGroupsService } from './igroups.service';
-import { Group } from '../../../groups/model/group';
+import { Group } from '../../../sections/groups/model/group';
 import { HttpRequestModel } from '../../model/http-request-model';
 
 @Injectable({

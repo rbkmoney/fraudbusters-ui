@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Group } from '../../../groups/model/group';
+import { Group } from '../../../sections/groups/model/group';
 
 export interface IGroupsService {
     findGroups(id: string): Observable<Group[]>;

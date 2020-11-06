@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Template } from '../../../templates/model/template';
+import { Template } from '../../../sections/templates/model/template';
 import { PaymentEmulateFilter } from '../../../sections/emulation/template/model/payment-emulate-filter';
 import { P2pEmulateFilter } from '../../../sections/emulation/template/model/p2p-emulate-filter';
 

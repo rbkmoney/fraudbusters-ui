@@ -3,11 +3,11 @@ import { ITemplatesService } from './itemplates.service';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../../../core/config.service';
 import { Observable } from 'rxjs';
-import { Template } from '../../../templates/model/template';
+import { Template } from '../../../sections/templates/model/template';
 import { ParamsUtilService } from '../utils/params-util.service';
-import { ValidateResponse } from '../../../templates/model/validate-response';
-import { ValidateTemplate } from '../../../templates/model/validate-template';
-import { TemplatesResponse } from '../../../templates/model/templates-response';
+import { ValidateResponse } from '../../../sections/templates/model/validate-response';
+import { ValidateTemplate } from '../../../sections/templates/model/validate-template';
+import { TemplatesResponse } from '../../../sections/templates/model/templates-response';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { SearchParams } from '../../model/search-params';
 

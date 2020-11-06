@@ -4,11 +4,11 @@ import { ConfigService } from '../../../core/config.service';
 import { Observable } from 'rxjs';
 import { ParamsUtilService } from '../utils/params-util.service';
 import { IGroupsReferenceService } from './igroups-reference.service';
-import { GroupsReferenceResponse } from '../../../groups-reference/model/groups-reference-response';
-import { GroupReferenceModel } from '../../../groups-reference/model/groups-reference';
+import { GroupsReferenceResponse } from '../../../sections/groups-reference/model/groups-reference-response';
+import { GroupReferenceModel } from '../../../sections/groups-reference/model/groups-reference';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { SearchParams } from '../../model/search-params';
-import { P2pGroupReferenceModel } from '../../../groups-reference/model/p2p-groups-reference';
+import { P2pGroupReferenceModel } from '../../../sections/groups-reference/model/p2p-groups-reference';
 
 @Injectable({
     providedIn: 'root',

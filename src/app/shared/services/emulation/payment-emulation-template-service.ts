@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PaymentEmulateFilter } from '../../../sections/emulation/template/model/payment-emulate-filter';
-import { Template } from '../../../templates/model/template';
+import { Template } from '../../../sections/templates/model/template';
 import { IEmulationTemplateService } from './iemulation-template.service';
 import { HttpClient } from '@angular/common/http';
 import { ParamsUtilService } from '../utils/params-util.service';
