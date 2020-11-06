@@ -19,13 +19,9 @@ export class MenuListItemComponent {
     expanded = false;
     @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
     @Input() item: NavItem;
-    @Input() depth: number;
+    @Input() depth = 0;
 
-    constructor(public router: Router) {
-        if (this.depth === undefined) {
-            this.depth = 0;
-        }
-    }
+    constructor(public router: Router) {}
 
     onItemSelected(item: NavItem): void {
         if (!item.children || !item.children.length) {
@@ -34,5 +30,9 @@ export class MenuListItemComponent {
         if (item.children && item.children.length) {
             this.expanded = !this.expanded;
         }
+    }
+
+    isActiveRoute(): boolean {
+        return this.item.route ? this.router.isActive(this.item.route, true) : false;
     }
 }
