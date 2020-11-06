@@ -8,13 +8,10 @@ import { IListsService } from './ilists.service';
 import { SearchListsParams } from './model/search-lists-params';
 import { ListsFilterResponse } from './model/lists-filter-response';
 import { ListType } from '../../constants/list-type';
-import { ListRecord } from './model/list-record';
 import { InsertListRequest } from './model/insert-list-request';
 import { CountInfoListRecord } from './model/count-info-list-record';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class PaymentListsService implements IListsService {
     private readonly fbManagementEndpoint: string;
 

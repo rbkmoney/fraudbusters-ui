@@ -7,9 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { ParamsUtilService } from '../utils/params-util.service';
 import { ConfigService } from '../../../core/config.service';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class PaymentEmulationTemplateService implements IEmulationTemplateService {
     private readonly fbManagementEndpoint: string;
 

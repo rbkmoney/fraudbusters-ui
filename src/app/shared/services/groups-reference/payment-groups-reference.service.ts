@@ -10,9 +10,7 @@ import { HttpRequestModel } from '../../model/http-request-model';
 import { SearchParams } from '../../model/search-params';
 import { PaymentGroupReferenceModel } from '../../../sections/groups-reference/model/payment-groups-reference';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class PaymentGroupsReferenceService implements IGroupsReferenceService {
     private readonly fbManagementEndpoint: string;
 

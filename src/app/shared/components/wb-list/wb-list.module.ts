@@ -21,6 +21,10 @@ import { WbListService } from './wb-list.service';
 import { RemoveRowListDialogComponent } from './remove-row-list/remove-row-list-dialog.component';
 import { AddRowListComponent } from './add-row-list/add-row-list.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { P2pListsService } from '../../services/lists/p2p-lists.service';
+import { PaymentListsService } from '../../services/lists/payment-lists.service';
+import { ErrorHandlerService } from '../../services/utils/error-handler.service';
+import { OperationTypeManagementService } from '../../services/operation-type-management.service';
 
 @NgModule({
     declarations: [WbListComponent, RemoveRowListDialogComponent, AddRowListComponent],
@@ -43,6 +47,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         FlexLayoutModule,
         FormsModule,
     ],
-    providers: [ConfigService, SearchFieldService, WbListService],
+    providers: [
+        ConfigService,
+        SearchFieldService,
+        WbListService,
+        P2pListsService,
+        PaymentListsService,
+        ErrorHandlerService,
+        OperationTypeManagementService,
+    ],
 })
 export class WbListModule {}

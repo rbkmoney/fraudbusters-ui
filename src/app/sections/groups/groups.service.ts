@@ -4,9 +4,7 @@ import { OperationType } from '../../shared/constants/operation-type';
 import { Observable } from 'rxjs';
 import { Group } from './model/group';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class GroupsService {
     constructor(private operationTypeManagementService: OperationTypeManagementService) {}
 

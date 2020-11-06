@@ -20,6 +20,11 @@ import { CreateGroupsReferenceComponent } from './create-groups-reference/create
 import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-dialog/remove-group-reference-dialog.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
+import { GroupsReferenceService } from './groups-reference.service';
+import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
+import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
+import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 
 @NgModule({
     declarations: [GroupsReferenceComponent, CreateGroupsReferenceComponent, RemoveGroupReferenceDialogComponent],
@@ -41,6 +46,14 @@ import { SearchFieldService } from '../../shared/services/utils/search-field.ser
         FlexLayoutModule,
         FormsModule,
     ],
-    providers: [ConfigService, SearchFieldService],
+    providers: [
+        ConfigService,
+        SearchFieldService,
+        GroupsReferenceService,
+        P2pGroupsReferenceService,
+        PaymentGroupsReferenceService,
+        ErrorHandlerService,
+        OperationTypeManagementService,
+    ],
 })
 export class GroupsReferenceModule {}

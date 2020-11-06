@@ -46,7 +46,7 @@ export class WbListComponent implements OnInit {
         configService: ConfigService
     ) {
         this.SIZE = configService.config.pageSize;
-        this.displayedColumns.next(['groupId', 'edit']);
+        this.displayedColumns.next([]);
     }
 
     isLoadMore = false;

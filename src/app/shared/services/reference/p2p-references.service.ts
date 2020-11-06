@@ -9,9 +9,7 @@ import { ReferencesResponse } from '../../../sections/references/model/reference
 import { P2pReference } from '../../../sections/references/model/p2p-reference';
 import { Reference } from '../../../sections/references/model/reference';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class P2pReferencesService implements IReferencesService {
     private readonly fbManagementEndpoint: string;
 

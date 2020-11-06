@@ -18,9 +18,7 @@ import { P2pListsService } from './lists/p2p-lists.service';
 import { PaymentEmulationTemplateService } from './emulation/payment-emulation-template-service';
 import { IEmulationTemplateService } from './emulation/iemulation-template.service';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class OperationTypeManagementService {
     constructor(
         private paymentTemplateService: PaymentTemplatesService,

@@ -18,6 +18,9 @@ import { EmulationTemplateComponent } from './emulation-template.component';
 import { EmulationTemplateRoutingModule } from './emulation-template-routing.module';
 import { ConfigService } from '../../../core/config.service';
 import { EmulationTemplateService } from './emulation-template.service';
+import { PaymentEmulationTemplateService } from '../../../shared/services/emulation/payment-emulation-template-service';
+import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
 
 @NgModule({
     declarations: [EmulationTemplateComponent],
@@ -39,6 +42,12 @@ import { EmulationTemplateService } from './emulation-template.service';
         FlexLayoutModule,
         FormsModule,
     ],
-    providers: [ConfigService, EmulationTemplateService],
+    providers: [
+        ConfigService,
+        EmulationTemplateService,
+        PaymentEmulationTemplateService,
+        ErrorHandlerService,
+        OperationTypeManagementService,
+    ],
 })
 export class EmulationTemplateModule {}

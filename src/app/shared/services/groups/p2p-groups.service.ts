@@ -7,9 +7,7 @@ import { IGroupsService } from './igroups.service';
 import { Group } from '../../../sections/groups/model/group';
 import { HttpRequestModel } from '../../model/http-request-model';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class P2pGroupsService implements IGroupsService {
     private readonly fbManagementEndpoint: string;
 

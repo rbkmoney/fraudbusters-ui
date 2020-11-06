@@ -11,9 +11,7 @@ import { TemplatesResponse } from '../../../sections/templates/model/templates-r
 import { HttpRequestModel } from '../../model/http-request-model';
 import { SearchParams } from '../../model/search-params';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class PaymentTemplatesService implements ITemplatesService {
     private readonly fbManagementEndpoint: string;
 

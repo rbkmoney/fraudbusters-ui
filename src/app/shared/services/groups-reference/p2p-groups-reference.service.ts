@@ -10,9 +10,7 @@ import { HttpRequestModel } from '../../model/http-request-model';
 import { SearchParams } from '../../model/search-params';
 import { P2pGroupReferenceModel } from '../../../sections/groups-reference/model/p2p-groups-reference';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class P2pGroupsReferenceService implements IGroupsReferenceService {
     private readonly fbManagementEndpoint: string;
 

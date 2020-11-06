@@ -20,6 +20,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProgressComponent } from './progress/progress.component';
 import { DndDirective } from './dnd.directive';
+import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 
 @NgModule({
     declarations: [FraudUploaderComponent, ProgressComponent, DndDirective],
@@ -41,6 +42,6 @@ import { DndDirective } from './dnd.directive';
         MatGridListModule,
         FlexLayoutModule,
     ],
-    providers: [FraudUploaderService, ConfigService],
+    providers: [FraudUploaderService, ConfigService, ErrorHandlerService],
 })
 export class FraudUploaderListModule {}

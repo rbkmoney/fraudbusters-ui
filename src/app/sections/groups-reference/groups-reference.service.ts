@@ -7,9 +7,7 @@ import { GroupsReferenceResponse } from './model/groups-reference-response';
 import { GroupReferenceModel } from './model/groups-reference';
 import { SearchGroupsReferenceParams } from '../../shared/services/groups-reference/model/search-group-reference-params';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class GroupsReferenceService {
     constructor(private operationReferenceService: OperationTypeManagementService) {}
 

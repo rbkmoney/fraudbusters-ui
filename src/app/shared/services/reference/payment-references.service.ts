@@ -9,9 +9,7 @@ import { ReferencesResponse } from '../../../sections/references/model/reference
 import { PaymentReference } from '../../../sections/references/model/payment-reference';
 import { Reference } from '../../../sections/references/model/reference';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class PaymentReferencesService implements IReferencesService {
     private readonly fbManagementEndpoint: string;
 

@@ -18,12 +18,18 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RemoveTemplateDialogComponent } from './remove-template-dialog/remove-template-dialog.component';
 import { FormsModule } from '@angular/forms';
-import { EditTemplateModule } from './edit-template/edit-template.module';
-import { CreateTemplateModule } from './create-template/create-template.module';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
+import { P2pTemplatesService } from '../../shared/services/template/p2p-templates.service';
+import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
+import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { ValidateResponseHandler } from '../../shared/services/utils/validate-response-handler.service';
+import { EditTemplateComponent } from './edit-template/edit-template.component';
+import { CreateTemplateComponent } from './create-template/create-template.component';
+import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
+import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
 
 @NgModule({
-    declarations: [TemplatesComponent, RemoveTemplateDialogComponent],
+    declarations: [TemplatesComponent, RemoveTemplateDialogComponent, EditTemplateComponent, CreateTemplateComponent],
     imports: [
         CommonModule,
         TemplatesRoutingModule,
@@ -39,10 +45,18 @@ import { SearchFieldService } from '../../shared/services/utils/search-field.ser
         MatSortModule,
         MatSnackBarModule,
         MatDialogModule,
-        EditTemplateModule,
-        CreateTemplateModule,
         FormsModule,
     ],
-    providers: [TemplatesService, ConfigService, SearchFieldService],
+    providers: [
+        TemplatesService,
+        ConfigService,
+        SearchFieldService,
+        P2pTemplatesService,
+        PaymentTemplatesService,
+        ErrorHandlerService,
+        ValidateResponseHandler,
+        OperationTypeManagementService,
+        ParamsUtilService,
+    ],
 })
 export class TemplatesModule {}

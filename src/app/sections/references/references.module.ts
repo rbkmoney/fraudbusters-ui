@@ -22,6 +22,11 @@ import { CreateReferenceComponent } from './create-reference/create-reference.co
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
+import { P2pReferencesService } from '../../shared/services/reference/p2p-references.service';
+import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
+import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
+import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
 
 @NgModule({
     declarations: [ReferencesComponent, RemoveReferenceDialogComponent, CreateReferenceComponent],
@@ -44,6 +49,15 @@ import { SearchFieldService } from '../../shared/services/utils/search-field.ser
         FlexLayoutModule,
         FormsModule,
     ],
-    providers: [ReferencesService, ConfigService, SearchFieldService],
+    providers: [
+        ReferencesService,
+        ConfigService,
+        SearchFieldService,
+        P2pReferencesService,
+        PaymentReferencesService,
+        ErrorHandlerService,
+        OperationTypeManagementService,
+        ParamsUtilService,
+    ],
 })
 export class ReferencesModule {}

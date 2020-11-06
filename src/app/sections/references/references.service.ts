@@ -7,9 +7,7 @@ import { SortOrder } from '../../shared/constants/sort-order';
 import { SearchReferenceParams } from '../../shared/services/reference/model/search-reference-params';
 import { ReferencesResponse } from './model/references-response';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class ReferencesService {
     constructor(private operationReferenceService: OperationTypeManagementService) {}
 

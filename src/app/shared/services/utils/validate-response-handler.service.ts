@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ValidateResponse } from '../../../sections/templates/model/validate-response';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class ValidateResponseHandler {
     constructor() {}
 

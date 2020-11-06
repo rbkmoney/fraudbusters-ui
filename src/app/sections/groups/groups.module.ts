@@ -24,6 +24,10 @@ import { EditGroupComponent } from './edit-group/edit-group.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
+import { P2pGroupsService } from '../../shared/services/groups/p2p-groups.service';
+import { PaymentGroupsService } from '../../shared/services/groups/payment-groups.service';
+import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 
 @NgModule({
     declarations: [GroupsComponent, CreateGroupComponent, RemoveGroupDialogComponent, EditGroupComponent],
@@ -47,6 +51,14 @@ import { SearchFieldService } from '../../shared/services/utils/search-field.ser
         FlexLayoutModule,
         FormsModule,
     ],
-    providers: [GroupsService, ConfigService, SearchFieldService],
+    providers: [
+        GroupsService,
+        ConfigService,
+        SearchFieldService,
+        P2pGroupsService,
+        PaymentGroupsService,
+        ErrorHandlerService,
+        OperationTypeManagementService,
+    ],
 })
 export class GroupsModule {}
