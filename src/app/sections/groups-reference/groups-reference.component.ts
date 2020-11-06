@@ -51,7 +51,7 @@ export class GroupsReferenceComponent extends OperationTypeComponent implements 
         this.operationType = this.operationTypes[0];
         this.operationTypeParseFragment(this.route);
         this.route.queryParams.subscribe((params) => {
-            const value = params['searchValue'];
+            const value = params.searchValue;
             if (!!value) {
                 this.searchValue = value;
             }
