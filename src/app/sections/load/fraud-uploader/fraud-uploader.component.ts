@@ -99,7 +99,7 @@ export class FraudUploaderComponent {
             return 20;
         }
         const k = 1024;
-        return 1 / Math.floor(bytes / k);
+        return k / bytes;
     }
 
     isLoadError(name: string): boolean {
