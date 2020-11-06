@@ -28,7 +28,7 @@ export class FraudUploaderComponent {
         this.files
             .filter((file) => !this.uploadFiles.has(file.name))
             .forEach((item) => {
-                this.startProgress(this.files.indexOf(item));
+                this.startProgress(this.files.indexOf(item), this.calcProgressCoef(item.size));
                 this.fraudUploadService.postFile(item).subscribe(
                     (response) => {
                         this.finishProgress(this.files.indexOf(item), UploadStatus.success);
@@ -61,13 +61,13 @@ export class FraudUploaderComponent {
         }
     }
 
-    startProgress(index: number): void {
+    startProgress(index: number, loadCoef: number): void {
         setTimeout(() => {
             const progressInterval = setInterval(() => {
                 if (this.files[index].progress >= 100) {
                     clearInterval(progressInterval);
                 } else {
-                    this.files[index].progress += 5;
+                    this.files[index].progress += 5 * loadCoef;
                 }
             }, 300);
         }, 300);
@@ -92,6 +92,14 @@ export class FraudUploaderComponent {
         const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
         const i = Math.floor(Math.log(bytes) / Math.log(k));
         return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    }
+
+    calcProgressCoef(bytes): number {
+        if (bytes === 0) {
+            return 20;
+        }
+        const k = 1024;
+        return 1 / Math.floor(bytes / k);
     }
 
     isLoadError(name: string): boolean {
