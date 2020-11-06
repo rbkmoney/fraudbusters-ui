@@ -11,7 +11,14 @@
         <mat-card>
             <mat-card-content>
                 <mat-form-field class="full-width" floatLabel="always">
-                    <input matInput placeholder="Name" label="name" name="name" [(ngModel)]="editGroup.groupId" />
+                    <input
+                        matInput
+                        placeholder="Name"
+                        label="name"
+                        name="name"
+                        [(ngModel)]="editGroup.groupId"
+                        disabled
+                    />
                 </mat-form-field>
                 <table
                     mat-table

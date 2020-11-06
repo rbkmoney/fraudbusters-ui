@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PriorityIdModel } from '../model/priority-id-model';
 import { OperationType } from '../../../shared/constants/operation-type';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GroupsService } from '../groups.service';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -24,6 +24,7 @@ export class EditGroupComponent implements OnInit {
     options: string[] = [];
 
     constructor(
+        private router: Router,
         private route: ActivatedRoute,
         private groupsService: GroupsService,
         private errorHandlerService: ErrorHandlerService,
@@ -62,7 +63,9 @@ export class EditGroupComponent implements OnInit {
         );
     }
 
-    navigateReference(): void {}
+    navigateReference(): void {
+        this.router.navigate([`../groups-reference`], { queryParams: { searchValue: this.editGroup.groupId } });
+    }
 
     addTemplate(): void {
         this.editGroup.priorityTemplates = this.editGroup.priorityTemplates.concat([new PriorityIdModel('', 0)]);

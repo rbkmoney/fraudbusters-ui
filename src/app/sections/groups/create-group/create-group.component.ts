@@ -60,8 +60,6 @@ export class CreateGroupComponent implements OnInit {
         );
     }
 
-    navigateReference(): void {}
-
     addTemplate(): void {
         this.newGroup.priorityTemplates = this.newGroup.priorityTemplates.concat([new PriorityIdModel('', 0)]);
     }
