@@ -34,7 +34,7 @@
                             <p class="size">
                                 {{ formatBytes(file?.size) }}
                             </p>
-                            <app-progress [progress]="file?.progress"></app-progress>
+                            <app-progress [progress]="file?.progress" [status]="file?.status"></app-progress>
                         </div>
                         <div class="delete" (click)="deleteFile(i)">
                             <span class="material-icons"> delete_forever </span>

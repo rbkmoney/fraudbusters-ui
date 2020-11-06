@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { FraudUploaderService } from '../../../shared/services/fraud-uploader/fraud-uploader.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { UploadFile } from './model/upload-file';
+import { UploadStatus } from './constants/upload-status';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { GroupsReferenceService } from '../../groups-reference/groups-reference.service';
+import { SearchFieldService } from '../../../shared/services/utils/search-field.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -11,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class FraudUploaderComponent {
     files: any[] = [];
+    uploadFiles = new Map<string, UploadFile>();
 
     constructor(
         private fraudUploadService: FraudUploaderService,
@@ -19,17 +24,21 @@ export class FraudUploaderComponent {
     ) {}
 
     uploadFileToActivity(): void {
-        for (const item of this.files) {
-            this.uploadFilesProgress(this.files.indexOf(item));
-            this.fraudUploadService.postFile(item).subscribe(
-                (response) => {
-                    this.uploadFilesProgress(0, true);
-                },
-                (error: HttpErrorResponse) => {
-                    this.errorHandlerService.handleError(error, this.snackBar);
-                }
-            );
-        }
+        this.files
+            .filter((file) => !this.uploadFiles.has(file.name))
+            .forEach((item) => {
+                this.startProgress(this.files.indexOf(item));
+                this.fraudUploadService.postFile(item).subscribe(
+                    (response) => {
+                        this.finishProgress(this.files.indexOf(item), UploadStatus.success);
+                        this.uploadFiles.set(item.name, new UploadFile(item, UploadStatus.success));
+                    },
+                    (error: HttpErrorResponse) => {
+                        this.finishProgress(this.files.indexOf(item), UploadStatus.error);
+                        this.uploadFiles.set(item.name, new UploadFile(item, UploadStatus.error, error.message));
+                    }
+                );
+            });
     }
 
     onFileDropped($event): void {
@@ -42,17 +51,20 @@ export class FraudUploaderComponent {
 
     prepareFilesList(files: Array<any>): void {
         for (const item of files) {
-            item.progress = 0;
-            this.files.push(item);
+            if (item.type !== 'text/csv') {
+                this.errorHandlerService.handleStringError('File only csv format!', this.snackBar);
+            } else {
+                item.progress = 0;
+                this.files.push(item);
+            }
         }
     }
 
-    uploadFilesProgress(index: number, finished: boolean = false): void {
+    startProgress(index: number): void {
         setTimeout(() => {
             const progressInterval = setInterval(() => {
-                if (this.files[index].progress >= 100 || finished) {
+                if (this.files[index].progress >= 100) {
                     clearInterval(progressInterval);
-                    this.files[index].progress = 100;
                 } else {
                     this.files[index].progress += 5;
                 }
@@ -60,7 +72,13 @@ export class FraudUploaderComponent {
         }, 300);
     }
 
+    finishProgress(index: number, status: UploadStatus): void {
+        this.files[index].progress = 100;
+        this.files[index].status = status;
+    }
+
     deleteFile(index: number): void {
+        this.uploadFiles.delete(this.files[index].name);
         this.files.splice(index, 1);
     }
 

@@ -15,5 +15,13 @@
         border-radius: 4px;
         background-color: #4c97cb;
         transition: 0.5s all;
+
+        &.error {
+            background-color: #cf1c1d;
+        }
+
+        &.success {
+            background-color: #1ab152;
+        }
     }
 }

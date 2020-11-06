@@ -11,4 +11,10 @@ export class ErrorHandlerService {
             duration: 1500,
         });
     }
+
+    handleStringError(error: string, snackBar: MatSnackBar): void {
+        snackBar.open(error, 'OK', {
+            duration: 1500,
+        });
+    }
 }
