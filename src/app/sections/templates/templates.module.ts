@@ -18,6 +18,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RemoveTemplateDialogComponent } from './remove-template-dialog/remove-template-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { EditTemplateModule } from './edit-template/edit-template.module';
+import { CreateTemplateModule } from './create-template/create-template.module';
 
 @NgModule({
     declarations: [TemplatesComponent, RemoveTemplateDialogComponent],
@@ -36,6 +38,8 @@ import { FormsModule } from '@angular/forms';
         MatSortModule,
         MatSnackBarModule,
         MatDialogModule,
+        EditTemplateModule,
+        CreateTemplateModule,
         FormsModule,
     ],
     providers: [TemplatesService, ConfigService],
