@@ -8,6 +8,8 @@ import { ErrorHandlerService } from '../../../shared/services/utils/error-handle
 import { OperationTypeComponent } from '../../../shared/components/operation-type-component';
 import { PaymentReference } from '../model/payment-reference';
 import { P2pReference } from '../model/p2p-reference';
+import { P2pGroupReferenceModel } from '../../groups-reference/model/p2p-groups-reference';
+import { PaymentGroupReferenceModel } from '../../groups-reference/model/payment-groups-reference';
 
 @Component({
     selector: 'app-create-reference',
@@ -16,6 +18,9 @@ import { P2pReference } from '../model/p2p-reference';
 })
 export class CreateReferenceComponent extends OperationTypeComponent implements OnInit {
     reference: PaymentReference | P2pReference;
+
+    p2pReferences: P2pGroupReferenceModel[] = [];
+    paymentReferences: PaymentGroupReferenceModel[] = [];
 
     constructor(
         private router: Router,
@@ -34,11 +39,16 @@ export class CreateReferenceComponent extends OperationTypeComponent implements 
     getOperationTypeFromFragment(): void {
         this.route.fragment.subscribe((fragment: string) => {
             this.operationType = OperationType[fragment];
-            this.reference =
-                this.operationType === OperationType.Payment
-                    ? new PaymentReference('', '', '')
-                    : new P2pReference('', '');
+            this.addNewReference();
         });
+    }
+
+    addNewReference(): void {
+        this.isPaymentReference()
+            ? (this.paymentReferences = this.paymentReferences.concat([
+                  new PaymentGroupReferenceModel(null, '', '', ''),
+              ]))
+            : (this.p2pReferences = this.p2pReferences.concat([new P2pGroupReferenceModel(null, '', '')]));
     }
 
     save(): void {
@@ -56,5 +66,9 @@ export class CreateReferenceComponent extends OperationTypeComponent implements 
 
     navigateToList(): void {
         this.router.navigate(['../references'], { fragment: this.operationType });
+    }
+
+    deleteRef(i): void {
+        this.isPaymentReference() ? this.paymentReferences.splice(i, 1) : this.p2pReferences.splice(i, 1);
     }
 }

@@ -21,6 +21,8 @@ import { SearchFieldService } from '../../shared/services/utils/search-field.ser
 })
 export class ReferencesComponent extends OperationTypeComponent implements OnInit {
     private SIZE: number;
+    DEFAULT: 'default';
+    GLOBAL: 'global';
 
     constructor(
         private router: Router,
@@ -44,7 +46,7 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
     operationTypes = [];
     searchReferenceName;
     sortType = SortOrder.DESC;
-    typeSearch: string;
+    searchType = 'all';
 
     ngOnInit(): void {
         this.operationTypes = Object.keys(OperationType);
@@ -81,7 +83,9 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
                 this.SIZE,
                 this.searchFieldService.formatField(this.searchReferenceName),
                 null,
-                this.sortType
+                this.sortType,
+                this.searchType === this.GLOBAL,
+                this.searchType === this.DEFAULT
             )
             .subscribe(
                 (referencesResponse) => {

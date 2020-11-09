@@ -16,7 +16,9 @@ export class ReferencesService {
         size?: number,
         nameRegexp?: string,
         lastInListName?: string,
-        sortOrder?: SortOrder
+        sortOrder?: SortOrder,
+        isGlobal?: boolean,
+        isDefault?: boolean
     ): Observable<ReferencesResponse> {
         return this.operationReferenceService
             .findReferenceService(type)
@@ -25,7 +27,9 @@ export class ReferencesService {
                     nameRegexp,
                     lastInListName,
                     size,
-                    sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC]
+                    sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC],
+                    isGlobal,
+                    isDefault
                 )
             );
     }
