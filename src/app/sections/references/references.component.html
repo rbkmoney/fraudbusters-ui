@@ -8,7 +8,16 @@
         </mat-form-field>
         <button mat-stroked-button color="primary" (click)="navigateToNew()">New</button>
         <span class="fb-spacer"></span>
-        <mat-form-field class="fb-full-width" appearance="outline">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="typeSearch">
+            <mat-button-toggle value="global" matTooltip="Global template">
+                <mat-icon class="md-18">language</mat-icon></mat-button-toggle
+            >
+            <mat-button-toggle value="default" matTooltip="Default template">
+                <mat-icon class="md-18">adjust</mat-icon></mat-button-toggle
+            >
+            <mat-button-toggle value="all" matTooltip="All"><mat-icon class="md-18">lens</mat-icon></mat-button-toggle>
+        </mat-button-toggle-group>
+        <mat-form-field class="search fb-full-width" appearance="outline">
             <input
                 matInput
                 placeholder="Search"

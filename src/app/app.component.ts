@@ -45,14 +45,17 @@ export class AppComponent {
                 {
                     displayName: 'White',
                     route: 'lists/white',
+                    iconName: 'panorama_fish_eye',
                 },
                 {
                     displayName: 'Black',
                     route: 'lists/black',
+                    iconName: 'lens',
                 },
                 {
                     displayName: 'Grey',
                     route: 'lists/grey',
+                    iconName: 'tonality',
                 },
             ],
         },

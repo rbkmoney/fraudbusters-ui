@@ -27,6 +27,8 @@ import { PaymentReferencesService } from '../../shared/services/reference/paymen
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
     declarations: [ReferencesComponent, RemoveReferenceDialogComponent, CreateReferenceComponent],
@@ -47,6 +49,8 @@ import { ParamsUtilService } from '../../shared/services/utils/params-util.servi
         MatDialogModule,
         MatGridListModule,
         FlexLayoutModule,
+        MatButtonToggleModule,
+        MatTooltipModule,
         FormsModule,
     ],
     providers: [

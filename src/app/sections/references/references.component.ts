@@ -44,6 +44,7 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
     operationTypes = [];
     searchReferenceName;
     sortType = SortOrder.DESC;
+    typeSearch: string;
 
     ngOnInit(): void {
         this.operationTypes = Object.keys(OperationType);
