@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ListType } from '../../../shared/constants/list-type';
 
 @Component({
@@ -6,10 +6,6 @@ import { ListType } from '../../../shared/constants/list-type';
     templateUrl: './white-list.component.html',
     styleUrls: ['./white-list.component.scss'],
 })
-export class WhiteListComponent implements OnInit {
+export class WhiteListComponent {
     LIST_TYPE = ListType.white;
-
-    constructor() {}
-
-    ngOnInit(): void {}
 }

@@ -6,10 +6,6 @@ import { ListType } from '../../../../shared/constants/list-type';
     templateUrl: './add-row-white-list.component.html',
     styleUrls: ['./add-row-white-list.component.scss'],
 })
-export class AddRowWhiteListComponent implements OnInit {
+export class AddRowWhiteListComponent {
     LIST_TYPE = ListType.white;
-
-    constructor() {}
-
-    ngOnInit(): void {}
 }

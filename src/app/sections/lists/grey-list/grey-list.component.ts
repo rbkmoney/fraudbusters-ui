@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ListType } from '../../../shared/constants/list-type';
 
 @Component({
@@ -6,10 +6,6 @@ import { ListType } from '../../../shared/constants/list-type';
     templateUrl: './grey-list.component.html',
     styleUrls: ['./grey-list.component.scss'],
 })
-export class GreyListComponent implements OnInit {
+export class GreyListComponent {
     LIST_TYPE = ListType.grey;
-
-    constructor() {}
-
-    ngOnInit(): void {}
 }
