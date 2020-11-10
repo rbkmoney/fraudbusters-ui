@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { GroupsReferenceResponse } from './model/groups-reference-response';
 import { GroupReferenceModel } from './model/groups-reference';
-import { SearchGroupsReferenceParams } from '../../shared/services/groups-reference/model/search-group-reference-params';
 
 @Injectable()
 export class GroupsReferenceService {
@@ -13,23 +12,19 @@ export class GroupsReferenceService {
 
     getGroupsReferences(
         type: OperationType,
-        size?: number,
+        sizeValue?: number,
         nameRegexp?: string,
         lastInListName?: string,
         sortOrder?: SortOrder,
-        sortFieldValue?: string
+        sortField?: string
     ): Observable<GroupsReferenceResponse> {
-        return this.operationReferenceService
-            .findGroupsReferenceService(type)
-            .findGroups(
-                new SearchGroupsReferenceParams(
-                    nameRegexp,
-                    lastInListName,
-                    size,
-                    sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC],
-                    sortFieldValue
-                )
-            );
+        return this.operationReferenceService.findGroupsReferenceService(type).findGroups({
+            idRegexp: nameRegexp,
+            lastId: lastInListName,
+            size: sizeValue,
+            sortOrder: sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC],
+            sortFieldValue: sortField,
+        });
     }
 
     deleteGroupsReference(type: OperationType, reference: GroupReferenceModel): Observable<string> {

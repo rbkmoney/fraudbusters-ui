@@ -42,9 +42,9 @@ export class CreateGroupsReferenceComponent extends OperationTypeComponent imple
     addNewReference(): void {
         this.isPaymentReference()
             ? (this.paymentReferences = this.paymentReferences.concat([
-                  new PaymentGroupReferenceModel(null, '', '', ''),
+                  { id: null, groupId: '', partyId: '', shopId: '' },
               ]))
-            : (this.p2pReferences = this.p2pReferences.concat([new P2pGroupReferenceModel(null, '', '')]));
+            : (this.p2pReferences = this.p2pReferences.concat([{ id: null, groupId: '', identityId: '' }]));
     }
 
     deleteRef(i): void {

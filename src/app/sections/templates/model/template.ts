@@ -1,9 +1,4 @@
-export class Template {
+export interface Template {
     id: string;
     template: string;
-
-    constructor(id: string, template: string) {
-        this.id = id;
-        this.template = template;
-    }
 }

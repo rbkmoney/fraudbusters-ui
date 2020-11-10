@@ -7,7 +7,6 @@ import { SortOrder } from '../../shared/constants/sort-order';
 import { ValidateTemplate } from './model/validate-template';
 import { ValidateResponse } from './model/validate-response';
 import { TemplatesResponse } from './model/templates-response';
-import { SearchParams } from '../../shared/model/search-params';
 
 @Injectable()
 export class TemplatesService {
@@ -15,21 +14,17 @@ export class TemplatesService {
 
     getTemplates(
         type: OperationType,
-        size?: number,
+        sizeValue?: number,
         nameRegexp?: string,
         lastInListName?: string,
         sortOrder?: SortOrder
     ): Observable<TemplatesResponse> {
-        return this.operationTemplateService
-            .findTemplateService(type)
-            .findTemplates(
-                new SearchParams(
-                    nameRegexp,
-                    lastInListName,
-                    size,
-                    sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC]
-                )
-            );
+        return this.operationTemplateService.findTemplateService(type).findTemplates({
+            id: nameRegexp,
+            lastId: lastInListName,
+            size: sizeValue,
+            sortOrder: sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC],
+        });
     }
 
     deleteTemplate(type: OperationType, id: string): Observable<string> {

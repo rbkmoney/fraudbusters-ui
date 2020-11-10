@@ -46,8 +46,12 @@ export class CreateReferenceComponent extends OperationTypeComponent implements 
 
     addNewReference(): void {
         this.isPaymentReference()
-            ? (this.paymentReferences = this.paymentReferences.concat([new PaymentReference(null, '', '')]))
-            : (this.p2pReferences = this.p2pReferences.concat([new P2pReference(null, '')]));
+            ? (this.paymentReferences = this.paymentReferences.concat([
+                  { templateId: '', partyId: '', shopId: '', isDefault: false, isGlobal: false },
+              ]))
+            : (this.p2pReferences = this.p2pReferences.concat([
+                  { templateId: '', identityId: '', isDefault: false, isGlobal: false },
+              ]));
     }
 
     save(): void {

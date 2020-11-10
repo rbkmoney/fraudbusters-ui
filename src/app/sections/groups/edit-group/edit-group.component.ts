@@ -18,7 +18,7 @@ import { TemplatesService } from '../../templates/templates.service';
 })
 export class EditGroupComponent implements OnInit {
     editGroupId: string;
-    editGroup: Group = new Group('', []);
+    editGroup: Group = { groupId: '', priorityTemplates: [] };
     displayedColumns: string[] = ['id', 'priority', 'edit'];
     operationType: OperationType;
     options: string[] = [];
@@ -68,7 +68,7 @@ export class EditGroupComponent implements OnInit {
     }
 
     addTemplate(): void {
-        this.editGroup.priorityTemplates = this.editGroup.priorityTemplates.concat([new PriorityIdModel('', 0)]);
+        this.editGroup.priorityTemplates = this.editGroup.priorityTemplates.concat([{ id: '', priority: 0 }]);
     }
 
     removeTemplate(removeId: string): void {

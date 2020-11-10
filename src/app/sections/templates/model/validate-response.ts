@@ -1,5 +1,5 @@
 import { ValidateError } from './validate-error';
 
-export class ValidateResponse {
+export interface ValidateResponse {
     validateResults: ValidateError[];
 }

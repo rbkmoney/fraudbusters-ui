@@ -17,7 +17,7 @@ import { GroupUtilsService } from '../utils/group-utils.service';
     styleUrls: ['./create-group.component.scss'],
 })
 export class CreateGroupComponent implements OnInit {
-    newGroup: Group = new Group('', []);
+    newGroup: Group = { groupId: '', priorityTemplates: [] };
     displayedColumns: string[] = ['id', 'priority', 'edit'];
     operationType: OperationType;
     options: string[] = [];
@@ -62,7 +62,7 @@ export class CreateGroupComponent implements OnInit {
     }
 
     addTemplate(): void {
-        this.newGroup.priorityTemplates = this.newGroup.priorityTemplates.concat([new PriorityIdModel('', 0)]);
+        this.newGroup.priorityTemplates = this.newGroup.priorityTemplates.concat([{ id: '', priority: 0 }]);
     }
 
     removeTemplate(removeId: string): void {

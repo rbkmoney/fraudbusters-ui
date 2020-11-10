@@ -1,4 +1,4 @@
-export class ValidateError {
+export interface ValidateError {
     errors: string[];
     id: string;
 }

@@ -4,7 +4,6 @@ import { OperationType } from '../../shared/constants/operation-type';
 import { Observable } from 'rxjs';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { SortOrder } from '../../shared/constants/sort-order';
-import { SearchReferenceParams } from '../../shared/services/reference/model/search-reference-params';
 import { ReferencesResponse } from './model/references-response';
 
 @Injectable()
@@ -13,27 +12,23 @@ export class ReferencesService {
 
     getReferences(
         type: OperationType,
-        size?: number,
+        sizeValue?: number,
         nameRegexp?: string,
         lastInListName?: string,
         sortOrder?: SortOrder,
-        isGlobal?: boolean,
-        isDefault?: boolean,
+        isGlobalValue?: boolean,
+        isDefaultValue?: boolean,
         sortField?: string
     ): Observable<ReferencesResponse> {
-        return this.operationReferenceService
-            .findReferenceService(type)
-            .findReferences(
-                new SearchReferenceParams(
-                    nameRegexp,
-                    lastInListName,
-                    size,
-                    sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC],
-                    isGlobal,
-                    isDefault,
-                    sortField
-                )
-            );
+        return this.operationReferenceService.findReferenceService(type).findReferences({
+            searchValue: nameRegexp,
+            lastId: lastInListName,
+            size: sizeValue,
+            sortOrder: sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC],
+            isGlobal: isGlobalValue,
+            isDefault: isDefaultValue,
+            sortFieldValue: sortField,
+        });
     }
 
     deleteReference(type: OperationType, reference: Reference): Observable<string> {

@@ -15,7 +15,7 @@ import { ValidateResponseHandler } from '../../../shared/services/utils/validate
 })
 export class EditTemplateComponent implements OnInit {
     private operationType: OperationType;
-    template: Template = new Template('', '');
+    template: Template = { id: '', template: '' };
     templateId;
 
     constructor(

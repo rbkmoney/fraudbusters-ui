@@ -41,9 +41,9 @@ export class EmulationTemplateComponent extends OperationTypeComponent implement
 
     selectionChange(): void {
         if (this.operationType === OperationType.Payment) {
-            this.filter = new PaymentEmulateFilter('', '');
+            this.filter = { partyId: '', shopId: '' };
         } else {
-            this.filter = new P2pEmulateFilter('');
+            this.filter = { identityId: '' };
         }
         this.templates = [];
     }

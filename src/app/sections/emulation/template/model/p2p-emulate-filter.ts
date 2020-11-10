@@ -1,7 +1,3 @@
-export class P2pEmulateFilter {
+export interface P2pEmulateFilter {
     identityId: string;
-
-    constructor(identityId: string) {
-        this.identityId = identityId;
-    }
 }

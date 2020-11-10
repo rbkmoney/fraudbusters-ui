@@ -32,11 +32,15 @@ export class FraudUploaderComponent {
                 this.fraudUploadService.postFile(item).subscribe(
                     (response) => {
                         this.finishProgress(this.files.indexOf(item), UploadStatus.success);
-                        this.uploadFiles.set(item.name, new UploadFile(item, UploadStatus.success));
+                        this.uploadFiles.set(item.name, { file: item, status: UploadStatus.success });
                     },
                     (error: HttpErrorResponse) => {
                         this.finishProgress(this.files.indexOf(item), UploadStatus.error);
-                        this.uploadFiles.set(item.name, new UploadFile(item, UploadStatus.error, error.message));
+                        this.uploadFiles.set(item.name, {
+                            file: item,
+                            status: UploadStatus.error,
+                            errorMessage: error.message,
+                        });
                     }
                 );
             });

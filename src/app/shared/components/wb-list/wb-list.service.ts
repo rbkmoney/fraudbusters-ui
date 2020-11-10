@@ -3,10 +3,8 @@ import { OperationType } from '../../constants/operation-type';
 import { SortOrder } from '../../constants/sort-order';
 import { Observable } from 'rxjs';
 import { OperationTypeManagementService } from '../../services/operation-type-management.service';
-import { SearchListsParams } from '../../services/lists/model/search-lists-params';
 import { ListsFilterResponse } from '../../services/lists/model/lists-filter-response';
 import { ListType } from '../../constants/list-type';
-import { ListRecord } from '../../services/lists/model/list-record';
 import { CountInfoListRecord } from '../../services/lists/model/count-info-list-record';
 
 @Injectable()
@@ -14,28 +12,24 @@ export class WbListService {
     constructor(private operationTypeManagementService: OperationTypeManagementService) {}
 
     findLists(
-        listNames: string[],
-        listType: ListType,
+        listNamesValue: string[],
+        listTypeValue: ListType,
         type: OperationType,
-        size?: number,
+        sizeValue?: number,
         nameRegexp?: string,
         lastInListName?: string,
         sortOrder?: SortOrder,
-        sortFieldValue?: string
+        sortField?: string
     ): Observable<ListsFilterResponse> {
-        return this.operationTypeManagementService
-            .findListsService(type)
-            .findListRows(
-                new SearchListsParams(
-                    nameRegexp,
-                    lastInListName,
-                    size,
-                    sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC],
-                    sortFieldValue,
-                    listNames,
-                    listType
-                )
-            );
+        return this.operationTypeManagementService.findListsService(type).findListRows({
+            searchValue: nameRegexp,
+            lastId: lastInListName,
+            size: sizeValue,
+            sortOrder: sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC],
+            sortFieldValue: sortField,
+            listNames: listNamesValue,
+            listType: listTypeValue,
+        });
     }
 
     deleteListRow(type: OperationType, id: string): Observable<string> {
