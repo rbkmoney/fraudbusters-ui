@@ -32,8 +32,6 @@ import {
     NgxMatNativeDateModule,
     NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
     declarations: [WbListComponent, RemoveRowListDialogComponent, AddRowListComponent],
