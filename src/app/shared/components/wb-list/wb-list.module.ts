@@ -13,7 +13,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { ConfigService } from '../../../core/config.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchFieldService } from '../../services/utils/search-field.service';
 import { WbListComponent } from './wb-list.component';
@@ -25,6 +25,15 @@ import { P2pListsService } from '../../services/lists/p2p-lists.service';
 import { PaymentListsService } from '../../services/lists/payment-lists.service';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
 import { OperationTypeManagementService } from '../../services/operation-type-management.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
     declarations: [WbListComponent, RemoveRowListDialogComponent, AddRowListComponent],
@@ -44,6 +53,12 @@ import { OperationTypeManagementService } from '../../services/operation-type-ma
         MatSnackBarModule,
         MatDialogModule,
         MatTooltipModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        NgxMatTimepickerModule,
+        NgxMatNativeDateModule,
+        NgxMatDatetimePickerModule,
+        ReactiveFormsModule,
         FlexLayoutModule,
         FormsModule,
     ],

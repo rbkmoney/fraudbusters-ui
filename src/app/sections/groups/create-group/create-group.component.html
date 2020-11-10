@@ -30,9 +30,8 @@
                                 name="id"
                                 [(ngModel)]="element.id"
                                 [matAutocomplete]="auto"
-                                (ngModelChange)="doFilter(element.id)"
                             />
-                            <mat-autocomplete #auto="matAutocomplete">
+                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                                 <mat-option *ngFor="let option of options" [value]="option">
                                     {{ option }}
                                 </mat-option>

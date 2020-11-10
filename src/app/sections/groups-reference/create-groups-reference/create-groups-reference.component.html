@@ -8,7 +8,7 @@
 <mat-card>
     <mat-card-content>
         <div class="list-values" fxLayout="row" fxLayoutAlign="center center">
-            <div *ngIf="isPaymentReference()" fxFlex="90%">
+            <div *ngIf="isPaymentReference()" fxFlex="100%">
                 <div *ngFor="let reference of paymentReferences; let i = index">
                     <div fxFlex="30%">
                         <mat-form-field floatLabel="always" class="full-width">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="isP2pReference()" fxFlex="90%">
+            <div *ngIf="isP2pReference()" fxFlex="100%">
                 <div *ngFor="let reference of p2pReferences; let i = index">
                     <div fxFlex="45%">
                         <mat-form-field floatLabel="always" class="full-width">

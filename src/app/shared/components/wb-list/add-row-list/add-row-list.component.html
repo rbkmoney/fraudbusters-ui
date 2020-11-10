@@ -8,7 +8,7 @@
 <mat-card>
     <mat-card-content>
         <div class="list-values" fxLayout="row" fxLayoutAlign="center center">
-            <div *ngIf="isPaymentReference()" fxFlex="90%">
+            <div *ngIf="isPaymentReference()" fxFlex="100%">
                 <div *ngFor="let reference of paymentRecords; let i = index">
                     <div fxLayout="row">
                         <div fxFlex="22%">
@@ -55,15 +55,15 @@
                                 />
                             </mat-form-field>
                         </div>
-                        <div fxFlex="12%">
+                        <div fxFlex="10%">
                             <button mat-icon-button color="warn" (click)="deleteRef(i)">
                                 <mat-icon>clear</mat-icon>
                             </button>
                         </div>
                     </div>
                     <div fxLayout="row" *ngIf="isCounting">
-                        <div fxFlex="98%">
-                            <div fxFlex="30%">
+                        <div fxFlex="100%">
+                            <div fxFlex="22%">
                                 <mat-form-field floatLabel="always" class="full-width">
                                     <input
                                         type="number"
@@ -75,7 +75,7 @@
                                     />
                                 </mat-form-field>
                             </div>
-                            <div fxFlex="30%">
+                            <div fxFlex="22%">
                                 <mat-form-field floatLabel="always" class="full-width">
                                     <input
                                         matInput
@@ -83,10 +83,13 @@
                                         label="startCountTime"
                                         [(ngModel)]="reference.countInfo.startCountTime"
                                         name="startCountTime"
+                                        [ngxMatDatetimePicker]="pickerFrom"
                                     />
+                                    <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                                    <ngx-mat-datetime-picker showSeconds="true" #pickerFrom></ngx-mat-datetime-picker>
                                 </mat-form-field>
                             </div>
-                            <div fxFlex="30%">
+                            <div fxFlex="22%">
                                 <mat-form-field floatLabel="always" class="full-width">
                                     <input
                                         matInput
@@ -94,14 +97,17 @@
                                         label="endCountTime"
                                         [(ngModel)]="reference.countInfo.endCountTime"
                                         name="endCountTime"
+                                        [ngxMatDatetimePicker]="pickerTo"
                                     />
+                                    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                                    <ngx-mat-datetime-picker showSeconds="true" #pickerTo></ngx-mat-datetime-picker>
                                 </mat-form-field>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div *ngIf="isP2pReference()" fxFlex="90%">
+            <div *ngIf="isP2pReference()" fxFlex="100%">
                 <div *ngFor="let reference of p2pRecords; let i = index">
                     <div fxLayout="row">
                         <div fxFlex="30%">

@@ -34,17 +34,18 @@ export class CreateGroupComponent implements OnInit {
 
     ngOnInit(): void {
         this.preloadData();
-        this.templatesService.getTemplatesName(this.operationType).subscribe(
-            (names) => {
-                this.options = names;
-            },
-            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
-        );
     }
 
     private preloadData(): void {
         this.route.fragment.subscribe((fragment: string) => {
             this.operationType = OperationType[fragment];
+            this.templatesService.getTemplatesName(this.operationType, '').subscribe(
+                (names) => {
+                    this.options = names;
+                },
+                (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
+            );
+            this.addTemplate();
         });
     }
 
@@ -66,15 +67,6 @@ export class CreateGroupComponent implements OnInit {
 
     removeTemplate(removeId: string): void {
         this.newGroup.priorityTemplates = this.newGroup.priorityTemplates.filter((obj) => obj.id !== removeId);
-    }
-
-    doFilter(value): void {
-        this.templatesService.getTemplatesName(this.operationType, value).subscribe(
-            (names) => {
-                this.options = names;
-            },
-            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
-        );
     }
 
     navigateToEdit(id): void {

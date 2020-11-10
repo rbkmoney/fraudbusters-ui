@@ -18,7 +18,13 @@
                                 label="templateId"
                                 [(ngModel)]="reference.templateId"
                                 name="templateId"
+                                [matAutocomplete]="auto"
                             />
+                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of options" [value]="option">
+                                    {{ option }}
+                                </mat-option>
+                            </mat-autocomplete>
                         </mat-form-field>
                     </div>
                     <div fxFlex="29%">
@@ -52,7 +58,7 @@
                                 <mat-icon class="md-18">adjust</mat-icon></mat-button-toggle
                             ></mat-button-toggle-group
                         >
-                        <button mat-icon-button color="warn" (click)="deleteRef()">
+                        <button mat-icon-button color="warn" (click)="deleteRef()" matTooltip="Remove from list">
                             <mat-icon>clear</mat-icon>
                         </button>
                     </div>
@@ -91,7 +97,7 @@
                                 <mat-icon class="md-18">adjust</mat-icon></mat-button-toggle
                             ></mat-button-toggle-group
                         >
-                        <button mat-icon-button color="warn" (click)="deleteRef()">
+                        <button mat-icon-button color="warn" (click)="deleteRef()" matTooltip="Remove from list">
                             <mat-icon>clear</mat-icon>
                         </button>
                     </div>

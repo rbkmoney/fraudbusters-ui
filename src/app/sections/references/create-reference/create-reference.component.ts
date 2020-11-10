@@ -8,8 +8,8 @@ import { ErrorHandlerService } from '../../../shared/services/utils/error-handle
 import { OperationTypeComponent } from '../../../shared/components/operation-type-component';
 import { PaymentReference } from '../model/payment-reference';
 import { P2pReference } from '../model/p2p-reference';
-import { P2pGroupReferenceModel } from '../../groups-reference/model/p2p-groups-reference';
-import { PaymentGroupReferenceModel } from '../../groups-reference/model/payment-groups-reference';
+import { TemplatesService } from '../../templates/templates.service';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-create-reference',
@@ -18,13 +18,15 @@ import { PaymentGroupReferenceModel } from '../../groups-reference/model/payment
 })
 export class CreateReferenceComponent extends OperationTypeComponent implements OnInit {
     reference: PaymentReference | P2pReference;
+    options: string[] = [];
 
-    p2pReferences: P2pGroupReferenceModel[] = [];
-    paymentReferences: PaymentGroupReferenceModel[] = [];
+    p2pReferences: P2pReference[] = [];
+    paymentReferences: PaymentReference[] = [];
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
+        private templatesService: TemplatesService,
         private referenceService: ReferencesService,
         private errorHandlerService: ErrorHandlerService,
         private snackBar: MatSnackBar
@@ -34,6 +36,7 @@ export class CreateReferenceComponent extends OperationTypeComponent implements 
 
     ngOnInit(): void {
         this.getOperationTypeFromFragment();
+        this.doFilter('');
     }
 
     getOperationTypeFromFragment(): void {
@@ -45,10 +48,8 @@ export class CreateReferenceComponent extends OperationTypeComponent implements 
 
     addNewReference(): void {
         this.isPaymentReference()
-            ? (this.paymentReferences = this.paymentReferences.concat([
-                  new PaymentGroupReferenceModel(null, '', '', ''),
-              ]))
-            : (this.p2pReferences = this.p2pReferences.concat([new P2pGroupReferenceModel(null, '', '')]));
+            ? (this.paymentReferences = this.paymentReferences.concat([new PaymentReference(null, '', '')]))
+            : (this.p2pReferences = this.p2pReferences.concat([new P2pReference(null, '')]));
     }
 
     save(): void {
@@ -70,5 +71,14 @@ export class CreateReferenceComponent extends OperationTypeComponent implements 
 
     deleteRef(i): void {
         this.isPaymentReference() ? this.paymentReferences.splice(i, 1) : this.p2pReferences.splice(i, 1);
+    }
+
+    doFilter(value): void {
+        this.templatesService.getTemplatesName(this.operationType, value).subscribe(
+            (names) => {
+                this.options = names;
+            },
+            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
+        );
     }
 }

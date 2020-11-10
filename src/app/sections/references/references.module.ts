@@ -29,6 +29,7 @@ import { OperationTypeManagementService } from '../../shared/services/operation-
 import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
     declarations: [ReferencesComponent, RemoveReferenceDialogComponent, CreateReferenceComponent],
@@ -50,7 +51,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MatGridListModule,
         FlexLayoutModule,
         MatButtonToggleModule,
+        MatAutocompleteModule,
         MatTooltipModule,
+        FormsModule,
         FormsModule,
     ],
     providers: [
