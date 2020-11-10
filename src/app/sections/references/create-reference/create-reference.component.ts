@@ -9,7 +9,6 @@ import { OperationTypeComponent } from '../../../shared/components/operation-typ
 import { PaymentReference } from '../model/payment-reference';
 import { P2pReference } from '../model/p2p-reference';
 import { TemplatesService } from '../../templates/templates.service';
-import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-create-reference',
@@ -80,5 +79,17 @@ export class CreateReferenceComponent extends OperationTypeComponent implements 
             },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
+    }
+
+    setGlobal(i): void {
+        this.isPaymentReference()
+            ? (this.paymentReferences[i].isGlobal = !this.paymentReferences[i].isGlobal)
+            : (this.p2pReferences[i].isGlobal = !this.p2pReferences[i].isGlobal);
+    }
+
+    setDefault(i): void {
+        this.isPaymentReference()
+            ? (this.paymentReferences[i].isDefault = !this.paymentReferences[i].isDefault)
+            : (this.p2pReferences[i].isDefault = !this.p2pReferences[i].isDefault);
     }
 }
