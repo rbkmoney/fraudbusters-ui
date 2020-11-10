@@ -34,7 +34,7 @@ export class EmulationTemplateComponent extends OperationTypeComponent implement
     }
 
     ngOnInit(): void {
-        this.operationTypes = [OperationType.Payment.toString()];
+        this.operationTypes = [OperationType.Payment];
         this.operationType = this.operationTypes[0];
         this.selectionChange();
     }
