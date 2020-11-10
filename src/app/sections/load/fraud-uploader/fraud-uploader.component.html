@@ -36,6 +36,7 @@
                             class="md-18 error"
                             >info</mat-icon
                         >
+                        <mat-icon *ngIf="isLoadSuccess(file?.name)" class="md-18 success">done_outline</mat-icon>
                     </div>
                     <p class="size">
                         {{ formatBytes(file?.size) }}

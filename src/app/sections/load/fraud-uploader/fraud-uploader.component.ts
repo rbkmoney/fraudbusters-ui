@@ -109,4 +109,8 @@ export class FraudUploaderComponent {
     isLoadError(name: string): boolean {
         return !!this.uploadFiles.get(name) && this.uploadFiles.get(name).status === UploadStatus.error;
     }
+
+    isLoadSuccess(name: string): boolean {
+        return !!this.uploadFiles.get(name) && this.uploadFiles.get(name).status === UploadStatus.success;
+    }
 }
