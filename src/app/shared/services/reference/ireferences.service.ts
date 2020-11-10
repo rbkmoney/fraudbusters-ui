@@ -8,5 +8,5 @@ export interface IReferencesService {
 
     deleteReference(reference: Reference): Observable<string>;
 
-    saveReference(reference: Reference): Observable<string>;
+    saveReferences(reference: Reference[]): Observable<string[]>;
 }

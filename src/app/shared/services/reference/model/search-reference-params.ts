@@ -4,6 +4,7 @@ export class SearchReferenceParams extends SearchParams {
     searchValue: string;
     isGlobal: boolean;
     isDefault: boolean;
+    sortFieldValue: string;
 
     constructor(
         searchValue: string,
@@ -12,11 +13,12 @@ export class SearchReferenceParams extends SearchParams {
         sortOrder: string,
         isGlobal: boolean,
         isDefault: boolean,
-        id?: string
+        sortFieldValue?: string
     ) {
-        super(id, lastId, size, sortOrder);
+        super(null, lastId, size, sortOrder);
         this.searchValue = searchValue;
         this.isGlobal = isGlobal;
         this.isDefault = isDefault;
+        this.sortFieldValue = sortFieldValue;
     }
 }

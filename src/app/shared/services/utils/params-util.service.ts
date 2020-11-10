@@ -9,7 +9,10 @@ export class ParamsUtilService {
         let searchParams = new HttpParams();
         if (params) {
             Object.keys(params).forEach((key) => {
-                searchParams = params[key] ? searchParams.set(key, params[key]) : searchParams;
+                searchParams =
+                    params[key] !== undefined && params[key] !== null
+                        ? searchParams.set(key, params[key])
+                        : searchParams;
             });
         }
         return searchParams;

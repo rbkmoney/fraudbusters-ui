@@ -14,10 +14,10 @@
             [(ngModel)]="searchType"
             (ngModelChange)="search()"
         >
-            <mat-button-toggle value="global" matTooltip="Global template">
+            <mat-button-toggle [value]="GLOBAL" matTooltip="Global template">
                 <mat-icon class="md-18">language</mat-icon></mat-button-toggle
             >
-            <mat-button-toggle value="default" matTooltip="Default template">
+            <mat-button-toggle [value]="DEFAULT" matTooltip="Default template">
                 <mat-icon class="md-18">adjust</mat-icon></mat-button-toggle
             >
             <mat-button-toggle value="all" matTooltip="All"><mat-icon class="md-18">lens</mat-icon></mat-button-toggle>

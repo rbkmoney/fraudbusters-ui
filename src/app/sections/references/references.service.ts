@@ -18,7 +18,8 @@ export class ReferencesService {
         lastInListName?: string,
         sortOrder?: SortOrder,
         isGlobal?: boolean,
-        isDefault?: boolean
+        isDefault?: boolean,
+        sortField?: string
     ): Observable<ReferencesResponse> {
         return this.operationReferenceService
             .findReferenceService(type)
@@ -29,7 +30,8 @@ export class ReferencesService {
                     size,
                     sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC],
                     isGlobal,
-                    isDefault
+                    isDefault,
+                    sortField
                 )
             );
     }
@@ -38,7 +40,7 @@ export class ReferencesService {
         return this.operationReferenceService.findReferenceService(type).deleteReference(reference);
     }
 
-    saveReference(type: OperationType, reference: Reference): Observable<string> {
-        return this.operationReferenceService.findReferenceService(type).saveReference(reference);
+    saveReferences(type: OperationType, references: Reference[]): Observable<string[]> {
+        return this.operationReferenceService.findReferenceService(type).saveReferences(references);
     }
 }

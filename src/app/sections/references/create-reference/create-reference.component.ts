@@ -17,7 +17,6 @@ import { Observable } from 'rxjs';
     styleUrls: ['./create-reference.component.scss'],
 })
 export class CreateReferenceComponent extends OperationTypeComponent implements OnInit {
-    reference: PaymentReference | P2pReference;
     options: string[] = [];
 
     p2pReferences: P2pReference[] = [];
@@ -53,16 +52,17 @@ export class CreateReferenceComponent extends OperationTypeComponent implements 
     }
 
     save(): void {
-        console.log(this.reference);
-        this.referenceService.saveReference(this.operationType, this.reference).subscribe(
-            (id) => {
-                this.navigateToList();
-                this.snackBar.open(`Saved succeeded: ${id}`, 'OK', {
-                    duration: 1500,
-                });
-            },
-            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
-        );
+        this.referenceService
+            .saveReferences(this.operationType, this.isPaymentReference() ? this.paymentReferences : this.p2pReferences)
+            .subscribe(
+                (ids) => {
+                    this.navigateToList();
+                    this.snackBar.open(`Saved succeeded: ${ids}`, 'OK', {
+                        duration: 1500,
+                    });
+                },
+                (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
+            );
     }
 
     navigateToList(): void {

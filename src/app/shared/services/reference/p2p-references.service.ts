@@ -8,6 +8,7 @@ import { ParamsUtilService } from '../utils/params-util.service';
 import { ReferencesResponse } from '../../../sections/references/model/references-response';
 import { P2pReference } from '../../../sections/references/model/p2p-reference';
 import { Reference } from '../../../sections/references/model/reference';
+import { HttpRequestModel } from '../../model/http-request-model';
 
 @Injectable()
 export class P2pReferencesService implements IReferencesService {
@@ -30,11 +31,11 @@ export class P2pReferencesService implements IReferencesService {
         });
     }
 
-    saveReference(reference: Reference): Observable<string> {
-        return this.http.post(
-            `${this.fbManagementEndpoint}/p2p/template/${reference.templateId}/reference`,
-            reference,
-            { responseType: 'text' }
+    saveReferences(references: Reference[]): Observable<string[]> {
+        return this.http.post<string[]>(
+            `${this.fbManagementEndpoint}/p2p/template/references`,
+            references,
+            new HttpRequestModel()
         );
     }
 }
