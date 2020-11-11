@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import { ITemplatesService } from './itemplates.service';
-import { Template } from '../../../templates/model/template';
+import { Template } from '../../../sections/templates/model/template';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from '../../../core/config.service';
 import { Observable } from 'rxjs';
 import { ParamsUtilService } from '../utils/params-util.service';
-import { ValidateTemplate } from '../../../templates/model/validate-template';
-import { ValidateResponse } from '../../../templates/model/validate-response';
-import { TemplatesResponse } from '../../../templates/model/templates-response';
-import { HttpRequestModel } from '../../model/HttpRequestModel';
-import { SearchParams } from '../../model/SearchParams';
+import { ValidateTemplate } from '../../../sections/templates/model/validate-template';
+import { ValidateResponse } from '../../../sections/templates/model/validate-response';
+import { TemplatesResponse } from '../../../sections/templates/model/templates-response';
+import { HttpRequestModel } from '../../model/http-request-model';
+import { SearchParams } from '../../model/search-params';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class PaymentTemplatesService implements ITemplatesService {
     private readonly fbManagementEndpoint: string;
 

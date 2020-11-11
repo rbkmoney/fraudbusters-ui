@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class ParamsUtilService {
     constructor() {}
 
@@ -11,7 +9,10 @@ export class ParamsUtilService {
         let searchParams = new HttpParams();
         if (params) {
             Object.keys(params).forEach((key) => {
-                searchParams = params[key] ? searchParams.set(key, params[key]) : searchParams;
+                searchParams =
+                    params[key] !== undefined && params[key] !== null
+                        ? searchParams.set(key, params[key])
+                        : searchParams;
             });
         }
         return searchParams;

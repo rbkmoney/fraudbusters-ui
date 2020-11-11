@@ -1,0 +1,17 @@
+mat-button-toggle-group.mat-button-toggle-group.mat-button-toggle-group-appearance-standard {
+    height: 34px;
+    border: 1px solid #e6ecf5;
+    background: none;
+
+    .mat-button-toggle-appearance-standard {
+        background: none;
+    }
+
+    mat-button-toggle.mat-button-toggle-checked {
+        background-color: #e0e0e0;
+    }
+}
+
+mat-icon.mat-icon.notranslate.md-18.material-icons.mat-icon-no-color {
+    height: 18px;
+}

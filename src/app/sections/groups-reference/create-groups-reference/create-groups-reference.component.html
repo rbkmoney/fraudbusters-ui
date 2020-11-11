@@ -1,0 +1,93 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <h3>New reference</h3>
+        <button mat-stroked-button color="primary" (click)="save()">Save</button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-content>
+        <div class="list-values" fxLayout="row" fxLayoutAlign="center center">
+            <div *ngIf="isPaymentReference()" fxFlex="100">
+                <div *ngFor="let reference of paymentReferences; let i = index">
+                    <div fxFlex="30">
+                        <mat-form-field floatLabel="always" class="full-width">
+                            <input
+                                matInput
+                                placeholder="Group ID"
+                                label="groupId"
+                                [(ngModel)]="reference.groupId"
+                                name="groupId"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="30">
+                        <mat-form-field floatLabel="always" class="full-width">
+                            <input
+                                matInput
+                                placeholder="Party ID"
+                                label="partyId"
+                                [(ngModel)]="reference.partyId"
+                                name="partyId"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="30">
+                        <mat-form-field floatLabel="always" class="full-width">
+                            <input
+                                matInput
+                                placeholder="Shop ID"
+                                label="shopId"
+                                [(ngModel)]="reference.shopId"
+                                name="shopId"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="10">
+                        <button mat-icon-button color="warn" (click)="deleteRef(i)">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="isP2pReference()" fxFlex="100">
+                <div *ngFor="let reference of p2pReferences; let i = index">
+                    <div fxFlex="45">
+                        <mat-form-field floatLabel="always" class="full-width">
+                            <input
+                                matInput
+                                placeholder="Group ID"
+                                label="groupId"
+                                [(ngModel)]="reference.groupId"
+                                name="groupId"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="45">
+                        <mat-form-field floatLabel="always" class="full-width">
+                            <input
+                                matInput
+                                placeholder="Identity ID"
+                                label="identityId"
+                                [(ngModel)]="reference.identityId"
+                                name="identityId"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="10">
+                        <button mat-icon-button color="warn" (click)="deleteRef(i)">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mat-toolbar>
+            <mat-toolbar-row class="justify-content-center">
+                <button mat-stroked-button color="primary" (click)="addNewReference()">
+                    <span class="material-icons">add</span>
+                </button>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </mat-card-content>
+</mat-card>

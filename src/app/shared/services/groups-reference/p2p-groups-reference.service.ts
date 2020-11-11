@@ -4,15 +4,14 @@ import { ConfigService } from '../../../core/config.service';
 import { Observable } from 'rxjs';
 import { ParamsUtilService } from '../utils/params-util.service';
 import { IGroupsReferenceService } from './igroups-reference.service';
-import { GroupsReferenceResponse } from '../../../groups-reference/model/groups-reference-response';
-import { GroupReferenceModel } from '../../../groups-reference/model/groups-reference';
-import { HttpRequestModel } from '../../model/HttpRequestModel';
-import { SearchParams } from '../../model/SearchParams';
-import { P2pGroupReferenceModel } from '../../../groups-reference/model/p2p-groups-reference';
+import { GroupsReferenceResponse } from '../../../sections/groups-reference/model/groups-reference-response';
+import { GroupReferenceModel } from '../../../sections/groups-reference/model/groups-reference';
+import { HttpRequestModel } from '../../model/http-request-model';
+import { SearchParams } from '../../model/search-params';
+import { P2pGroupReferenceModel } from '../../../sections/groups-reference/model/p2p-groups-reference';
+import { SearchGroupsReferenceParams } from './model/search-group-reference-params';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class P2pGroupsReferenceService implements IGroupsReferenceService {
     private readonly fbManagementEndpoint: string;
 
@@ -20,7 +19,7 @@ export class P2pGroupsReferenceService implements IGroupsReferenceService {
         this.fbManagementEndpoint = configService.config.fbManagementEndpoint;
     }
 
-    findGroups(params?: SearchParams): Observable<GroupsReferenceResponse> {
+    findGroups(params?: SearchGroupsReferenceParams): Observable<GroupsReferenceResponse> {
         return this.http.get<GroupsReferenceResponse>(`${this.fbManagementEndpoint}/p2p/group/reference/filter`, {
             params: this.paramsUtilService.filterParameters(params),
         });

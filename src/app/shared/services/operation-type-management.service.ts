@@ -12,10 +12,13 @@ import { IReferencesService } from './reference/ireferences.service';
 import { PaymentGroupsReferenceService } from './groups-reference/payment-groups-reference.service';
 import { P2pGroupsReferenceService } from './groups-reference/p2p-groups-reference.service';
 import { IGroupsReferenceService } from './groups-reference/igroups-reference.service';
+import { IListsService } from './lists/ilists.service';
+import { PaymentListsService } from './lists/payment-lists.service';
+import { P2pListsService } from './lists/p2p-lists.service';
+import { PaymentEmulationTemplateService } from './emulation/payment-emulation-template-service';
+import { IEmulationTemplateService } from './emulation/iemulation-template.service';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class OperationTypeManagementService {
     constructor(
         private paymentTemplateService: PaymentTemplatesService,
@@ -25,7 +28,10 @@ export class OperationTypeManagementService {
         private paymentReferenceService: PaymentReferencesService,
         private p2pReferenceService: P2pReferencesService,
         private paymentGroupsReferenceService: PaymentGroupsReferenceService,
-        private p2pGroupsReferenceService: P2pGroupsReferenceService
+        private p2pGroupsReferenceService: P2pGroupsReferenceService,
+        private paymentListsService: PaymentListsService,
+        private p2pListsService: P2pListsService,
+        private paymentEmulationTemplateServiceImpl: PaymentEmulationTemplateService
     ) {}
 
     findTemplateService(type: OperationType): ITemplatesService {
@@ -67,6 +73,28 @@ export class OperationTypeManagementService {
                 return this.paymentGroupsReferenceService;
             case OperationType.PeerToPeer:
                 return this.p2pGroupsReferenceService;
+            default:
+                throw new Error(`Unknown type of operations: ${type}`);
+        }
+    }
+
+    findListsService(type: OperationType): IListsService {
+        switch (type) {
+            case OperationType.Payment:
+                return this.paymentListsService;
+            case OperationType.PeerToPeer:
+                return this.p2pListsService;
+            default:
+                throw new Error(`Unknown type of operations: ${type}`);
+        }
+    }
+
+    findEmulationService(type: OperationType): IEmulationTemplateService {
+        switch (type) {
+            case OperationType.Payment:
+                return this.paymentEmulationTemplateServiceImpl;
+            case OperationType.PeerToPeer:
+                throw new Error(`Unknown type of operations: ${type}`);
             default:
                 throw new Error(`Unknown type of operations: ${type}`);
         }

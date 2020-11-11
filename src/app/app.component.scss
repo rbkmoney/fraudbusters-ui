@@ -44,6 +44,23 @@
 }
 
 ::ng-deep {
+    .material-icons.md-18 {
+        font-size: 18px;
+    }
+    .material-icons.md-24 {
+        font-size: 24px;
+    }
+    .material-icons.md-36 {
+        font-size: 36px;
+    }
+    .material-icons.md-48 {
+        font-size: 48px;
+    }
+
+    .mat-tooltip {
+        font-size: 14px;
+    }
+
     .container-fluid .mat-card {
         border: 1px solid #e6ecf5;
         box-shadow: none;
@@ -127,20 +144,6 @@
         }
     }
 
-    mat-list-item.active,
-    .mat-list-option:hover,
-    .mat-list-option:focus,
-    .mat-nav-list .mat-list-item:hover,
-    .mat-nav-list .mat-list-item:focus,
-    .mat-action-list .mat-list-item:hover,
-    .mat-action-list .mat-list-item:focus {
-        background: none;
-
-        .mat-list-item-content {
-            color: #000;
-        }
-    }
-
     .mat-form-field-appearance-outline .mat-form-field-flex {
         .mat-form-field-outline-end,
         .mat-form-field-outline-start,
@@ -211,11 +214,36 @@
         }
     }
 
-    mat-form-field.mat-form-field.full-width {
-        width: 100%;
+    mat-form-field.mat-form-field {
+        &.full-width {
+            width: 100%;
 
-        textarea {
-            min-height: 400px;
+            textarea {
+                min-height: 400px;
+            }
         }
+        &.search {
+            margin-top: 2px;
+        }
+    }
+
+    .mat-nav-list {
+        .mat-list-item.active {
+            .mat-list-item-content {
+                color: #000;
+            }
+        }
+    }
+
+    .list-values {
+        .mat-button.mat-warn,
+        .mat-icon-button.mat-warn,
+        .mat-stroked-button.mat-warn {
+            margin-top: 27px;
+        }
+    }
+
+    .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+        line-height: 34px;
     }
 }

@@ -5,13 +5,12 @@ import { ConfigService } from '../../../core/config.service';
 import { Observable } from 'rxjs';
 import { SearchReferenceParams } from './model/search-reference-params';
 import { ParamsUtilService } from '../utils/params-util.service';
-import { ReferencesResponse } from '../../../references/model/references-response';
-import { PaymentReference } from '../../../references/model/payment-reference';
-import { Reference } from '../../../references/model/reference';
+import { ReferencesResponse } from '../../../sections/references/model/references-response';
+import { PaymentReference } from '../../../sections/references/model/payment-reference';
+import { Reference } from '../../../sections/references/model/reference';
+import { HttpRequestModel } from '../../model/http-request-model';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class PaymentReferencesService implements IReferencesService {
     private readonly fbManagementEndpoint: string;
 
@@ -32,9 +31,11 @@ export class PaymentReferencesService implements IReferencesService {
         });
     }
 
-    saveReference(reference: Reference): Observable<string> {
-        return this.http.post(`${this.fbManagementEndpoint}/template/${reference.templateId}/reference`, reference, {
-            responseType: 'text',
-        });
+    saveReferences(references: Reference[]): Observable<string[]> {
+        return this.http.post<string[]>(
+            `${this.fbManagementEndpoint}/template/references`,
+            references,
+            new HttpRequestModel()
+        );
     }
 }

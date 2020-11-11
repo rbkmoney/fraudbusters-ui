@@ -1,0 +1,30 @@
+::ng-deep {
+    ngx-mat-datetime-content.mat-datepicker-content.mat-primary.ng-trigger.ng-trigger-transformPanel.mat-datepicker-content-touch.ng-star-inserted {
+        box-shadow: none;
+    }
+    ngx-mat-timepicker {
+        .mat-form-field-appearance-outline {
+            width: 50px !important;
+            max-width: 50px !important;
+            .mat-form-field-wrapper {
+                padding-bottom: 0;
+            }
+
+            .mat-form-field-infix {
+                border-top: 0.36em solid transparent;
+            }
+        }
+
+        .mat-form-field-appearance-fill .mat-form-field-infix,
+        .mat-form-field-appearance-legacy .mat-form-field-infix,
+        .mat-form-field-appearance-outline .mat-form-field-infix {
+            border: none;
+            padding: 0;
+        }
+
+        .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+            width: 20px;
+            margin-left: 0px;
+        }
+    }
+}

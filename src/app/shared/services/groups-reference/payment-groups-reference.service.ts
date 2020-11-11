@@ -4,15 +4,13 @@ import { ConfigService } from '../../../core/config.service';
 import { Observable } from 'rxjs';
 import { ParamsUtilService } from '../utils/params-util.service';
 import { IGroupsReferenceService } from './igroups-reference.service';
-import { GroupReferenceModel } from '../../../groups-reference/model/groups-reference';
-import { GroupsReferenceResponse } from '../../../groups-reference/model/groups-reference-response';
-import { HttpRequestModel } from '../../model/HttpRequestModel';
-import { SearchParams } from '../../model/SearchParams';
-import { PaymentGroupReferenceModel } from '../../../groups-reference/model/payment-groups-reference';
+import { GroupReferenceModel } from '../../../sections/groups-reference/model/groups-reference';
+import { GroupsReferenceResponse } from '../../../sections/groups-reference/model/groups-reference-response';
+import { HttpRequestModel } from '../../model/http-request-model';
+import { SearchParams } from '../../model/search-params';
+import { PaymentGroupReferenceModel } from '../../../sections/groups-reference/model/payment-groups-reference';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class PaymentGroupsReferenceService implements IGroupsReferenceService {
     private readonly fbManagementEndpoint: string;
 

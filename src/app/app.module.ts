@@ -11,17 +11,22 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSliderModule } from '@angular/material/slider';
-import { TemplatesModule } from './templates/templates.module';
-import { ReferencesModule } from './references/references.module';
-import { GroupsModule } from './groups/groups.module';
-import { CreateTemplateModule } from './templates/create-template/create-template.module';
+import { TemplatesModule } from './sections/templates/templates.module';
+import { ReferencesModule } from './sections/references/references.module';
+import { GroupsModule } from './sections/groups/groups.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
-import { EditTemplateModule } from './templates/edit-template/edit-template.module';
-import { GroupsReferenceModule } from './groups-reference/groups-reference.module';
+import { GroupsReferenceModule } from './sections/groups-reference/groups-reference.module';
+import { MenuListItemComponent } from './shared/components/menu-list-item/menu-list-item.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { BlackListModule } from './sections/lists/black-list/black-list.module';
+import { WhiteListModule } from './sections/lists/white-list/white-list.module';
+import { GreyListModule } from './sections/lists/grey-list/grey-list.module';
+import { FraudUploaderListModule } from './sections/load/fraud-uploader/fraud-uploader.module';
+import { EmulationTemplateModule } from './sections/emulation/template/emulation-template.module';
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, MenuListItemComponent],
     imports: [
         BrowserModule,
         MatToolbarModule,
@@ -37,7 +42,13 @@ import { GroupsReferenceModule } from './groups-reference/groups-reference.modul
         ReferencesModule,
         GroupsModule,
         GroupsReferenceModule,
+        FraudUploaderListModule,
+        EmulationTemplateModule,
+        BlackListModule,
+        GreyListModule,
+        WhiteListModule,
         BrowserAnimationsModule,
+        FlexLayoutModule,
         HttpClientModule,
     ],
     providers: [],
