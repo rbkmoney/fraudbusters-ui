@@ -27,6 +27,7 @@ import { EditTemplateComponent } from './edit-template/edit-template.component';
 import { CreateTemplateComponent } from './create-template/create-template.component';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
     declarations: [TemplatesComponent, RemoveTemplateDialogComponent, EditTemplateComponent, CreateTemplateComponent],

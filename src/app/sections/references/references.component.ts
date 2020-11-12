@@ -68,9 +68,9 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
 
     selectionChange(): void {
         if (this.operationType === OperationType.Payment) {
-            this.displayedColumns.next(['templateId', 'partyId', 'shopId', 'edit']);
+            this.displayedColumns.next(['templateId', 'partyId', 'shopId', 'lastUpdateDate', 'edit']);
         } else {
-            this.displayedColumns.next(['templateId', 'identityId', 'edit']);
+            this.displayedColumns.next(['templateId', 'identityId', 'lastUpdateDate', 'edit']);
         }
         this.search();
     }

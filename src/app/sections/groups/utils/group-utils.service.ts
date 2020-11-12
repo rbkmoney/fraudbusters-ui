@@ -39,6 +39,12 @@ export class GroupUtilsService {
             switch (sort.active) {
                 case 'id':
                     return this.compare(a.groupId, b.groupId, isAsc);
+                case 'lastUpdateDate':
+                    return this.compare(
+                        a.priorityTemplates[0].lastUpdateTime,
+                        b.priorityTemplates[0].lastUpdateTime,
+                        isAsc
+                    );
                 default:
                     return 0;
             }

@@ -24,7 +24,7 @@ export class GroupsComponent extends OperationTypeComponent implements OnInit {
 
     isLoadMore = false;
     isLoading = false;
-    displayedColumns: string[] = ['id', 'text', 'edit'];
+    displayedColumns: string[] = ['id', 'text', 'lastUpdateDate', 'edit'];
     groups = [];
     operationTypes = [];
     searchField;
