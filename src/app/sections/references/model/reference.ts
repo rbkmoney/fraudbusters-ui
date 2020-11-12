@@ -3,4 +3,5 @@ export interface Reference {
     templateId: string;
     isDefault: boolean;
     isGlobal: boolean;
+    lastUpdateDate?: string;
 }

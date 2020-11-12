@@ -1,6 +1,6 @@
 <mat-toolbar>
     <mat-toolbar-row>
-        <h3>References</h3>
+        <h3>Groups references</h3>
         <mat-form-field appearance="fill">
             <mat-select [(value)]="this.operationType" (selectionChange)="selectionChange()">
                 <mat-option *ngFor="let typeItem of operationTypes" [value]="typeItem">{{ typeItem }}</mat-option>
@@ -32,6 +32,10 @@
             <ng-container matColumnDef="identityId">
                 <th mat-header-cell *matHeaderCellDef>IdentityId</th>
                 <td mat-cell *matCellDef="let element">{{ element.identityId }}</td>
+            </ng-container>
+            <ng-container matColumnDef="lastUpdateDate">
+                <th mat-header-cell *matHeaderCellDef>Update date</th>
+                <td mat-cell *matCellDef="let element">{{ element.lastUpdateDate | date: 'medium' }}</td>
             </ng-container>
             <ng-container matColumnDef="edit">
                 <th mat-header-cell *matHeaderCellDef></th>

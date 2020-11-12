@@ -37,7 +37,7 @@ export class TemplatesComponent extends OperationTypeComponent implements OnInit
 
     isLoadMore = false;
     isLoading = false;
-    displayedColumns: string[] = ['id', 'text', 'edit'];
+    displayedColumns: string[] = ['id', 'text', 'lastUpdateDate', 'edit'];
     templates = [];
     operationTypes = [];
     operationType;

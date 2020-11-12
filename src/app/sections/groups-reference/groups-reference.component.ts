@@ -62,9 +62,9 @@ export class GroupsReferenceComponent extends OperationTypeComponent implements 
 
     selectionChange(): void {
         if (this.operationType === OperationType.Payment) {
-            this.displayedColumns.next(['groupId', 'partyId', 'shopId', 'edit']);
+            this.displayedColumns.next(['groupId', 'partyId', 'shopId', 'lastUpdateDate', 'edit']);
         } else {
-            this.displayedColumns.next(['groupId', 'identityId', 'edit']);
+            this.displayedColumns.next(['groupId', 'identityId', 'lastUpdateDate', 'edit']);
         }
         this.search();
     }
