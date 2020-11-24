@@ -1,13 +1,6 @@
 <mat-sidenav-container>
     <mat-sidenav role="navigation" #sidenav mode="side" fixedInViewport="true" opened="true">
-        <mat-toolbar color="primary" class="toolbar">
-            <a href="/index.html">
-                <img src="../assets/img/logo.svg" alt="logo" />
-            </a>
-        </mat-toolbar>
-        <mat-nav-list>
-            <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
-        </mat-nav-list>
+        <app-navigate-menu></app-navigate-menu>
     </mat-sidenav>
 
     <mat-sidenav-content role="main" class="content">

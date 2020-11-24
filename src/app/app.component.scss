@@ -1,11 +1,3 @@
-.toolbar {
-    position: sticky;
-    position: -webkit-sticky; /* For macOS/iOS Safari */
-    top: 0; /* Sets the sticky toolbar to be on top */
-    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
-    height: 48px;
-}
-
 .mat-drawer-side {
     width: 240px;
 }
@@ -44,6 +36,14 @@
 }
 
 ::ng-deep {
+    .toolbar {
+        position: sticky;
+        position: -webkit-sticky; /* For macOS/iOS Safari */
+        top: 0; /* Sets the sticky toolbar to be on top */
+        z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+        height: 48px;
+    }
+
     .material-icons.md-18 {
         font-size: 18px;
     }
