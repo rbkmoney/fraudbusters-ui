@@ -2,6 +2,7 @@ import { Component, HostBinding, Input } from '@angular/core';
 import { NavItem } from '../../model/nav-item';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
     selector: 'app-menu-list-item',
@@ -21,7 +22,11 @@ export class MenuListItemComponent {
     @Input() item: NavItem;
     @Input() depth = 0;
 
-    constructor(public router: Router) {}
+    constructor(public router: Router, protected readonly keycloak: KeycloakService) {}
+
+    display(): boolean {
+        return this.item.roles.every((role) => this.keycloak.getUserRoles().includes(role));
+    }
 
     onItemSelected(item: NavItem): void {
         if (!item.children || !item.children.length) {

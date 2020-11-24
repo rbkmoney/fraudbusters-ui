@@ -1,0 +1,5 @@
+{
+    "realm": "SpringBootKeycloack",
+    "auth-server-url": "http://localhost:8080/auth",
+    "resource": "login-app"
+}

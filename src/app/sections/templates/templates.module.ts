@@ -28,6 +28,7 @@ import { CreateTemplateComponent } from './create-template/create-template.compo
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { KeycloakService } from 'keycloak-angular';
 
 @NgModule({
     declarations: [TemplatesComponent, RemoveTemplateDialogComponent, EditTemplateComponent, CreateTemplateComponent],
@@ -49,6 +50,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         FormsModule,
     ],
     providers: [
+        KeycloakService,
         TemplatesService,
         ConfigService,
         SearchFieldService,
