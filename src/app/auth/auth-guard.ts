@@ -10,7 +10,7 @@ export class AuthGuard extends KeycloakAuthGuard {
         super(router, keycloak);
     }
 
-    public async isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    public async isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
         // Force the user to log in if currently unauthenticated.
         if (!this.authenticated) {
             await this.keycloak.login({
