@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { GroupsComponent } from './groups.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { EditGroupComponent } from './edit-group/edit-group.component';
+import { AuthGuard } from '../../auth/auth-guard';
 
 @NgModule({
     imports: [
@@ -10,14 +11,20 @@ import { EditGroupComponent } from './edit-group/edit-group.component';
             {
                 path: 'groups',
                 component: GroupsComponent,
+                canActivate: [AuthGuard],
+                data: { roles: ['fraud-officer'] },
             },
             {
                 path: 'groups/new',
                 component: CreateGroupComponent,
+                canActivate: [AuthGuard],
+                data: { roles: ['fraud-officer'] },
             },
             {
                 path: 'groups/:id',
                 component: EditGroupComponent,
+                canActivate: [AuthGuard],
+                data: { roles: ['fraud-officer'] },
             },
         ]),
     ],

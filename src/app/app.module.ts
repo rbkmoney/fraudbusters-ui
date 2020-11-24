@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +24,8 @@ import { WhiteListModule } from './sections/lists/white-list/white-list.module';
 import { GreyListModule } from './sections/lists/grey-list/grey-list.module';
 import { FraudUploaderListModule } from './sections/load/fraud-uploader/fraud-uploader.module';
 import { EmulationTemplateModule } from './sections/emulation/template/emulation-template.module';
+import { initializer } from './initializer';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
 @NgModule({
     declarations: [AppComponent, MenuListItemComponent],
@@ -50,8 +52,16 @@ import { EmulationTemplateModule } from './sections/emulation/template/emulation
         BrowserAnimationsModule,
         FlexLayoutModule,
         HttpClientModule,
+        KeycloakAngularModule,
     ],
-    providers: [],
+    providers: [
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initializer,
+            multi: true,
+            deps: [KeycloakService],
+        },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
