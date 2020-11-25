@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavItem } from './shared/model/nav-item';
 
 @Component({
     selector: 'app-root',
