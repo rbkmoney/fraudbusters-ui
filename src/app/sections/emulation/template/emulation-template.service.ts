@@ -5,7 +5,7 @@ import { BehaviorSubject, combineLatest, forkJoin, merge, Observable, of, Replay
 import { PaymentEmulateFilter } from './model/payment-emulate-filter';
 import { P2pEmulateFilter } from './model/p2p-emulate-filter';
 import { Template } from '../../templates/model/template';
-import { catchError, map, mergeAll, mergeMap, switchMap, take, takeLast } from 'rxjs/operators';
+import { catchError, map, mergeAll, mergeMap, switchMap, take, takeLast, takeUntil, takeWhile } from 'rxjs/operators';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -21,7 +21,6 @@ export class EmulationTemplateService {
         private snackBar: MatSnackBar
     ) {
         this.templates$ = combineLatest([this.operationType$, this.queries$]).pipe(
-            take(1),
             switchMap(([type, queries]) =>
                 this.emulate((OperationType as any)[type], queries).pipe(
                     catchError((error) => {
