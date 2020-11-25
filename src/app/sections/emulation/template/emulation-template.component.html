@@ -2,7 +2,7 @@
     <mat-toolbar-row>
         <h3>Emulation template</h3>
         <mat-form-field appearance="fill">
-            <mat-select [(value)]="this.operationType" (selectionChange)="emulate()">
+            <mat-select [(value)]="this.operationType">
                 <mat-option *ngFor="let typeItem of operationTypes" [value]="typeItem">{{ typeItem }}</mat-option>
             </mat-select>
         </mat-form-field>
