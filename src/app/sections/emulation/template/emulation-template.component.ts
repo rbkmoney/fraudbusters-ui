@@ -11,7 +11,7 @@ import { EmulationTemplateService } from './emulation-template.service';
     templateUrl: './emulation-template.component.html',
     styleUrls: ['./emulation-template.component.scss'],
 })
-export class EmulationTemplateComponent extends OperationTypeComponent implements OnInit {
+export class EmulationTemplateComponent extends OperationTypeComponent {
     templates$ = this.emulationTemplateService.templates$;
 
     filter: PaymentEmulateFilter | P2pEmulateFilter;
@@ -21,13 +21,11 @@ export class EmulationTemplateComponent extends OperationTypeComponent implement
     constructor(private route: ActivatedRoute, private emulationTemplateService: EmulationTemplateService) {
         super();
         this.operationType = this.operationTypes[0];
-        this.selectionChange();
-        this.changeSelect();
+        this.initFilter();
+        this.selectOperationType();
     }
 
-    ngOnInit(): void {}
-
-    selectionChange(): void {
+    initFilter(): void {
         if (this.operationType === OperationType.Payment) {
             this.filter = { partyId: '', shopId: '' };
         } else {
@@ -39,7 +37,7 @@ export class EmulationTemplateComponent extends OperationTypeComponent implement
         this.emulationTemplateService.emulateNext(this.filter);
     }
 
-    changeSelect(): void {
+    selectOperationType(): void {
         this.emulationTemplateService.operationTypeNext(this.operationType);
     }
 }
