@@ -10,6 +10,8 @@ import { ConfigService } from '../../core/config.service';
 import { ReplaySubject } from 'rxjs';
 import { OperationTypeComponent } from '../../shared/components/operation-type-component';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
+import { PaymentReference } from './model/payment-reference';
+import { P2pReference } from './model/p2p-reference';
 
 @Component({
     selector: 'app-references',
@@ -30,6 +32,8 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
 
     references$ = this.referenceService.references$;
     isLoadMore$ = this.referenceService.isLoadMore$;
+    lastRefSubject$ = this.referenceService.lastRefSubject$;
+    lastRef: PaymentReference | P2pReference;
 
     constructor(
         private router: Router,
@@ -42,6 +46,9 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
         super();
         this.SIZE = configService.config.pageSize;
         this.displayedColumns.next(['templateId', 'edit']);
+        this.lastRefSubject$.subscribe((value) => {
+            this.lastRef = value;
+        });
     }
 
     ngOnInit(): void {
@@ -97,11 +104,12 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
             type: (OperationType as any)[this.operationType],
             size: this.SIZE,
             search: this.searchFieldService.formatField(this.searchReferenceName),
-            lastInListName: this.references$[this.referenceService.length - 1].id,
+            lastInListName: this.lastRef.id,
             sortOrder: this.sortType,
             isGlobalValue: this.searchType === this.GLOBAL,
             isDefaultValue: this.searchType === this.DEFAULT,
-            sortField: this.references$[this.referenceService.length - 1].templateId,
+            sortField: this.lastRef.templateId,
+            loadMore: true,
         });
     }
 

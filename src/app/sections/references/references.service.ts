@@ -6,18 +6,19 @@ import { OperationTypeManagementService } from '../../shared/services/operation-
 import { SortOrder } from '../../shared/constants/sort-order';
 import { ReferencesResponse } from './model/references-response';
 import { FilterReference } from './model/filter-reference';
-import { Template } from '../templates/model/template';
-import { catchError, debounceTime, map, switchMap } from 'rxjs/operators';
+import { catchError, map, scan, switchMap } from 'rxjs/operators';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { PaymentReference } from './model/payment-reference';
+import { P2pReference } from './model/p2p-reference';
 
 @Injectable()
 export class ReferencesService {
     filterReference$ = new BehaviorSubject<FilterReference>({ type: OperationType.Payment });
     isLoadMoreSubject$ = new BehaviorSubject<boolean>(false);
-    references$ = new Observable<Template[]>();
+    lastRefSubject$ = new Subject<PaymentReference>();
+    references$ = new Observable<PaymentReference[] | P2pReference[]>();
     isLoadMore$ = new Observable<boolean>();
-    length = 0;
 
     constructor(
         private operationReferenceService: OperationTypeManagementService,
@@ -25,24 +26,30 @@ export class ReferencesService {
         private snackBar: MatSnackBar
     ) {
         this.references$ = this.filterReference$.pipe(
-            switchMap((value) =>
-                this.getReferences(value).pipe(
-                    catchError((error) => {
-                        this.errorHandlerService.handleError(error, this.snackBar);
-                        return of(error);
-                    }),
-                    map((ref) => {
-                        console.log(ref.referenceModels ? ref.referenceModels.length < ref.count : false);
-                        this.isLoadMoreSubject$.next(
-                            !!ref.referenceModels ? ref.referenceModels.length < ref.count : false
-                        );
-                        this.length = ref.referenceModels.length;
-                        return ref.referenceModels;
-                    })
-                )
-            )
+            switchMap((value) => this.pipeReferences(value)),
+            scan((references, result) => {
+                if (result.filter.loadMore) {
+                    return references.concat(result.references);
+                } else {
+                    return result.references;
+                }
+            }, [])
         );
         this.isLoadMore$ = this.isLoadMoreSubject$.pipe();
+    }
+
+    private pipeReferences(value: FilterReference): Observable<any> {
+        return this.getReferences(value).pipe(
+            catchError((error) => {
+                this.errorHandlerService.handleError(error, this.snackBar);
+                return of(error);
+            }),
+            map((ref) => {
+                this.isLoadMoreSubject$.next(!!ref.referenceModels ? ref.referenceModels.length < ref.count : false);
+                this.lastRefSubject$.next(ref.referenceModels[ref.referenceModels.length - 1]);
+                return { references: ref.referenceModels, filter: value };
+            })
+        );
     }
 
     nextReferences(filter: FilterReference): void {

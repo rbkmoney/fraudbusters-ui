@@ -10,4 +10,5 @@ export interface FilterReference {
     isGlobalValue?: boolean;
     isDefaultValue?: boolean;
     sortField?: string;
+    loadMore?: boolean;
 }
