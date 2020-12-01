@@ -17,7 +17,7 @@ import { CsvUtilsService } from '../../../shared/services/utils/csv-utils.servic
     selector: 'app-create-reference',
     templateUrl: './create-reference.component.html',
     styleUrls: ['./create-reference.component.scss'],
-    providers: [ReferenceUtilsService],
+    providers: [ReferenceUtilsService, CsvUtilsService],
 })
 export class CreateReferenceComponent extends OperationTypeComponent implements OnInit {
     options: string[] = [];

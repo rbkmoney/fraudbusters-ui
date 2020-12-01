@@ -28,14 +28,20 @@ export class ReferencesService {
         this.references$ = this.filterReference$.pipe(
             switchMap((value) => this.pipeReferences(value)),
             scan((references, result) => {
+                this.checkMoreReferences(result, references);
                 if (result.filter.loadMore) {
                     return references.concat(result.references);
-                } else {
-                    return result.references;
                 }
+                return result.references;
             }, [])
         );
         this.isLoadMore$ = this.isLoadMoreSubject$.pipe();
+    }
+
+    private checkMoreReferences(result: any, references: any[]): void {
+        this.isLoadMoreSubject$.next(
+            !!result.references ? references.length + result.references.length < result.count : false
+        );
     }
 
     private pipeReferences(value: FilterReference): Observable<any> {
@@ -45,9 +51,8 @@ export class ReferencesService {
                 return of(error);
             }),
             map((ref) => {
-                this.isLoadMoreSubject$.next(!!ref.referenceModels ? ref.referenceModels.length < ref.count : false);
                 this.lastRefSubject$.next(ref.referenceModels[ref.referenceModels.length - 1]);
-                return { references: ref.referenceModels, filter: value };
+                return { references: ref.referenceModels, filter: value, count: ref.count };
             })
         );
     }
