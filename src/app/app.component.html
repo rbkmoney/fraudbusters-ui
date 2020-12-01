@@ -8,6 +8,10 @@
             <button mat-icon-button (click)="sidenav.toggle()">
                 <mat-icon>menu</mat-icon>
             </button>
+            <span class="fb-spacer"></span>
+            <button mat-icon-button (click)="logout()">
+                <mat-icon>logout</mat-icon>
+            </button>
         </mat-toolbar>
         <div class="container-fluid">
             <router-outlet></router-outlet>

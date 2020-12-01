@@ -9,5 +9,6 @@ export const initializer = (keycloakService: KeycloakService) => () =>
                 checkLoginIframe: false,
             },
             bearerExcludedUrls: ['/assets'],
+            enableBearerInterceptor: true,
         }),
     ]);

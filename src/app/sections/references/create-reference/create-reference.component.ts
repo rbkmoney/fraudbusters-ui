@@ -9,14 +9,19 @@ import { OperationTypeComponent } from '../../../shared/components/operation-typ
 import { PaymentReference } from '../model/payment-reference';
 import { P2pReference } from '../model/p2p-reference';
 import { TemplatesService } from '../../templates/templates.service';
+import { Papa } from 'ngx-papaparse';
+import { ReferenceUtilsService } from './reference-utils.service';
+import { CsvUtilsService } from '../../../shared/services/utils/csv-utils.service';
 
 @Component({
     selector: 'app-create-reference',
     templateUrl: './create-reference.component.html',
     styleUrls: ['./create-reference.component.scss'],
+    providers: [ReferenceUtilsService],
 })
 export class CreateReferenceComponent extends OperationTypeComponent implements OnInit {
     options: string[] = [];
+    files: any[] = [];
 
     p2pReferences: P2pReference[] = [];
     paymentReferences: PaymentReference[] = [];
@@ -27,7 +32,10 @@ export class CreateReferenceComponent extends OperationTypeComponent implements 
         private templatesService: TemplatesService,
         private referenceService: ReferencesService,
         private errorHandlerService: ErrorHandlerService,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
+        private papa: Papa,
+        private referenceUtilsService: ReferenceUtilsService,
+        private csvUtilsService: CsvUtilsService
     ) {
         super();
     }
@@ -46,12 +54,13 @@ export class CreateReferenceComponent extends OperationTypeComponent implements 
 
     addNewReference(): void {
         this.isPaymentReference()
-            ? (this.paymentReferences = this.paymentReferences.concat([
-                  { templateId: '', partyId: '', shopId: '', isDefault: false, isGlobal: false },
-              ]))
-            : (this.p2pReferences = this.p2pReferences.concat([
-                  { templateId: '', identityId: '', isDefault: false, isGlobal: false },
-              ]));
+            ? (this.paymentReferences = this.referenceUtilsService.appendPaymentReference(
+                  this.paymentReferences,
+                  '',
+                  '',
+                  ''
+              ))
+            : (this.p2pReferences = this.referenceUtilsService.appendP2pReference(this.p2pReferences, '', ''));
     }
 
     save(): void {
@@ -85,15 +94,53 @@ export class CreateReferenceComponent extends OperationTypeComponent implements 
         );
     }
 
-    setGlobal(i): void {
-        this.isPaymentReference()
-            ? (this.paymentReferences[i].isGlobal = !this.paymentReferences[i].isGlobal)
-            : (this.p2pReferences[i].isGlobal = !this.p2pReferences[i].isGlobal);
+    prepareFilesList(files: Array<any>): void {
+        Object.values(files)
+            .filter((value) => this.csvUtilsService.isValidFile(value, 'text/csv', 2097152))
+            .forEach((item) =>
+                this.papa.parse(item, {
+                    skipEmptyLines: true,
+                    header: true,
+                    complete: (results) => {
+                        const data = results.data;
+                        if (this.csvUtilsService.isValidFormatCsv(data, item, ['template'])) {
+                            this.processCsv(data);
+                        }
+                    },
+                })
+            );
     }
 
-    setDefault(i): void {
-        this.isPaymentReference()
-            ? (this.paymentReferences[i].isDefault = !this.paymentReferences[i].isDefault)
-            : (this.p2pReferences[i].isDefault = !this.p2pReferences[i].isDefault);
+    processCsv(data): void {
+        for (const item of data) {
+            if (this.hasNotEmptyRow()) {
+                this.isPaymentReference()
+                    ? (this.paymentReferences = [
+                          this.referenceUtilsService.createPaymentReference(item.template, item.partyId, item.shopId),
+                      ])
+                    : (this.p2pReferences = [
+                          this.referenceUtilsService.createP2pReference(item.template, item.identityId),
+                      ]);
+            } else {
+                this.isPaymentReference()
+                    ? (this.paymentReferences = this.referenceUtilsService.appendPaymentReference(
+                          this.paymentReferences,
+                          item.template,
+                          item.partyId,
+                          item.shopId
+                      ))
+                    : (this.p2pReferences = this.referenceUtilsService.appendP2pReference(
+                          this.p2pReferences,
+                          item.template,
+                          item.identityId
+                      ));
+            }
+        }
+    }
+
+    private hasNotEmptyRow(): boolean {
+        return (
+            !!this.paymentReferences && this.paymentReferences.length > 0 && this.paymentReferences[0].templateId === ''
+        );
     }
 }

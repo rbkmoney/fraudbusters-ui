@@ -32,6 +32,7 @@
     "angular-file": "^3.1.2",
     "keycloak-angular": "^8.0.1",
     "keycloak-js": "^11.0.3",
+    "ngx-papaparse": "^4.0.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

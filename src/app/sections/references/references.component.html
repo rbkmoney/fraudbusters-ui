@@ -35,7 +35,7 @@
 
 <mat-card>
     <mat-card-content>
-        <table mat-table [dataSource]="references" class="fb-table" matSort (matSortChange)="sortData($event)">
+        <table mat-table [dataSource]="references$ | async" class="fb-table" matSort (matSortChange)="sortData($event)">
             <ng-container matColumnDef="templateId">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Template</th>
                 <td mat-cell *matCellDef="let element">{{ element.templateId }}</td>
@@ -67,7 +67,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns | async"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns | async"></tr>
         </table>
-        <mat-toolbar *ngIf="isLoadMore">
+        <mat-toolbar *ngIf="isLoadMore$ | async">
             <mat-toolbar-row class="justify-content-center">
                 <button mat-stroked-button color="primary" (click)="loadMore()">
                     <span class="material-icons">more_horiz</span>
