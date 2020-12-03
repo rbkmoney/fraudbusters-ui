@@ -10,7 +10,8 @@
                 label="startCountTime"
                 name="startCountTime"
                 [ngxMatDatetimePicker]="pickerFrom"
-                (dateChange)="updateQueryParameters($event)"
+                (dateChange)="setDateFrom($event)"
+                [(ngModel)]="filter.from"
             />
             <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
             <ngx-mat-datetime-picker showSeconds="true" #pickerFrom></ngx-mat-datetime-picker>
@@ -22,22 +23,24 @@
                 label="startCountTime"
                 name="startCountTime"
                 [ngxMatDatetimePicker]="pickerTo"
+                (dateChange)="setDateTo($event)"
+                [(ngModel)]="filter.to"
             />
             <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
             <ngx-mat-datetime-picker showSeconds="true" #pickerTo></ngx-mat-datetime-picker>
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-select (selectionChange)="selectionCommand($event)" multiple>
+            <mat-select (selectionChange)="selectionCommand($event)" multiple [(value)]="filter.commandTypes">
                 <mat-option *ngFor="let name of commandsTypes$ | async" value="{{ name }}">{{ name }}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-select (selectionChange)="selectionObject($event)" multiple>
+            <mat-select (selectionChange)="selectionObject($event)" multiple [(value)]="filter.objectTypes">
                 <mat-option *ngFor="let name of objectsTypes$ | async" value="{{ name }}">{{ name }}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field class="search fb-full-width" appearance="fill">
-            <input matInput placeholder="User" (keyup)="search($event)" />
+            <input matInput placeholder="User" (keyup)="search($event)" [value]="filter.user" />
         </mat-form-field>
     </mat-toolbar-row>
 </mat-toolbar>
