@@ -26,6 +26,8 @@ import { EmulationTemplateModule } from './sections/emulation/template/emulation
 import { initializer } from './initializer';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { NavigateMenuModule } from './shared/components/navigate-menu/navigate-menu.module';
+import { AuditComponent } from './sections/audit/audit.component';
+import { AuditModule } from './sections/audit/audit.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -43,6 +45,7 @@ import { NavigateMenuModule } from './shared/components/navigate-menu/navigate-m
         TemplatesModule,
         ReferencesModule,
         GroupsModule,
+        AuditModule,
         GroupsReferenceModule,
         FraudUploaderListModule,
         EmulationTemplateModule,

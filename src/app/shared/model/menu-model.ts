@@ -73,5 +73,11 @@ export class MenuModel {
             route: 'emulation/template',
             roles: ['fraud-support'],
         },
+        {
+            displayName: 'Audit',
+            iconName: 'wysiwyg',
+            route: 'audit',
+            roles: ['fraud-support'],
+        },
     ];
 }

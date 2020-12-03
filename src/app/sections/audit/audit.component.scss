@@ -1,0 +1,29 @@
+mat-toolbar {
+    .mat-icon {
+        cursor: pointer;
+    }
+}
+
+::ng-deep {
+    mat-toolbar {
+        .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon-button,
+        .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button {
+            margin-left: -30px;
+            font-size: revert;
+            height: 1.5em;
+            width: 1.5em;
+        }
+        .mat-form-field:not(.mat-form-field-appearance-legacy)
+            .mat-form-field-prefix
+            .mat-datepicker-toggle-default-icon,
+        .mat-form-field:not(.mat-form-field-appearance-legacy)
+            .mat-form-field-suffix
+            .mat-datepicker-toggle-default-icon {
+            display: inherit;
+        }
+    }
+
+    mat-form-field.mat-form-field.search {
+        margin-top: 0px;
+    }
+}
