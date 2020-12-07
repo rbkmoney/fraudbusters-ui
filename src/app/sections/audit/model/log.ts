@@ -1,6 +1,6 @@
 export interface Log {
-    timestamp: string;
-    user: string;
+    insertTime: string;
+    initiator: string;
     commandType: string;
     objectType: string;
     object: string;

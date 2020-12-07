@@ -3,92 +3,30 @@ import { SearchAuditParams } from './model/search-audit-params';
 import { AuditResponse } from '../../../sections/references/model/audit-response';
 import { Injectable } from '@angular/core';
 import { IAuditService } from './iaudit.service';
+import { TemplatesResponse } from '../../../sections/templates/model/templates-response';
+import { HttpClient } from '@angular/common/http';
+import { ParamsUtilService } from '../utils/params-util.service';
+import { ConfigService } from '../../../core/config.service';
 
 @Injectable()
 export class AuditRemoteService implements IAuditService {
+    private readonly fbManagementEndpoint: string;
+
+    constructor(private http: HttpClient, private paramsUtilService: ParamsUtilService, configService: ConfigService) {
+        this.fbManagementEndpoint = configService.config.fbManagementEndpoint;
+    }
+
     getObjectTypes(): Observable<string[]> {
-        return of(['template', 'reference']);
+        return this.http.get<string[]>(`${this.fbManagementEndpoint}/audit/objectTypes`);
     }
 
     getCommandTypes(): Observable<string[]> {
-        return of(['CREATE', 'DELETE']);
+        return this.http.get<string[]>(`${this.fbManagementEndpoint}/audit/commandTypes`);
     }
 
     findLogs(params?: SearchAuditParams): Observable<AuditResponse> {
-        return of({
-            count: 15,
-            logs: [
-                {
-                    timestamp: '2020-07-14T14:29:37.083142',
-                    user: 'struga',
-                    commandType: 'CREATE',
-                    objectType: 'template',
-                    object: '{}',
-                },
-                {
-                    timestamp: '2020-07-14T14:29:37.083142',
-                    user: 'struga',
-                    commandType: 'CREATE',
-                    objectType: 'template',
-                    object: '{}',
-                },
-                {
-                    timestamp: '2020-07-14T14:29:37.083142',
-                    user: 'struga',
-                    commandType: 'CREATE',
-                    objectType: 'template',
-                    object: '{}',
-                },
-                {
-                    timestamp: '2020-07-14T14:29:37.083142',
-                    user: 'struga',
-                    commandType: 'CREATE',
-                    objectType: 'template',
-                    object: '{}',
-                },
-                {
-                    timestamp: '2020-07-14T14:29:37.083142',
-                    user: 'struga',
-                    commandType: 'CREATE',
-                    objectType: 'template',
-                    object: '{}',
-                },
-                {
-                    timestamp: '2020-07-14T14:29:37.083142',
-                    user: 'struga',
-                    commandType: 'CREATE',
-                    objectType: 'template',
-                    object: '{}',
-                },
-                {
-                    timestamp: '2020-07-14T14:29:37.083142',
-                    user: 'struga',
-                    commandType: 'CREATE',
-                    objectType: 'template',
-                    object: '{}',
-                },
-                {
-                    timestamp: '2020-07-14T14:29:37.083142',
-                    user: 'struga',
-                    commandType: 'CREATE',
-                    objectType: 'template',
-                    object: '{}',
-                },
-                {
-                    timestamp: '2020-07-14T14:29:37.083142',
-                    user: 'struga',
-                    commandType: 'CREATE',
-                    objectType: 'template',
-                    object: '{}',
-                },
-                {
-                    timestamp: '2020-07-14T14:29:37.083142',
-                    user: 'struga',
-                    commandType: 'CREATE',
-                    objectType: 'template',
-                    object: '{}',
-                },
-            ],
+        return this.http.get<AuditResponse>(`${this.fbManagementEndpoint}/audit/filter`, {
+            params: this.paramsUtilService.filterParameters(params),
         });
     }
 }

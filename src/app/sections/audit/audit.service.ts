@@ -8,6 +8,7 @@ import { SortOrder } from '../../shared/constants/sort-order';
 import { AuditRemoteService } from '../../shared/services/audit/audit-remote.service';
 import { Filter } from './model/filter';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Injectable()
 export class AuditService {
@@ -28,18 +29,21 @@ export class AuditService {
     count = 0;
     isRefresh;
 
+    private readonly yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
+
     constructor(
         private errorHandlerService: ErrorHandlerService,
         private snackBar: MatSnackBar,
         private auditRemoteService: AuditRemoteService,
-        private router: Router
+        private router: Router,
+        public datepipe: DatePipe
     ) {
         this.commandsTypes$ = auditRemoteService.getCommandTypes();
         this.objectsTypes$ = auditRemoteService.getObjectTypes();
 
         this.searchField$
             .pipe(
-                debounceTime(400),
+                debounceTime(1000),
                 tap((value) =>
                     this.mergeQueryParam({
                         userId: value,
@@ -52,9 +56,13 @@ export class AuditService {
         this.loadMoreAction$.subscribe((value) => (this.isRefresh = false));
         this.logs$ = combineLatest([this.searchFilter$, this.loadMoreAction$, this.sort$]).pipe(
             switchMap((value) => {
-                console.log(value);
                 return this.auditRemoteService
                     .findLogs({
+                        searchValue: value[0].user + '%',
+                        objectTypes: value[0].objectTypes,
+                        commandTypes: value[0].commandTypes,
+                        from: this.datepipe.transform(value[0].from, this.yyyyMMDdHHMmSs),
+                        to: this.datepipe.transform(value[0].to, this.yyyyMMDdHHMmSs),
                         sortOrder: SortOrder[value[2]],
                     })
                     .pipe(
@@ -63,7 +71,7 @@ export class AuditService {
                             return of(error);
                         }),
                         map((ref) => {
-                            this.lastSubject$.next(ref.logs[ref.logs.length - 1]);
+                            this.lastSubject$.next(ref.logs ? ref.logs[ref.logs.length - 1] : []);
                             this.count = ref.count;
                             return { logs: ref.logs, filter: value, count: ref.count };
                         })

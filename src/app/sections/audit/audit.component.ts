@@ -4,7 +4,6 @@ import { AuditService } from './audit.service';
 import { SortOrder } from '../../shared/constants/sort-order';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 import { Filter } from './model/filter';
 import { combineLatest } from 'rxjs';
 
@@ -30,7 +29,7 @@ export class AuditComponent implements OnInit {
 
     expanded = false;
 
-    displayedColumns = ['timestamp', 'user', 'objectType', 'commandType', 'object'];
+    displayedColumns = ['insertTime', 'initiator', 'objectType', 'commandType', 'text'];
 
     constructor(private auditService: AuditService, private router: Router, private route: ActivatedRoute) {
         combineLatest([this.commandsTypes$, this.objectsTypes$, this.route.queryParams]).subscribe((params) => {
@@ -90,13 +89,13 @@ export class AuditComponent implements OnInit {
 
     setDateFrom($event): void {
         this.auditService.mergeQueryParam({
-            dateFrom: $event.value.toLocaleString(),
+            dateFrom: $event.value,
         });
     }
 
     setDateTo($event): void {
         this.auditService.mergeQueryParam({
-            dateTo: $event.value.toLocaleString(),
+            dateTo: $event.value,
         });
     }
 }
