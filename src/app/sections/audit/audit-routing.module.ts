@@ -10,7 +10,7 @@ import { AuthGuard } from '../../auth/auth-guard';
                 path: 'audit',
                 component: AuditComponent,
                 canActivate: [AuthGuard],
-                data: { roles: ['fraud-support'] },
+                data: { roles: ['fraud-monitoring'] },
             },
         ]),
     ],
