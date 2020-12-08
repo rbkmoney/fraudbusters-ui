@@ -37,18 +37,16 @@ export class AuditComponent implements OnInit {
                 user: !params[2].userId ? '' : params[2].userId,
                 commandTypes: !params[2].commandTypes ? params[0] : JSON.parse(params[2].commandTypes),
                 objectTypes: !params[2].objectTypes ? params[1] : JSON.parse(params[2].objectTypes),
-                from: !params[2].dateFrom ? new Date() : new Date(params[2].dateFrom),
+                from: !params[2].dateFrom ? auditService.todayFromTime() : new Date(params[2].dateFrom),
                 to: !params[2].dateTo ? new Date() : new Date(params[2].dateTo),
             };
-            if (!params[2].commandTypes || !params[2].objectTypes) {
-                this.auditService.mergeQueryParam({
-                    dateTo: this.filter.to,
-                    dateFrom: this.filter.from,
-                    userId: this.filter.user,
-                    commandTypes: JSON.stringify(this.filter.commandTypes),
-                    objectTypes: JSON.stringify(this.filter.objectTypes),
-                });
-            }
+            this.auditService.mergeQueryParam({
+                dateTo: this.filter.to,
+                dateFrom: this.filter.from,
+                userId: this.filter.user,
+                commandTypes: this.filter.commandTypes ? JSON.stringify(this.filter.commandTypes) : null,
+                objectTypes: this.filter.objectTypes ? JSON.stringify(this.filter.objectTypes) : null,
+            });
             this.auditService.searchFilter$.next(this.filter);
         });
     }
@@ -81,10 +79,6 @@ export class AuditComponent implements OnInit {
 
     search($event): void {
         this.auditService.searchField$.next($event.target.value);
-    }
-
-    expand(): void {
-        this.expanded = !this.expanded;
     }
 
     setDateFrom($event): void {
