@@ -44,15 +44,15 @@ export class ReferencesService {
         );
     }
 
-    private pipeReferences(value: FilterReference): Observable<any> {
-        return this.getReferences(value).pipe(
+    private pipeReferences(filterReference: FilterReference): Observable<any> {
+        return this.getReferences(filterReference).pipe(
             catchError((error) => {
                 this.errorHandlerService.handleError(error, this.snackBar);
                 return of(error);
             }),
             map((ref) => {
                 this.lastRefSubject$.next(ref.referenceModels[ref.referenceModels.length - 1]);
-                return { references: ref.referenceModels, filter: value, count: ref.count };
+                return { references: ref.referenceModels, filter: filterReference, count: ref.count };
             })
         );
     }
