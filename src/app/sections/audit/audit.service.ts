@@ -113,7 +113,7 @@ export class AuditService {
     }
 
     todayFromTime(): Date {
-        let now = new Date();
+        const now = new Date();
         now.setHours(0, 0, 0, 0);
         return now;
     }
