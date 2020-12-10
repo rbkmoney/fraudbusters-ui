@@ -1,4 +1,4 @@
 {
-    "fbManagementEndpoint": "http://localhost:8085/fb-management/v1",
+    "fbManagementEndpoint": "http://localhost:8081/fb-management/v1",
     "pageSize": 10
 }

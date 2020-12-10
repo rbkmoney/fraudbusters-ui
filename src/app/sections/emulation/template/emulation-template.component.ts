@@ -15,7 +15,6 @@ export class EmulationTemplateComponent extends OperationTypeComponent {
     templates$ = this.emulationTemplateService.templates$;
 
     filter: PaymentEmulateFilter | P2pEmulateFilter;
-    operationType: OperationType;
     operationTypes = [OperationType.Payment];
 
     constructor(private route: ActivatedRoute, private emulationTemplateService: EmulationTemplateService) {
