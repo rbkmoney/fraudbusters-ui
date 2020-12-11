@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { NavItem } from '../../model/nav-item';
+import { NavItem } from '../../../model/nav-item';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';

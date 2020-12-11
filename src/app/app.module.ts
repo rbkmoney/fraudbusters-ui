@@ -17,7 +17,6 @@ import { GroupsModule } from './sections/groups/groups.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { GroupsReferenceModule } from './sections/groups-reference/groups-reference.module';
-import { MenuListItemComponent } from './shared/components/menu-list-item/menu-list-item.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BlackListModule } from './sections/lists/black-list/black-list.module';
 import { WhiteListModule } from './sections/lists/white-list/white-list.module';
@@ -26,9 +25,12 @@ import { FraudUploaderListModule } from './sections/load/fraud-uploader/fraud-up
 import { EmulationTemplateModule } from './sections/emulation/template/emulation-template.module';
 import { initializer } from './initializer';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { NavigateMenuModule } from './shared/components/navigate-menu/navigate-menu.module';
+import { AuditComponent } from './sections/audit/audit.component';
+import { AuditModule } from './sections/audit/audit.module';
 
 @NgModule({
-    declarations: [AppComponent, MenuListItemComponent],
+    declarations: [AppComponent],
     imports: [
         BrowserModule,
         MatToolbarModule,
@@ -43,6 +45,7 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
         TemplatesModule,
         ReferencesModule,
         GroupsModule,
+        AuditModule,
         GroupsReferenceModule,
         FraudUploaderListModule,
         EmulationTemplateModule,
@@ -53,6 +56,7 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
         FlexLayoutModule,
         HttpClientModule,
         KeycloakAngularModule,
+        NavigateMenuModule,
     ],
     providers: [
         {

@@ -8,7 +8,7 @@ import { AuthGuard } from './auth/auth-guard';
             [
                 {
                     path: '',
-                    redirectTo: '/templates',
+                    redirectTo: 'emulation/template',
                     pathMatch: 'full',
                 },
             ],

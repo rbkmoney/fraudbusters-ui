@@ -2,6 +2,15 @@
     <mat-toolbar-row>
         <h3>New reference</h3>
         <button mat-stroked-button color="primary" (click)="save()">Save</button>
+        <button mat-stroked-button color="primary" (click)="fileDropRef.click()"><mat-icon>publish</mat-icon></button>
+        <input
+            hidden
+            type="file"
+            #fileDropRef
+            id="fileDropRef"
+            multiple
+            (change)="prepareFilesList($event.target.files)"
+        />
     </mat-toolbar-row>
 </mat-toolbar>
 
@@ -50,14 +59,6 @@
                         </mat-form-field>
                     </div>
                     <div fxFlex="13" class="end-row">
-                        <!--                        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">-->
-                        <!--                            <mat-button-toggle value="global" (change)="setGlobal(i)" matTooltip="Global template">-->
-                        <!--                                <mat-icon class="md-18">language</mat-icon></mat-button-toggle-->
-                        <!--                            >-->
-                        <!--                            <mat-button-toggle value="default" (change)="setDefault(i)" matTooltip="Default template">-->
-                        <!--                                <mat-icon class="md-18">adjust</mat-icon></mat-button-toggle-->
-                        <!--                            ></mat-button-toggle-group-->
-                        <!--                        >-->
                         <button mat-icon-button color="warn" (click)="deleteRef(i)" matTooltip="Remove from list">
                             <mat-icon>clear</mat-icon>
                         </button>
@@ -89,14 +90,6 @@
                         </mat-form-field>
                     </div>
                     <div fxFlex="12" class="end-row">
-                        <!--                        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">-->
-                        <!--                            <mat-button-toggle value="global" matTooltip="Global template">-->
-                        <!--                                <mat-icon class="md-18">language</mat-icon></mat-button-toggle-->
-                        <!--                            >-->
-                        <!--                            <mat-button-toggle value="default" matTooltip="Default template">-->
-                        <!--                                <mat-icon class="md-18">adjust</mat-icon></mat-button-toggle-->
-                        <!--                            ></mat-button-toggle-group-->
-                        <!--                        >-->
                         <button mat-icon-button color="warn" (click)="deleteRef(i)" matTooltip="Remove from list">
                             <mat-icon>clear</mat-icon>
                         </button>

@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { OperationType } from '../../shared/constants/operation-type';
 import { ReferencesService } from './references.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { RemoveReferenceDialogComponent } from './remove-reference-dialog/remove-reference-dialog.component';
 import { SortOrder } from '../../shared/constants/sort-order';
 import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { ConfigService } from '../../core/config.service';
 import { ReplaySubject } from 'rxjs';
 import { OperationTypeComponent } from '../../shared/components/operation-type-component';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
+import { PaymentReference } from './model/payment-reference';
+import { P2pReference } from './model/p2p-reference';
 
 @Component({
     selector: 'app-references',
@@ -24,12 +23,22 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
     DEFAULT = 'default';
     GLOBAL = 'global';
 
+    references = [];
+    displayedColumns = new ReplaySubject<string[]>();
+    operationTypes = [];
+    searchReferenceName;
+    sortType = SortOrder.DESC;
+    searchType = 'all';
+
+    references$ = this.referenceService.references$;
+    isLoadMore$ = this.referenceService.isLoadMore$;
+    lastRefSubject$ = this.referenceService.lastRefSubject$;
+    lastRef: PaymentReference | P2pReference;
+
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private errorHandlerService: ErrorHandlerService,
         private referenceService: ReferencesService,
-        private snackBar: MatSnackBar,
         public dialog: MatDialog,
         public searchFieldService: SearchFieldService,
         configService: ConfigService
@@ -37,16 +46,10 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
         super();
         this.SIZE = configService.config.pageSize;
         this.displayedColumns.next(['templateId', 'edit']);
+        this.lastRefSubject$.subscribe((value) => {
+            this.lastRef = value;
+        });
     }
-
-    isLoadMore = false;
-    isLoading = false;
-    references = [];
-    displayedColumns = new ReplaySubject<string[]>();
-    operationTypes = [];
-    searchReferenceName;
-    sortType = SortOrder.DESC;
-    searchType = 'all';
 
     ngOnInit(): void {
         this.operationTypes = Object.keys(OperationType);
@@ -76,28 +79,14 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
     }
 
     search(): void {
-        this.isLoading = true;
-        this.referenceService
-            .getReferences(
-                (OperationType as any)[this.operationType],
-                this.SIZE,
-                this.searchFieldService.formatField(this.searchReferenceName),
-                null,
-                this.sortType,
-                this.searchType === this.GLOBAL,
-                this.searchType === this.DEFAULT
-            )
-            .subscribe(
-                (referencesResponse) => {
-                    this.isLoading = false;
-                    this.references = referencesResponse.referenceModels;
-                    this.isLoadMore = this.references.length < referencesResponse.count;
-                },
-                (error: HttpErrorResponse) => {
-                    this.isLoading = false;
-                    this.errorHandlerService.handleError(error, this.snackBar);
-                }
-            );
+        this.referenceService.nextReferences({
+            type: (OperationType as any)[this.operationType],
+            size: this.SIZE,
+            search: this.searchFieldService.formatField(this.searchReferenceName),
+            sortOrder: this.sortType,
+            isGlobalValue: this.searchType === this.GLOBAL,
+            isDefaultValue: this.searchType === this.DEFAULT,
+        });
     }
 
     changeSearch(newValue): void {
@@ -111,29 +100,17 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
     }
 
     loadMore(): void {
-        this.isLoading = true;
-        this.referenceService
-            .getReferences(
-                (OperationType as any)[this.operationType],
-                this.SIZE,
-                this.searchFieldService.formatField(this.searchReferenceName),
-                this.references[this.references.length - 1].id,
-                this.sortType,
-                this.searchType === this.GLOBAL,
-                this.searchType === this.DEFAULT,
-                this.references[this.references.length - 1].templateId
-            )
-            .subscribe(
-                (referencesResponse) => {
-                    this.isLoading = false;
-                    this.references = this.references.concat(referencesResponse.referenceModels);
-                    this.isLoadMore = this.references.length < referencesResponse.count;
-                },
-                (error: HttpErrorResponse) => {
-                    this.isLoading = false;
-                    this.errorHandlerService.handleError(error, this.snackBar);
-                }
-            );
+        this.referenceService.nextReferences({
+            type: (OperationType as any)[this.operationType],
+            size: this.SIZE,
+            search: this.searchFieldService.formatField(this.searchReferenceName),
+            lastInListName: this.lastRef.id,
+            sortOrder: this.sortType,
+            isGlobalValue: this.searchType === this.GLOBAL,
+            isDefaultValue: this.searchType === this.DEFAULT,
+            sortField: this.lastRef.templateId,
+            loadMore: true,
+        });
     }
 
     navigateToNew(): void {
