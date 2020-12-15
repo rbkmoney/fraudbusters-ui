@@ -40,6 +40,10 @@ export class WbListService {
         return this.operationTypeManagementService.findListsService(type).getNames(listType);
     }
 
+    getAvailableListNames(type: OperationType): Observable<string[]> {
+        return this.operationTypeManagementService.findListsService(type).getAvailableListNames();
+    }
+
     saveListRow(type: OperationType, listType: ListType, rows: CountInfoListRecord[]): Observable<string[]> {
         return this.operationTypeManagementService.findListsService(type).saveListsRows(listType, rows);
     }

@@ -40,6 +40,14 @@ export class P2pListsService implements IListsService {
         });
     }
 
+    getAvailableListNames(): Observable<string[]> {
+        return this.http.get<string[]>(`${this.fbManagementEndpoint}/p2p/lists/availableListNames`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+    }
+
     saveListsRows(listType: ListType, records: CountInfoListRecord[]): Observable<string[]> {
         return this.http.post<string[]>(
             `${this.fbManagementEndpoint}/p2p/lists`,

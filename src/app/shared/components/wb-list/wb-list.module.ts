@@ -32,6 +32,7 @@ import {
     NgxMatNativeDateModule,
     NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
     declarations: [WbListComponent, RemoveRowListDialogComponent, AddRowListComponent],
@@ -53,6 +54,7 @@ import {
         MatTooltipModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatAutocompleteModule,
         NgxMatTimepickerModule,
         NgxMatNativeDateModule,
         NgxMatDatetimePickerModule,

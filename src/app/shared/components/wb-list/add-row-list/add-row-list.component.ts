@@ -12,6 +12,8 @@ import { WbListService } from '../wb-list.service';
 import { Location } from '@angular/common';
 import { CountInfoListRecord } from '../../../services/lists/model/count-info-list-record';
 import { CountInfo } from '../../../services/lists/model/count-info';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
     selector: 'app-add-row-list',
@@ -24,6 +26,8 @@ export class AddRowListComponent extends OperationTypeComponent implements OnIni
 
     @Input() listType: ListType;
     @Input() isCounting = false;
+
+    filteredOptions: Observable<string[]>;
 
     constructor(
         private router: Router,
@@ -38,6 +42,7 @@ export class AddRowListComponent extends OperationTypeComponent implements OnIni
 
     ngOnInit(): void {
         this.getOperationTypeFromFragment();
+        this.filteredOptions = this.listService.getAvailableListNames(this.operationType);
     }
 
     getOperationTypeFromFragment(): void {
