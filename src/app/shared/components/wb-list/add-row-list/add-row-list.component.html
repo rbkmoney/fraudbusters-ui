@@ -19,7 +19,13 @@
                                     label="listName"
                                     [(ngModel)]="reference.listRecord.listName"
                                     name="listName"
+                                    [matAutocomplete]="auto"
                                 />
+                                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                        {{ option }}
+                                    </mat-option>
+                                </mat-autocomplete>
                             </mat-form-field>
                         </div>
                         <div fxFlex="22">

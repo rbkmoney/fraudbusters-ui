@@ -13,4 +13,6 @@ export interface IListsService {
     saveListsRows(listType: ListType, records: CountInfoListRecord[]): Observable<string[]>;
 
     getNames(listType: ListType): Observable<string[]>;
+
+    getAvailableListNames(): Observable<string[]>;
 }

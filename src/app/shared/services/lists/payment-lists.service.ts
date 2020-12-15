@@ -40,6 +40,14 @@ export class PaymentListsService implements IListsService {
         });
     }
 
+    getAvailableListNames(): Observable<string[]> {
+        return this.http.get<string[]>(`${this.fbManagementEndpoint}/lists/availableListNames`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+    }
+
     saveListsRows(listType: ListType, records: CountInfoListRecord[]): Observable<string[]> {
         return this.http.post<string[]>(
             `${this.fbManagementEndpoint}/lists`,
