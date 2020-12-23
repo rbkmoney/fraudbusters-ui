@@ -10,7 +10,7 @@ import { AuthGuard } from '../../../auth/auth-guard';
                 path: 'emulation/template',
                 component: EmulationTemplateComponent,
                 canActivate: [AuthGuard],
-                data: { roles: ['fraud-support'] },
+                data: { roles: ['fraud-officer', 'fraud-monitoring', 'fraud-support'] },
             },
         ]),
     ],
