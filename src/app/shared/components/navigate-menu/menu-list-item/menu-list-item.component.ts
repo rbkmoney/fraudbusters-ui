@@ -25,7 +25,7 @@ export class MenuListItemComponent {
     constructor(public router: Router, protected readonly keycloak: KeycloakService) {}
 
     display(): boolean {
-        return this.item.roles.every((role) => this.keycloak.getUserRoles().includes(role));
+        return this.item.roles.some((role) => this.keycloak.getUserRoles().includes(role));
     }
 
     onItemSelected(item: NavItem): void {
