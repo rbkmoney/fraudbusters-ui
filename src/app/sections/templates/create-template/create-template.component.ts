@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { TemplatesService } from '../templates.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { OperationType } from '../../../shared/constants/operation-type';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Template } from '../model/template';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { ValidateResponseHandler } from '../../../shared/services/utils/validate-response-handler.service';
+import { Template } from '../model/template';
+import { TemplatesService } from '../templates.service';
 
 @Component({
-    selector: 'app-create-template',
     templateUrl: './create-template.component.html',
     styleUrls: ['./create-template.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateTemplateComponent implements OnInit {
     private operationType: OperationType;
@@ -37,7 +38,6 @@ export class CreateTemplateComponent implements OnInit {
     }
 
     save(): void {
-        console.log(this.template);
         this.templateService.saveTemplate(this.operationType, this.template).subscribe(
             (template) => {
                 this.navigateToEdit(template.id);

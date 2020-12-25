@@ -1,20 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { PriorityIdModel } from '../model/priority-id-model';
-import { OperationType } from '../../../shared/constants/operation-type';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Sort } from '@angular/material/sort';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { OperationType } from '../../../shared/constants/operation-type';
+import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { TemplatesService } from '../../templates/templates.service';
 import { GroupsService } from '../groups.service';
 import { Group } from '../model/group';
-import { TemplatesService } from '../../templates/templates.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Sort } from '@angular/material/sort';
 import { GroupUtilsService } from '../utils/group-utils.service';
 
 @Component({
-    selector: 'app-create-group',
     templateUrl: './create-group.component.html',
-    styleUrls: ['./create-group.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateGroupComponent implements OnInit {
     newGroup: Group = { groupId: '', priorityTemplates: [] };

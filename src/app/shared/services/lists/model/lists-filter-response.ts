@@ -1,5 +1,5 @@
-import { PaymentListRecord } from './payment-list-record';
 import { P2pListRecord } from './p2p-list-record';
+import { PaymentListRecord } from './payment-list-record';
 
 export class ListsFilterResponse {
     count: number;

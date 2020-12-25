@@ -1,8 +1,9 @@
-import { Template } from '../../../sections/templates/model/template';
 import { Observable } from 'rxjs';
-import { ValidateTemplate } from '../../../sections/templates/model/validate-template';
-import { ValidateResponse } from '../../../sections/templates/model/validate-response';
+
+import { Template } from '../../../sections/templates/model/template';
 import { TemplatesResponse } from '../../../sections/templates/model/templates-response';
+import { ValidateResponse } from '../../../sections/templates/model/validate-response';
+import { ValidateTemplate } from '../../../sections/templates/model/validate-template';
 import { SearchParams } from '../../model/search-params';
 
 export interface ITemplatesService {

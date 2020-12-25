@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Sort } from '@angular/material/sort';
-import { AuditService } from './audit.service';
-import { SortOrder } from '../../shared/constants/sort-order';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Filter } from './model/filter';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Sort } from '@angular/material/sort';
+import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
 
+import { SortOrder } from '../../shared/constants/sort-order';
+import { AuditService } from './audit.service';
+import { Filter } from './model/filter';
+
 @Component({
-    selector: 'app-audit',
     templateUrl: './audit.component.html',
     styleUrls: ['./audit.component.scss'],
     animations: [
@@ -18,6 +18,7 @@ import { combineLatest } from 'rxjs';
             transition('expanded <=> collapsed', animate('400ms cubic-bezier(0.4,0.0,0.2,1)')),
         ]),
     ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuditComponent implements OnInit {
     filter: Filter;
@@ -31,7 +32,7 @@ export class AuditComponent implements OnInit {
 
     displayedColumns = ['insertTime', 'initiator', 'objectType', 'commandType', 'text'];
 
-    constructor(private auditService: AuditService, private router: Router, private route: ActivatedRoute) {
+    constructor(private auditService: AuditService, private route: ActivatedRoute) {
         combineLatest([this.commandsTypes$, this.objectsTypes$, this.route.queryParams]).subscribe((params) => {
             this.filter = {
                 user: !params[2].userId ? '' : params[2].userId,

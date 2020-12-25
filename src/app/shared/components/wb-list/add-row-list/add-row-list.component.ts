@@ -1,24 +1,25 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ErrorHandlerService } from '../../../services/utils/error-handler.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { OperationType } from '../../../constants/operation-type';
+import { Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { ListType } from '../../../constants/list-type';
+import { OperationType } from '../../../constants/operation-type';
+import { CountInfo } from '../../../services/lists/model/count-info';
+import { CountInfoListRecord } from '../../../services/lists/model/count-info-list-record';
 import { P2pListRecord } from '../../../services/lists/model/p2p-list-record';
 import { PaymentListRecord } from '../../../services/lists/model/payment-list-record';
+import { ErrorHandlerService } from '../../../services/utils/error-handler.service';
 import { OperationTypeComponent } from '../../operation-type-component';
-import { ListType } from '../../../constants/list-type';
 import { WbListService } from '../wb-list.service';
-import { Location } from '@angular/common';
-import { CountInfoListRecord } from '../../../services/lists/model/count-info-list-record';
-import { CountInfo } from '../../../services/lists/model/count-info';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 
 @Component({
-    selector: 'app-add-row-list',
+    selector: 'fb-add-row-list',
     templateUrl: './add-row-list.component.html',
     styleUrls: ['./add-row-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddRowListComponent extends OperationTypeComponent implements OnInit {
     p2pRecords: CountInfoListRecord[] = [];
@@ -30,7 +31,6 @@ export class AddRowListComponent extends OperationTypeComponent implements OnIni
     filteredOptions: Observable<string[]>;
 
     constructor(
-        private router: Router,
         private route: ActivatedRoute,
         private listService: WbListService,
         private errorHandlerService: ErrorHandlerService,

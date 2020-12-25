@@ -1,22 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { OperationType } from '../../shared/constants/operation-type';
-import { ReferencesService } from './references.service';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { RemoveReferenceDialogComponent } from './remove-reference-dialog/remove-reference-dialog.component';
-import { SortOrder } from '../../shared/constants/sort-order';
 import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConfigService } from '../../core/config.service';
 import { ReplaySubject } from 'rxjs';
+
+import { ConfigService } from '../../core/config.service';
 import { OperationTypeComponent } from '../../shared/components/operation-type-component';
+import { OperationType } from '../../shared/constants/operation-type';
+import { SortOrder } from '../../shared/constants/sort-order';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
-import { PaymentReference } from './model/payment-reference';
 import { P2pReference } from './model/p2p-reference';
+import { PaymentReference } from './model/payment-reference';
+import { ReferencesService } from './references.service';
+import { RemoveReferenceDialogComponent } from './remove-reference-dialog/remove-reference-dialog.component';
 
 @Component({
-    selector: 'app-references',
     templateUrl: './references.component.html',
     styleUrls: ['./references.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReferencesComponent extends OperationTypeComponent implements OnInit {
     private SIZE: number;

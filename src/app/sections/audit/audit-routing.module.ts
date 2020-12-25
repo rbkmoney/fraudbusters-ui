@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AuditComponent } from './audit.component';
+
 import { AuthGuard } from '../../auth/auth-guard';
+import { AuditComponent } from './audit.component';
 
 @NgModule({
     imports: [

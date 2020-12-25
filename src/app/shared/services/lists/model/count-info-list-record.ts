@@ -1,4 +1,3 @@
-import { ListRecord } from './list-record';
 import { CountInfo } from './count-info';
 import { P2pListRecord } from './p2p-list-record';
 import { PaymentListRecord } from './payment-list-record';

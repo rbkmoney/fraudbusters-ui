@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ConfigService } from '../../../core/config.service';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ParamsUtilService } from '../utils/params-util.service';
-import { IGroupsReferenceService } from './igroups-reference.service';
+
+import { ConfigService } from '../../../core/config.service';
 import { GroupReferenceModel } from '../../../sections/groups-reference/model/groups-reference';
 import { GroupsReferenceResponse } from '../../../sections/groups-reference/model/groups-reference-response';
+import { PaymentGroupReferenceModel } from '../../../sections/groups-reference/model/payment-groups-reference';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { SearchParams } from '../../model/search-params';
-import { PaymentGroupReferenceModel } from '../../../sections/groups-reference/model/payment-groups-reference';
+import { ParamsUtilService } from '../utils/params-util.service';
+import { IGroupsReferenceService } from './igroups-reference.service';
 
 @Injectable()
 export class PaymentGroupsReferenceService implements IGroupsReferenceService {

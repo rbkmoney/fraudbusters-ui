@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { OperationType } from '../../../shared/constants/operation-type';
-import { ActivatedRoute } from '@angular/router';
-import { TemplatesService } from '../templates.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Template } from '../model/template';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+
+import { OperationType } from '../../../shared/constants/operation-type';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { ValidateResponseHandler } from '../../../shared/services/utils/validate-response-handler.service';
+import { Template } from '../model/template';
+import { TemplatesService } from '../templates.service';
 
 @Component({
-    selector: 'app-edit-template',
     templateUrl: './edit-template.component.html',
     styleUrls: ['./edit-template.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditTemplateComponent implements OnInit {
     private operationType: OperationType;
@@ -46,7 +47,6 @@ export class EditTemplateComponent implements OnInit {
     }
 
     save(): void {
-        console.log(this.template);
         this.templateService.saveTemplate(this.operationType, this.template).subscribe(
             (id) => {
                 this.snackBar.open(`Saved success: ${id.id}`, 'OK', {

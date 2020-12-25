@@ -1,11 +1,12 @@
-import { Component, HostBinding, Input } from '@angular/core';
-import { NavItem } from '../../../model/nav-item';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
 
+import { NavItem } from '../../../model/nav-item';
+
 @Component({
-    selector: 'app-menu-list-item',
+    selector: 'fb-menu-list-item',
     templateUrl: './menu-list-item.component.html',
     styleUrls: ['./menu-list-item.component.scss'],
     animations: [
@@ -15,6 +16,7 @@ import { KeycloakService } from 'keycloak-angular';
             transition('expanded <=> collapsed', animate('400ms cubic-bezier(0.4,0.0,0.2,1)')),
         ]),
     ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuListItemComponent {
     expanded = false;

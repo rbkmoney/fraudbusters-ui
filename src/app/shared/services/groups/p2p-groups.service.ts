@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ConfigService } from '../../../core/config.service';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ParamsUtilService } from '../utils/params-util.service';
-import { IGroupsService } from './igroups.service';
+
+import { ConfigService } from '../../../core/config.service';
 import { Group } from '../../../sections/groups/model/group';
 import { HttpRequestModel } from '../../model/http-request-model';
+import { ParamsUtilService } from '../utils/params-util.service';
+import { IGroupsService } from './igroups.service';
 
 @Injectable()
 export class P2pGroupsService implements IGroupsService {

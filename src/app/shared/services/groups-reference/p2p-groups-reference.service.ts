@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ConfigService } from '../../../core/config.service';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
+import { ConfigService } from '../../../core/config.service';
+import { GroupReferenceModel } from '../../../sections/groups-reference/model/groups-reference';
+import { GroupsReferenceResponse } from '../../../sections/groups-reference/model/groups-reference-response';
+import { P2pGroupReferenceModel } from '../../../sections/groups-reference/model/p2p-groups-reference';
+import { HttpRequestModel } from '../../model/http-request-model';
 import { ParamsUtilService } from '../utils/params-util.service';
 import { IGroupsReferenceService } from './igroups-reference.service';
-import { GroupsReferenceResponse } from '../../../sections/groups-reference/model/groups-reference-response';
-import { GroupReferenceModel } from '../../../sections/groups-reference/model/groups-reference';
-import { HttpRequestModel } from '../../model/http-request-model';
-import { SearchParams } from '../../model/search-params';
-import { P2pGroupReferenceModel } from '../../../sections/groups-reference/model/p2p-groups-reference';
 import { SearchGroupsReferenceParams } from './model/search-group-reference-params';
 
 @Injectable()

@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { GroupsComponent } from './groups.component';
+
+import { AuthGuard } from '../../auth/auth-guard';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { EditGroupComponent } from './edit-group/edit-group.component';
-import { AuthGuard } from '../../auth/auth-guard';
+import { GroupsComponent } from './groups.component';
 
 @NgModule({
     imports: [

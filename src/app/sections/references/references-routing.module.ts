@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ReferencesComponent } from './references.component';
-import { CreateReferenceComponent } from './create-reference/create-reference.component';
+
 import { AuthGuard } from '../../auth/auth-guard';
+import { CreateReferenceComponent } from './create-reference/create-reference.component';
+import { ReferencesComponent } from './references.component';
 
 @NgModule({
     imports: [

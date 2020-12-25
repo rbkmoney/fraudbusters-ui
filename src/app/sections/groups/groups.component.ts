@@ -1,27 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfigService } from '../../core/config.service';
-import { OperationType } from '../../shared/constants/operation-type';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Sort } from '@angular/material/sort';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { OperationTypeComponent } from '../../shared/components/operation-type-component';
+import { OperationType } from '../../shared/constants/operation-type';
+import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { GroupsService } from './groups.service';
 import { PriorityIdModel } from './model/priority-id-model';
 import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-dialog.component';
 import { GroupUtilsService } from './utils/group-utils.service';
-import { SearchFieldService } from '../../shared/services/utils/search-field.service';
-import { OperationTypeComponent } from '../../shared/components/operation-type-component';
 
 @Component({
-    selector: 'app-groups',
     templateUrl: './groups.component.html',
-    styleUrls: ['./groups.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GroupsComponent extends OperationTypeComponent implements OnInit {
-    private SIZE: number;
-
     isLoadMore = false;
     isLoading = false;
     displayedColumns: string[] = ['id', 'text', 'lastUpdateDate', 'edit'];
@@ -37,11 +34,9 @@ export class GroupsComponent extends OperationTypeComponent implements OnInit {
         private groupUtilsService: GroupUtilsService,
         private snackBar: MatSnackBar,
         public dialog: MatDialog,
-        public searchFieldService: SearchFieldService,
-        configService: ConfigService
+        public searchFieldService: SearchFieldService
     ) {
         super();
-        this.SIZE = configService.config.pageSize;
     }
 
     ngOnInit(): void {

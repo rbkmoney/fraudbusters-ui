@@ -1,14 +1,15 @@
+import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { Router } from '@angular/router';
 import { BehaviorSubject, combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { Log } from './model/log';
 import { catchError, debounceTime, map, scan, switchMap, tap } from 'rxjs/operators';
+
 import { SortOrder } from '../../shared/constants/sort-order';
 import { AuditRemoteService } from '../../shared/services/audit/audit-remote.service';
+import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { Filter } from './model/filter';
-import { Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
+import { Log } from './model/log';
 
 @Injectable()
 export class AuditService {

@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
 import { OperationTypeComponent } from '../../../shared/components/operation-type-component';
 import { OperationType } from '../../../shared/constants/operation-type';
-import { ActivatedRoute } from '@angular/router';
-import { PaymentEmulateFilter } from './model/payment-emulate-filter';
-import { P2pEmulateFilter } from './model/p2p-emulate-filter';
 import { EmulationTemplateService } from './emulation-template.service';
+import { P2pEmulateFilter } from './model/p2p-emulate-filter';
+import { PaymentEmulateFilter } from './model/payment-emulate-filter';
 
 @Component({
-    selector: 'app-template',
     templateUrl: './emulation-template.component.html',
     styleUrls: ['./emulation-template.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmulationTemplateComponent extends OperationTypeComponent {
     templates$ = this.emulationTemplateService.templates$;
@@ -17,7 +17,7 @@ export class EmulationTemplateComponent extends OperationTypeComponent {
     filter: PaymentEmulateFilter | P2pEmulateFilter;
     operationTypes = [OperationType.Payment];
 
-    constructor(private route: ActivatedRoute, private emulationTemplateService: EmulationTemplateService) {
+    constructor(private emulationTemplateService: EmulationTemplateService) {
         super();
         this.operationType = this.operationTypes[0];
         this.initFilter();

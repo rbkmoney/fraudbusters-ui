@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core';
-import { P2pReference } from '../../../sections/references/model/p2p-reference';
-import { PaymentReference } from '../../../sections/references/model/payment-reference';
-import { ActivatedRoute, Router } from '@angular/router';
-import { TemplatesService } from '../../../sections/templates/templates.service';
-import { ReferencesService } from '../../../sections/references/references.service';
-import { ErrorHandlerService } from './error-handler.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Papa } from 'ngx-papaparse';
-import { ReferenceUtilsService } from '../../../sections/references/create-reference/reference-utils.service';
+
+import { ErrorHandlerService } from './error-handler.service';
 
 @Injectable()
 export class CsvUtilsService {

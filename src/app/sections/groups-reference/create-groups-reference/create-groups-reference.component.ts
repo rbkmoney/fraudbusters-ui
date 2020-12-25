@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { OperationType } from '../../../shared/constants/operation-type';
 import { HttpErrorResponse } from '@angular/common/http';
-import { PaymentGroupReferenceModel } from '../model/payment-groups-reference';
-import { P2pGroupReferenceModel } from '../model/p2p-groups-reference';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { OperationTypeComponent } from '../../../shared/components/operation-type-component';
+import { OperationType } from '../../../shared/constants/operation-type';
+import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { GroupsReferenceService } from '../groups-reference.service';
+import { P2pGroupReferenceModel } from '../model/p2p-groups-reference';
+import { PaymentGroupReferenceModel } from '../model/payment-groups-reference';
 
 @Component({
-    selector: 'app-create-groups-reference',
     templateUrl: './create-groups-reference.component.html',
-    styleUrls: ['./create-groups-reference.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateGroupsReferenceComponent extends OperationTypeComponent implements OnInit {
     p2pReferences: P2pGroupReferenceModel[] = [];

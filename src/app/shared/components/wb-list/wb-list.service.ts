@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { ListType } from '../../constants/list-type';
 import { OperationType } from '../../constants/operation-type';
 import { SortOrder } from '../../constants/sort-order';
-import { Observable } from 'rxjs';
-import { OperationTypeManagementService } from '../../services/operation-type-management.service';
-import { ListsFilterResponse } from '../../services/lists/model/lists-filter-response';
-import { ListType } from '../../constants/list-type';
 import { CountInfoListRecord } from '../../services/lists/model/count-info-list-record';
+import { ListsFilterResponse } from '../../services/lists/model/lists-filter-response';
+import { OperationTypeManagementService } from '../../services/operation-type-management.service';
 
 @Injectable()
 export class WbListService {

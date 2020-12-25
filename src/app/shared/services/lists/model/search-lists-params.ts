@@ -1,5 +1,5 @@
-import { SearchParams } from '../../../model/search-params';
 import { ListType } from '../../../constants/list-type';
+import { SearchParams } from '../../../model/search-params';
 
 export interface SearchListsParams extends SearchParams {
     searchValue: string;
