@@ -9,7 +9,7 @@ import { Group } from '../model/group';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Sort } from '@angular/material/sort';
 import { GroupUtilsService } from '../utils/group-utils.service';
-import { TemplatesService } from '../../templates/templates.service';
+import { TemplatesService } from '../../template/templates/templates.service';
 
 @Component({
     selector: 'app-edit-group',

@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { KeycloakConfig } from 'keycloak-js';
-import { KeycloakService } from 'keycloak-angular';
 
 export interface AppConfig {
     fbManagementEndpoint: string;
@@ -12,7 +10,7 @@ export interface AppConfig {
 export class ConfigService {
     config: AppConfig;
 
-    constructor(private http: HttpClient, private keycloak: KeycloakService) {}
+    constructor(private http: HttpClient) {}
 
     load(): Promise<AppConfig> {
         return new Promise((resolve) => {

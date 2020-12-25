@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { OperationType } from '../../shared/constants/operation-type';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfigService } from '../../core/config.service';
-import { ReplaySubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { GroupsReferenceService } from './groups-reference.service';
-import { SortOrder } from '../../shared/constants/sort-order';
-import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-dialog/remove-group-reference-dialog.component';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Sort } from '@angular/material/sort';
-import { SearchFieldService } from '../../shared/services/utils/search-field.service';
-import { OperationTypeComponent } from '../../shared/components/operation-type-component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ReplaySubject } from 'rxjs';
 import { filter, pluck } from 'rxjs/operators';
 
+import { ConfigService } from '../../core/config.service';
+import { OperationTypeComponent } from '../../shared/components/operation-type-component';
+import { OperationType } from '../../shared/constants/operation-type';
+import { SortOrder } from '../../shared/constants/sort-order';
+import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
+import { GroupsReferenceService } from './groups-reference.service';
+import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-dialog/remove-group-reference-dialog.component';
+
 @Component({
-    selector: 'app-groups-reference',
     templateUrl: './groups-reference.component.html',
     styleUrls: ['./groups-reference.component.scss'],
 })

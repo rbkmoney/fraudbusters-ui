@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
-import { SearchAuditParams } from './model/search-audit-params';
+
 import { AuditResponse } from '../../../sections/references/model/audit-response';
+import { SearchAuditParams } from './model/search-audit-params';
 
 export interface IAuditService {
     getObjectTypes(): Observable<string[]>;

@@ -8,7 +8,7 @@ import { ErrorHandlerService } from '../../../shared/services/utils/error-handle
 import { OperationTypeComponent } from '../../../shared/components/operation-type-component';
 import { PaymentReference } from '../model/payment-reference';
 import { P2pReference } from '../model/p2p-reference';
-import { TemplatesService } from '../../templates/templates.service';
+import { TemplatesService } from '../../template/templates/templates.service';
 import { Papa } from 'ngx-papaparse';
 import { ReferenceUtilsService } from './reference-utils.service';
 import { CsvUtilsService } from '../../../shared/services/utils/csv-utils.service';

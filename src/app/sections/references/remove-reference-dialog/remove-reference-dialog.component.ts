@@ -1,11 +1,12 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ReferencesService } from '../references.service';
-import { OperationType } from '../../../shared/constants/operation-type';
-import { Reference } from '../model/reference';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { OperationType } from '../../../shared/constants/operation-type';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { Reference } from '../model/reference';
+import { ReferencesService } from '../references.service';
 
 export interface DialogData {
     reference: Reference;
@@ -13,7 +14,6 @@ export interface DialogData {
 }
 
 @Component({
-    selector: 'app-remove-reference-dialog',
     templateUrl: './remove-reference-dialog.component.html',
     styleUrls: ['./remove-reference-dialog.component.scss'],
 })

@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
-import { IReferencesService } from './ireferences.service';
 import { HttpClient } from '@angular/common/http';
-import { ConfigService } from '../../../core/config.service';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SearchReferenceParams } from './model/search-reference-params';
-import { ParamsUtilService } from '../utils/params-util.service';
-import { ReferencesResponse } from '../../../sections/references/model/references-response';
+
+import { ConfigService } from '../../../core/config.service';
 import { PaymentReference } from '../../../sections/references/model/payment-reference';
 import { Reference } from '../../../sections/references/model/reference';
+import { ReferencesResponse } from '../../../sections/references/model/references-response';
 import { HttpRequestModel } from '../../model/http-request-model';
+import { ParamsUtilService } from '../utils/params-util.service';
+import { IReferencesService } from './ireferences.service';
+import { SearchReferenceParams } from './model/search-reference-params';
 
 @Injectable()
 export class PaymentReferencesService implements IReferencesService {

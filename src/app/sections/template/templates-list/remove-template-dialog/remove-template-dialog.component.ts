@@ -1,11 +1,14 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { TemplatesService } from '../templates.service';
-import { OperationType } from '../../../shared/constants/operation-type';
-import { Template } from '../model/template';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { EMPTY } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+import { OperationType } from '../../../../shared/constants/operation-type';
+import { ErrorHandlerService } from '../../../../shared/services/utils/error-handler.service';
+import { Template } from '../model/template';
+import { TemplatesService } from '../templates.service';
 
 export interface DialogData {
     template: Template;
@@ -13,7 +16,6 @@ export interface DialogData {
 }
 
 @Component({
-    selector: 'app-remove-template-dialog',
     templateUrl: './remove-template-dialog.component.html',
     styleUrls: ['./remove-template-dialog.component.scss'],
 })
@@ -33,10 +35,13 @@ export class RemoveTemplateDialogComponent {
     delete(): void {
         this.templateService
             .deleteTemplate((OperationType as any)[this.data.operationType], this.data.template.id)
-            .subscribe(
-                (id) => console.log(id),
-                (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
-            );
+            .pipe(
+                catchError((error: HttpErrorResponse) => {
+                    this.errorHandlerService.handleError(error, this.snackBar);
+                    return EMPTY;
+                })
+            )
+            .subscribe();
         this.dialogRef.close();
     }
 }

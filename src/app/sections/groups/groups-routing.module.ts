@@ -1,33 +1,36 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { AuditComponent } from '../audit/audit.component';
 import { GroupsComponent } from './groups.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { EditGroupComponent } from './edit-group/edit-group.component';
 import { AuthGuard } from '../../auth/auth-guard';
 
-@NgModule({
-    imports: [
-        RouterModule.forChild([
+const routes: Routes = [
+    {
+        path: '',
+        component: GroupsComponent,
+        canActivate: [AuthGuard],
+        data: { roles: ['fraud-officer'] },
+        children: [
             {
-                path: 'groups',
-                component: GroupsComponent,
-                canActivate: [AuthGuard],
-                data: { roles: ['fraud-officer'] },
-            },
-            {
-                path: 'groups/new',
+                path: 'new',
                 component: CreateGroupComponent,
                 canActivate: [AuthGuard],
                 data: { roles: ['fraud-officer'] },
             },
             {
-                path: 'groups/:id',
+                path: ':id',
                 component: EditGroupComponent,
                 canActivate: [AuthGuard],
                 data: { roles: ['fraud-officer'] },
             },
-        ]),
-    ],
+        ],
+    },
+];
+
+@NgModule({
+    imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
 export class GroupsRoutingModule {}

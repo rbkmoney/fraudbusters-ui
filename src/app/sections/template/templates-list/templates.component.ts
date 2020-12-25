@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { OperationType } from '../../shared/constants/operation-type';
-import { TemplatesService } from './templates.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { RemoveTemplateDialogComponent } from './remove-template-dialog/remove-template-dialog.component';
-import { SortOrder } from '../../shared/constants/sort-order';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { ConfigService } from '../../core/config.service';
-import { SearchFieldService } from '../../shared/services/utils/search-field.service';
-import { OperationTypeComponent } from '../../shared/components/operation-type-component';
+
+import { ConfigService } from '../../../core/config.service';
+import { OperationTypeComponent } from '../../../shared/components/operation-type-component';
+import { OperationType } from '../../../shared/constants/operation-type';
+import { SortOrder } from '../../../shared/constants/sort-order';
+import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { SearchFieldService } from '../../../shared/services/utils/search-field.service';
+import { RemoveTemplateDialogComponent } from './remove-template-dialog/remove-template-dialog.component';
+import { TemplatesService } from './templates.service';
 
 @Component({
-    selector: 'app-templates',
     templateUrl: './templates.component.html',
-    styleUrls: ['./templates.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TemplatesComponent extends OperationTypeComponent implements OnInit {
     private SIZE: number;
@@ -52,13 +52,9 @@ export class TemplatesComponent extends OperationTypeComponent implements OnInit
     }
 
     openDialog(removeTemplate): void {
-        const dialogRef = this.dialog.open(RemoveTemplateDialogComponent, {
+        this.dialog.open(RemoveTemplateDialogComponent, {
             width: '350px',
             data: { template: removeTemplate, operationType: this.operationType },
-        });
-
-        dialogRef.afterClosed().subscribe((result) => {
-            console.log('The dialog was closed');
         });
     }
 

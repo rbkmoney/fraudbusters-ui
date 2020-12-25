@@ -1,17 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PaymentEmulateFilter } from '../../../sections/emulation/template/model/payment-emulate-filter';
-import { Template } from '../../../sections/templates/model/template';
-import { IEmulationTemplateService } from './iemulation-template.service';
-import { HttpClient } from '@angular/common/http';
-import { ParamsUtilService } from '../utils/params-util.service';
+
 import { ConfigService } from '../../../core/config.service';
+import { PaymentEmulateFilter } from '../../../sections/emulation/template/model/payment-emulate-filter';
+import { Template } from '../../../sections/template/templates/model/template';
+import { IEmulationTemplateService } from './iemulation-template.service';
 
 @Injectable()
 export class PaymentEmulationTemplateService implements IEmulationTemplateService {
     private readonly fbManagementEndpoint: string;
 
-    constructor(private http: HttpClient, private paramsUtilService: ParamsUtilService, configService: ConfigService) {
+    constructor(private http: HttpClient, configService: ConfigService) {
         this.fbManagementEndpoint = configService.config.fbManagementEndpoint;
     }
 

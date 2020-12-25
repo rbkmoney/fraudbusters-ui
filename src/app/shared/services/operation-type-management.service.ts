@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
+
 import { OperationType } from '../constants/operation-type';
-import { PaymentTemplatesService } from './template/payment-templates.service';
+import { IEmulationTemplateService } from './emulation/iemulation-template.service';
+import { PaymentEmulationTemplateService } from './emulation/payment-emulation-template-service';
+import { IGroupsReferenceService } from './groups-reference/igroups-reference.service';
+import { P2pGroupsReferenceService } from './groups-reference/p2p-groups-reference.service';
+import { PaymentGroupsReferenceService } from './groups-reference/payment-groups-reference.service';
+import { IGroupsService } from './groups/igroups.service';
+import { P2pGroupsService } from './groups/p2p-groups.service';
+import { PaymentGroupsService } from './groups/payment-groups.service';
+import { IListsService } from './lists/ilists.service';
+import { P2pListsService } from './lists/p2p-lists.service';
+import { PaymentListsService } from './lists/payment-lists.service';
+import { IReferencesService } from './reference/ireferences.service';
+import { P2pReferencesService } from './reference/p2p-references.service';
+import { PaymentReferencesService } from './reference/payment-references.service';
 import { ITemplatesService } from './template/itemplates.service';
 import { P2pTemplatesService } from './template/p2p-templates.service';
-import { PaymentGroupsService } from './groups/payment-groups.service';
-import { P2pGroupsService } from './groups/p2p-groups.service';
-import { IGroupsService } from './groups/igroups.service';
-import { PaymentReferencesService } from './reference/payment-references.service';
-import { P2pReferencesService } from './reference/p2p-references.service';
-import { IReferencesService } from './reference/ireferences.service';
-import { PaymentGroupsReferenceService } from './groups-reference/payment-groups-reference.service';
-import { P2pGroupsReferenceService } from './groups-reference/p2p-groups-reference.service';
-import { IGroupsReferenceService } from './groups-reference/igroups-reference.service';
-import { IListsService } from './lists/ilists.service';
-import { PaymentListsService } from './lists/payment-lists.service';
-import { P2pListsService } from './lists/p2p-lists.service';
-import { PaymentEmulationTemplateService } from './emulation/payment-emulation-template-service';
-import { IEmulationTemplateService } from './emulation/iemulation-template.service';
+import { PaymentTemplatesService } from './template/payment-templates.service';
 
 @Injectable()
 export class OperationTypeManagementService {

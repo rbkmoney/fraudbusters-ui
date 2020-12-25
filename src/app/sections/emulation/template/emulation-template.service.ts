@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
-import { OperationType } from '../../../shared/constants/operation-type';
-import { BehaviorSubject, combineLatest, forkJoin, merge, Observable, of, ReplaySubject, Subject } from 'rxjs';
-import { PaymentEmulateFilter } from './model/payment-emulate-filter';
-import { P2pEmulateFilter } from './model/p2p-emulate-filter';
-import { Template } from '../../templates/model/template';
-import { catchError, map, mergeAll, mergeMap, switchMap, take, takeLast, takeUntil, takeWhile } from 'rxjs/operators';
-import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BehaviorSubject, combineLatest, Observable, of, Subject } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
+
+import { OperationType } from '../../../shared/constants/operation-type';
+import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
+import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { Template } from '../../template/templates/model/template';
+import { P2pEmulateFilter } from './model/p2p-emulate-filter';
+import { PaymentEmulateFilter } from './model/payment-emulate-filter';
 
 @Injectable()
 export class EmulationTemplateService {

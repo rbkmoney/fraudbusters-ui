@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
+
 import { ListType } from '../../constants/list-type';
-import { ListRecord } from './model/list-record';
-import { SearchListsParams } from './model/search-lists-params';
-import { ListsFilterResponse } from './model/lists-filter-response';
 import { CountInfoListRecord } from './model/count-info-list-record';
+import { ListsFilterResponse } from './model/lists-filter-response';
+import { SearchListsParams } from './model/search-lists-params';
 
 export interface IListsService {
     findListRows(params: SearchListsParams): Observable<ListsFilterResponse>;

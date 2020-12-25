@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { OperationType } from '../../shared/constants/operation-type';
 import { SortOrder } from '../../shared/constants/sort-order';
-import { Observable } from 'rxjs';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
-import { GroupsReferenceResponse } from './model/groups-reference-response';
 import { GroupReferenceModel } from './model/groups-reference';
+import { GroupsReferenceResponse } from './model/groups-reference-response';
 
 @Injectable()
 export class GroupsReferenceService {

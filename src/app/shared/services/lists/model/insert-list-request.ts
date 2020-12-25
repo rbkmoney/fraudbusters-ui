@@ -1,4 +1,3 @@
-import { ListRecord } from './list-record';
 import { ListType } from '../../../constants/list-type';
 import { CountInfoListRecord } from './count-info-list-record';
 

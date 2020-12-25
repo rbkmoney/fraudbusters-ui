@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { ConfigService } from './config.service';
 import { KeycloakService } from 'keycloak-angular';
+
+import { ConfigService } from './config.service';
 
 const initializer = (configService: ConfigService, keycloak: KeycloakService) => () =>
     Promise.all([configService.load()]);

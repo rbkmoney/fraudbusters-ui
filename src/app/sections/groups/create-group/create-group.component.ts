@@ -6,7 +6,7 @@ import { ErrorHandlerService } from '../../../shared/services/utils/error-handle
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GroupsService } from '../groups.service';
 import { Group } from '../model/group';
-import { TemplatesService } from '../../templates/templates.service';
+import { TemplatesService } from '../../template/templates/templates.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Sort } from '@angular/material/sort';
 import { GroupUtilsService } from '../utils/group-utils.service';

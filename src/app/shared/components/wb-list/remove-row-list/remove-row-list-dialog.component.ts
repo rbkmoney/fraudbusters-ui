@@ -1,12 +1,13 @@
-import { Component, Inject } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ErrorHandlerService } from '../../../../shared/services/utils/error-handler.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpErrorResponse } from '@angular/common/http';
-import { WbListService } from '../wb-list.service';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { ListType } from '../../../../shared/constants/list-type';
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { ListRecord } from '../../../../shared/services/lists/model/list-record';
-import { ListType } from '../../../../shared/constants/list-type';
+import { ErrorHandlerService } from '../../../../shared/services/utils/error-handler.service';
+import { WbListService } from '../wb-list.service';
 
 export interface DialogData {
     listRecord: ListRecord;
@@ -15,7 +16,6 @@ export interface DialogData {
 }
 
 @Component({
-    selector: 'app-remove-row-white-list',
     templateUrl: './remove-row-list-dialog.component.html',
     styleUrls: ['./remove-row-list-dialog.component.scss'],
 })

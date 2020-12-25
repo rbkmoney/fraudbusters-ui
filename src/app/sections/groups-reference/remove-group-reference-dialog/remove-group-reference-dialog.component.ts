@@ -1,10 +1,11 @@
-import { Component, Inject } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpErrorResponse } from '@angular/common/http';
-import { GroupsReferenceService } from '../groups-reference.service';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { OperationType } from '../../../shared/constants/operation-type';
+import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { GroupsReferenceService } from '../groups-reference.service';
 import { GroupReferenceModel } from '../model/groups-reference';
 
 export interface DialogData {
@@ -13,7 +14,6 @@ export interface DialogData {
 }
 
 @Component({
-    selector: 'app-remove-group-reference-dialog',
     templateUrl: './remove-group-reference-dialog.component.html',
     styleUrls: ['./remove-group-reference-dialog.component.scss'],
 })
