@@ -17,15 +17,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { initializer } from './initializer';
 import { SectionsModule } from './sections';
-import { EmulationTemplateModule } from './sections/emulation/template/emulation-template.module';
-import { GroupsReferenceModule } from './sections/groups-reference/groups-reference.module';
-import { GroupsModule } from './sections/groups/groups.module';
-import { BlackListModule } from './sections/lists/black-list/black-list.module';
-import { GreyListModule } from './sections/lists/grey-list/grey-list.module';
-import { WhiteListModule } from './sections/lists/white-list/white-list.module';
-import { FraudUploaderListModule } from './sections/load/fraud-uploader/fraud-uploader.module';
-import { ReferencesModule } from './sections/references/references.module';
-import { TemplatesModule } from './sections/templates/templates.module';
 import { NavigateMenuModule } from './shared/components/navigate-menu/navigate-menu.module';
 
 @NgModule({
@@ -41,15 +32,6 @@ import { NavigateMenuModule } from './shared/components/navigate-menu/navigate-m
         MatListModule,
         MatSliderModule,
         AppRoutingModule,
-        TemplatesModule,
-        ReferencesModule,
-        GroupsModule,
-        GroupsReferenceModule,
-        FraudUploaderListModule,
-        EmulationTemplateModule,
-        BlackListModule,
-        GreyListModule,
-        WhiteListModule,
         BrowserAnimationsModule,
         FlexLayoutModule,
         HttpClientModule,
