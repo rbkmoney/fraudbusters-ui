@@ -1,4 +1,4 @@
 export interface PaymentEmulateFilter {
-    partyId?: string; // TODO: Build fix with '?'
+    partyId: string;
     shopId?: string;
 }
