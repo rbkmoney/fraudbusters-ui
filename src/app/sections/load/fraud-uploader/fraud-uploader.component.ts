@@ -88,7 +88,7 @@ export class FraudUploaderComponent {
         this.files.splice(index, 1);
     }
 
-    formatBytes(bytes, decimals): string {
+    formatBytes(bytes: number, decimals?: number): string {
         if (bytes === 0) {
             return '0 Bytes';
         }

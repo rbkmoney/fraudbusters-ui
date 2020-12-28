@@ -1,3 +1,3 @@
 export interface P2pEmulateFilter {
-    identityId: string;
+    identityId?: string; // TODO: Build fix with '?'
 }
