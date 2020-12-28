@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import { Roles } from '../../auth';
 import { AuthGuard } from '../../auth/auth-guard';
 import { CreateReferenceComponent } from './create-reference/create-reference.component';
 import { ReferencesComponent } from './references.component';
@@ -9,16 +10,18 @@ import { ReferencesComponent } from './references.component';
     imports: [
         RouterModule.forChild([
             {
-                path: 'references',
+                path: '',
                 component: ReferencesComponent,
                 canActivate: [AuthGuard],
-                data: { roles: ['fraud-officer'] },
-            },
-            {
-                path: 'references/new',
-                component: CreateReferenceComponent,
-                canActivate: [AuthGuard],
-                data: { roles: ['fraud-officer'] },
+                data: { roles: [Roles.fraudOfficer] },
+                children: [
+                    {
+                        path: 'new',
+                        component: CreateReferenceComponent,
+                        canActivate: [AuthGuard],
+                        data: { roles: [Roles.fraudOfficer] },
+                    },
+                ],
             },
         ]),
     ],

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import { Roles } from '../../../auth';
 import { AuthGuard } from '../../../auth/auth-guard';
 import { EmulationTemplateComponent } from './emulation-template.component';
 
@@ -8,10 +9,15 @@ import { EmulationTemplateComponent } from './emulation-template.component';
     imports: [
         RouterModule.forChild([
             {
-                path: 'emulation/template',
+                path: '',
+                redirectTo: 'template',
+                pathMatch: 'full',
+            },
+            {
+                path: 'template',
                 component: EmulationTemplateComponent,
                 canActivate: [AuthGuard],
-                data: { roles: ['fraud-officer', 'fraud-monitoring', 'fraud-support'] },
+                data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring, Roles.fraudSupport] },
             },
         ]),
     ],

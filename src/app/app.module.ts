@@ -16,7 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { initializer } from './initializer';
-import { AuditModule } from './sections/audit/audit.module';
+import { SectionsModule } from './sections';
 import { EmulationTemplateModule } from './sections/emulation/template/emulation-template.module';
 import { GroupsReferenceModule } from './sections/groups-reference/groups-reference.module';
 import { GroupsModule } from './sections/groups/groups.module';
@@ -44,7 +44,6 @@ import { NavigateMenuModule } from './shared/components/navigate-menu/navigate-m
         TemplatesModule,
         ReferencesModule,
         GroupsModule,
-        AuditModule,
         GroupsReferenceModule,
         FraudUploaderListModule,
         EmulationTemplateModule,
@@ -56,6 +55,7 @@ import { NavigateMenuModule } from './shared/components/navigate-menu/navigate-m
         HttpClientModule,
         KeycloakAngularModule,
         NavigateMenuModule,
+        SectionsModule,
     ],
     providers: [
         {

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import { Roles } from '../../../auth';
 import { AuthGuard } from '../../../auth/auth-guard';
 import { AddRowGreyListComponent } from './add-row-grey-list/add-row-grey-list.component';
 import { GreyListComponent } from './grey-list.component';
@@ -9,16 +10,18 @@ import { GreyListComponent } from './grey-list.component';
     imports: [
         RouterModule.forChild([
             {
-                path: 'lists/grey',
+                path: 'grey',
                 component: GreyListComponent,
                 canActivate: [AuthGuard],
-                data: { roles: ['fraud-officer', 'fraud-monitoring'] },
-            },
-            {
-                path: 'lists/grey/new',
-                component: AddRowGreyListComponent,
-                canActivate: [AuthGuard],
-                data: { roles: ['fraud-officer', 'fraud-monitoring'] },
+                data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring] },
+                children: [
+                    {
+                        path: 'new',
+                        component: AddRowGreyListComponent,
+                        canActivate: [AuthGuard],
+                        data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring] },
+                    },
+                ],
             },
         ]),
     ],
