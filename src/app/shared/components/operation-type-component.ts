@@ -1,5 +1,6 @@
-import { OperationType } from '../constants/operation-type';
 import { ActivatedRoute } from '@angular/router';
+
+import { OperationType } from '../constants/operation-type';
 
 export class OperationTypeComponent {
     operationType: OperationType;

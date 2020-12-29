@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
-import { OperationType } from '../../shared/constants/operation-type';
 import { Observable } from 'rxjs';
+
+import { OperationType } from '../../shared/constants/operation-type';
+import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { Group } from './model/group';
 
 @Injectable()

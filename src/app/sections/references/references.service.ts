@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Reference } from './model/reference';
-import { OperationType } from '../../shared/constants/operation-type';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
-import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
-import { SortOrder } from '../../shared/constants/sort-order';
-import { ReferencesResponse } from './model/references-response';
-import { FilterReference } from './model/filter-reference';
-import { catchError, map, scan, switchMap } from 'rxjs/operators';
-import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PaymentReference } from './model/payment-reference';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { catchError, map, scan, switchMap } from 'rxjs/operators';
+
+import { OperationType } from '../../shared/constants/operation-type';
+import { SortOrder } from '../../shared/constants/sort-order';
+import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
+import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { FilterReference } from './model/filter-reference';
 import { P2pReference } from './model/p2p-reference';
+import { PaymentReference } from './model/payment-reference';
+import { Reference } from './model/reference';
+import { ReferencesResponse } from './model/references-response';
 
 @Injectable()
 export class ReferencesService {

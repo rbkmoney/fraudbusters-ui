@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
 import { ListType } from '../../../shared/constants/list-type';
 
 @Component({
-    selector: 'app-grey-list',
     templateUrl: './grey-list.component.html',
-    styleUrls: ['./grey-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GreyListComponent {
     LIST_TYPE = ListType.grey;

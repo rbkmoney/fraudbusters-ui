@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { GreyListComponent } from './grey-list.component';
-import { AddRowGreyListComponent } from './add-row-grey-list/add-row-grey-list.component';
+
 import { AuthGuard } from '../../../auth/auth-guard';
+import { AddRowGreyListComponent } from './add-row-grey-list/add-row-grey-list.component';
+import { GreyListComponent } from './grey-list.component';
 
 @NgModule({
     imports: [

@@ -1,23 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { OperationType } from '../../constants/operation-type';
-import { ListType } from '../../constants/list-type';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ReplaySubject } from 'rxjs';
+
+import { ConfigService } from '../../../core/config.service';
+import { ListType } from '../../constants/list-type';
+import { OperationType } from '../../constants/operation-type';
+import { SortOrder } from '../../constants/sort-order';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
 import { SearchFieldService } from '../../services/utils/search-field.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfigService } from '../../../core/config.service';
-import { ReplaySubject } from 'rxjs';
-import { SortOrder } from '../../constants/sort-order';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Sort } from '@angular/material/sort';
 import { RemoveRowListDialogComponent } from './remove-row-list/remove-row-list-dialog.component';
 import { WbListService } from './wb-list.service';
 
 @Component({
-    selector: 'app-wb-list',
+    selector: 'fb-wb-list',
     templateUrl: './wb-list.component.html',
-    styleUrls: ['./wb-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WbListComponent implements OnInit {
     @Input() listType: ListType;

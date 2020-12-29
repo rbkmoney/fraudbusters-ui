@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { ReferencesService } from '../references.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OperationType } from '../../../shared/constants/operation-type';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
-import { OperationTypeComponent } from '../../../shared/components/operation-type-component';
-import { PaymentReference } from '../model/payment-reference';
-import { P2pReference } from '../model/p2p-reference';
-import { TemplatesService } from '../../templates/templates.service';
 import { Papa } from 'ngx-papaparse';
-import { ReferenceUtilsService } from './reference-utils.service';
+
+import { OperationTypeComponent } from '../../../shared/components/operation-type-component';
+import { OperationType } from '../../../shared/constants/operation-type';
 import { CsvUtilsService } from '../../../shared/services/utils/csv-utils.service';
+import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { TemplatesService } from '../../templates/templates.service';
+import { P2pReference } from '../model/p2p-reference';
+import { PaymentReference } from '../model/payment-reference';
+import { ReferencesService } from '../references.service';
+import { ReferenceUtilsService } from './reference-utils.service';
 
 @Component({
-    selector: 'app-create-reference',
     templateUrl: './create-reference.component.html',
     styleUrls: ['./create-reference.component.scss'],
     providers: [ReferenceUtilsService, CsvUtilsService],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateReferenceComponent extends OperationTypeComponent implements OnInit {
     options: string[] = [];

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { EmulationTemplateComponent } from './emulation-template.component';
+
 import { AuthGuard } from '../../../auth/auth-guard';
+import { EmulationTemplateComponent } from './emulation-template.component';
 
 @NgModule({
     imports: [

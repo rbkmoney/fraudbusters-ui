@@ -117,6 +117,6 @@
     },
     "defaultProject": "fraudbusters-ui",
     "cli": {
-        "analytics": "8905d8c7-43bb-4355-8c4f-dc6a180e4780"
+        "analytics": false
     }
 }

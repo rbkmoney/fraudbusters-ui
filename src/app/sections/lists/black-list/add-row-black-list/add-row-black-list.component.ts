@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
 import { ListType } from '../../../../shared/constants/list-type';
 
 @Component({
-    selector: 'app-add-row-black-list',
     templateUrl: './add-row-black-list.component.html',
-    styleUrls: ['./add-row-black-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddRowBlackListComponent {
     LIST_TYPE = ListType.black;

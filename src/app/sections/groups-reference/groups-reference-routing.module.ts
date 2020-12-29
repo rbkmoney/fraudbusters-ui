@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { GroupsReferenceComponent } from './groups-reference.component';
-import { CreateGroupsReferenceComponent } from './create-groups-reference/create-groups-reference.component';
+
 import { AuthGuard } from '../../auth/auth-guard';
+import { CreateGroupsReferenceComponent } from './create-groups-reference/create-groups-reference.component';
+import { GroupsReferenceComponent } from './groups-reference.component';
 
 @NgModule({
     imports: [

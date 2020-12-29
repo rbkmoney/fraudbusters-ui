@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'app-progress',
+    selector: 'fb-progress',
     templateUrl: './progress.component.html',
     styleUrls: ['./progress.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProgressComponent {
     @Input() progress = 0;

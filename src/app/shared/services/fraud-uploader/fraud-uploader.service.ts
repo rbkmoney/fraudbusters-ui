@@ -1,14 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { ParamsUtilService } from '../utils/params-util.service';
+
 import { ConfigService } from '../../../core/config.service';
 
 @Injectable()
 export class FraudUploaderService {
     private readonly fbManagementEndpoint: string;
 
-    constructor(private http: HttpClient, private paramsUtilService: ParamsUtilService, configService: ConfigService) {
+    constructor(private http: HttpClient, configService: ConfigService) {
         this.fbManagementEndpoint = configService.config.fbManagementEndpoint;
     }
 

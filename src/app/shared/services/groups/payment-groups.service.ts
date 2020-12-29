@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ConfigService } from '../../../core/config.service';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ParamsUtilService } from '../utils/params-util.service';
-import { IGroupsService } from './igroups.service';
+
+import { ConfigService } from '../../../core/config.service';
 import { Group } from '../../../sections/groups/model/group';
+import { IGroupsService } from './igroups.service';
 
 @Injectable()
 export class PaymentGroupsService implements IGroupsService {
     private readonly fbManagementEndpoint: string;
 
-    constructor(private http: HttpClient, private paramsUtilService: ParamsUtilService, configService: ConfigService) {
+    constructor(private http: HttpClient, configService: ConfigService) {
         this.fbManagementEndpoint = configService.config.fbManagementEndpoint;
     }
 

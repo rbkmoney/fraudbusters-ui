@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
-import { FraudUploaderService } from '../../../shared/services/fraud-uploader/fraud-uploader.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { UploadFile } from './model/upload-file';
-import { UploadStatus } from './constants/upload-status';
-import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { FraudUploaderService } from '../../../shared/services/fraud-uploader/fraud-uploader.service';
+import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { UploadStatus } from './constants/upload-status';
+import { UploadFile } from './model/upload-file';
+
 @Component({
-    selector: 'app-fraud-uploader',
     templateUrl: './fraud-uploader.component.html',
     styleUrls: ['./fraud-uploader.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FraudUploaderComponent {
     files: any[] = [];
@@ -87,7 +88,7 @@ export class FraudUploaderComponent {
         this.files.splice(index, 1);
     }
 
-    formatBytes(bytes, decimals): string {
+    formatBytes(bytes: number, decimals?: number): string {
         if (bytes === 0) {
             return '0 Bytes';
         }

@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { TemplatesComponent } from './templates.component';
+
+import { AuthGuard } from '../../auth/auth-guard';
 import { CreateTemplateComponent } from './create-template/create-template.component';
 import { EditTemplateComponent } from './edit-template/edit-template.component';
-import { AuthGuard } from '../../auth/auth-guard';
+import { TemplatesComponent } from './templates.component';
 
 @NgModule({
     imports: [
