@@ -20,7 +20,7 @@ export class GroupsReferenceService {
         sortField?: string
     ): Observable<GroupsReferenceResponse> {
         return this.operationReferenceService.findGroupsReferenceService(type).findGroups({
-            idRegexp: nameRegexp,
+            searchValue: nameRegexp,
             lastId: lastInListName,
             size: sizeValue,
             sortOrder: sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC],

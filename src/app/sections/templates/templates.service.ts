@@ -21,7 +21,7 @@ export class TemplatesService {
         sortOrder?: SortOrder
     ): Observable<TemplatesResponse> {
         return this.operationTemplateService.findTemplateService(type).findTemplates({
-            id: nameRegexp,
+            searchValue: nameRegexp,
             lastId: lastInListName,
             size: sizeValue,
             sortOrder: sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC],
