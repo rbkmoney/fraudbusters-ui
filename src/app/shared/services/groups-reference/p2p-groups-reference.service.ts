@@ -7,9 +7,9 @@ import { GroupReferenceModel } from '../../../sections/groups-reference/model/gr
 import { GroupsReferenceResponse } from '../../../sections/groups-reference/model/groups-reference-response';
 import { P2pGroupReferenceModel } from '../../../sections/groups-reference/model/p2p-groups-reference';
 import { HttpRequestModel } from '../../model/http-request-model';
+import { SearchParams } from '../../model/search-params';
 import { ParamsUtilService } from '../utils/params-util.service';
 import { IGroupsReferenceService } from './igroups-reference.service';
-import { SearchParams } from '../../model/search-params';
 
 @Injectable()
 export class P2pGroupsReferenceService implements IGroupsReferenceService {
