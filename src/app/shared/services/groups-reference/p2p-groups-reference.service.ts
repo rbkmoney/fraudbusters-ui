@@ -9,7 +9,7 @@ import { P2pGroupReferenceModel } from '../../../sections/groups-reference/model
 import { HttpRequestModel } from '../../model/http-request-model';
 import { ParamsUtilService } from '../utils/params-util.service';
 import { IGroupsReferenceService } from './igroups-reference.service';
-import { SearchGroupsReferenceParams } from './model/search-group-reference-params';
+import { SearchParams } from '../../model/search-params';
 
 @Injectable()
 export class P2pGroupsReferenceService implements IGroupsReferenceService {
@@ -19,7 +19,7 @@ export class P2pGroupsReferenceService implements IGroupsReferenceService {
         this.fbManagementEndpoint = configService.config.fbManagementEndpoint;
     }
 
-    findGroups(params?: SearchGroupsReferenceParams): Observable<GroupsReferenceResponse> {
+    findGroups(params?: SearchParams): Observable<GroupsReferenceResponse> {
         return this.http.get<GroupsReferenceResponse>(`${this.fbManagementEndpoint}/p2p/group/reference/filter`, {
             params: this.paramsUtilService.filterParameters(params),
         });

@@ -17,7 +17,6 @@ import { TemplatesService } from '../templates.service';
 export class EditTemplateComponent implements OnInit {
     private operationType: OperationType;
     template: Template = { id: '', template: '' };
-    templateId;
 
     constructor(
         private route: ActivatedRoute,
@@ -29,12 +28,6 @@ export class EditTemplateComponent implements OnInit {
 
     ngOnInit(): void {
         this.preloadData();
-        this.templateService.getTemplates(this.operationType, 1, this.templateId).subscribe(
-            (templatesResponse) => {
-                this.template = templatesResponse.templateModels[0];
-            },
-            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
-        );
     }
 
     private preloadData(): void {
@@ -42,7 +35,12 @@ export class EditTemplateComponent implements OnInit {
             this.operationType = OperationType[fragment];
         });
         this.route.params.subscribe(({ id }) => {
-            this.templateId = id;
+            this.templateService.getTemplates(this.operationType, 1, id).subscribe(
+                (templatesResponse) => {
+                    this.template = templatesResponse.templateModels[0];
+                },
+                (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
+            );
         });
     }
 
