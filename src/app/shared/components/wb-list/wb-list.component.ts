@@ -6,7 +6,7 @@ import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
 
-import { ConfigService } from '../../../core/config.service';
+import { ConfigService } from '../../../config';
 import { ListType } from '../../constants/list-type';
 import { OperationType } from '../../constants/operation-type';
 import { SortOrder } from '../../constants/sort-order';
@@ -34,7 +34,7 @@ export class WbListComponent implements OnInit {
     paymentColumns = ['listName', 'partyId', 'shopId', 'value', 'insertTime'];
     p2pColumns = ['listName', 'partyId', 'shopId', 'value', 'insertTime'];
 
-    private SIZE: number;
+    private SIZE = this.configService.pageSize;
 
     constructor(
         private router: Router,
@@ -43,10 +43,9 @@ export class WbListComponent implements OnInit {
         private searchFieldService: SearchFieldService,
         private listService: WbListService,
         private snackBar: MatSnackBar,
-        public dialog: MatDialog,
-        configService: ConfigService
+        private dialog: MatDialog,
+        private configService: ConfigService
     ) {
-        this.SIZE = configService.config.pageSize;
         this.displayedColumns.next([]);
     }
 

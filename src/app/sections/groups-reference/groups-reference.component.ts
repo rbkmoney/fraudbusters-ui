@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
 import { filter, pluck } from 'rxjs/operators';
 
-import { ConfigService } from '../../core/config.service';
+import { ConfigService } from '../../config';
 import { OperationTypeComponent } from '../../shared/components/operation-type-component';
 import { OperationType } from '../../shared/constants/operation-type';
 import { SortOrder } from '../../shared/constants/sort-order';
@@ -26,7 +26,7 @@ export class GroupsReferenceComponent extends OperationTypeComponent implements 
     operationType: OperationType;
     operationTypes;
 
-    private SIZE: number;
+    private SIZE = this.configService.pageSize;
 
     constructor(
         private router: Router,
@@ -35,11 +35,10 @@ export class GroupsReferenceComponent extends OperationTypeComponent implements 
         private groupsReferenceService: GroupsReferenceService,
         private searchFieldService: SearchFieldService,
         private snackBar: MatSnackBar,
-        public dialog: MatDialog,
-        configService: ConfigService
+        private dialog: MatDialog,
+        private configService: ConfigService
     ) {
         super();
-        this.SIZE = configService.config.pageSize;
         this.displayedColumns.next(['groupId', 'edit']);
     }
 

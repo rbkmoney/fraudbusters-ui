@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ConfigService } from '../../../core/config.service';
+import { ConfigService } from '../../../config';
 import { AuditResponse } from '../../../sections/references/model/audit-response';
 import { ParamsUtilService } from '../utils/params-util.service';
 import { IAuditService } from './iaudit.service';
@@ -10,11 +10,13 @@ import { SearchAuditParams } from './model/search-audit-params';
 
 @Injectable()
 export class AuditRemoteService implements IAuditService {
-    private readonly fbManagementEndpoint: string;
+    private readonly fbManagementEndpoint = this.configService.fbManagementEndpoint;
 
-    constructor(private http: HttpClient, private paramsUtilService: ParamsUtilService, configService: ConfigService) {
-        this.fbManagementEndpoint = configService.config.fbManagementEndpoint;
-    }
+    constructor(
+        private http: HttpClient,
+        private paramsUtilService: ParamsUtilService,
+        private configService: ConfigService
+    ) {}
 
     getObjectTypes(): Observable<string[]> {
         return this.http.get<string[]>(`${this.fbManagementEndpoint}/audit/objectTypes`);

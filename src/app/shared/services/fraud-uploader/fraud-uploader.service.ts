@@ -2,15 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ConfigService } from '../../../core/config.service';
+import { ConfigService } from '../../../config';
 
 @Injectable()
 export class FraudUploaderService {
-    private readonly fbManagementEndpoint: string;
+    private readonly fbManagementEndpoint = this.configService.fbManagementEndpoint;
 
-    constructor(private http: HttpClient, configService: ConfigService) {
-        this.fbManagementEndpoint = configService.config.fbManagementEndpoint;
-    }
+    constructor(private http: HttpClient, private configService: ConfigService) {}
 
     postFile(fileToUpload: File): Observable<any> {
         const formData: FormData = new FormData();

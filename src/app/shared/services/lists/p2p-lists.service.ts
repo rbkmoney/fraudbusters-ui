@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ConfigService } from '../../../core/config.service';
+import { ConfigService } from '../../../config';
 import { ListType } from '../../constants/list-type';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { ParamsUtilService } from '../utils/params-util.service';
@@ -14,11 +14,13 @@ import { SearchListsParams } from './model/search-lists-params';
 
 @Injectable()
 export class P2pListsService implements IListsService {
-    private readonly fbManagementEndpoint: string;
+    private readonly fbManagementEndpoint = this.configService.fbManagementEndpoint;
 
-    constructor(private http: HttpClient, private paramsUtilService: ParamsUtilService, configService: ConfigService) {
-        this.fbManagementEndpoint = configService.config.fbManagementEndpoint;
-    }
+    constructor(
+        private http: HttpClient,
+        private paramsUtilService: ParamsUtilService,
+        private configService: ConfigService
+    ) {}
 
     deleteListRow(id: string): Observable<string> {
         return this.http.delete(`${this.fbManagementEndpoint}/p2p/lists/${id}`, {

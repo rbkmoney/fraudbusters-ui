@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ConfigService } from '../../core/config.service';
+import { ConfigService } from '../../config';
 import { OperationTypeComponent } from '../../shared/components/operation-type-component';
 import { OperationType } from '../../shared/constants/operation-type';
 import { SortOrder } from '../../shared/constants/sort-order';
@@ -19,7 +19,7 @@ import { TemplatesService } from './templates.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TemplatesComponent extends OperationTypeComponent implements OnInit {
-    private SIZE: number;
+    private SIZE = this.configService.pageSize;
 
     constructor(
         private router: Router,
@@ -27,12 +27,11 @@ export class TemplatesComponent extends OperationTypeComponent implements OnInit
         private errorHandlerService: ErrorHandlerService,
         private templateService: TemplatesService,
         private snackBar: MatSnackBar,
-        public dialog: MatDialog,
-        public searchFieldService: SearchFieldService,
-        configService: ConfigService
+        private dialog: MatDialog,
+        private searchFieldService: SearchFieldService,
+        private configService: ConfigService
     ) {
         super();
-        this.SIZE = configService.config.pageSize;
     }
 
     isLoadMore = false;

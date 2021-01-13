@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AuthGuard } from '../../auth/auth-guard';
+import { AuthGuard, Roles } from '../../auth';
 import { CreateTemplateComponent } from './create-template/create-template.component';
 import { EditTemplateComponent } from './edit-template/edit-template.component';
 import { TemplatesComponent } from './templates.component';
@@ -10,22 +10,24 @@ import { TemplatesComponent } from './templates.component';
     imports: [
         RouterModule.forChild([
             {
-                path: 'templates',
+                path: '',
                 component: TemplatesComponent,
                 canActivate: [AuthGuard],
-                data: { roles: ['fraud-officer'] },
-            },
-            {
-                path: 'templates/new',
-                component: CreateTemplateComponent,
-                canActivate: [AuthGuard],
-                data: { roles: ['fraud-officer'] },
-            },
-            {
-                path: 'templates/:id',
-                component: EditTemplateComponent,
-                canActivate: [AuthGuard],
-                data: { roles: ['fraud-officer'] },
+                data: { roles: [Roles.fraudOfficer] },
+                children: [
+                    {
+                        path: 'new',
+                        component: CreateTemplateComponent,
+                        canActivate: [AuthGuard],
+                        data: { roles: [Roles.fraudOfficer] },
+                    },
+                    {
+                        path: ':id',
+                        component: EditTemplateComponent,
+                        canActivate: [AuthGuard],
+                        data: { roles: [Roles.fraudOfficer] },
+                    },
+                ],
             },
         ]),
     ],

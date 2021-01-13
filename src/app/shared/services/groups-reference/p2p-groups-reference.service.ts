@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ConfigService } from '../../../core/config.service';
+import { ConfigService } from '../../../config';
 import { GroupReferenceModel } from '../../../sections/groups-reference/model/groups-reference';
 import { GroupsReferenceResponse } from '../../../sections/groups-reference/model/groups-reference-response';
 import { P2pGroupReferenceModel } from '../../../sections/groups-reference/model/p2p-groups-reference';
@@ -13,11 +13,13 @@ import { IGroupsReferenceService } from './igroups-reference.service';
 
 @Injectable()
 export class P2pGroupsReferenceService implements IGroupsReferenceService {
-    private readonly fbManagementEndpoint: string;
+    private readonly fbManagementEndpoint = this.configService.fbManagementEndpoint;
 
-    constructor(private http: HttpClient, private paramsUtilService: ParamsUtilService, configService: ConfigService) {
-        this.fbManagementEndpoint = configService.config.fbManagementEndpoint;
-    }
+    constructor(
+        private http: HttpClient,
+        private paramsUtilService: ParamsUtilService,
+        private configService: ConfigService
+    ) {}
 
     findGroups(params?: SearchParams): Observable<GroupsReferenceResponse> {
         return this.http.get<GroupsReferenceResponse>(`${this.fbManagementEndpoint}/p2p/group/reference/filter`, {
