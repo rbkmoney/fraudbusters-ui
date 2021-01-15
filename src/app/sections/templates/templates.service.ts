@@ -4,10 +4,7 @@ import { Observable } from 'rxjs';
 import { OperationType } from '../../shared/constants/operation-type';
 import { SortOrder } from '../../shared/constants/sort-order';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
-import { Template } from './model/template';
 import { TemplatesResponse } from './model/templates-response';
-import { ValidateResponse } from './model/validate-response';
-import { ValidateTemplate } from './model/validate-template';
 
 @Injectable()
 export class TemplatesService {
@@ -34,13 +31,5 @@ export class TemplatesService {
 
     getTemplatesName(type: OperationType, regexp?: string): Observable<string[]> {
         return this.operationTemplateService.findTemplateService(type).getTemplatesName(regexp);
-    }
-
-    saveTemplate(type: OperationType, template: Template): Observable<ValidateTemplate> {
-        return this.operationTemplateService.findTemplateService(type).saveTemplate(template);
-    }
-
-    validateTemplate(type: OperationType, templates: Template[]): Observable<ValidateResponse> {
-        return this.operationTemplateService.findTemplateService(type).validateTemplates(templates);
     }
 }

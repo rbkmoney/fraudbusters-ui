@@ -40,7 +40,7 @@ export class TemplatesService {
         return this.operationTemplateService.findTemplateService(type).saveTemplate(template);
     }
 
-    validateTemplate(type: OperationType, templates: Template[]): Observable<ValidateResponse> {
-        return this.operationTemplateService.findTemplateService(type).validateTemplates(templates);
+    validateTemplate(type: OperationType, template: Template): Observable<ValidateResponse> {
+        return this.operationTemplateService.findTemplateService(type).validateTemplate(template);
     }
 }
