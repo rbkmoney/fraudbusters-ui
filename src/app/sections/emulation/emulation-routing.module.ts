@@ -3,11 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
     {
-        path: '',
-        redirectTo: 'template',
-        pathMatch: 'full',
-    },
-    {
         path: 'template',
         loadChildren: () => import('./template').then((m) => m.EmulationTemplateModule),
     },

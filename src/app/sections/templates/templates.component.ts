@@ -114,10 +114,10 @@ export class TemplatesComponent extends OperationTypeComponent implements OnInit
     }
 
     navigateToNew(): void {
-        this.router.navigate(['/templates/new'], { fragment: this.operationType });
+        this.router.navigate(['/template/new'], { fragment: this.operationType });
     }
 
     navigateToEdit(id): void {
-        this.router.navigate([`/templates/${id}`], { fragment: this.operationType });
+        this.router.navigate([`/template/${id}`], { fragment: this.operationType });
     }
 }

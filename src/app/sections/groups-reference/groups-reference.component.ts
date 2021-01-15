@@ -131,6 +131,6 @@ export class GroupsReferenceComponent extends OperationTypeComponent implements 
     }
 
     navigateToNew(): void {
-        this.router.navigate(['/groups-reference/new'], { fragment: this.operationType });
+        this.router.navigate(['/group-reference/new'], { fragment: this.operationType });
     }
 }

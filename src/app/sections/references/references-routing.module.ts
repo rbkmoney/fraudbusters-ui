@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../auth';
-import { CreateReferenceComponent } from './create-reference/create-reference.component';
+import { CreateReferenceComponent } from '../reference/create-reference/create-reference.component';
 import { ReferencesComponent } from './references.component';
 
 @NgModule({

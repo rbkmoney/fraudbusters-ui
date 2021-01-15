@@ -32,15 +32,14 @@ import { PaymentTemplatesService } from '../../shared/services/template/payment-
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
-import { CreateGroupComponent } from './create-group/create-group.component';
-import { EditGroupComponent } from './edit-group/edit-group.component';
+import { TemplatesService } from '../templates/templates.service';
 import { GroupsRoutingModule } from './groups-routing.module';
 import { GroupsComponent } from './groups.component';
 import { GroupsService } from './groups.service';
 import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-dialog.component';
 
 @NgModule({
-    declarations: [GroupsComponent, CreateGroupComponent, RemoveGroupDialogComponent, EditGroupComponent],
+    declarations: [GroupsComponent, RemoveGroupDialogComponent],
     imports: [
         CommonModule,
         GroupsRoutingModule,
@@ -73,6 +72,7 @@ import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-d
         PaymentReferencesService,
         PaymentEmulationTemplateService,
         P2pListsService,
+        TemplatesService,
         PaymentListsService,
         P2pReferencesService,
         P2pGroupsReferenceService,

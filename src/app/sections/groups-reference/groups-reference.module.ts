@@ -30,14 +30,13 @@ import { PaymentTemplatesService } from '../../shared/services/template/payment-
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
-import { CreateGroupsReferenceComponent } from './create-groups-reference/create-groups-reference.component';
 import { GroupsReferenceRoutingModule } from './groups-reference-routing.module';
 import { GroupsReferenceComponent } from './groups-reference.component';
 import { GroupsReferenceService } from './groups-reference.service';
 import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-dialog/remove-group-reference-dialog.component';
 
 @NgModule({
-    declarations: [GroupsReferenceComponent, CreateGroupsReferenceComponent, RemoveGroupReferenceDialogComponent],
+    declarations: [GroupsReferenceComponent, RemoveGroupReferenceDialogComponent],
     imports: [
         CommonModule,
         GroupsReferenceRoutingModule,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { P2pReference } from '../model/p2p-reference';
-import { PaymentReference } from '../model/payment-reference';
+import { P2pReference } from '../../references/model/p2p-reference';
+import { PaymentReference } from '../../references/model/payment-reference';
 
 @Injectable()
 export class ReferenceUtilsService {

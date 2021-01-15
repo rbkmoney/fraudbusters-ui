@@ -12,20 +12,40 @@ const routes: Routes = [
         loadChildren: () => import('./templates').then((m) => m.TemplatesModule),
     },
     {
+        path: 'template',
+        loadChildren: () => import('./template').then((m) => m.TemplateModule),
+    },
+    {
         path: 'references',
         loadChildren: () => import('./references').then((m) => m.ReferencesModule),
+    },
+    {
+        path: 'reference',
+        loadChildren: () => import('./reference').then((m) => m.ReferenceModule),
     },
     {
         path: 'groups',
         loadChildren: () => import('./groups').then((m) => m.GroupsModule),
     },
     {
+        path: 'group',
+        loadChildren: () => import('./group').then((m) => m.GroupModule),
+    },
+    {
         path: 'groups-reference',
         loadChildren: () => import('./groups-reference').then((m) => m.GroupsReferenceModule),
     },
     {
+        path: 'group-reference',
+        loadChildren: () => import('./group-reference').then((m) => m.GroupReferenceModule),
+    },
+    {
         path: 'lists',
         loadChildren: () => import('./lists').then((m) => m.ListsModule),
+    },
+    {
+        path: 'list',
+        loadChildren: () => import('./list').then((m) => m.ListModule),
     },
     {
         path: 'load',

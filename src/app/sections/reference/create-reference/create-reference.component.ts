@@ -8,10 +8,10 @@ import { OperationTypeComponent } from '../../../shared/components/operation-typ
 import { OperationType } from '../../../shared/constants/operation-type';
 import { CsvUtilsService } from '../../../shared/services/utils/csv-utils.service';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
-import { TemplatesService } from '../../templates/templates.service';
 import { P2pReference } from '../model/p2p-reference';
 import { PaymentReference } from '../model/payment-reference';
 import { ReferencesService } from '../references.service';
+import { TemplatesService } from '../templates.service';
 import { ReferenceUtilsService } from './reference-utils.service';
 
 @Component({

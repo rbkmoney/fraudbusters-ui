@@ -31,15 +31,13 @@ import { ErrorHandlerService } from '../../shared/services/utils/error-handler.s
 import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { ValidateResponseHandler } from '../../shared/services/utils/validate-response-handler.service';
-import { CreateTemplateComponent } from './create-template/create-template.component';
-import { EditTemplateComponent } from './edit-template/edit-template.component';
 import { RemoveTemplateDialogComponent } from './remove-template-dialog/remove-template-dialog.component';
 import { TemplatesRoutingModule } from './templates-routing.module';
 import { TemplatesComponent } from './templates.component';
 import { TemplatesService } from './templates.service';
 
 @NgModule({
-    declarations: [TemplatesComponent, RemoveTemplateDialogComponent, EditTemplateComponent, CreateTemplateComponent],
+    declarations: [TemplatesComponent, RemoveTemplateDialogComponent],
     imports: [
         CommonModule,
         TemplatesRoutingModule,

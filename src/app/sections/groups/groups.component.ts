@@ -72,11 +72,11 @@ export class GroupsComponent extends OperationTypeComponent implements OnInit {
     }
 
     navigateToNew(): void {
-        this.router.navigate(['/groups/new'], { fragment: this.operationType });
+        this.router.navigate(['/group/new'], { fragment: this.operationType });
     }
 
     navigateToEdit(id): void {
-        this.router.navigate([`/groups/${id}`], { fragment: this.operationType });
+        this.router.navigate([`/group/${id}`], { fragment: this.operationType });
     }
 
     loadMore(): void {}

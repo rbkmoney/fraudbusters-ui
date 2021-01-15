@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../auth';
-import { CreateGroupsReferenceComponent } from './create-groups-reference/create-groups-reference.component';
 import { GroupsReferenceComponent } from './groups-reference.component';
 
 @NgModule({
@@ -13,14 +12,6 @@ import { GroupsReferenceComponent } from './groups-reference.component';
                 component: GroupsReferenceComponent,
                 canActivate: [AuthGuard],
                 data: { roles: [Roles.fraudOfficer] },
-                children: [
-                    {
-                        path: 'new',
-                        component: CreateGroupsReferenceComponent,
-                        canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
-                    },
-                ],
             },
         ]),
     ],

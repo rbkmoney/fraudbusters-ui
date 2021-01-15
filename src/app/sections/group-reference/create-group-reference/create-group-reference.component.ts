@@ -11,10 +11,10 @@ import { P2pGroupReferenceModel } from '../model/p2p-groups-reference';
 import { PaymentGroupReferenceModel } from '../model/payment-groups-reference';
 
 @Component({
-    templateUrl: './create-groups-reference.component.html',
+    templateUrl: './create-group-reference.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CreateGroupsReferenceComponent extends OperationTypeComponent implements OnInit {
+export class CreateGroupReferenceComponent extends OperationTypeComponent implements OnInit {
     p2pReferences: P2pGroupReferenceModel[] = [];
     paymentReferences: PaymentGroupReferenceModel[] = [];
 

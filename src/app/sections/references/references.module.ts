@@ -34,14 +34,13 @@ import { PaymentTemplatesService } from '../../shared/services/template/payment-
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
-import { CreateReferenceComponent } from './create-reference/create-reference.component';
 import { ReferencesRoutingModule } from './references-routing.module';
 import { ReferencesComponent } from './references.component';
 import { ReferencesService } from './references.service';
 import { RemoveReferenceDialogComponent } from './remove-reference-dialog/remove-reference-dialog.component';
 
 @NgModule({
-    declarations: [ReferencesComponent, RemoveReferenceDialogComponent, CreateReferenceComponent],
+    declarations: [ReferencesComponent, RemoveReferenceDialogComponent],
     imports: [
         CommonModule,
         ReferencesRoutingModule,

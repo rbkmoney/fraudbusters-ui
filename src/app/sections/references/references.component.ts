@@ -114,6 +114,6 @@ export class ReferencesComponent extends OperationTypeComponent implements OnIni
     }
 
     navigateToNew(): void {
-        this.router.navigate(['/references/new'], { fragment: this.operationType });
+        this.router.navigate(['/reference/new'], { fragment: this.operationType });
     }
 }

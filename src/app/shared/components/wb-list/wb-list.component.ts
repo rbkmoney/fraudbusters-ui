@@ -117,7 +117,7 @@ export class WbListComponent implements OnInit {
     }
 
     navigateToNew(): void {
-        this.router.navigate(['./new'], { relativeTo: this.route, fragment: this.operationType });
+        this.router.navigate([`/list/${this.listType}/new`], { fragment: this.operationType });
     }
 
     changeSearch(newValue): void {
