@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ConfigService } from '../../../core/config.service';
+import { ConfigService } from '../../../config';
 import { Group } from '../../../sections/groups/model/group';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { ParamsUtilService } from '../utils/params-util.service';
@@ -10,11 +10,13 @@ import { IGroupsService } from './igroups.service';
 
 @Injectable()
 export class P2pGroupsService implements IGroupsService {
-    private readonly fbManagementEndpoint: string;
+    private readonly fbManagementEndpoint = this.configService.fbManagementEndpoint;
 
-    constructor(private http: HttpClient, private paramsUtilService: ParamsUtilService, configService: ConfigService) {
-        this.fbManagementEndpoint = configService.config.fbManagementEndpoint;
-    }
+    constructor(
+        private http: HttpClient,
+        private paramsUtilService: ParamsUtilService,
+        private configService: ConfigService
+    ) {}
 
     findGroups(filterId: string): Observable<Group[]> {
         return this.http.get<Group[]>(`${this.fbManagementEndpoint}/p2p/group/filter/`, {

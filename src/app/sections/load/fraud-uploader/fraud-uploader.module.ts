@@ -16,7 +16,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { ConfigService } from '../../../core/config.service';
 import { FraudUploaderService } from '../../../shared/services/fraud-uploader/fraud-uploader.service';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { DndDirective } from './dnd.directive';
@@ -45,6 +44,6 @@ import { ProgressComponent } from './progress/progress.component';
         MatGridListModule,
         FlexLayoutModule,
     ],
-    providers: [FraudUploaderService, ConfigService, ErrorHandlerService],
+    providers: [FraudUploaderService, ErrorHandlerService],
 })
 export class FraudUploaderListModule {}

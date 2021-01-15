@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ConfigService } from '../../../core/config.service';
+import { ConfigService } from '../../../config';
 import { Template } from '../../../sections/templates/model/template';
 import { TemplatesResponse } from '../../../sections/templates/model/templates-response';
 import { ValidateResponse } from '../../../sections/templates/model/validate-response';
@@ -14,11 +14,13 @@ import { ITemplatesService } from './itemplates.service';
 
 @Injectable()
 export class P2pTemplatesService implements ITemplatesService {
-    private readonly fbManagementEndpoint: string;
+    private readonly fbManagementEndpoint = this.configService.fbManagementEndpoint;
 
-    constructor(private http: HttpClient, private paramsUtilService: ParamsUtilService, configService: ConfigService) {
-        this.fbManagementEndpoint = configService.config.fbManagementEndpoint;
-    }
+    constructor(
+        private http: HttpClient,
+        private paramsUtilService: ParamsUtilService,
+        private configService: ConfigService
+    ) {}
 
     findTemplates(params?: SearchParams): Observable<TemplatesResponse> {
         return this.http.get<TemplatesResponse>(`${this.fbManagementEndpoint}/p2p/template/filter/`, {

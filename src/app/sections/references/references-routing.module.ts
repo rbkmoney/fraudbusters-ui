@@ -1,24 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AuthGuard } from '../../auth/auth-guard';
-import { CreateReferenceComponent } from './create-reference/create-reference.component';
+import { AuthGuard, Roles } from '../../auth';
+import { CreateReferenceComponent } from '../reference/create-reference/create-reference.component';
 import { ReferencesComponent } from './references.component';
 
 @NgModule({
     imports: [
         RouterModule.forChild([
             {
-                path: 'references',
+                path: '',
                 component: ReferencesComponent,
                 canActivate: [AuthGuard],
-                data: { roles: ['fraud-officer'] },
-            },
-            {
-                path: 'references/new',
-                component: CreateReferenceComponent,
-                canActivate: [AuthGuard],
-                data: { roles: ['fraud-officer'] },
+                data: { roles: [Roles.fraudOfficer] },
+                children: [
+                    {
+                        path: 'new',
+                        component: CreateReferenceComponent,
+                        canActivate: [AuthGuard],
+                        data: { roles: [Roles.fraudOfficer] },
+                    },
+                ],
             },
         ]),
     ],

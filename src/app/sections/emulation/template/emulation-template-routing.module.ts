@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AuthGuard } from '../../../auth/auth-guard';
+import { AuthGuard, Roles } from '../../../auth';
 import { EmulationTemplateComponent } from './emulation-template.component';
 
 @NgModule({
     imports: [
         RouterModule.forChild([
             {
-                path: 'emulation/template',
+                path: '',
                 component: EmulationTemplateComponent,
                 canActivate: [AuthGuard],
-                data: { roles: ['fraud-officer', 'fraud-monitoring', 'fraud-support'] },
+                data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring, Roles.fraudSupport] },
             },
         ]),
     ],

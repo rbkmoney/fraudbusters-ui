@@ -15,23 +15,29 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { KeycloakService } from 'keycloak-angular';
 
-import { ConfigService } from '../../core/config.service';
+import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
+import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
+import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
+import { P2pGroupsService } from '../../shared/services/groups/p2p-groups.service';
+import { PaymentGroupsService } from '../../shared/services/groups/payment-groups.service';
+import { P2pListsService } from '../../shared/services/lists/p2p-lists.service';
+import { PaymentListsService } from '../../shared/services/lists/payment-lists.service';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
+import { P2pReferencesService } from '../../shared/services/reference/p2p-references.service';
+import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
 import { P2pTemplatesService } from '../../shared/services/template/p2p-templates.service';
 import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { ValidateResponseHandler } from '../../shared/services/utils/validate-response-handler.service';
-import { CreateTemplateComponent } from './create-template/create-template.component';
-import { EditTemplateComponent } from './edit-template/edit-template.component';
 import { RemoveTemplateDialogComponent } from './remove-template-dialog/remove-template-dialog.component';
 import { TemplatesRoutingModule } from './templates-routing.module';
 import { TemplatesComponent } from './templates.component';
 import { TemplatesService } from './templates.service';
 
 @NgModule({
-    declarations: [TemplatesComponent, RemoveTemplateDialogComponent, EditTemplateComponent, CreateTemplateComponent],
+    declarations: [TemplatesComponent, RemoveTemplateDialogComponent],
     imports: [
         CommonModule,
         TemplatesRoutingModule,
@@ -52,8 +58,18 @@ import { TemplatesService } from './templates.service';
     providers: [
         KeycloakService,
         TemplatesService,
-        ConfigService,
         SearchFieldService,
+
+        PaymentGroupsService,
+        P2pGroupsService,
+        PaymentReferencesService,
+        P2pReferencesService,
+        PaymentGroupsReferenceService,
+        P2pGroupsReferenceService,
+        PaymentListsService,
+        P2pListsService,
+        PaymentEmulationTemplateService,
+
         P2pTemplatesService,
         PaymentTemplatesService,
         ErrorHandlerService,

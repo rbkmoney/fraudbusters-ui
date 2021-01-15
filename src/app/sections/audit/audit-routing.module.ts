@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AuthGuard } from '../../auth/auth-guard';
+import { AuthGuard, Roles } from '../../auth';
 import { AuditComponent } from './audit.component';
 
 @NgModule({
     imports: [
         RouterModule.forChild([
             {
-                path: 'audit',
+                path: '',
                 component: AuditComponent,
                 canActivate: [AuthGuard],
-                data: { roles: ['fraud-officer', 'fraud-monitoring'] },
+                data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring] },
             },
         ]),
     ],
