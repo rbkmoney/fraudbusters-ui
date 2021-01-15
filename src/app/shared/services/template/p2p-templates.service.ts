@@ -46,10 +46,10 @@ export class P2pTemplatesService implements ITemplatesService {
         });
     }
 
-    validateTemplates(templates: Template[]): Observable<ValidateResponse> {
+    validateTemplate(template: Template): Observable<ValidateResponse> {
         return this.http.post<ValidateResponse>(
             `${this.fbManagementEndpoint}/p2p/template/validate`,
-            templates,
+            template,
             new HttpRequestModel()
         );
     }

@@ -56,7 +56,7 @@ export class EditTemplateComponent implements OnInit {
     }
 
     validate(): void {
-        this.templateService.validateTemplate(this.operationType, [this.template]).subscribe(
+        this.templateService.validateTemplate(this.operationType, this.template).subscribe(
             (response) => {
                 this.snackBar.open(this.validateResponseHandler.checkValidateResponse(response), 'OK', {
                     duration: 3000,
