@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Sort } from '@angular/material/sort';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
 
 import { ConfigService } from '../../../config';
@@ -38,7 +38,6 @@ export class WbListComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private route: ActivatedRoute,
         private errorHandlerService: ErrorHandlerService,
         private searchFieldService: SearchFieldService,
         private listService: WbListService,
