@@ -44,10 +44,10 @@ export class PaymentTemplatesService implements ITemplatesService {
         );
     }
 
-    validateTemplates(templates: Template[]): Observable<ValidateResponse> {
+    validateTemplate(template: Template): Observable<ValidateResponse> {
         return this.http.post<ValidateResponse>(
             `${this.fbManagementEndpoint}/template/validate`,
-            templates,
+            template,
             new HttpRequestModel()
         );
     }

@@ -10,6 +10,6 @@ export interface ITemplatesService {
     findTemplates(params?: SearchParams): Observable<TemplatesResponse>;
     deleteTemplate(id: string): Observable<string>;
     saveTemplate(template: Template): Observable<ValidateTemplate>;
-    validateTemplates(templates: Template[]): Observable<ValidateResponse>;
+    validateTemplate(template: Template): Observable<ValidateResponse>;
     getTemplatesName(nameRegexp?: string): Observable<string[]>;
 }
