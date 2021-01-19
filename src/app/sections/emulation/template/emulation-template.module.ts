@@ -32,9 +32,10 @@ import { ParamsUtilService } from '../../../shared/services/utils/params-util.se
 import { EmulationTemplateRoutingModule } from './emulation-template-routing.module';
 import { EmulationTemplateComponent } from './emulation-template.component';
 import { EmulationTemplateService } from './emulation-template.service';
+import { TemplateToRulesPipe } from './template-to-rules.pipe';
 
 @NgModule({
-    declarations: [EmulationTemplateComponent],
+    declarations: [EmulationTemplateComponent, TemplateToRulesPipe],
     imports: [
         CommonModule,
         EmulationTemplateRoutingModule,
