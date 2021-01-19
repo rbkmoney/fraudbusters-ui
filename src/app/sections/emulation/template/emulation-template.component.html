@@ -58,7 +58,11 @@
                         <td mat-cell *matCellDef="let element" fxFlex="200px">{{ element.id }}</td>
                     </ng-container>
                     <ng-container matColumnDef="template">
-                        <td mat-cell *matCellDef="let element">{{ element.template }}</td>
+                        <td mat-cell *matCellDef="let element" fxLayout="column" fxLayoutGap="8px">
+                            <div *ngFor="let rule of element.template | templateToRules">
+                                <code>{{ rule }}</code>
+                            </div>
+                        </td>
                     </ng-container>
                     <tr mat-row *matRowDef="let row; columns: ['id', 'template']"></tr>
                 </table>
