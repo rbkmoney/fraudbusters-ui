@@ -3,28 +3,24 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
-import { Template } from '../../../sections/templates/model/template';
-import { TemplatesResponse } from '../../../sections/templates/model/templates-response';
-import { ValidateResponse } from '../../../sections/templates/model/validate-response';
-import { ValidateTemplate } from '../../../sections/templates/model/validate-template';
+import { Template } from '../../../sections/templates-old/model/template';
+import { TemplatesResponse } from '../../../sections/templates-old/model/templates-response';
+import { ValidateResponse } from '../../../sections/templates-old/model/validate-response';
+import { ValidateTemplate } from '../../../sections/templates-old/model/validate-template';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { SearchParams } from '../../model/search-params';
-import { ParamsUtilService } from '../utils/params-util.service';
+import { filterParameters } from '../../utils/filter-params';
 import { ITemplatesService } from './itemplates.service';
 
 @Injectable()
 export class PaymentTemplatesService implements ITemplatesService {
     private readonly fbManagementEndpoint = this.configService.fbManagementEndpoint;
 
-    constructor(
-        private http: HttpClient,
-        private paramsUtilService: ParamsUtilService,
-        private configService: ConfigService
-    ) {}
+    constructor(private http: HttpClient, private configService: ConfigService) {}
 
     findTemplates(params?: SearchParams): Observable<TemplatesResponse> {
         return this.http.get<TemplatesResponse>(`${this.fbManagementEndpoint}/template/filter/`, {
-            params: this.paramsUtilService.filterParameters(params),
+            params: filterParameters(params),
         });
     }
 
@@ -34,7 +30,7 @@ export class PaymentTemplatesService implements ITemplatesService {
 
     getTemplatesName(nameRegexp?: string): Observable<string[]> {
         return this.http.get<string[]>(`${this.fbManagementEndpoint}/template/names`, {
-            params: this.paramsUtilService.filterParameters({ regexpName: nameRegexp + '%' }),
+            params: filterParameters({ regexpName: nameRegexp + '%' }),
         });
     }
 

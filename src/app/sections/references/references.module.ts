@@ -32,7 +32,6 @@ import { PaymentReferencesService } from '../../shared/services/reference/paymen
 import { P2pTemplatesService } from '../../shared/services/template/p2p-templates.service';
 import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { ReferencesRoutingModule } from './references-routing.module';
 import { ReferencesComponent } from './references.component';
@@ -80,7 +79,6 @@ import { RemoveReferenceDialogComponent } from './remove-reference-dialog/remove
         PaymentReferencesService,
         ErrorHandlerService,
         OperationTypeManagementService,
-        ParamsUtilService,
     ],
 })
 export class ReferencesModule {}

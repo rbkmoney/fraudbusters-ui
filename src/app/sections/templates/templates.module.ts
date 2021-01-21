@@ -1,20 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FlexModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { KeycloakService } from 'keycloak-angular';
 
+import { ConfirmActionDialogModule } from '../../shared/components/confirm-action-dialog';
+import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
+import { SharedPipesModule } from '../../shared/pipes';
 import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
 import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
@@ -27,39 +25,35 @@ import { P2pReferencesService } from '../../shared/services/reference/p2p-refere
 import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
 import { P2pTemplatesService } from '../../shared/services/template/p2p-templates.service';
 import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
-import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
-import { SearchFieldService } from '../../shared/services/utils/search-field.service';
-import { ValidateResponseHandler } from '../../shared/services/utils/validate-response-handler.service';
-import { RemoveTemplateDialogComponent } from './remove-template-dialog/remove-template-dialog.component';
+import { P2pTemplatesComponent } from './components/p2p-templates/p2p-templates.component';
+import { PaymentTemplatesComponent } from './components/payment-templates/payment-templates.component';
+import { TemplatesTableComponent } from './components/templates-table/templates-table.component';
 import { TemplatesRoutingModule } from './templates-routing.module';
 import { TemplatesComponent } from './templates.component';
-import { TemplatesService } from './templates.service';
 
 @NgModule({
-    declarations: [TemplatesComponent, RemoveTemplateDialogComponent],
     imports: [
-        CommonModule,
         TemplatesRoutingModule,
-        MatTableModule,
+        MatTabsModule,
+        CommonModule,
         MatCardModule,
+        MatTableModule,
+        MatSortModule,
         MatButtonModule,
         MatIconModule,
-        MatSelectModule,
-        MatFormFieldModule,
-        MatInputModule,
         MatToolbarModule,
-        MatPaginatorModule,
-        MatSortModule,
-        MatSnackBarModule,
-        MatDialogModule,
-        FormsModule,
+        ConfirmActionDialogModule,
+        MatMenuModule,
+        EmptySearchResultModule,
+        SharedPipesModule,
+        FlexModule,
     ],
+    declarations: [TemplatesComponent, P2pTemplatesComponent, PaymentTemplatesComponent, TemplatesTableComponent],
+    // TODO: need to refactor these services
     providers: [
-        KeycloakService,
-        TemplatesService,
-        SearchFieldService,
-
+        OperationTypeManagementService,
+        PaymentTemplatesService,
+        P2pTemplatesService,
         PaymentGroupsService,
         P2pGroupsService,
         PaymentReferencesService,
@@ -69,13 +63,6 @@ import { TemplatesService } from './templates.service';
         PaymentListsService,
         P2pListsService,
         PaymentEmulationTemplateService,
-
-        P2pTemplatesService,
-        PaymentTemplatesService,
-        ErrorHandlerService,
-        ValidateResponseHandler,
-        OperationTypeManagementService,
-        ParamsUtilService,
     ],
 })
 export class TemplatesModule {}

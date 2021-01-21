@@ -20,7 +20,6 @@ import { PaymentReferencesService } from '../../shared/services/reference/paymen
 import { P2pTemplatesService } from '../../shared/services/template/p2p-templates.service';
 import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
 import { ValidateResponseHandler } from '../../shared/services/utils/validate-response-handler.service';
 import { CreateTemplateComponent } from './create-template/create-template.component';
 import { EditTemplateComponent } from './edit-template/edit-template.component';
@@ -44,7 +43,6 @@ import { TemplatesService } from './templates.service';
         TemplatesService,
         OperationTypeManagementService,
         PaymentTemplatesService,
-        ParamsUtilService,
         P2pTemplatesService,
         PaymentGroupsService,
         P2pGroupsService,

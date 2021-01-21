@@ -24,7 +24,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AuditRemoteService } from '../../shared/services/audit/audit-remote.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
 import { AuditRoutingModule } from './audit-routing.module';
 import { AuditComponent } from './audit.component';
 import { AuditService } from './audit.service';
@@ -54,6 +53,6 @@ import { AuditService } from './audit.service';
         NgxMatDatetimePickerModule,
         FormsModule,
     ],
-    providers: [ErrorHandlerService, ParamsUtilService, AuditService, AuditRemoteService, DatePipe],
+    providers: [ErrorHandlerService, AuditService, AuditRemoteService, DatePipe],
 })
 export class AuditModule {}

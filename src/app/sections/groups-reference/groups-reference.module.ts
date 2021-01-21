@@ -28,7 +28,6 @@ import { PaymentReferencesService } from '../../shared/services/reference/paymen
 import { P2pTemplatesService } from '../../shared/services/template/p2p-templates.service';
 import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { GroupsReferenceRoutingModule } from './groups-reference-routing.module';
 import { GroupsReferenceComponent } from './groups-reference.component';
@@ -69,7 +68,6 @@ import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-di
         PaymentEmulationTemplateService,
         P2pReferencesService,
         P2pGroupsService,
-        ParamsUtilService,
         PaymentGroupsService,
         P2pTemplatesService,
     ],

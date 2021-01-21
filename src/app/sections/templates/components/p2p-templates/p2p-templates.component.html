@@ -1,0 +1,8 @@
+<mat-card *ngIf="(templates$ | async)?.length > 0; else Empty">
+    <mat-card-content>
+        <fb-templates-table (action)="action($event)" [templates]="templates$ | async"></fb-templates-table>
+    </mat-card-content>
+</mat-card>
+<ng-template #Empty>
+    <fb-empty-search-result></fb-empty-search-result>
+</ng-template>

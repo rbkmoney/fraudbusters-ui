@@ -8,6 +8,10 @@ const routes: Routes = [
         pathMatch: 'full',
     },
     {
+        path: 'templates-old',
+        loadChildren: () => import('./templates-old').then((m) => m.TemplatesModule),
+    },
+    {
         path: 'templates',
         loadChildren: () => import('./templates').then((m) => m.TemplatesModule),
     },

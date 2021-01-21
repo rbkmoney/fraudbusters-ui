@@ -8,22 +8,18 @@ import { GroupsReferenceResponse } from '../../../sections/groups-reference/mode
 import { PaymentGroupReferenceModel } from '../../../sections/groups-reference/model/payment-groups-reference';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { SearchParams } from '../../model/search-params';
-import { ParamsUtilService } from '../utils/params-util.service';
+import { filterParameters } from '../../utils/filter-params';
 import { IGroupsReferenceService } from './igroups-reference.service';
 
 @Injectable()
 export class PaymentGroupsReferenceService implements IGroupsReferenceService {
     private readonly fbManagementEndpoint = this.configService.fbManagementEndpoint;
 
-    constructor(
-        private http: HttpClient,
-        private paramsUtilService: ParamsUtilService,
-        private configService: ConfigService
-    ) {}
+    constructor(private http: HttpClient, private configService: ConfigService) {}
 
     findGroups(params?: SearchParams): Observable<GroupsReferenceResponse> {
         return this.http.get<GroupsReferenceResponse>(`${this.fbManagementEndpoint}/group/reference/filter`, {
-            params: this.paramsUtilService.filterParameters(params),
+            params: filterParameters(params),
         });
     }
 

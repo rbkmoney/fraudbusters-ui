@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { ConfigService } from '../../../config';
 import { ListType } from '../../constants/list-type';
 import { HttpRequestModel } from '../../model/http-request-model';
-import { ParamsUtilService } from '../utils/params-util.service';
+import { filterParameters } from '../../utils/filter-params';
 import { IListsService } from './ilists.service';
 import { CountInfoListRecord } from './model/count-info-list-record';
 import { InsertListRequest } from './model/insert-list-request';
@@ -16,11 +16,7 @@ import { SearchListsParams } from './model/search-lists-params';
 export class PaymentListsService implements IListsService {
     private readonly fbManagementEndpoint = this.configService.fbManagementEndpoint;
 
-    constructor(
-        private http: HttpClient,
-        private paramsUtilService: ParamsUtilService,
-        private configService: ConfigService
-    ) {}
+    constructor(private http: HttpClient, private configService: ConfigService) {}
 
     deleteListRow(id: string): Observable<string> {
         return this.http.delete(`${this.fbManagementEndpoint}/lists/${id}`, {
@@ -30,7 +26,7 @@ export class PaymentListsService implements IListsService {
 
     findListRows(params: SearchListsParams): Observable<ListsFilterResponse> {
         return this.http.get<ListsFilterResponse>(`${this.fbManagementEndpoint}/lists/filter`, {
-            params: this.paramsUtilService.filterParameters(params),
+            params: filterParameters(params),
         });
     }
 
