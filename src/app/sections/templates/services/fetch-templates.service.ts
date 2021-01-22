@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, merge, of, Subject } from 'rxjs';
-import { catchError, map, shareReplay, switchMap } from 'rxjs/operators';
+import { catchError, shareReplay, switchMap } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { OperationType } from '../../../shared/constants/operation-type';
@@ -12,24 +12,27 @@ import { OperationTypeManagementService } from '../../../shared/services/operati
 
 export interface FetchTemplatesParams {
     type: OperationType;
+    searchValue?: string;
+    sortOrder?: SortOrder;
 }
 
 @Injectable()
 export class FetchTemplatesService {
     private SIZE = this.configService.pageSize;
     private fetchTemplates$ = new Subject<FetchTemplatesParams>();
+    private fetchMore$;
     private hasError$ = new Subject();
 
-    templates$ = this.fetchTemplates$.pipe(
+    response$ = this.fetchTemplates$.pipe(
         switchMap((params) =>
             this.operationTypeManagementService
                 .findTemplateService(params.type)
                 .findTemplates({
                     size: this.SIZE,
-                    sortOrder: SortOrder.ASC,
+                    sortOrder: params.sortOrder || SortOrder.ASC,
+                    searchValue: params.searchValue,
                 })
                 .pipe(
-                    map((templates) => templates.templateModels),
                     catchError((error: HttpErrorResponse) => {
                         this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
                             duration: 1500,
@@ -42,17 +45,19 @@ export class FetchTemplatesService {
         shareReplay(1)
     );
 
-    inProgress$ = progress(this.fetchTemplates$, merge(this.hasError$, this.templates$));
+    inProgress$ = progress(this.fetchTemplates$, merge(this.hasError$, this.response$));
 
     constructor(
         private operationTypeManagementService: OperationTypeManagementService,
         private configService: ConfigService,
         private snackBar: MatSnackBar
     ) {
-        this.templates$.subscribe();
+        this.response$.subscribe();
     }
 
     fetch(params: FetchTemplatesParams) {
         this.fetchTemplates$.next(params);
     }
+
+    fetchMore() {}
 }

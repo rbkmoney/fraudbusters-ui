@@ -1,10 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -28,6 +33,7 @@ import { P2pTemplatesService } from '../../shared/services/template/p2p-template
 import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
 import { P2pTemplatesComponent } from './components/p2p-templates/p2p-templates.component';
 import { PaymentTemplatesComponent } from './components/payment-templates/payment-templates.component';
+import { TemplatesSearchComponent } from './components/templates-search/templates-search.component';
 import { TemplatesTableComponent } from './components/templates-table/templates-table.component';
 import { TemplatesRoutingModule } from './templates-routing.module';
 import { TemplatesComponent } from './templates.component';
@@ -49,8 +55,19 @@ import { TemplatesComponent } from './templates.component';
         SharedPipesModule,
         FlexModule,
         MatSnackBarModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
     ],
-    declarations: [TemplatesComponent, P2pTemplatesComponent, PaymentTemplatesComponent, TemplatesTableComponent],
+    declarations: [
+        TemplatesComponent,
+        P2pTemplatesComponent,
+        PaymentTemplatesComponent,
+        TemplatesTableComponent,
+        TemplatesSearchComponent,
+    ],
     // TODO: need to refactor these services
     providers: [
         OperationTypeManagementService,

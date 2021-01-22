@@ -33,6 +33,7 @@
     "coerce-property": "^0.3.2",
     "keycloak-angular": "^8.0.1",
     "keycloak-js": "^11.0.3",
+    "lodash-es": "^4.17.20",
     "ngx-papaparse": "^4.0.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

@@ -12,14 +12,14 @@ import { RemoveTemplateService } from '../../services/remove-template.service';
     providers: [FetchTemplatesService, RemoveTemplateService],
 })
 export class PaymentTemplatesComponent {
-    templates$ = this.fetchTemplatesService.templates$;
+    response$ = this.fetchTemplatesService.response$;
+    inProgress$ = this.fetchTemplatesService.inProgress$;
 
     constructor(
         private router: Router,
         private fetchTemplatesService: FetchTemplatesService,
         private removeTemplateService: RemoveTemplateService
     ) {
-        this.fetchTemplatesService.fetch({ type: OperationType.Payment });
         this.removeTemplateService.removed$.subscribe(() => {
             this.fetchTemplatesService.fetch({ type: OperationType.Payment });
         });
@@ -39,6 +39,9 @@ export class PaymentTemplatesComponent {
                     templateID: action.templateID,
                 });
                 break;
+            case Actions.sortTemplates:
+                this.fetchTemplatesService.fetch({ type: OperationType.Payment, sortOrder: action.sortDirection });
+                break;
             default:
                 console.error('Wrong template action.');
         }
@@ -47,4 +50,10 @@ export class PaymentTemplatesComponent {
     createTemplate() {
         this.action({ type: Actions.createTemplate });
     }
+
+    search(searchValue: string) {
+        this.fetchTemplatesService.fetch({ type: OperationType.Payment, searchValue });
+    }
+
+    fetchMore() {}
 }

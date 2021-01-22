@@ -12,7 +12,8 @@ import { RemoveTemplateService } from '../../services/remove-template.service';
     providers: [FetchTemplatesService, RemoveTemplateService],
 })
 export class P2pTemplatesComponent {
-    templates$ = this.fetchTemplatesService.templates$;
+    response$ = this.fetchTemplatesService.response$;
+    inProgress$ = this.fetchTemplatesService.inProgress$;
 
     constructor(
         private router: Router,
@@ -39,6 +40,9 @@ export class P2pTemplatesComponent {
                     templateID: action.templateID,
                 });
                 break;
+            case Actions.sortTemplates:
+                this.fetchTemplatesService.fetch({ type: OperationType.Payment, sortOrder: action.sortDirection });
+                break;
             default:
                 console.error('Wrong template action.');
         }
@@ -47,4 +51,10 @@ export class P2pTemplatesComponent {
     createTemplate() {
         this.action({ type: Actions.createTemplate });
     }
+
+    search(searchValue: string) {
+        this.fetchTemplatesService.fetch({ type: OperationType.PeerToPeer, searchValue });
+    }
+
+    fetchMore() {}
 }
