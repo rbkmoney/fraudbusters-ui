@@ -1,8 +1,13 @@
-<mat-card *ngIf="(templates$ | async)?.length > 0; else Empty">
-    <mat-card-content>
-        <fb-templates-table (action)="action($event)" [templates]="templates$ | async"></fb-templates-table>
-    </mat-card-content>
-</mat-card>
+<div fxLayout="column" fxLayoutGap="8px">
+    <div fxLayout="row" fxLayoutAlign="end center">
+        <button mat-button color="primary" (click)="createTemplate()">CREATE TEMPLATE</button>
+    </div>
+    <mat-card *ngIf="(templates$ | async)?.length > 0; else Empty">
+        <mat-card-content>
+            <fb-templates-table (action)="action($event)" [templates]="templates$ | async"></fb-templates-table>
+        </mat-card-content>
+    </mat-card>
+</div>
 <ng-template #Empty>
     <fb-empty-search-result></fb-empty-search-result>
 </ng-template>

@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { FlexModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -30,6 +31,7 @@ import { NavigateMenuModule } from './shared/components/navigate-menu/navigate-m
         MatIconModule,
         RouterModule,
         MatButtonModule,
+        FlexModule,
     ],
     providers: [
         {

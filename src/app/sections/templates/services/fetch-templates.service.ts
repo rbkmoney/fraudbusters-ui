@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { merge, Subject } from 'rxjs';
-import { map, shareReplay, switchMap } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { EMPTY, merge, of, Subject } from 'rxjs';
+import { catchError, map, shareReplay, switchMap } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { OperationType } from '../../../shared/constants/operation-type';
@@ -26,7 +28,16 @@ export class FetchTemplatesService {
                     size: this.SIZE,
                     sortOrder: SortOrder.ASC,
                 })
-                .pipe(map((templates) => templates.templateModels))
+                .pipe(
+                    map((templates) => templates.templateModels),
+                    catchError((error: HttpErrorResponse) => {
+                        this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
+                            duration: 1500,
+                        });
+                        this.hasError$.next();
+                        return of(EMPTY);
+                    })
+                )
         ),
         shareReplay(1)
     );
@@ -35,7 +46,8 @@ export class FetchTemplatesService {
 
     constructor(
         private operationTypeManagementService: OperationTypeManagementService,
-        private configService: ConfigService
+        private configService: ConfigService,
+        private snackBar: MatSnackBar
     ) {
         this.templates$.subscribe();
     }

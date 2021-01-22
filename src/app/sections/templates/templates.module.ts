@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -47,6 +48,7 @@ import { TemplatesComponent } from './templates.component';
         EmptySearchResultModule,
         SharedPipesModule,
         FlexModule,
+        MatSnackBarModule,
     ],
     declarations: [TemplatesComponent, P2pTemplatesComponent, PaymentTemplatesComponent, TemplatesTableComponent],
     // TODO: need to refactor these services
