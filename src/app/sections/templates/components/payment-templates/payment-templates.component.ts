@@ -21,7 +21,6 @@ export class PaymentTemplatesComponent {
         private fetchTemplatesService: FetchTemplatesService,
         private removeTemplateService: RemoveTemplateService
     ) {
-        this.response$.subscribe((q) => console.log(q));
         this.removeTemplateService.removed$.subscribe(() => {
             this.fetchTemplatesService.fetch({ type: OperationType.Payment });
         });
@@ -57,5 +56,7 @@ export class PaymentTemplatesComponent {
         this.fetchTemplatesService.fetch({ type: OperationType.Payment, searchValue });
     }
 
-    fetchMore() {}
+    fetchMore() {
+        this.fetchTemplatesService.fetchMore();
+    }
 }

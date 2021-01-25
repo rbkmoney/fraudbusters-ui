@@ -57,5 +57,7 @@ export class P2pTemplatesComponent {
         this.fetchTemplatesService.fetch({ type: OperationType.PeerToPeer, searchValue });
     }
 
-    fetchMore() {}
+    fetchMore() {
+        this.fetchTemplatesService.fetchMore();
+    }
 }
