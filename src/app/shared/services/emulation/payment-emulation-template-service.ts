@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
 import { PaymentEmulateFilter } from '../../../sections/emulation/template/model/payment-emulate-filter';
-import { Template } from '../../../sections/templates-old/model/template';
+import { Template } from '../../../sections/template/model/template';
 import { IEmulationTemplateService } from './iemulation-template.service';
 
 @Injectable()
