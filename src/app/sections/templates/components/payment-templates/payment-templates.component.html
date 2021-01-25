@@ -3,17 +3,14 @@
         <fb-templates-search (valueChanges)="search($event)"></fb-templates-search>
         <button mat-button color="primary" (click)="createTemplate()">CREATE TEMPLATE</button>
     </div>
-    <div *ngIf="response$ | async as response; else Empty">
-        <mat-card *ngIf="response.templateModels.length > 0; else Empty">
+    <div *ngIf="templates$ | async as templates; else Empty">
+        <mat-card *ngIf="templates.length > 0; else Empty">
             <mat-card-content fxLayout="column" fxLayoutGap="8px" fxLayoutAlign="space-around stretch">
-                <fb-templates-table
-                    (action)="action($event)"
-                    [templates]="response.templateModels"
-                ></fb-templates-table>
+                <fb-templates-table (action)="action($event)" [templates]="templates"></fb-templates-table>
                 <button
                     fxFlex="100"
                     mat-button
-                    *ngIf="response.templateModels.length < response.count"
+                    *ngIf="hasMore$ | async"
                     (click)="fetchMore()"
                     [disabled]="inProgress$ | async"
                 >

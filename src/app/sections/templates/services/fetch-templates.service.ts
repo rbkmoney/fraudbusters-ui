@@ -14,42 +14,14 @@ export interface FetchTemplatesParams {
     type: OperationType;
     searchValue?: string;
     sortOrder?: SortOrder;
+    pageSize?: number;
 }
 
 @Injectable()
 export class FetchTemplatesService extends PartialFetcher<Template, FetchTemplatesParams> {
     inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
     private SIZE = this.configService.pageSize;
-    //
-    // inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
-    // // private fetchTemplates$ = new Subject<FetchTemplatesParams>();
-    // // private fetchMore$;
-    // // private hasError$ = new Subject();
-    // //
-    // // response$ = this.fetchTemplates$.pipe(
-    // //     switchMap((params) =>
-    // //         this.operationTypeManagementService
-    // //             .findTemplateService(params.type)
-    // //             .findTemplates({
-    // //                 size: this.SIZE,
-    // //                 sortOrder: params.sortOrder || SortOrder.ASC,
-    // //                 searchValue: params.searchValue,
-    // //             })
-    // //             .pipe(
-    // //                 catchError((error: HttpErrorResponse) => {
-    // //                     this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-    // //                         duration: 1500,
-    // //                     });
-    // //                     this.hasError$.next();
-    // //                     return of(EMPTY);
-    // //                 })
-    // //             )
-    // //     ),
-    // //     shareReplay(1)
-    // // );
-    // //
-    // // inProgress$ = progress(this.fetchTemplates$, merge(this.hasError$, this.response$));
-    // //
+
     constructor(
         private operationTypeManagementService: OperationTypeManagementService,
         private configService: ConfigService
@@ -57,39 +29,13 @@ export class FetchTemplatesService extends PartialFetcher<Template, FetchTemplat
         super();
     }
 
-    fetch(params: FetchTemplatesParams, lastId?: string): Observable<FetchResult<Template>> {
-        const { type, searchValue, sortOrder } = params;
+    protected fetch(params: FetchTemplatesParams, lastId?: string): Observable<FetchResult<Template>> {
+        const { type, searchValue, sortOrder, pageSize } = params;
         return this.operationTypeManagementService.findTemplateService(type).findTemplates({
-            size: this.SIZE,
+            size: pageSize ? pageSize : this.SIZE,
             sortOrder: sortOrder || SortOrder.ASC,
             ...(searchValue ? { searchValue } : {}),
             ...(lastId ? { lastId } : {}),
         });
     }
-
-    //
-    // //
-    // // fetch(params: FetchTemplatesParams) {
-    // //     this.fetchTemplates$.next(params);
-    // // }
-    // //
-    // // fetchMore() {}
-    //
-    // protected fetch(params: FetchTemplatesParams, lastId?: string): Observable<FetchResult<TemplatesResponse>> {
-    //     const { type, searchValue, sortOrder } = params;
-    //     return this.operationTypeManagementService
-    //         .findTemplateService(type)
-    //         .findTemplates({
-    //             size: this.SIZE,
-    //             sortOrder: sortOrder || SortOrder.ASC,
-    //             ...(searchValue ? { searchValue } : {}),
-    //             ...(lastId ? { lastId } : {}),
-    //         })
-    //         .pipe(
-    //             map(({ templateModels, count }) => ({
-    //                 result: templateModels,
-    //                 count,
-    //             }))
-    //         );
-    // }
 }

@@ -27,7 +27,7 @@ export abstract class PartialFetcher<R, P> {
     readonly hasMore$: Observable<boolean>;
     readonly doAction$: Observable<boolean>;
     readonly doSearchAction$: Observable<boolean>;
-    readonly errors$: Observable<any>;
+    readonly errors$ = new Subject();
 
     constructor(debounceActionTime: number = 300) {
         const actionWithParams$ = this.getActionWithParams(debounceActionTime);
@@ -56,11 +56,6 @@ export abstract class PartialFetcher<R, P> {
             fetchResult$,
             true
         ).pipe(shareReplay(1));
-        this.errors$ = fetchResult$.pipe(
-            catchError((error) => (error ? of(error) : EMPTY)),
-            tap((error) => console.error('Partial fetcher error: ', error)),
-            share()
-        );
 
         merge(
             this.searchResult$,
@@ -92,6 +87,14 @@ export abstract class PartialFetcher<R, P> {
 
     private getFetchResult(actionWithParams$: Observable<FetchAction<P>>): Observable<FetchResult<R>> {
         const fetchFn = this.fetch.bind(this) as FetchFn<P, R>;
-        return actionWithParams$.pipe(scanFetchResult(fetchFn), shareReplay(1));
+        return actionWithParams$.pipe(
+            scanFetchResult(fetchFn),
+            shareReplay(1),
+            catchError((error) => {
+                this.errors$.next(error);
+                console.error('Partial fetcher error: ', error);
+                return error ? of(error) : EMPTY;
+            })
+        );
     }
 }

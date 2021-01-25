@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { pluck } from 'rxjs/operators';
 
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { Action, Actions } from '../../action';
@@ -13,17 +12,17 @@ import { RemoveTemplateService } from '../../services/remove-template.service';
     providers: [FetchTemplatesService, RemoveTemplateService],
 })
 export class P2pTemplatesComponent {
-    response$ = this.fetchTemplatesService.searchResult$.pipe(pluck('templateModels'));
+    templates$ = this.fetchTemplatesService.searchResult$;
     inProgress$ = this.fetchTemplatesService.inProgress$;
+    hasMore$ = this.fetchTemplatesService.hasMore$;
 
     constructor(
         private router: Router,
         private fetchTemplatesService: FetchTemplatesService,
         private removeTemplateService: RemoveTemplateService
     ) {
-        this.fetchTemplatesService.fetch({ type: OperationType.PeerToPeer });
         this.removeTemplateService.removed$.subscribe(() => {
-            this.fetchTemplatesService.fetch({ type: OperationType.PeerToPeer });
+            this.fetchTemplatesService.search({ type: OperationType.PeerToPeer });
         });
     }
 
@@ -42,7 +41,7 @@ export class P2pTemplatesComponent {
                 });
                 break;
             case Actions.sortTemplates:
-                this.fetchTemplatesService.fetch({ type: OperationType.PeerToPeer, sortOrder: action.sortDirection });
+                this.fetchTemplatesService.search({ type: OperationType.Payment, sortOrder: action.sortDirection });
                 break;
             default:
                 console.error('Wrong template action.');
@@ -54,7 +53,7 @@ export class P2pTemplatesComponent {
     }
 
     search(searchValue: string) {
-        this.fetchTemplatesService.fetch({ type: OperationType.PeerToPeer, searchValue });
+        this.fetchTemplatesService.search({ type: OperationType.PeerToPeer, searchValue });
     }
 
     fetchMore() {
