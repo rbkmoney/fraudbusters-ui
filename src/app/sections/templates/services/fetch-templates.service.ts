@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { SortOrder } from '../../../shared/constants/sort-order';
-import { HttpSearchResponse } from '../../../shared/model/http-search-response';
+import { booleanDelay } from '../../../shared/operators';
 import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
-import { PartialFetcher } from '../../../shared/utils/partial-fetcher';
+import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
 import { Template } from '../../template/model/template';
 
 export interface FetchTemplatesParams {
@@ -16,8 +17,9 @@ export interface FetchTemplatesParams {
 }
 
 @Injectable()
-export class FetchTemplatesService extends PartialFetcher<HttpSearchResponse<Template>, FetchTemplatesParams> {
-    // private SIZE = this.configService.pageSize;
+export class FetchTemplatesService extends PartialFetcher<Template, FetchTemplatesParams> {
+    inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
+    private SIZE = this.configService.pageSize;
     //
     // inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
     // // private fetchTemplates$ = new Subject<FetchTemplatesParams>();
@@ -50,11 +52,21 @@ export class FetchTemplatesService extends PartialFetcher<HttpSearchResponse<Tem
     // //
     constructor(
         private operationTypeManagementService: OperationTypeManagementService,
-        private configService: ConfigService,
-        private snackBar: MatSnackBar
+        private configService: ConfigService
     ) {
         super();
     }
+
+    fetch(params: FetchTemplatesParams, lastId?: string): Observable<FetchResult<Template>> {
+        const { type, searchValue, sortOrder } = params;
+        return this.operationTypeManagementService.findTemplateService(type).findTemplates({
+            size: this.SIZE,
+            sortOrder: sortOrder || SortOrder.ASC,
+            ...(searchValue ? { searchValue } : {}),
+            ...(lastId ? { lastId } : {}),
+        });
+    }
+
     //
     // //
     // // fetch(params: FetchTemplatesParams) {

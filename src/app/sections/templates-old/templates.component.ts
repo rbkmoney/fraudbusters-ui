@@ -68,7 +68,7 @@ export class TemplatesComponent extends OperationTypeComponent implements OnInit
                 this.sortType
             )
             .subscribe(
-                (templatesResponse) => {
+                (templatesResponse: any) => {
                     this.isLoading = false;
                     this.templates = templatesResponse.templateModels;
                     this.isLoadMore = this.templates.length < templatesResponse.count;
@@ -101,7 +101,7 @@ export class TemplatesComponent extends OperationTypeComponent implements OnInit
                 this.sortType
             )
             .subscribe(
-                (templatesResponse) => {
+                (templatesResponse: any) => {
                     this.isLoading = false;
                     this.templates = this.templates.concat(templatesResponse.templateModels);
                     this.isLoadMore = this.templates.length < templatesResponse.count;
