@@ -3,10 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
-import { TemplatesResponse } from '../../../sections/templates-old/model/templates-response';
-import { Template } from '../../../sections/templates/model/template';
-import { ValidateResponse } from '../../../sections/templates/model/validate-response';
-import { ValidateTemplate } from '../../../sections/templates/model/validate-template';
+import { Template } from '../../../sections/template/model/template';
+import { ValidateResponse } from '../../../sections/template/model/validate-response';
+import { ValidateTemplate } from '../../../sections/template/model/validate-template';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { HttpSearchResponse } from '../../model/http-search-response';
 import { SearchParams } from '../../model/search-params';
@@ -19,8 +18,8 @@ export class P2pTemplatesService implements ITemplatesService {
 
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
-    findTemplates(params?: SearchParams): Observable<TemplatesResponse> {
-        return this.http.get<TemplatesResponse>(`${this.fbManagementEndpoint}/p2p/template/filter/`, {
+    findTemplates(params?: SearchParams): Observable<HttpSearchResponse<Template>> {
+        return this.http.get<HttpSearchResponse<Template>>(`${this.fbManagementEndpoint}/p2p/template/filter/`, {
             params: filterParameters(params),
         });
     }

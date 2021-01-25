@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
 import { Template } from '../../../sections/templates-old/model/template';
-import { TemplatesResponse } from '../../../sections/templates-old/model/templates-response';
 import { ValidateResponse } from '../../../sections/templates-old/model/validate-response';
 import { ValidateTemplate } from '../../../sections/templates-old/model/validate-template';
 import { HttpRequestModel } from '../../model/http-request-model';
@@ -19,8 +18,8 @@ export class PaymentTemplatesService implements ITemplatesService {
 
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
-    findTemplates(params?: SearchParams): Observable<TemplatesResponse> {
-        return this.http.get<TemplatesResponse>(`${this.fbManagementEndpoint}/template/filter/`, {
+    findTemplates(params?: SearchParams): Observable<HttpSearchResponse<Template>> {
+        return this.http.get<HttpSearchResponse<Template>>(`${this.fbManagementEndpoint}/template/filter/`, {
             params: filterParameters(params),
         });
     }

@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs';
+import { Template } from '../../../sections/template/model/template';
 import { ValidateResponse } from '../../../sections/template/model/validate-response';
 import { ValidateTemplate } from '../../../sections/template/model/validate-template';
 
