@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
-import { map, shareReplay, tap } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { SortOrder } from '../../../shared/constants/sort-order';
 import { HttpSearchResponse } from '../../../shared/model/http-search-response';
-import { booleanDelay } from '../../../shared/operators';
 import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
 import { PartialFetcher } from '../../../shared/utils/partial-fetcher';
 import { Template } from '../../template/model/template';

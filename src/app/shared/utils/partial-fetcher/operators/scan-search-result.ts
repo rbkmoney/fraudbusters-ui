@@ -5,13 +5,13 @@ import { FetchAction } from '../fetch-action';
 import { FetchFn } from '../fetch-fn';
 import { FetchResult } from '../fetch-result';
 
-export const handleFetchResultError = <R>(templateModels: R[] = [], count?: number) => (
+export const handleFetchResultError = <R>(result: R[] = [], count?: number) => (
     s: Observable<FetchResult<R>>
 ): Observable<FetchResult<R>> =>
     s.pipe(
         catchError(() =>
             of<FetchResult<R>>({
-                templateModels,
+                result,
                 count,
             })
         )
@@ -22,22 +22,23 @@ export const scanFetchResult = <P, R>(fn: FetchFn<P, R>) => (
 ): Observable<FetchResult<R>> =>
     s.pipe(
         mergeScan<FetchAction<P>, FetchResult<R>>(
-            ({ templateModels, count }, { type, value }) => {
+            ({ result, count }, { type, value }) => {
                 switch (type) {
                     case 'search':
                         return fn(value).pipe(first(), handleFetchResultError());
                     case 'fetchMore':
-                        return fn(value, count).pipe(
+                        const lastId = (result[result.length - 1] as any).id;
+                        return fn(value, lastId).pipe(
                             first(),
                             map((r) => ({
-                                templateModels: templateModels.concat(r.templateModels),
+                                result: result.concat(r.result),
                                 count: r.count,
                             })),
-                            handleFetchResultError(templateModels, count)
+                            handleFetchResultError(result, count)
                         );
                 }
             },
-            { templateModels: [] },
+            { result: [] },
             1
         )
     );

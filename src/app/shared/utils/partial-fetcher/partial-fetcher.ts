@@ -11,8 +11,8 @@ import {
     startWith,
     tap,
 } from 'rxjs/operators';
-import { progress } from '../../operators';
 
+import { progress } from '../../operators';
 import { FetchAction } from './fetch-action';
 import { FetchFn } from './fetch-fn';
 import { FetchResult } from './fetch-result';
@@ -21,7 +21,7 @@ import { scanAction, scanFetchResult } from './operators';
 export abstract class PartialFetcher<R, P> {
     private action$ = new Subject<FetchAction<P>>();
 
-    readonly fetchResultChanges$: Observable<{ templateModels: R[]; hasMore: boolean; count: number }>;
+    readonly fetchResultChanges$: Observable<{ result: R[]; hasMore: boolean; count: number }>;
 
     readonly searchResult$: Observable<R[]>;
     readonly hasMore$: Observable<boolean>;
@@ -34,14 +34,14 @@ export abstract class PartialFetcher<R, P> {
         const fetchResult$ = this.getFetchResult(actionWithParams$);
 
         this.fetchResultChanges$ = fetchResult$.pipe(
-            map(({ templateModels, count }) => ({
-                templateModels,
+            map(({ result, count }) => ({
+                result,
                 count,
-                hasMore: templateModels.length < count,
+                hasMore: result.length < count,
             })),
             share()
         );
-        this.searchResult$ = this.fetchResultChanges$.pipe(pluck('templateModels'), shareReplay(1));
+        this.searchResult$ = this.fetchResultChanges$.pipe(pluck('result'), shareReplay(1));
 
         this.hasMore$ = this.fetchResultChanges$.pipe(
             pluck('hasMore'),

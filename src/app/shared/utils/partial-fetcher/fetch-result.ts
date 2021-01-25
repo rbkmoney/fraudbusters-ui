@@ -1,4 +1,4 @@
 export interface FetchResult<T> {
-    templateModels?: T[];
+    result?: T[];
     count?: number;
 }
