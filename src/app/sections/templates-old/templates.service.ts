@@ -3,8 +3,9 @@ import { Observable } from 'rxjs';
 
 import { OperationType } from '../../shared/constants/operation-type';
 import { SortOrder } from '../../shared/constants/sort-order';
+import { HttpSearchResponse } from '../../shared/model/http-search-response';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
-import { TemplatesResponse } from './model/templates-response';
+import { Template } from './model/template';
 
 @Injectable()
 export class TemplatesService {
@@ -16,7 +17,7 @@ export class TemplatesService {
         nameRegexp?: string,
         lastInListName?: string,
         sortOrder?: SortOrder
-    ): Observable<TemplatesResponse> {
+    ): Observable<HttpSearchResponse<Template>> {
         return this.operationTemplateService.findTemplateService(type).findTemplates({
             searchValue: nameRegexp,
             lastId: lastInListName,

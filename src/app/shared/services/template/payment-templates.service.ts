@@ -8,6 +8,7 @@ import { TemplatesResponse } from '../../../sections/templates-old/model/templat
 import { ValidateResponse } from '../../../sections/templates-old/model/validate-response';
 import { ValidateTemplate } from '../../../sections/templates-old/model/validate-template';
 import { HttpRequestModel } from '../../model/http-request-model';
+import { HttpSearchResponse } from '../../model/http-search-response';
 import { SearchParams } from '../../model/search-params';
 import { filterParameters } from '../../utils/filter-params';
 import { ITemplatesService } from './itemplates.service';
