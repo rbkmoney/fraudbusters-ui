@@ -20,7 +20,7 @@ export class TemplatesTableComponent {
 
     displayedColumns: string[] = ['id', 'template', 'updatedAt', 'actions'];
 
-    sortData(sort: Sort): void {
+    sort(sort: Sort): void {
         switch (sort.direction) {
             case 'asc':
                 this.action.emit({ type: Actions.sortTemplates, sortDirection: SortOrder.ASC });

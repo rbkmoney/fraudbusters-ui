@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { pluck } from 'rxjs/operators';
 
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { Action, Actions } from '../../action';
@@ -12,7 +13,7 @@ import { RemoveTemplateService } from '../../services/remove-template.service';
     providers: [FetchTemplatesService, RemoveTemplateService],
 })
 export class PaymentTemplatesComponent {
-    response$ = this.fetchTemplatesService.response$;
+    response$ = this.fetchTemplatesService.searchResult$.pipe(pluck('templateModels'));
     inProgress$ = this.fetchTemplatesService.inProgress$;
 
     constructor(
@@ -20,6 +21,7 @@ export class PaymentTemplatesComponent {
         private fetchTemplatesService: FetchTemplatesService,
         private removeTemplateService: RemoveTemplateService
     ) {
+        this.response$.subscribe((q) => console.log(q));
         this.removeTemplateService.removed$.subscribe(() => {
             this.fetchTemplatesService.fetch({ type: OperationType.Payment });
         });
@@ -40,7 +42,7 @@ export class PaymentTemplatesComponent {
                 });
                 break;
             case Actions.sortTemplates:
-                this.fetchTemplatesService.fetch({ type: OperationType.Payment, sortOrder: action.sortDirection });
+                this.fetchTemplatesService.fetchMore();
                 break;
             default:
                 console.error('Wrong template action.');

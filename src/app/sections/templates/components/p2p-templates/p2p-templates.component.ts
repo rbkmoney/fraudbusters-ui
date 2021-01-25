@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { pluck } from 'rxjs/operators';
 
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { Action, Actions } from '../../action';
@@ -12,7 +13,7 @@ import { RemoveTemplateService } from '../../services/remove-template.service';
     providers: [FetchTemplatesService, RemoveTemplateService],
 })
 export class P2pTemplatesComponent {
-    response$ = this.fetchTemplatesService.response$;
+    response$ = this.fetchTemplatesService.searchResult$.pipe(pluck('templateModels'));
     inProgress$ = this.fetchTemplatesService.inProgress$;
 
     constructor(
@@ -41,7 +42,7 @@ export class P2pTemplatesComponent {
                 });
                 break;
             case Actions.sortTemplates:
-                this.fetchTemplatesService.fetch({ type: OperationType.Payment, sortOrder: action.sortDirection });
+                this.fetchTemplatesService.fetch({ type: OperationType.PeerToPeer, sortOrder: action.sortDirection });
                 break;
             default:
                 console.error('Wrong template action.');

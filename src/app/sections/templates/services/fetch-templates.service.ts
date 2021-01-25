@@ -1,14 +1,15 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { EMPTY, merge, of, Subject } from 'rxjs';
-import { catchError, shareReplay, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, shareReplay, tap } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { SortOrder } from '../../../shared/constants/sort-order';
-import { progress } from '../../../shared/operators';
+import { booleanDelay } from '../../../shared/operators';
 import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
+import { TemplatesResponse } from '../../templates-old/model/templates-response';
+import { FetchResult, PartialFetcher } from './partial-fetcher';
 
 export interface FetchTemplatesParams {
     type: OperationType;
@@ -17,47 +18,68 @@ export interface FetchTemplatesParams {
 }
 
 @Injectable()
-export class FetchTemplatesService {
+export class FetchTemplatesService extends PartialFetcher<TemplatesResponse, FetchTemplatesParams> {
     private SIZE = this.configService.pageSize;
-    private fetchTemplates$ = new Subject<FetchTemplatesParams>();
-    private fetchMore$;
-    private hasError$ = new Subject();
 
-    response$ = this.fetchTemplates$.pipe(
-        switchMap((params) =>
-            this.operationTypeManagementService
-                .findTemplateService(params.type)
-                .findTemplates({
-                    size: this.SIZE,
-                    sortOrder: params.sortOrder || SortOrder.ASC,
-                    searchValue: params.searchValue,
-                })
-                .pipe(
-                    catchError((error: HttpErrorResponse) => {
-                        this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-                            duration: 1500,
-                        });
-                        this.hasError$.next();
-                        return of(EMPTY);
-                    })
-                )
-        ),
-        shareReplay(1)
-    );
-
-    inProgress$ = progress(this.fetchTemplates$, merge(this.hasError$, this.response$));
-
+    inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
+    // private fetchTemplates$ = new Subject<FetchTemplatesParams>();
+    // private fetchMore$;
+    // private hasError$ = new Subject();
+    //
+    // response$ = this.fetchTemplates$.pipe(
+    //     switchMap((params) =>
+    //         this.operationTypeManagementService
+    //             .findTemplateService(params.type)
+    //             .findTemplates({
+    //                 size: this.SIZE,
+    //                 sortOrder: params.sortOrder || SortOrder.ASC,
+    //                 searchValue: params.searchValue,
+    //             })
+    //             .pipe(
+    //                 catchError((error: HttpErrorResponse) => {
+    //                     this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
+    //                         duration: 1500,
+    //                     });
+    //                     this.hasError$.next();
+    //                     return of(EMPTY);
+    //                 })
+    //             )
+    //     ),
+    //     shareReplay(1)
+    // );
+    //
+    // inProgress$ = progress(this.fetchTemplates$, merge(this.hasError$, this.response$));
+    //
     constructor(
         private operationTypeManagementService: OperationTypeManagementService,
         private configService: ConfigService,
         private snackBar: MatSnackBar
     ) {
-        this.response$.subscribe();
+        super();
     }
 
-    fetch(params: FetchTemplatesParams) {
-        this.fetchTemplates$.next(params);
-    }
+    //
+    // fetch(params: FetchTemplatesParams) {
+    //     this.fetchTemplates$.next(params);
+    // }
+    //
+    // fetchMore() {}
 
-    fetchMore() {}
+    protected fetch(params: FetchTemplatesParams, lastId?: string): Observable<FetchResult<TemplatesResponse>> {
+        const { type, searchValue, sortOrder } = params;
+        return this.operationTypeManagementService
+            .findTemplateService(type)
+            .findTemplates({
+                size: this.SIZE,
+                sortOrder: sortOrder || SortOrder.ASC,
+                ...(searchValue ? { searchValue } : {}),
+                ...(lastId ? { lastId } : {}),
+            })
+            .pipe(
+                map(({ templateModels, count }) => ({
+                    result: templateModels,
+                    count,
+                }))
+            );
+    }
 }
