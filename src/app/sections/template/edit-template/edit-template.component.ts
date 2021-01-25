@@ -37,7 +37,7 @@ export class EditTemplateComponent implements OnInit {
         this.route.params.subscribe(({ id }) => {
             this.templateService.getTemplates(this.operationType, 1, id).subscribe(
                 (templatesResponse) => {
-                    this.template = templatesResponse.templateModels[0];
+                    this.template = templatesResponse.result[0];
                 },
                 (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
             );
