@@ -103,9 +103,9 @@ export class WbListComponent implements OnInit {
             .subscribe(
                 (response) => {
                     if (!!!lastInListName) {
-                        this.listsRows = response.wbListRecords;
+                        this.listsRows = response.result;
                     } else {
-                        this.listsRows = this.listsRows.concat(response.wbListRecords);
+                        this.listsRows = this.listsRows.concat(response.result);
                     }
                     this.isLoadMore = this.listsRows.length < response.count;
                 },
