@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
 import { Template } from '../../../sections/templates/model/template';
-import { TemplatesResponse } from '../../../sections/templates/model/templates-response';
 import { ValidateResponse } from '../../../sections/templates/model/validate-response';
 import { ValidateTemplate } from '../../../sections/templates/model/validate-template';
 import { HttpRequestModel } from '../../model/http-request-model';
+import { HttpSearchResponse } from '../../model/http-search-response';
 import { SearchParams } from '../../model/search-params';
 import { ParamsUtilService } from '../utils/params-util.service';
 import { ITemplatesService } from './itemplates.service';
@@ -22,8 +22,8 @@ export class PaymentTemplatesService implements ITemplatesService {
         private configService: ConfigService
     ) {}
 
-    findTemplates(params?: SearchParams): Observable<TemplatesResponse> {
-        return this.http.get<TemplatesResponse>(`${this.fbManagementEndpoint}/template/filter/`, {
+    findTemplates(params?: SearchParams): Observable<HttpSearchResponse<Template>> {
+        return this.http.get<HttpSearchResponse<Template>>(`${this.fbManagementEndpoint}/template/filter/`, {
             params: this.paramsUtilService.filterParameters(params),
         });
     }
