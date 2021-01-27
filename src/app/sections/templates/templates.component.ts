@@ -70,7 +70,7 @@ export class TemplatesComponent extends OperationTypeComponent implements OnInit
             .subscribe(
                 (templatesResponse) => {
                     this.isLoading = false;
-                    this.templates = templatesResponse.result;
+                    this.templates = templatesResponse.templateModels;
                     this.isLoadMore = this.templates.length < templatesResponse.count;
                 },
                 (error: HttpErrorResponse) => {
@@ -103,7 +103,7 @@ export class TemplatesComponent extends OperationTypeComponent implements OnInit
             .subscribe(
                 (templatesResponse) => {
                     this.isLoading = false;
-                    this.templates = this.templates.concat(templatesResponse.result);
+                    this.templates = this.templates.concat(templatesResponse.templateModels);
                     this.isLoadMore = this.templates.length < templatesResponse.count;
                 },
                 (error: HttpErrorResponse) => {
