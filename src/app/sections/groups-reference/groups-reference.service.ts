@@ -3,9 +3,11 @@ import { Observable } from 'rxjs';
 
 import { OperationType } from '../../shared/constants/operation-type';
 import { SortOrder } from '../../shared/constants/sort-order';
+import { HttpSearchResponse } from '../../shared/model/http-search-response';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { GroupReferenceModel } from './model/groups-reference';
-import { GroupsReferenceResponse } from './model/groups-reference-response';
+import { P2pGroupReferenceModel } from './model/p2p-groups-reference';
+import { PaymentGroupReferenceModel } from './model/payment-groups-reference';
 
 @Injectable()
 export class GroupsReferenceService {
@@ -18,7 +20,7 @@ export class GroupsReferenceService {
         lastInListName?: string,
         sortOrder?: SortOrder,
         sortField?: string
-    ): Observable<GroupsReferenceResponse> {
+    ): Observable<HttpSearchResponse<PaymentGroupReferenceModel | P2pGroupReferenceModel>> {
         return this.operationReferenceService.findGroupsReferenceService(type).findGroups({
             searchValue: nameRegexp,
             lastId: lastInListName,

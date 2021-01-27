@@ -79,7 +79,7 @@ export class GroupsReferenceComponent extends OperationTypeComponent implements 
             )
             .subscribe(
                 (groupsReferenceResponse) => {
-                    this.groupReferences = groupsReferenceResponse.groupsReferenceModels;
+                    this.groupReferences = groupsReferenceResponse.result;
                     this.isLoadMore = this.groupReferences.length < groupsReferenceResponse.count;
                 },
                 (error: HttpErrorResponse) => {
@@ -121,7 +121,7 @@ export class GroupsReferenceComponent extends OperationTypeComponent implements 
             )
             .subscribe(
                 (groupsReferenceResponse) => {
-                    this.groupReferences = this.groupReferences.concat(groupsReferenceResponse.groupsReferenceModels);
+                    this.groupReferences = this.groupReferences.concat(groupsReferenceResponse.result);
                     this.isLoadMore = this.groupReferences.length < groupsReferenceResponse.count;
                 },
                 (error: HttpErrorResponse) => {

@@ -4,8 +4,10 @@ import { Observable } from 'rxjs';
 import { ListType } from '../../constants/list-type';
 import { OperationType } from '../../constants/operation-type';
 import { SortOrder } from '../../constants/sort-order';
+import { HttpSearchResponse } from '../../model/http-search-response';
 import { CountInfoListRecord } from '../../services/lists/model/count-info-list-record';
-import { ListsFilterResponse } from '../../services/lists/model/lists-filter-response';
+import { P2pListRecord } from '../../services/lists/model/p2p-list-record';
+import { PaymentListRecord } from '../../services/lists/model/payment-list-record';
 import { OperationTypeManagementService } from '../../services/operation-type-management.service';
 
 @Injectable()
@@ -21,7 +23,7 @@ export class WbListService {
         lastInListName?: string,
         sortOrder?: SortOrder,
         sortField?: string
-    ): Observable<ListsFilterResponse> {
+    ): Observable<HttpSearchResponse<PaymentListRecord | P2pListRecord>> {
         return this.operationTypeManagementService.findListsService(type).findListRows({
             searchValue: nameRegexp,
             lastId: lastInListName,
