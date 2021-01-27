@@ -7,8 +7,8 @@ import { PaymentReference } from '../../../sections/reference/model/payment-refe
 import { P2pReference } from '../../../sections/references/model/p2p-reference';
 import { Reference } from '../../../sections/references/model/reference';
 import { HttpRequestModel } from '../../model/http-request-model';
-import { filterParameters } from '../../utils/filter-params';
 import { HttpSearchResponse } from '../../model/http-search-response';
+import { filterParameters } from '../../utils/filter-params';
 import { IReferencesService } from './ireferences.service';
 import { SearchReferenceParams } from './model/search-reference-params';
 

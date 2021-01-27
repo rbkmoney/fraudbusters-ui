@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
-import { filterParameters } from '../../utils/filter-params';
 import { Log } from '../../../sections/audit/model/log';
 import { HttpSearchResponse } from '../../model/http-search-response';
+import { filterParameters } from '../../utils/filter-params';
 import { IAuditService } from './iaudit.service';
 import { SearchAuditParams } from './model/search-audit-params';
 
