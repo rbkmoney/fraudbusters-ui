@@ -1,10 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { ListType } from '../../constants/list-type';
@@ -25,7 +27,7 @@ export class WbListComponent implements OnInit {
     @Input() isCounting = false;
 
     listsRows = [];
-    searchValue = '';
+    searchValue: FormControl = new FormControl('');
     operationType: OperationType;
     operationTypes;
     listNames: string[] = [];
@@ -56,6 +58,9 @@ export class WbListComponent implements OnInit {
         this.operationTypes = Object.keys(OperationType);
         this.operationType = this.operationTypes[0];
         this.getListNames();
+        this.searchValue.valueChanges.pipe(debounceTime(300)).subscribe(() => {
+            this.search();
+        });
     }
 
     selectionChange(): void {
@@ -95,7 +100,7 @@ export class WbListComponent implements OnInit {
                 this.listType,
                 (OperationType as any)[this.operationType],
                 this.SIZE,
-                this.searchFieldService.formatField(this.searchValue),
+                this.searchFieldService.formatField(this.searchValue.value),
                 lastInListName,
                 sortOrder,
                 sortFieldValue
@@ -117,11 +122,6 @@ export class WbListComponent implements OnInit {
 
     navigateToNew(): void {
         this.router.navigate([`/list/${this.listType}/new`], { fragment: this.operationType });
-    }
-
-    changeSearch(newValue): void {
-        this.searchValue = newValue;
-        this.search();
     }
 
     sortData(sort: Sort): void {

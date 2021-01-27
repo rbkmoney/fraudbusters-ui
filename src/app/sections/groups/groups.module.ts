@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -59,6 +59,7 @@ import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-d
         MatAutocompleteModule,
         FlexLayoutModule,
         FormsModule,
+        ReactiveFormsModule,
     ],
     providers: [
         GroupsService,

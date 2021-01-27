@@ -1,11 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
-import { filter, pluck } from 'rxjs/operators';
+import { debounceTime, filter, pluck } from 'rxjs/operators';
 
 import { ConfigService } from '../../config';
 import { OperationTypeComponent } from '../../shared/components/operation-type-component';
@@ -22,7 +23,7 @@ import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-di
 })
 export class GroupsReferenceComponent extends OperationTypeComponent implements OnInit {
     groupReferences = [];
-    searchValue = '';
+    searchValue: FormControl = new FormControl('');
     operationType: OperationType;
     operationTypes;
 
@@ -57,6 +58,9 @@ export class GroupsReferenceComponent extends OperationTypeComponent implements 
             )
             .subscribe((value) => (this.searchValue = value));
         this.selectionChange();
+        this.searchValue.valueChanges.pipe(debounceTime(300)).subscribe(() => {
+            this.search();
+        });
     }
 
     selectionChange(): void {
@@ -73,7 +77,7 @@ export class GroupsReferenceComponent extends OperationTypeComponent implements 
             .getGroupsReferences(
                 (OperationType as any)[this.operationType],
                 this.SIZE,
-                this.searchFieldService.formatField(this.searchValue),
+                this.searchFieldService.formatField(this.searchValue.value),
                 null,
                 this.sortType
             )
@@ -86,11 +90,6 @@ export class GroupsReferenceComponent extends OperationTypeComponent implements 
                     this.errorHandlerService.handleError(error, this.snackBar);
                 }
             );
-    }
-
-    changeSearch(newValue): void {
-        this.searchValue = newValue;
-        this.search();
     }
 
     sortData(sort: Sort): void {
@@ -114,7 +113,7 @@ export class GroupsReferenceComponent extends OperationTypeComponent implements 
             .getGroupsReferences(
                 (OperationType as any)[this.operationType],
                 this.SIZE,
-                this.searchFieldService.formatField(this.searchValue),
+                this.searchFieldService.formatField(this.searchValue.value),
                 this.groupReferences[this.groupReferences.length - 1].id,
                 this.sortType,
                 this.groupReferences[this.groupReferences.length - 1].groupId
