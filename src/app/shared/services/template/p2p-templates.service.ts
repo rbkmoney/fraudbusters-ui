@@ -3,28 +3,24 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
-import { Template } from '../../../sections/templates/model/template';
-import { ValidateResponse } from '../../../sections/templates/model/validate-response';
-import { ValidateTemplate } from '../../../sections/templates/model/validate-template';
+import { Template } from '../../../sections/template/model/template';
+import { ValidateResponse } from '../../../sections/template/model/validate-response';
+import { ValidateTemplate } from '../../../sections/template/model/validate-template';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { HttpSearchResponse } from '../../model/http-search-response';
 import { SearchParams } from '../../model/search-params';
-import { ParamsUtilService } from '../utils/params-util.service';
+import { filterParameters } from '../../utils/filter-params';
 import { ITemplatesService } from './itemplates.service';
 
 @Injectable()
 export class P2pTemplatesService implements ITemplatesService {
     private readonly fbManagementEndpoint = this.configService.fbManagementEndpoint;
 
-    constructor(
-        private http: HttpClient,
-        private paramsUtilService: ParamsUtilService,
-        private configService: ConfigService
-    ) {}
+    constructor(private http: HttpClient, private configService: ConfigService) {}
 
     findTemplates(params?: SearchParams): Observable<HttpSearchResponse<Template>> {
         return this.http.get<HttpSearchResponse<Template>>(`${this.fbManagementEndpoint}/p2p/template/filter/`, {
-            params: this.paramsUtilService.filterParameters(params),
+            params: filterParameters(params),
         });
     }
 
@@ -42,7 +38,7 @@ export class P2pTemplatesService implements ITemplatesService {
 
     getTemplatesName(nameRegexp: string): Observable<string[]> {
         return this.http.get<string[]>(`${this.fbManagementEndpoint}/p2p/template/names`, {
-            params: this.paramsUtilService.filterParameters({ regexpName: nameRegexp }),
+            params: filterParameters({ regexpName: nameRegexp }),
         });
     }
 

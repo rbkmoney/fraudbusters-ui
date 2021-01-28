@@ -23,7 +23,6 @@ import { PaymentReferencesService } from '../../shared/services/reference/paymen
 import { P2pTemplatesService } from '../../shared/services/template/p2p-templates.service';
 import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { ParamsUtilService } from '../../shared/services/utils/params-util.service';
 import { CreateGroupReferenceComponent } from './create-group-reference/create-group-reference.component';
 import { GroupReferenceRoutingModule } from './group-reference-routing.module';
 import { GroupReferenceComponent } from './group-reference.component';
@@ -48,7 +47,6 @@ import { GroupsReferenceService } from './groups-reference.service';
         GroupsReferenceService,
         OperationTypeManagementService,
         PaymentTemplatesService,
-        ParamsUtilService,
         P2pTemplatesService,
         PaymentGroupsService,
         P2pGroupsService,

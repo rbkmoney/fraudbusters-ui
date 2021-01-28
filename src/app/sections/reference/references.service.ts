@@ -67,7 +67,7 @@ export class ReferencesService {
             searchValue: filter.search,
             lastId: filter.lastInListName,
             size: filter.size,
-            sortOrder: filter.sortOrder ? SortOrder[filter.sortOrder] : SortOrder[SortOrder.ASC],
+            sortOrder: filter.sortOrder ? filter.sortOrder : SortOrder.ASC,
             isGlobal: filter.isGlobalValue,
             isDefault: filter.isDefaultValue,
             sortFieldValue: filter.sortField,

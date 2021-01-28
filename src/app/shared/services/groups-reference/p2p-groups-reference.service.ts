@@ -9,18 +9,14 @@ import { PaymentGroupReferenceModel } from '../../../sections/groups-reference/m
 import { HttpRequestModel } from '../../model/http-request-model';
 import { HttpSearchResponse } from '../../model/http-search-response';
 import { SearchParams } from '../../model/search-params';
-import { ParamsUtilService } from '../utils/params-util.service';
+import { filterParameters } from '../../utils/filter-params';
 import { IGroupsReferenceService } from './igroups-reference.service';
 
 @Injectable()
 export class P2pGroupsReferenceService implements IGroupsReferenceService {
     private readonly fbManagementEndpoint = this.configService.fbManagementEndpoint;
 
-    constructor(
-        private http: HttpClient,
-        private paramsUtilService: ParamsUtilService,
-        private configService: ConfigService
-    ) {}
+    constructor(private http: HttpClient, private configService: ConfigService) {}
 
     findGroups(
         params?: SearchParams
@@ -28,7 +24,7 @@ export class P2pGroupsReferenceService implements IGroupsReferenceService {
         return this.http.get<HttpSearchResponse<PaymentGroupReferenceModel | P2pGroupReferenceModel>>(
             `${this.fbManagementEndpoint}/p2p/group/reference/filter`,
             {
-                params: this.paramsUtilService.filterParameters(params),
+                params: filterParameters(params),
             }
         );
     }

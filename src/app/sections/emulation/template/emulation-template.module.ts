@@ -15,6 +15,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { SharedPipesModule } from '../../../shared/pipes';
 import { PaymentEmulationTemplateService } from '../../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../../shared/services/groups-reference/p2p-groups-reference.service';
 import { PaymentGroupsReferenceService } from '../../../shared/services/groups-reference/payment-groups-reference.service';
@@ -28,14 +29,12 @@ import { PaymentReferencesService } from '../../../shared/services/reference/pay
 import { P2pTemplatesService } from '../../../shared/services/template/p2p-templates.service';
 import { PaymentTemplatesService } from '../../../shared/services/template/payment-templates.service';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
-import { ParamsUtilService } from '../../../shared/services/utils/params-util.service';
 import { EmulationTemplateRoutingModule } from './emulation-template-routing.module';
 import { EmulationTemplateComponent } from './emulation-template.component';
 import { EmulationTemplateService } from './emulation-template.service';
-import { TemplateToRulesPipe } from './template-to-rules.pipe';
 
 @NgModule({
-    declarations: [EmulationTemplateComponent, TemplateToRulesPipe],
+    declarations: [EmulationTemplateComponent],
     imports: [
         CommonModule,
         EmulationTemplateRoutingModule,
@@ -53,13 +52,13 @@ import { TemplateToRulesPipe } from './template-to-rules.pipe';
         MatDialogModule,
         FlexLayoutModule,
         FormsModule,
+        SharedPipesModule,
     ],
     providers: [
         EmulationTemplateService,
         PaymentEmulationTemplateService,
         PaymentTemplatesService,
         ErrorHandlerService,
-        ParamsUtilService,
         PaymentReferencesService,
         PaymentListsService,
         P2pTemplatesService,

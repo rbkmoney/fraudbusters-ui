@@ -28,7 +28,7 @@ export class WbListService {
             searchValue: nameRegexp,
             lastId: lastInListName,
             size: sizeValue,
-            sortOrder: sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC],
+            sortOrder: sortOrder ? sortOrder : SortOrder.ASC,
             sortFieldValue: sortField,
             listNames: listNamesValue,
             listType: listTypeValue,

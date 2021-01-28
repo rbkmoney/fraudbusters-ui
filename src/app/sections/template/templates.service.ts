@@ -24,7 +24,7 @@ export class TemplatesService {
             searchValue: nameRegexp,
             lastId: lastInListName,
             size: sizeValue,
-            sortOrder: sortOrder ? SortOrder[sortOrder] : SortOrder[SortOrder.ASC],
+            sortOrder: sortOrder ? sortOrder : SortOrder.ASC,
         });
     }
 

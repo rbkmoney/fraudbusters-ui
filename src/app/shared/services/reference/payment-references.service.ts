@@ -8,7 +8,7 @@ import { PaymentReference } from '../../../sections/references/model/payment-ref
 import { Reference } from '../../../sections/references/model/reference';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { HttpSearchResponse } from '../../model/http-search-response';
-import { ParamsUtilService } from '../utils/params-util.service';
+import { filterParameters } from '../../utils/filter-params';
 import { IReferencesService } from './ireferences.service';
 import { SearchReferenceParams } from './model/search-reference-params';
 
@@ -16,17 +16,13 @@ import { SearchReferenceParams } from './model/search-reference-params';
 export class PaymentReferencesService implements IReferencesService {
     private readonly fbManagementEndpoint = this.configService.fbManagementEndpoint;
 
-    constructor(
-        private http: HttpClient,
-        private paramsUtilService: ParamsUtilService,
-        private configService: ConfigService
-    ) {}
+    constructor(private http: HttpClient, private configService: ConfigService) {}
 
     findReferences(params?: SearchReferenceParams): Observable<HttpSearchResponse<PaymentReference | P2pReference>> {
         return this.http.get<HttpSearchResponse<PaymentReference | P2pReference>>(
             `${this.fbManagementEndpoint}/reference/filter/`,
             {
-                params: this.paramsUtilService.filterParameters(params),
+                params: filterParameters(params),
             }
         );
     }
