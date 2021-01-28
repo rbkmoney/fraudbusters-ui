@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { OperationType } from '../../../../shared/constants/operation-type';
-import { Action, Actions } from '../../action';
+import { Action, ActionType } from '../../action';
 import { FetchTemplatesService } from '../../services/fetch-templates.service';
 import { RemoveTemplateService } from '../../services/remove-template.service';
 
@@ -28,19 +28,19 @@ export class P2pTemplatesComponent {
 
     action(action: Action) {
         switch (action.type) {
-            case Actions.createTemplate:
+            case ActionType.createTemplate:
                 this.router.navigate(['/template/new'], { fragment: OperationType.PeerToPeer });
                 break;
-            case Actions.editTemplate:
+            case ActionType.editTemplate:
                 this.router.navigate([`/template/${action.templateID}`], { fragment: OperationType.PeerToPeer });
                 break;
-            case Actions.removeTemplate:
+            case ActionType.removeTemplate:
                 this.removeTemplateService.removeTemplate({
                     type: OperationType.PeerToPeer,
                     templateID: action.templateID,
                 });
                 break;
-            case Actions.sortTemplates:
+            case ActionType.sortTemplates:
                 this.fetchTemplatesService.search({ type: OperationType.Payment, sortOrder: action.sortDirection });
                 break;
             default:
@@ -49,7 +49,7 @@ export class P2pTemplatesComponent {
     }
 
     createTemplate() {
-        this.action({ type: Actions.createTemplate });
+        this.action({ type: ActionType.createTemplate });
     }
 
     search(searchValue: string) {

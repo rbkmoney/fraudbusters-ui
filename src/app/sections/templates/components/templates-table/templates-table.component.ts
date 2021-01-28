@@ -3,7 +3,7 @@ import { Sort } from '@angular/material/sort';
 
 import { SortOrder } from '../../../../shared/constants/sort-order';
 import { Template } from '../../../template/model/template';
-import { Action, Actions } from '../../action';
+import { Action, ActionType } from '../../action';
 
 @Component({
     templateUrl: 'templates-table.component.html',
@@ -23,19 +23,19 @@ export class TemplatesTableComponent {
     sort(sort: Sort): void {
         switch (sort.direction) {
             case 'asc':
-                this.action.emit({ type: Actions.sortTemplates, sortDirection: SortOrder.ASC });
+                this.action.emit({ type: ActionType.sortTemplates, sortDirection: SortOrder.ASC });
                 break;
             case 'desc':
-                this.action.emit({ type: Actions.sortTemplates, sortDirection: SortOrder.DESC });
+                this.action.emit({ type: ActionType.sortTemplates, sortDirection: SortOrder.DESC });
                 break;
         }
     }
 
     removeTemplate(templateID: string): void {
-        this.action.emit({ type: Actions.removeTemplate, templateID });
+        this.action.emit({ type: ActionType.removeTemplate, templateID });
     }
 
     editTemplate(templateID: string) {
-        this.action.emit({ type: Actions.editTemplate, templateID });
+        this.action.emit({ type: ActionType.editTemplate, templateID });
     }
 }
