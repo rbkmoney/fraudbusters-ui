@@ -1,7 +1,7 @@
 <div fxLayout="column" fxLayoutGap="8px">
     <div fxLayout="row" fxLayoutAlign="space-between center">
         <fb-references-search (valueChanges)="search($event)"></fb-references-search>
-        <button mat-button color="primary" (click)="createTemplate()">CREATE REFERENCE</button>
+        <button mat-button color="primary" (click)="createReference()">CREATE REFERENCE</button>
     </div>
     <div *ngIf="references$ | async as references; else Empty">
         <mat-card *ngIf="references.length > 0; else Empty">

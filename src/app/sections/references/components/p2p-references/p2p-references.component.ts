@@ -40,12 +40,12 @@ export class P2pReferencesComponent {
                 });
                 break;
             case ActionType.removeReference:
-                this.removeReferenceService.removeTemplate({
+                this.removeReferenceService.removeReference({
                     type: OperationType.PeerToPeer,
                     reference: action.reference,
                 });
                 break;
-            case ActionType.sortReference:
+            case ActionType.sortReferences:
                 this.fetchReferencesService.search({
                     type: OperationType.Payment,
                     sortOrder: action.sortDirection,
@@ -57,7 +57,7 @@ export class P2pReferencesComponent {
         }
     }
 
-    createTemplate() {
+    createReference() {
         this.action({ type: ActionType.createReference });
     }
 

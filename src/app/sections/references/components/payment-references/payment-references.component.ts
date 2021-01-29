@@ -12,17 +12,17 @@ import { RemoveReferenceService } from '../../services/remove-reference.service'
     providers: [FetchReferencesService, RemoveReferenceService],
 })
 export class PaymentReferencesComponent {
-    references$ = this.fetchTemplatesService.searchResult$;
-    inProgress$ = this.fetchTemplatesService.inProgress$;
-    hasMore$ = this.fetchTemplatesService.hasMore$;
+    references$ = this.fetchReferencesService.searchResult$;
+    inProgress$ = this.fetchReferencesService.inProgress$;
+    hasMore$ = this.fetchReferencesService.hasMore$;
 
     constructor(
         private router: Router,
-        private fetchTemplatesService: FetchReferencesService,
-        private removeTemplateService: RemoveReferenceService
+        private fetchReferencesService: FetchReferencesService,
+        private removeReferenceService: RemoveReferenceService
     ) {
-        this.removeTemplateService.removed$.subscribe(() => {
-            this.fetchTemplatesService.search({ type: OperationType.Payment, isGlobal: false });
+        this.removeReferenceService.removed$.subscribe(() => {
+            this.fetchReferencesService.search({ type: OperationType.Payment, isGlobal: false });
         });
     }
 
@@ -38,13 +38,13 @@ export class PaymentReferencesComponent {
                 this.router.navigate([`/template/${action.reference.templateId}`], { fragment: OperationType.Payment });
                 break;
             case ActionType.removeReference:
-                this.removeTemplateService.removeTemplate({
+                this.removeReferenceService.removeReference({
                     type: OperationType.Payment,
                     reference: action.reference,
                 });
                 break;
-            case ActionType.sortReference:
-                this.fetchTemplatesService.search({
+            case ActionType.sortReferences:
+                this.fetchReferencesService.search({
                     type: OperationType.Payment,
                     sortOrder: action.sortDirection,
                     isGlobal: false,
@@ -55,15 +55,15 @@ export class PaymentReferencesComponent {
         }
     }
 
-    createTemplate() {
+    createReference() {
         this.action({ type: ActionType.createReference });
     }
 
     search(searchValue: string) {
-        this.fetchTemplatesService.search({ type: OperationType.Payment, searchValue, isGlobal: false });
+        this.fetchReferencesService.search({ type: OperationType.Payment, searchValue, isGlobal: false });
     }
 
     fetchMore() {
-        this.fetchTemplatesService.fetchMore();
+        this.fetchReferencesService.fetchMore();
     }
 }

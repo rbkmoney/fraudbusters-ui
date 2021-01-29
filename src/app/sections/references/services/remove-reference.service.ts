@@ -11,17 +11,17 @@ import { progress } from '../../../shared/operators';
 import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
 import { Reference } from '../../reference/model/reference';
 
-export interface RemoveTemplatesParams {
+export interface RemoveReferenceParams {
     type: OperationType;
     reference: Reference;
 }
 
 @Injectable()
 export class RemoveReferenceService {
-    private removeTemplate$ = new Subject<RemoveTemplatesParams>();
+    private removeReference$ = new Subject<RemoveReferenceParams>();
     private hasError$ = new Subject();
 
-    removed$ = this.removeTemplate$.pipe(
+    removed$ = this.removeReference$.pipe(
         switchMap((params) =>
             combineLatest([
                 of(params),
@@ -32,7 +32,7 @@ export class RemoveReferenceService {
             ])
         ),
         switchMap(([params]) =>
-            this.operationTemplateService
+            this.operationTypeManagementService
                 .findReferenceService(params.type)
                 .deleteReference(params.reference)
                 .pipe(
@@ -47,17 +47,17 @@ export class RemoveReferenceService {
         )
     );
 
-    inProgress$ = progress(this.removeTemplate$, merge(this.hasError$, this.removed$));
+    inProgress$ = progress(this.removeReference$, merge(this.hasError$, this.removed$));
 
     constructor(
         private dialog: MatDialog,
-        private operationTemplateService: OperationTypeManagementService,
+        private operationTypeManagementService: OperationTypeManagementService,
         private snackBar: MatSnackBar
     ) {
         this.removed$.subscribe();
     }
 
-    removeTemplate(params: RemoveTemplatesParams) {
-        this.removeTemplate$.next(params);
+    removeReference(params: RemoveReferenceParams) {
+        this.removeReference$.next(params);
     }
 }

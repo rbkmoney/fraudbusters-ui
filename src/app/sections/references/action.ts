@@ -5,7 +5,7 @@ export enum ActionType {
     createReference = 'createReference',
     editReference = 'editReference',
     removeReference = 'removeReference',
-    sortReference = 'sortReference',
+    sortReferences = 'sortReferences',
     goToTemplate = 'goToTemplate',
 }
 

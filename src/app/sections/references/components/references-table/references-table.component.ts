@@ -23,19 +23,19 @@ export class ReferencesTableComponent {
     sort(sort: Sort): void {
         switch (sort.direction) {
             case 'asc':
-                this.action.emit({ type: ActionType.sortReference, sortDirection: SortOrder.ASC });
+                this.action.emit({ type: ActionType.sortReferences, sortDirection: SortOrder.ASC });
                 break;
             case 'desc':
-                this.action.emit({ type: ActionType.sortReference, sortDirection: SortOrder.DESC });
+                this.action.emit({ type: ActionType.sortReferences, sortDirection: SortOrder.DESC });
                 break;
         }
     }
 
-    removeTemplate(reference: Reference): void {
+    removeReference(reference: Reference): void {
         this.action.emit({ type: ActionType.removeReference, reference });
     }
 
-    editTemplate(reference: Reference) {
+    editReference(reference: Reference) {
         this.action.emit({ type: ActionType.editReference, reference });
     }
 
