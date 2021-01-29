@@ -1,0 +1,16 @@
+:host {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+}
+
+.th,
+.td {
+    padding: 4px 8px;
+}
+
+.updatedAt {
+    min-width: 130px;
+}

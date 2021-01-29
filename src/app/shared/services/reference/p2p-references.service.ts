@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
+import { P2pReference } from '../../../sections/reference/model/p2p-reference';
 import { PaymentReference } from '../../../sections/reference/model/payment-reference';
-import { P2pReference } from '../../../sections/references/model/p2p-reference';
-import { Reference } from '../../../sections/references/model/reference';
+import { Reference } from '../../../sections/reference/model/reference';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { HttpSearchResponse } from '../../model/http-search-response';
 import { filterParameters } from '../../utils/filter-params';
