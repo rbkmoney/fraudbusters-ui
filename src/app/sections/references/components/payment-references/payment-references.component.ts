@@ -32,7 +32,7 @@ export class PaymentReferencesComponent {
                 this.router.navigate(['/reference/new'], { fragment: OperationType.Payment });
                 break;
             case ActionType.editReference:
-                this.router.navigate([`/reference/${action.reference}`], { fragment: OperationType.Payment });
+                this.router.navigate([`/reference/${action.reference.id}`], { fragment: OperationType.Payment });
                 break;
             case ActionType.goToTemplate:
                 this.router.navigate([`/template/${action.reference.templateId}`], { fragment: OperationType.Payment });
