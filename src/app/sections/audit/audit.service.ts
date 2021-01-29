@@ -78,9 +78,9 @@ export class AuditService {
                             return of(error);
                         }),
                         map((ref) => {
-                            this.last = ref.logs ? ref.logs[ref.logs.length - 1] : [];
+                            this.last = ref.result ? ref.result[ref.result.length - 1] : [];
                             this.count = ref.count;
-                            return { logs: ref.logs, filter: value, count: ref.count };
+                            return { logs: ref.result, filter: value, count: ref.count };
                         })
                     );
             }),

@@ -5,13 +5,13 @@ import { catchError, map, scan, switchMap } from 'rxjs/operators';
 
 import { OperationType } from '../../shared/constants/operation-type';
 import { SortOrder } from '../../shared/constants/sort-order';
+import { HttpSearchResponse } from '../../shared/model/http-search-response';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { FilterReference } from './model/filter-reference';
 import { P2pReference } from './model/p2p-reference';
 import { PaymentReference } from './model/payment-reference';
 import { Reference } from './model/reference';
-import { ReferencesResponse } from './model/references-response';
 
 @Injectable()
 export class ReferencesService {
@@ -52,8 +52,8 @@ export class ReferencesService {
                 return of(error);
             }),
             map((ref) => {
-                this.lastRefSubject$.next(ref.referenceModels[ref.referenceModels.length - 1]);
-                return { references: ref.referenceModels, filter: filterReference, count: ref.count };
+                this.lastRefSubject$.next(ref.result[ref.result.length - 1]);
+                return { references: ref.result, filter: filterReference, count: ref.count };
             })
         );
     }
@@ -62,12 +62,12 @@ export class ReferencesService {
         this.filterReference$.next(filter);
     }
 
-    getReferences(filter: FilterReference): Observable<ReferencesResponse> {
+    getReferences(filter: FilterReference): Observable<HttpSearchResponse<PaymentReference | P2pReference>> {
         return this.operationReferenceService.findReferenceService(filter.type).findReferences({
             searchValue: filter.search,
             lastId: filter.lastInListName,
             size: filter.size,
-            sortOrder: filter.sortOrder ? SortOrder[filter.sortOrder] : SortOrder[SortOrder.ASC],
+            sortOrder: filter.sortOrder ? filter.sortOrder : SortOrder.ASC,
             isGlobal: filter.isGlobalValue,
             isDefault: filter.isDefaultValue,
             sortFieldValue: filter.sortField,

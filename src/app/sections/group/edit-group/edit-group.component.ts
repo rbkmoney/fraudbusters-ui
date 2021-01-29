@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { OperationType } from '../../../shared/constants/operation-type';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
-import { TemplatesService } from '../../templates/templates.service';
+import { TemplatesService } from '../../template/templates.service';
 import { GroupsService } from '../groups.service';
 import { Group } from '../model/group';
 import { GroupUtilsService } from '../utils/group-utils.service';

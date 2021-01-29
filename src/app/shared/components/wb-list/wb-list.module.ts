@@ -37,7 +37,6 @@ import { PaymentReferencesService } from '../../services/reference/payment-refer
 import { P2pTemplatesService } from '../../services/template/p2p-templates.service';
 import { PaymentTemplatesService } from '../../services/template/payment-templates.service';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
-import { ParamsUtilService } from '../../services/utils/params-util.service';
 import { SearchFieldService } from '../../services/utils/search-field.service';
 import { AddRowListComponent } from './add-row-list/add-row-list.component';
 import { RemoveRowListDialogComponent } from './remove-row-list/remove-row-list-dialog.component';
@@ -86,7 +85,6 @@ import { WbListService } from './wb-list.service';
         P2pGroupsService,
         PaymentReferencesService,
         PaymentGroupsService,
-        ParamsUtilService,
         P2pTemplatesService,
         OperationTypeManagementService,
     ],

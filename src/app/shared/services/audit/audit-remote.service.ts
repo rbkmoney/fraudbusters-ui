@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
-import { AuditResponse } from '../../../sections/references/model/audit-response';
-import { ParamsUtilService } from '../utils/params-util.service';
+import { Log } from '../../../sections/audit/model/log';
+import { HttpSearchResponse } from '../../model/http-search-response';
+import { filterParameters } from '../../utils/filter-params';
 import { IAuditService } from './iaudit.service';
 import { SearchAuditParams } from './model/search-audit-params';
 
@@ -12,11 +13,7 @@ import { SearchAuditParams } from './model/search-audit-params';
 export class AuditRemoteService implements IAuditService {
     private readonly fbManagementEndpoint = this.configService.fbManagementEndpoint;
 
-    constructor(
-        private http: HttpClient,
-        private paramsUtilService: ParamsUtilService,
-        private configService: ConfigService
-    ) {}
+    constructor(private http: HttpClient, private configService: ConfigService) {}
 
     getObjectTypes(): Observable<string[]> {
         return this.http.get<string[]>(`${this.fbManagementEndpoint}/audit/objectTypes`);
@@ -26,9 +23,9 @@ export class AuditRemoteService implements IAuditService {
         return this.http.get<string[]>(`${this.fbManagementEndpoint}/audit/commandTypes`);
     }
 
-    findLogs(params?: SearchAuditParams): Observable<AuditResponse> {
-        return this.http.get<AuditResponse>(`${this.fbManagementEndpoint}/audit/filter`, {
-            params: this.paramsUtilService.filterParameters(params),
+    findLogs(params?: SearchAuditParams): Observable<HttpSearchResponse<Log>> {
+        return this.http.get<HttpSearchResponse<Log>>(`${this.fbManagementEndpoint}/audit/filter`, {
+            params: filterParameters(params),
         });
     }
 }

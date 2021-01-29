@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
+import { PaymentReference } from '../../../sections/reference/model/payment-reference';
 import { P2pReference } from '../../../sections/references/model/p2p-reference';
 import { Reference } from '../../../sections/references/model/reference';
-import { ReferencesResponse } from '../../../sections/references/model/references-response';
 import { HttpRequestModel } from '../../model/http-request-model';
-import { ParamsUtilService } from '../utils/params-util.service';
+import { HttpSearchResponse } from '../../model/http-search-response';
+import { filterParameters } from '../../utils/filter-params';
 import { IReferencesService } from './ireferences.service';
 import { SearchReferenceParams } from './model/search-reference-params';
 
@@ -15,16 +16,15 @@ import { SearchReferenceParams } from './model/search-reference-params';
 export class P2pReferencesService implements IReferencesService {
     private readonly fbManagementEndpoint = this.configService.fbManagementEndpoint;
 
-    constructor(
-        private http: HttpClient,
-        private paramsUtilService: ParamsUtilService,
-        private configService: ConfigService
-    ) {}
+    constructor(private http: HttpClient, private configService: ConfigService) {}
 
-    findReferences(params?: SearchReferenceParams): Observable<ReferencesResponse> {
-        return this.http.get<ReferencesResponse>(`${this.fbManagementEndpoint}/p2p/reference/filter/`, {
-            params: this.paramsUtilService.filterParameters(params),
-        });
+    findReferences(params?: SearchReferenceParams): Observable<HttpSearchResponse<PaymentReference | P2pReference>> {
+        return this.http.get<HttpSearchResponse<PaymentReference | P2pReference>>(
+            `${this.fbManagementEndpoint}/p2p/reference/filter/`,
+            {
+                params: filterParameters(params),
+            }
+        );
     }
 
     deleteReference(reference: P2pReference): Observable<string> {

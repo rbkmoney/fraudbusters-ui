@@ -58,6 +58,6 @@ export class CreateTemplateComponent implements OnInit {
     }
 
     navigateToEdit(id): void {
-        this.router.navigate([`../templates/${id}`], { fragment: this.operationType.toString() });
+        this.router.navigate([`../template/${id}`], { fragment: this.operationType.toString() });
     }
 }

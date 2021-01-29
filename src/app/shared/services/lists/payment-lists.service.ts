@@ -5,22 +5,20 @@ import { Observable } from 'rxjs';
 import { ConfigService } from '../../../config';
 import { ListType } from '../../constants/list-type';
 import { HttpRequestModel } from '../../model/http-request-model';
-import { ParamsUtilService } from '../utils/params-util.service';
+import { HttpSearchResponse } from '../../model/http-search-response';
+import { filterParameters } from '../../utils/filter-params';
 import { IListsService } from './ilists.service';
 import { CountInfoListRecord } from './model/count-info-list-record';
 import { InsertListRequest } from './model/insert-list-request';
-import { ListsFilterResponse } from './model/lists-filter-response';
+import { P2pListRecord } from './model/p2p-list-record';
+import { PaymentListRecord } from './model/payment-list-record';
 import { SearchListsParams } from './model/search-lists-params';
 
 @Injectable()
 export class PaymentListsService implements IListsService {
     private readonly fbManagementEndpoint = this.configService.fbManagementEndpoint;
 
-    constructor(
-        private http: HttpClient,
-        private paramsUtilService: ParamsUtilService,
-        private configService: ConfigService
-    ) {}
+    constructor(private http: HttpClient, private configService: ConfigService) {}
 
     deleteListRow(id: string): Observable<string> {
         return this.http.delete(`${this.fbManagementEndpoint}/lists/${id}`, {
@@ -28,10 +26,13 @@ export class PaymentListsService implements IListsService {
         });
     }
 
-    findListRows(params: SearchListsParams): Observable<ListsFilterResponse> {
-        return this.http.get<ListsFilterResponse>(`${this.fbManagementEndpoint}/lists/filter`, {
-            params: this.paramsUtilService.filterParameters(params),
-        });
+    findListRows(params: SearchListsParams): Observable<HttpSearchResponse<PaymentListRecord | P2pListRecord>> {
+        return this.http.get<HttpSearchResponse<PaymentListRecord | P2pListRecord>>(
+            `${this.fbManagementEndpoint}/lists/filter`,
+            {
+                params: filterParameters(params),
+            }
+        );
     }
 
     getNames(listTypeSearch: ListType): Observable<string[]> {
