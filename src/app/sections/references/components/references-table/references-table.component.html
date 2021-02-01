@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="templates" class="fb-table" matSort (matSortChange)="sort($event)">
+<table mat-table [dataSource]="references" class="fb-table" matSort (matSortChange)="sort($event)">
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header class="th">ID</th>
         <td mat-cell *matCellDef="let element" class="td">{{ element.id }}</td>
@@ -9,14 +9,22 @@
             {{ element.lastUpdateDate | date: 'dd.MM.yyyy HH:mm:ss' }}
         </td>
     </ng-container>
-    <ng-container matColumnDef="template">
-        <th mat-header-cell *matHeaderCellDef class="th">Template</th>
+    <ng-container matColumnDef="templateID">
+        <th mat-header-cell *matHeaderCellDef class="th">Template ID</th>
         <td mat-cell *matCellDef="let element" class="td">
-            <div fxLayout="column" fxLayoutGap="8px">
-                <ng-container *ngFor="let rule of element.template | templateToRules">
-                    <code>{{ rule }}</code>
-                </ng-container>
-            </div>
+            {{ element.templateId }}
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="isGlobal">
+        <th mat-header-cell *matHeaderCellDef class="th">Global</th>
+        <td mat-cell *matCellDef="let element" class="td">
+            {{ element.isGlobal }}
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="isDefault">
+        <th mat-header-cell *matHeaderCellDef class="th">Default</th>
+        <td mat-cell *matCellDef="let element" class="td">
+            {{ element.isDefault }}
         </td>
     </ng-container>
     <ng-container matColumnDef="actions">
@@ -26,11 +34,14 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="editTemplate(element.id)">
-                    <span>Edit template</span>
+                <!--                <button mat-menu-item (click)="editTemplate(element)">-->
+                <!--                    <span>Edit reference</span>-->
+                <!--                </button>-->
+                <button mat-menu-item (click)="removeReference(element)">
+                    <span>Remove reference</span>
                 </button>
-                <button mat-menu-item (click)="removeTemplate(element.id)">
-                    <span>Remove template</span>
+                <button mat-menu-item (click)="goToTempalte(element)">
+                    <span>Go to template</span>
                 </button>
             </mat-menu>
         </td>
