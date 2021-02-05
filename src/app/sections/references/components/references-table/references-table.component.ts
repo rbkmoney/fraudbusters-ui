@@ -18,7 +18,7 @@ export class ReferencesTableComponent {
     @Input()
     references: Reference[];
 
-    displayedColumns: string[] = ['id', 'templateID', 'isGlobal', 'isDefault', 'updatedAt', 'actions'];
+    displayedColumns: string[] = ['id', 'templateID', 'partyID', 'shopID', 'updatedAt', 'actions'];
 
     sort(sort: Sort): void {
         switch (sort.direction) {
