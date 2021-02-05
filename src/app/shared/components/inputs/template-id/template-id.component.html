@@ -1,0 +1,15 @@
+<mat-form-field floatLabel="always">
+    <input
+        matInput
+        placeholder="Template ID"
+        label="templateId"
+        name="templateId"
+        [formControl]="formControl"
+        [matAutocomplete]="auto"
+    />
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let template of templates$ | async" [value]="template">
+            {{ template }}
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>
