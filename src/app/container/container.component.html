@@ -1,0 +1,28 @@
+<mat-sidenav-container>
+    <mat-sidenav role="navigation" #sidenav mode="side" fixedInViewport="true" opened="true">
+        <fb-navigate-menu></fb-navigate-menu>
+    </mat-sidenav>
+
+    <mat-sidenav-content role="main" class="content" fxLayout="column">
+        <mat-toolbar color="primary" class="toolbar">
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span class="fb-spacer"></span>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>account_circle</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <fb-user-info [username]="getUsername()" [roles]="getUserRoles()"></fb-user-info>
+                <mat-divider></mat-divider>
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>logout</mat-icon>
+                    <span>Logout</span>
+                </button>
+            </mat-menu>
+        </mat-toolbar>
+        <div class="container-fluid">
+            <ng-content></ng-content>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

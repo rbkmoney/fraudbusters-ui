@@ -1,0 +1,14 @@
+@mixin body-override() {
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial,
+            sans-serif;
+        background: #f6f7fb;
+        color: #655b76;
+    }
+}

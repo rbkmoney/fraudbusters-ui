@@ -2,7 +2,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FlexModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +14,7 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
 import { AppComponent } from './app.component';
 import { ConfigModule, ConfigService } from './config';
+import { ContainerModule } from './container';
 import { initializer } from './initializer';
 import { SectionsModule } from './sections/sections.module';
 import { NavigateMenuModule } from './shared/components/navigate-menu/navigate-menu.module';
@@ -31,7 +34,10 @@ import { NavigateMenuModule } from './shared/components/navigate-menu/navigate-m
         MatIconModule,
         RouterModule,
         MatButtonModule,
+        MatMenuModule,
         FlexModule,
+        MatDividerModule,
+        ContainerModule,
     ],
     providers: [
         {

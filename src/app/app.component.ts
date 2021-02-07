@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { KeycloakService } from 'keycloak-angular';
 
 @Component({
     selector: 'fb-root',
@@ -7,10 +6,4 @@ import { KeycloakService } from 'keycloak-angular';
     styleUrls: ['./app.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-    constructor(private keycloakService: KeycloakService) {}
-
-    logout(): void {
-        this.keycloakService.logout();
-    }
-}
+export class AppComponent {}
