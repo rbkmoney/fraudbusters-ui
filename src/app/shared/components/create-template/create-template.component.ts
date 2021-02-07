@@ -38,7 +38,6 @@ export class CreateTemplateComponent implements OnInit {
         if (this.template) {
             this.form.setValue({ id: this.template.id, template: this.template.template });
             this.form.get('id').disable();
-        } else {
         }
         this.saved$.subscribe(
             (template) => {
