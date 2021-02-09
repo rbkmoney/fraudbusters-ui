@@ -20,9 +20,7 @@ export class CreateP2pReferenceService {
         switchMap(() =>
             this.referenceService.saveReferences(OperationType.PeerToPeer, this.forms.value).pipe(
                 catchError((error: HttpErrorResponse) => {
-                    this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-                        duration: 1500,
-                    });
+                    this.snackBar.open(`${error.status}: ${error.message}`, 'OK');
                     this.errors$.next();
                     return EMPTY;
                 })

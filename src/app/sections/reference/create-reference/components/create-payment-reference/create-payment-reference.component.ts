@@ -24,8 +24,8 @@ export class CreatePaymentReferenceComponent {
         this.createPaymentReferenceService.addItem();
     }
 
-    removeItem(i: number) {
-        this.createPaymentReferenceService.removeItem(i);
+    removeItem(index: number) {
+        this.createPaymentReferenceService.removeItem(index);
     }
 
     createReference() {

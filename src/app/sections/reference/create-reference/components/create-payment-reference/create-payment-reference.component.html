@@ -2,7 +2,7 @@
     <mat-card-content fxLayout="column" fxLayoutGap="16px">
         <div fxLayout="column" fxLayoutGap="8px">
             <ng-container *ngFor="let form of forms.controls; let i = index">
-                <form [formGroup]="form" fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="space-between center">
+                <form [formGroup]="form" fxLayout fxLayoutGap="8px" fxLayoutAlign="space-between center">
                     <fb-template-id
                         formControlName="templateId"
                         [operationType]="operationType.Payment"
@@ -27,7 +27,7 @@
             </ng-container>
             <button mat-button (click)="addItem()" fxFlex [disabled]="inProgress$ | async">ADD ROW</button>
         </div>
-        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+        <div fxLayout fxLayoutAlign="end center" fxLayoutGap="8px">
             <button
                 mat-raised-button
                 color="primary"

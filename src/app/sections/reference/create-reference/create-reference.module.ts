@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { HeadlineModule } from '../../../shared/components/headline';
 import { TemplateIdModule } from '../../../shared/components/inputs/template-id';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { ReferencesService } from '../references.service';
@@ -32,6 +33,7 @@ import { CreateReferenceComponent } from './create-reference.component';
         MatIconModule,
         MatSnackBarModule,
         MatProgressBarModule,
+        HeadlineModule,
     ],
     exports: [CreateReferenceComponent],
     providers: [ReferencesService, ErrorHandlerService],

@@ -20,9 +20,7 @@ export class CreatePaymentReferenceService {
         switchMap(() =>
             this.referenceService.saveReferences(OperationType.Payment, this.forms.value).pipe(
                 catchError((error: HttpErrorResponse) => {
-                    this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-                        duration: 1500,
-                    });
+                    this.snackBar.open(`${error.status}: ${error.message}`, 'OK');
                     this.errors$.next();
                     return EMPTY;
                 })
