@@ -16,6 +16,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { P2pTemplatesModule } from '../../api/p2p-templates';
+import { PaymentTemplatesModule } from '../../api/payment-templates';
 import { ConfirmActionDialogModule } from '../../shared/components/confirm-action-dialog';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
 import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
@@ -28,8 +30,6 @@ import { PaymentListsService } from '../../shared/services/lists/payment-lists.s
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { P2pReferencesService } from '../../shared/services/reference/p2p-references.service';
 import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
-import { P2pTemplatesService } from '../../shared/services/template/p2p-templates.service';
-import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
 import { P2pReferencesComponent } from './components/p2p-references/p2p-references.component';
 import { PaymentReferencesComponent } from './components/payment-references/payment-references.component';
 import { ReferencesSearchComponent } from './components/references-search/references-search.component';
@@ -58,6 +58,8 @@ import { ReferencesComponent } from './references.component';
         ReactiveFormsModule,
         MatProgressSpinnerModule,
         MatProgressBarModule,
+        PaymentTemplatesModule,
+        P2pTemplatesModule,
     ],
     declarations: [
         ReferencesComponent,
@@ -69,8 +71,6 @@ import { ReferencesComponent } from './references.component';
     // TODO: need to refactor these services
     providers: [
         OperationTypeManagementService,
-        PaymentTemplatesService,
-        P2pTemplatesService,
         PaymentGroupsService,
         P2pGroupsService,
         PaymentReferencesService,

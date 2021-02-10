@@ -16,6 +16,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { P2pReferencesService } from 'src/app/shared/services/reference/p2p-references.service';
 
+import { P2pTemplatesModule } from '../../api/p2p-templates';
+import { PaymentTemplatesModule } from '../../api/payment-templates';
 import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
 import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
@@ -25,8 +27,6 @@ import { P2pListsService } from '../../shared/services/lists/p2p-lists.service';
 import { PaymentListsService } from '../../shared/services/lists/payment-lists.service';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
-import { P2pTemplatesService } from '../../shared/services/template/p2p-templates.service';
-import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { GroupsReferenceRoutingModule } from './groups-reference-routing.module';
@@ -53,6 +53,8 @@ import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-di
         MatDialogModule,
         FlexLayoutModule,
         FormsModule,
+        PaymentTemplatesModule,
+        P2pTemplatesModule,
     ],
     providers: [
         SearchFieldService,
@@ -61,7 +63,6 @@ import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-di
         PaymentGroupsReferenceService,
         ErrorHandlerService,
         OperationTypeManagementService,
-        PaymentTemplatesService,
         PaymentReferencesService,
         PaymentListsService,
         P2pListsService,
@@ -69,7 +70,6 @@ import { RemoveGroupReferenceDialogComponent } from './remove-group-reference-di
         P2pReferencesService,
         P2pGroupsService,
         PaymentGroupsService,
-        P2pTemplatesService,
     ],
 })
 export class GroupsReferenceModule {}

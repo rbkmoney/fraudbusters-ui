@@ -12,6 +12,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { P2pTemplatesModule } from '../../api/p2p-templates';
+import { PaymentTemplatesModule } from '../../api/payment-templates';
 import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
 import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
@@ -22,8 +24,6 @@ import { PaymentListsService } from '../../shared/services/lists/payment-lists.s
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { P2pReferencesService } from '../../shared/services/reference/p2p-references.service';
 import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
-import { P2pTemplatesService } from '../../shared/services/template/p2p-templates.service';
-import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { TemplatesService } from '../template/templates.service';
 import { CreateGroupComponent } from './create-group/create-group.component';
@@ -47,13 +47,13 @@ import { GroupsService } from './groups.service';
         MatAutocompleteModule,
         MatIconModule,
         MatSnackBarModule,
+        PaymentTemplatesModule,
+        P2pTemplatesModule,
     ],
     declarations: [GroupComponent, EditGroupComponent, CreateGroupComponent],
     providers: [
         GroupsService,
         OperationTypeManagementService,
-        PaymentTemplatesService,
-        P2pTemplatesService,
         PaymentGroupsService,
         P2pGroupsService,
         PaymentReferencesService,

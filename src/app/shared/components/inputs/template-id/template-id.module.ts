@@ -5,6 +5,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
+import { P2pTemplatesModule } from '../../../../api/p2p-templates';
+import { PaymentTemplatesModule } from '../../../../api/payment-templates';
 import { PaymentEmulationTemplateService } from '../../../services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../../services/groups-reference/p2p-groups-reference.service';
 import { PaymentGroupsReferenceService } from '../../../services/groups-reference/payment-groups-reference.service';
@@ -15,18 +17,22 @@ import { PaymentListsService } from '../../../services/lists/payment-lists.servi
 import { OperationTypeManagementService } from '../../../services/operation-type-management.service';
 import { P2pReferencesService } from '../../../services/reference/p2p-references.service';
 import { PaymentReferencesService } from '../../../services/reference/payment-references.service';
-import { P2pTemplatesService } from '../../../services/template/p2p-templates.service';
-import { PaymentTemplatesService } from '../../../services/template/payment-templates.service';
 import { TemplateIdComponent } from './template-id.component';
 
 @NgModule({
     declarations: [TemplateIdComponent],
-    imports: [MatFormFieldModule, MatInputModule, MatAutocompleteModule, ReactiveFormsModule, CommonModule],
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        ReactiveFormsModule,
+        CommonModule,
+        PaymentTemplatesModule,
+        P2pTemplatesModule,
+    ],
     exports: [TemplateIdComponent],
     providers: [
         OperationTypeManagementService,
-        PaymentTemplatesService,
-        P2pTemplatesService,
         PaymentGroupsService,
         P2pGroupsService,
         PaymentReferencesService,

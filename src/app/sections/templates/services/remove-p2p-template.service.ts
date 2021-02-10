@@ -5,18 +5,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, EMPTY, merge, of, Subject } from 'rxjs';
 import { catchError, filter, switchMap } from 'rxjs/operators';
 
+import { P2pTemplatesService } from '../../../api/p2p-templates';
 import { ConfirmActionDialogComponent } from '../../../shared/components/confirm-action-dialog';
-import { OperationType } from '../../../shared/constants/operation-type';
 import { progress } from '../../../shared/operators';
-import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
 
 export interface RemoveTemplatesParams {
-    type: OperationType;
     templateID: string;
 }
 
 @Injectable()
-export class RemoveTemplateService {
+export class RemoveP2pTemplateService {
     private removeTemplate$ = new Subject<RemoveTemplatesParams>();
     private hasError$ = new Subject();
 
@@ -31,18 +29,15 @@ export class RemoveTemplateService {
             ])
         ),
         switchMap(([params]) =>
-            this.operationTemplateService
-                .findTemplateService(params.type)
-                .deleteTemplate(params.templateID)
-                .pipe(
-                    catchError((error: HttpErrorResponse) => {
-                        this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-                            duration: 1500,
-                        });
-                        this.hasError$.next();
-                        return of(EMPTY);
-                    })
-                )
+            this.p2pTemplatesService.deleteTemplate(params.templateID).pipe(
+                catchError((error: HttpErrorResponse) => {
+                    this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
+                        duration: 1500,
+                    });
+                    this.hasError$.next();
+                    return of(EMPTY);
+                })
+            )
         )
     );
 
@@ -50,7 +45,7 @@ export class RemoveTemplateService {
 
     constructor(
         private dialog: MatDialog,
-        private operationTemplateService: OperationTypeManagementService,
+        private p2pTemplatesService: P2pTemplatesService,
         private snackBar: MatSnackBar
     ) {
         this.removed$.subscribe();

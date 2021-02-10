@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { P2pTemplatesModule } from '../../api/p2p-templates';
+import { PaymentTemplatesModule } from '../../api/payment-templates';
 import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
 import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
@@ -20,8 +22,6 @@ import { PaymentListsService } from '../../shared/services/lists/payment-lists.s
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { P2pReferencesService } from '../../shared/services/reference/p2p-references.service';
 import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
-import { P2pTemplatesService } from '../../shared/services/template/p2p-templates.service';
-import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { CreateGroupReferenceComponent } from './create-group-reference/create-group-reference.component';
 import { GroupReferenceRoutingModule } from './group-reference-routing.module';
@@ -41,13 +41,13 @@ import { GroupsReferenceService } from './groups-reference.service';
         MatIconModule,
         MatCardModule,
         MatSnackBarModule,
+        PaymentTemplatesModule,
+        P2pTemplatesModule,
     ],
     declarations: [GroupReferenceComponent, CreateGroupReferenceComponent],
     providers: [
         GroupsReferenceService,
         OperationTypeManagementService,
-        PaymentTemplatesService,
-        P2pTemplatesService,
         PaymentGroupsService,
         P2pGroupsService,
         PaymentReferencesService,
