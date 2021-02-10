@@ -7,7 +7,7 @@
 
 <mat-card>
     <mat-card-content>
-        <div class="list-values" fxLayout="row" fxLayoutAlign="center center">
+        <div class="list-values" fxLayout fxLayoutAlign="center center">
             <div *ngIf="isPaymentReference()" fxFlex="100">
                 <div *ngFor="let reference of paymentReferences; let i = index">
                     <div fxFlex="30">

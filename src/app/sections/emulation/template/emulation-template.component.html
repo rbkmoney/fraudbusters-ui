@@ -12,7 +12,7 @@
 
 <mat-card>
     <mat-card-content>
-        <div class="list-values" fxLayout="row" fxLayoutAlign="center center">
+        <div class="list-values" fxLayout fxLayoutAlign="center center">
             <div *ngIf="isPaymentReference()" fxFlex="100">
                 <div fxFlex="50">
                     <mat-form-field floatLabel="always" class="full-width">
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <div fxLayout="row">
+        <div fxLayout>
             <div fxFlex="100">
                 <table mat-table [dataSource]="templates$ | async" class="fb-table">
                     <ng-container matColumnDef="id">

@@ -1,9 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
+import { debounceTime } from 'rxjs/operators';
 
 import { OperationTypeComponent } from '../../shared/components/operation-type-component';
 import { OperationType } from '../../shared/constants/operation-type';
@@ -24,7 +26,7 @@ export class GroupsComponent extends OperationTypeComponent implements OnInit {
     displayedColumns: string[] = ['id', 'text', 'lastUpdateDate', 'edit'];
     groups = [];
     operationTypes = [];
-    searchField;
+    searchField: FormControl = new FormControl('');
 
     constructor(
         private router: Router,
@@ -44,6 +46,9 @@ export class GroupsComponent extends OperationTypeComponent implements OnInit {
         this.operationType = this.operationTypes[0];
         this.operationTypeParseFragment(this.route);
         this.search();
+        this.searchField.valueChanges.pipe(debounceTime(300)).subscribe(() => {
+            this.search();
+        });
     }
 
     search(): void {
@@ -51,7 +56,7 @@ export class GroupsComponent extends OperationTypeComponent implements OnInit {
         this.groupsService
             .getGroups(
                 (OperationType as any)[this.operationType],
-                this.searchFieldService.formatField(this.searchField)
+                this.searchFieldService.formatField(this.searchField.value)
             )
             .subscribe(
                 (groups) => {
@@ -64,11 +69,6 @@ export class GroupsComponent extends OperationTypeComponent implements OnInit {
 
     sortData(sort: Sort): void {
         this.groups = this.groupUtilsService.sortGroups(sort, this.groups);
-    }
-
-    changeSearch(newValue): void {
-        this.searchField = newValue;
-        this.search();
     }
 
     navigateToNew(): void {

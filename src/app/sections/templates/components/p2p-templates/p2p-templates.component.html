@@ -1,5 +1,5 @@
 <div fxLayout="column" fxLayoutGap="8px">
-    <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout fxLayoutAlign="space-between center">
         <fb-templates-search (valueChanges)="search($event)"></fb-templates-search>
         <button mat-button color="primary" (click)="createTemplate()">CREATE TEMPLATE</button>
     </div>
@@ -25,7 +25,7 @@
 </div>
 
 <ng-template #Empty>
-    <div *ngIf="inProgress$ | async" fxLayout="row" fxLayoutAlign="center">
+    <div *ngIf="inProgress$ | async" fxLayout fxLayoutAlign="center">
         <mat-progress-spinner color="primary" mode="indeterminate" diameter="128"></mat-progress-spinner>
     </div>
     <fb-empty-search-result *ngIf="!(inProgress$ | async)"></fb-empty-search-result>
