@@ -1,6 +1,6 @@
 <mat-card>
-    <mat-card-content fxLayout="column" fxLayoutGap="24px">
-        <form [formGroup]="form" fxLayout="column" fxLayoutGap="24px">
+    <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapL">
+        <form [formGroup]="form" fxLayout="column" [fxLayoutGap]="layoutGapL">
             <mat-form-field [attr.readonly]="!!template" class="full-width" floatLabel="always">
                 <input required matInput placeholder="Name" formControlName="id" />
             </mat-form-field>
@@ -8,7 +8,7 @@
                 <textarea required matInput placeholder="Templates rules" formControlName="template"></textarea>
             </mat-form-field>
         </form>
-        <div fxLayout fxLayoutAlign="end" fxLayoutGap="16px">
+        <div fxLayout fxLayoutAlign="end" [fxLayoutGap]="layoutGapM">
             <button mat-button color="accent" [disabled]="inProgress$ | async" (click)="validateTemplate()">
                 Validate
             </button>

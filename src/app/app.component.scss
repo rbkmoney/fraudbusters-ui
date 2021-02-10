@@ -32,6 +32,10 @@
 }
 
 ::ng-deep {
+    .mat-form-field-label {
+        font-weight: 700 !important;
+    }
+
     .mat-button > .mat-ripple {
         display: none;
     }

@@ -1,9 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { Template } from '../../../sections/template/types/template';
+import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 import { OperationType } from '../../constants/operation-type';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
 import { ValidateResponseHandler } from '../../services/utils/validate-response-handler.service';
@@ -31,7 +32,9 @@ export class CreateTemplateComponent implements OnInit {
         private templateService: TemplateService,
         private errorHandlerService: ErrorHandlerService,
         private validateResponseHandler: ValidateResponseHandler,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
+        @Inject(LAYOUT_GAP_L) public layoutGapL: string,
+        @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {}
 
     ngOnInit() {

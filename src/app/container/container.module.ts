@@ -10,7 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
 import { NavigateMenuModule } from '../shared/components/navigate-menu/navigate-menu.module';
-import { RolesToStringPipe } from './components/user-info/roles-to-string.pipe';
+import { FilterRolesPipe } from './components/user-info/filter-roles.pipe';
+import { FormatRolePipe } from './components/user-info/format-role.pipe';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { ContainerComponent } from './container.component';
 
@@ -27,7 +28,7 @@ import { ContainerComponent } from './container.component';
         MatMenuModule,
         MatDividerModule,
     ],
-    declarations: [ContainerComponent, UserInfoComponent, RolesToStringPipe],
+    declarations: [ContainerComponent, UserInfoComponent, FilterRolesPipe, FormatRolePipe],
     exports: [ContainerComponent],
 })
 export class ContainerModule {}

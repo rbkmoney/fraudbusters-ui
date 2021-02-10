@@ -18,6 +18,7 @@ import { ContainerModule } from './container';
 import { initializer } from './initializer';
 import { SectionsModule } from './sections/sections.module';
 import { NavigateMenuModule } from './shared/components/navigate-menu/navigate-menu.module';
+import { LAYOUT_GAP_L, LAYOUT_GAP_M, LAYOUT_GAP_S } from './tokens';
 
 @NgModule({
     declarations: [AppComponent],
@@ -45,6 +46,18 @@ import { NavigateMenuModule } from './shared/components/navigate-menu/navigate-m
             useFactory: initializer,
             multi: true,
             deps: [ConfigService, KeycloakService],
+        },
+        {
+            provide: LAYOUT_GAP_S,
+            useValue: '8px',
+        },
+        {
+            provide: LAYOUT_GAP_M,
+            useValue: '16px',
+        },
+        {
+            provide: LAYOUT_GAP_L,
+            useValue: '24px',
         },
     ],
     bootstrap: [AppComponent],

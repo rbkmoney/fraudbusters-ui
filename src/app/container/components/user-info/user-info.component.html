@@ -1,4 +1,6 @@
-<div class="user-info" fxLayout="column" fxLayoutAlign="center center">
+<div class="user-info" fxLayout="column" [fxLayoutGap]="layoutGapS">
     <div class="username">{{ username }}</div>
-    <div class="fb-caption roles">{{ roles | rolesToString }}</div>
+    <ul class="fb-caption roles">
+        <li *ngFor="let role of roles | filterRoles">{{ role | formatRole }}</li>
+    </ul>
 </div>
