@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { CreateTemplateResponse } from '../../api/fb-management/swagger-codegen/model/createTemplateResponse';
+import { TemplateModel } from '../../api/fb-management/swagger-codegen/model/templateModel';
+import { ValidationResponse } from '../../api/fb-management/swagger-codegen/model/validationResponse';
 import { OperationType } from '../../shared/constants/operation-type';
 import { SortOrder } from '../../shared/constants/sort-order';
 import { HttpSearchResponse } from '../../shared/model/http-search-response';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
-import { Template } from './model/template';
-import { ValidateResponse } from './model/validate-response';
-import { ValidateTemplate } from './model/validate-template';
 
 @Injectable()
 export class TemplatesService {
@@ -19,7 +19,7 @@ export class TemplatesService {
         nameRegexp?: string,
         lastInListName?: string,
         sortOrder?: SortOrder
-    ): Observable<HttpSearchResponse<Template>> {
+    ): Observable<HttpSearchResponse<TemplateModel>> {
         return this.operationTemplateService.findTemplateService(type).findTemplates({
             searchValue: nameRegexp,
             lastId: lastInListName,
@@ -36,11 +36,11 @@ export class TemplatesService {
         return this.operationTemplateService.findTemplateService(type).getTemplatesName(regexp);
     }
 
-    saveTemplate(type: OperationType, template: Template): Observable<ValidateTemplate> {
+    saveTemplate(type: OperationType, template: TemplateModel): Observable<CreateTemplateResponse> {
         return this.operationTemplateService.findTemplateService(type).saveTemplate(template);
     }
 
-    validateTemplate(type: OperationType, template: Template): Observable<ValidateResponse> {
+    validateTemplate(type: OperationType, template: TemplateModel): Observable<ValidationResponse> {
         return this.operationTemplateService.findTemplateService(type).validateTemplate(template);
     }
 }

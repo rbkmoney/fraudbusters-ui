@@ -5,8 +5,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
-import { P2pTemplatesModule } from '../../../../api/p2p-templates';
-import { PaymentTemplatesModule } from '../../../../api/payment-templates';
+import { P2pTemplatesModule, PaymentTemplatesModule } from '../../../../api';
 import { PaymentEmulationTemplateService } from '../../../services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../../services/groups-reference/p2p-groups-reference.service';
 import { PaymentGroupsReferenceService } from '../../../services/groups-reference/payment-groups-reference.service';

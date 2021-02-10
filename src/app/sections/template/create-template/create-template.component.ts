@@ -3,10 +3,10 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { TemplateModel } from '../../../api/fb-management/swagger-codegen/model/templateModel';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { ValidateResponseHandler } from '../../../shared/services/utils/validate-response-handler.service';
-import { Template } from '../model/template';
 import { TemplatesService } from '../templates.service';
 
 @Component({
@@ -16,7 +16,7 @@ import { TemplatesService } from '../templates.service';
 })
 export class CreateTemplateComponent implements OnInit {
     private operationType: OperationType;
-    template: Template = { id: '', template: '' };
+    template: TemplateModel = { id: '', template: '' };
 
     constructor(
         private router: Router,

@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
 
+import { TemplateModel } from '../../../api/fb-management/swagger-codegen/model/templateModel';
 import { P2pEmulateFilter } from '../../../sections/emulation/template/model/p2p-emulate-filter';
 import { PaymentEmulateFilter } from '../../../sections/emulation/template/model/payment-emulate-filter';
-import { Template } from '../../../sections/template/model/template';
 
 export interface IEmulationTemplateService {
-    emulate(filter: PaymentEmulateFilter | P2pEmulateFilter): Observable<Template[]>;
+    emulate(filter: PaymentEmulateFilter | P2pEmulateFilter): Observable<TemplateModel[]>;
 }

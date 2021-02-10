@@ -13,7 +13,9 @@
     "prettier:fix": "npm run prettier-preset -- --write",
     "fix": "npm run lint:fix; npm run prettier:fix",
     "e2e": "ng e2e",
-    "postinstall": "ngcc"
+    "postinstall": "ngcc",
+    "swagger-codegen": "ts-node --project tools/tsconfig.json tools/swagger-codegen.ts",
+    "codegen": "run-p swagger-codegen"
   },
   "private": true,
   "dependencies": {
@@ -56,8 +58,10 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "lint-staged": "^10.4.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "2.1.2",
     "protractor": "~7.0.0",
+    "shelljs": "^0.8.4",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "tslint-config-prettier": "^1.18.0",

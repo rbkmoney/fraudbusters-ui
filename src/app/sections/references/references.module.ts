@@ -16,8 +16,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { P2pTemplatesModule } from '../../api/p2p-templates';
-import { PaymentTemplatesModule } from '../../api/payment-templates';
+import { P2pTemplatesModule, PaymentTemplatesModule } from '../../api';
 import { ConfirmActionDialogModule } from '../../shared/components/confirm-action-dialog';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
 import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';

@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../config';
-import { Template } from '../../sections/template/model/template';
-import { ValidateResponse } from '../../sections/template/model/validate-response';
-import { ValidateTemplate } from '../../sections/template/model/validate-template';
 import { HttpRequestModel } from '../../shared/model/http-request-model';
 import { HttpSearchResponse } from '../../shared/model/http-search-response';
 import { SearchParams } from '../../shared/model/search-params';
 import { filterParameters } from '../../shared/utils/filter-params';
+import { CreateTemplateResponse } from '../fb-management/swagger-codegen/model/createTemplateResponse';
+import { TemplateModel } from '../fb-management/swagger-codegen/model/templateModel';
+import { ValidationResponse } from '../fb-management/swagger-codegen/model/validationResponse';
 
 @Injectable()
 export class PaymentTemplatesService {
@@ -17,8 +17,8 @@ export class PaymentTemplatesService {
 
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
-    findTemplates(params?: SearchParams): Observable<HttpSearchResponse<Template>> {
-        return this.http.get<HttpSearchResponse<Template>>(`${this.fbPaymentTemplatesEndpoint}/filter/`, {
+    findTemplates(params?: SearchParams): Observable<HttpSearchResponse<TemplateModel>> {
+        return this.http.get<HttpSearchResponse<TemplateModel>>(`${this.fbPaymentTemplatesEndpoint}/filter/`, {
             params: filterParameters(params),
         });
     }
@@ -33,12 +33,16 @@ export class PaymentTemplatesService {
         });
     }
 
-    saveTemplate(template: Template): Observable<ValidateTemplate> {
-        return this.http.post<ValidateTemplate>(`${this.fbPaymentTemplatesEndpoint}`, template, new HttpRequestModel());
+    saveTemplate(template: TemplateModel): Observable<CreateTemplateResponse> {
+        return this.http.post<CreateTemplateResponse>(
+            `${this.fbPaymentTemplatesEndpoint}`,
+            template,
+            new HttpRequestModel()
+        );
     }
 
-    validateTemplate(template: Template): Observable<ValidateResponse> {
-        return this.http.post<ValidateResponse>(
+    validateTemplate(template: TemplateModel): Observable<ValidationResponse> {
+        return this.http.post<ValidationResponse>(
             `${this.fbPaymentTemplatesEndpoint}/validate`,
             template,
             new HttpRequestModel()

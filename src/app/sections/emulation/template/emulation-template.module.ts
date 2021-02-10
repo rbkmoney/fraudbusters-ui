@@ -15,8 +15,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { P2pTemplatesModule } from '../../../api/p2p-templates';
-import { PaymentTemplatesModule } from '../../../api/payment-templates';
+import { P2pTemplatesModule, PaymentTemplatesModule } from '../../../api';
 import { SharedPipesModule } from '../../../shared/pipes';
 import { PaymentEmulationTemplateService } from '../../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../../shared/services/groups-reference/p2p-groups-reference.service';

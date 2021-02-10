@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 
-import { ValidateResponse } from '../../../sections/template/model/validate-response';
+import { ValidationResponse } from '../../../api/fb-management/swagger-codegen/model/validationResponse';
 
 @Injectable()
 export class ValidateResponseHandler {
     constructor() {}
 
-    checkValidateResponse(response: ValidateResponse): string {
-        return response.validateResults.length > 0
-            ? `${response.validateResults[0].id}: ${response.validateResults[0].errors}`
-            : 'All rule success';
+    checkValidateResponse(response: ValidationResponse): string {
+        // TODO what i need to return here?
+        return '';
+        // return response.result.length > 0
+        //     ? `${response.result[0].id}: ${response.errors[0]}`
+        //     : 'All rule success';
     }
 }
