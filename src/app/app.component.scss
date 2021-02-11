@@ -87,10 +87,6 @@
         border-color: #e6ecf5;
     }
 
-    .mat-menu-item {
-        color: #655b76;
-    }
-
     .mat-drawer-side {
         border-right: solid 1px #e6ecf5;
     }
@@ -100,10 +96,6 @@
         top: 0; /* Sets the sticky toolbar to be on top */
         z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
         height: 48px;
-    }
-
-    .mat-icon {
-        color: #655b76;
     }
 
     .material-icons.md-18 {
