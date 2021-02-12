@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { Sort } from '@angular/material/sort';
 
 import { SortOrder } from '../../../../shared/constants/sort-order';
-import { Template } from '../../../template/model/template';
+import { Template } from '../../../template/types/template';
 import { Action, ActionType } from '../../action';
 
 @Component({

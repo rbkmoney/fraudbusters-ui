@@ -8,7 +8,7 @@ import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDelay } from '../../../shared/operators';
 import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
 import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
-import { Template } from '../../template/model/template';
+import { Template } from '../../template/types/template';
 
 export interface FetchTemplatesParams {
     type: OperationType;

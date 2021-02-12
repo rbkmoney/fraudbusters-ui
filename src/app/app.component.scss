@@ -7,7 +7,7 @@
 
     &.mat-primary {
         background: #fff;
-        color: #888da8;
+        color: #655b76;
     }
 
     .mat-button,
@@ -27,15 +27,69 @@
 }
 
 .container-fluid {
-    padding: 0 20px 20px 20px;
+    padding: 24px;
     min-height: calc(100vh - 134px);
 }
 
-.mat-drawer-side {
-    border-right: solid 1px #e6ecf5;
-}
-
 ::ng-deep {
+    .mat-form-field-label {
+        font-weight: 700 !important;
+    }
+
+    .mat-button > .mat-ripple {
+        display: none;
+    }
+
+    .mat-simple-snackbar {
+        .mat-button {
+            color: #f6f2ff;
+        }
+    }
+
+    .mat-form-field-disabled {
+        .mat-form-field-infix:hover {
+            border-color: #e6ecf5 !important;
+        }
+    }
+
+    .mat-button.mat-primary:hover {
+        background-color: #5f35a8;
+        .mat-button-focus-overlay {
+            display: none;
+        }
+    }
+
+    .mat-button.mat-accent:hover {
+        background-color: #ece5f7;
+        .mat-button-focus-overlay {
+            display: none;
+        }
+    }
+
+    .mat-primary.mat-button-disabled {
+        background-color: #c4c4c4;
+        &:hover {
+            background-color: #c4c4c4;
+        }
+    }
+
+    .mat-accent.mat-button-disabled {
+        background-color: transparent;
+        &:hover {
+            background-color: transparent;
+        }
+        .mat-button-wrapper {
+            color: #c4c4c4;
+        }
+    }
+
+    .mat-divider {
+        border-color: #e6ecf5;
+    }
+
+    .mat-drawer-side {
+        border-right: solid 1px #e6ecf5;
+    }
     .toolbar {
         position: sticky;
         position: -webkit-sticky; /* For macOS/iOS Safari */
@@ -61,6 +115,19 @@
         font-size: 14px;
     }
 
+    .mat-menu-panel {
+        border-radius: 0 !important;
+        border: 1px solid #e6ecf5;
+    }
+
+    .mat-menu-content {
+        padding: 0 !important;
+    }
+
+    .mat-elevation-z4 {
+        box-shadow: none !important;
+    }
+
     .container-fluid .mat-card {
         border: 1px solid #e6ecf5;
         box-shadow: none;
@@ -74,7 +141,7 @@
             top: -1.3em;
 
             span {
-                color: #888da8;
+                color: #655b76;
             }
         }
     }
@@ -135,7 +202,7 @@
 
     .mat-nav-list {
         .mat-list-item-content {
-            color: #888da8;
+            color: #655b76;
         }
 
         .mat-icon {
@@ -162,7 +229,7 @@
     }
 
     .mat-header-cell {
-        color: #888da8;
+        color: #655b76;
     }
 
     .mat-select-panel:not([class*='mat-elevation-z']) {
@@ -230,7 +297,7 @@
     .mat-nav-list {
         .mat-list-item.active {
             .mat-list-item-content {
-                color: #000;
+                color: #673ab7;
             }
         }
     }

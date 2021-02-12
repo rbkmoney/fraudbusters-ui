@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ValidateResponse } from '../../../sections/template/model/validate-response';
+import { ValidateResponse } from '../../../sections/template/types/validate-response';
 
 @Injectable()
 export class ValidateResponseHandler {

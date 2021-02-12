@@ -6,7 +6,7 @@ import { catchError, switchMap } from 'rxjs/operators';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
-import { Template } from '../../template/model/template';
+import { Template } from '../../template/types/template';
 import { P2pEmulateFilter } from './model/p2p-emulate-filter';
 import { PaymentEmulateFilter } from './model/payment-emulate-filter';
 

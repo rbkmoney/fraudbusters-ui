@@ -13,5 +13,6 @@ export const initializer = (configService: ConfigService, keycloakService: Keycl
             },
             bearerExcludedUrls: ['/assets'],
             enableBearerInterceptor: true,
+            loadUserProfileAtStartUp: true,
         }),
     ]);
