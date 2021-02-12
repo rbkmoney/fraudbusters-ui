@@ -31,7 +31,7 @@ import { P2pTemplatesService } from '../../shared/services/template/p2p-template
 import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
-import { TemplatesService } from '../template/templates.service';
+import { TemplatesService } from '../template/services/templates/templates.service';
 import { GroupsRoutingModule } from './groups-routing.module';
 import { GroupsComponent } from './groups.component';
 import { GroupsService } from './groups.service';

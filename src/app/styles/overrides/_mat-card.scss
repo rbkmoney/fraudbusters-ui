@@ -1,0 +1,5 @@
+@mixin mat-card-override() {
+    .mat-card {
+        padding: 24px !important;
+    }
+}

@@ -25,7 +25,7 @@ import { PaymentReferencesService } from '../../shared/services/reference/paymen
 import { P2pTemplatesService } from '../../shared/services/template/p2p-templates.service';
 import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { TemplatesService } from '../template/templates.service';
+import { TemplatesService } from '../template/services/templates/templates.service';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { EditGroupComponent } from './edit-group/edit-group.component';
 import { GroupRoutingModule } from './group-routing.module';

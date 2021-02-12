@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
 
-import { Template } from '../../../sections/template/model/template';
-import { ValidateResponse } from '../../../sections/template/model/validate-response';
-import { ValidateTemplate } from '../../../sections/template/model/validate-template';
+import { Template } from '../../../sections/template/types/template';
+import { ValidateResponse } from '../../../sections/template/types/validate-response';
+import { ValidateTemplate } from '../../../sections/template/types/validate-template';
 import { HttpSearchResponse } from '../../model/http-search-response';
 import { SearchParams } from '../../model/search-params';
 

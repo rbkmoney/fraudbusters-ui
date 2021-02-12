@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { OperationType } from '../../shared/constants/operation-type';
-import { SortOrder } from '../../shared/constants/sort-order';
-import { HttpSearchResponse } from '../../shared/model/http-search-response';
-import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
-import { Template } from './model/template';
-import { ValidateResponse } from './model/validate-response';
-import { ValidateTemplate } from './model/validate-template';
+import { OperationType } from '../../../../shared/constants/operation-type';
+import { SortOrder } from '../../../../shared/constants/sort-order';
+import { HttpSearchResponse } from '../../../../shared/model/http-search-response';
+import { OperationTypeManagementService } from '../../../../shared/services/operation-type-management.service';
+import { Template } from '../../types/template';
+import { ValidateResponse } from '../../types/validate-response';
+import { ValidateTemplate } from '../../types/validate-template';
 
 @Injectable()
 export class TemplatesService {
