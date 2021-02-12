@@ -49,6 +49,9 @@ export class CreateTemplateComponent implements OnInit {
                         duration: 3000,
                     });
                 } else {
+                    this.snackBar.open(`Template has been created`, 'OK', {
+                        duration: 3000,
+                    });
                     this.navigateToEdit(template.id);
                 }
             },

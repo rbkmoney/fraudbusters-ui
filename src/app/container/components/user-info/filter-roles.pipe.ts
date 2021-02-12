@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterRolesPipe implements PipeTransform {
     transform(roles: string[]): string[] {
-        return roles.filter((role) => !role.includes('fraud'));
+        return roles.filter((role) => role.includes('fraud'));
     }
 }
