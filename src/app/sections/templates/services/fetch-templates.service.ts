@@ -5,7 +5,7 @@ import { shareReplay } from 'rxjs/operators';
 import { ConfigService } from '../../../config';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { SortOrder } from '../../../shared/constants/sort-order';
-import { booleanDelay } from '../../../shared/operators';
+import { booleanDebounceTime } from '../../../shared/operators';
 import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
 import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
 import { Template } from '../../template/types/template';
@@ -19,7 +19,7 @@ export interface FetchTemplatesParams {
 
 @Injectable()
 export class FetchTemplatesService extends PartialFetcher<Template, FetchTemplatesParams> {
-    inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
+    inProgress$ = this.doAction$.pipe(booleanDebounceTime(0), shareReplay(1));
     private SIZE = this.configService.pageSize;
 
     constructor(

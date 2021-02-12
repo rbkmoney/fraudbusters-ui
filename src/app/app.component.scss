@@ -32,6 +32,12 @@
 }
 
 ::ng-deep {
+    .mat-card-footer {
+        margin-right: -24px !important;
+        margin-bottom: -24px !important;
+        margin-left: -24px !important;
+    }
+
     .mat-form-field-label {
         font-weight: 700 !important;
     }
