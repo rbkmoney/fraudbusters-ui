@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { CreateTemplateResponse } from '../../api/fb-management/swagger-codegen/model/createTemplateResponse';
-import { TemplateModel } from '../../api/fb-management/swagger-codegen/model/templateModel';
-import { ValidationResponse } from '../../api/fb-management/swagger-codegen/model/validationResponse';
-import { OperationType } from '../../shared/constants/operation-type';
-import { SortOrder } from '../../shared/constants/sort-order';
-import { HttpSearchResponse } from '../../shared/model/http-search-response';
-import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
+import { CreateTemplateResponse } from '../../../../api/fb-management/swagger-codegen/model/createTemplateResponse';
+import { TemplateModel } from '../../../../api/fb-management/swagger-codegen/model/templateModel';
+import { ValidationResponse } from '../../../../api/fb-management/swagger-codegen/model/validationResponse';
+import { OperationType } from '../../../../shared/constants/operation-type';
+import { SortOrder } from '../../../../shared/constants/sort-order';
+import { HttpSearchResponse } from '../../../../shared/model/http-search-response';
+import { OperationTypeManagementService } from '../../../../shared/services/operation-type-management.service';
 
 @Injectable()
 export class TemplatesService {

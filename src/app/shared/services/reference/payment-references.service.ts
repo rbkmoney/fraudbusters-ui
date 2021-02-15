@@ -25,7 +25,7 @@ export class PaymentReferencesService implements IReferencesService {
         );
     }
 
-    deleteReference(reference: PaymentReference): Observable<string> {
+    deleteReference(reference: PaymentReferenceModel): Observable<string> {
         return this.http.delete<string>(
             `${this.fbManagementEndpoint}/template/${reference.templateId}/reference/${reference.id}`
         );

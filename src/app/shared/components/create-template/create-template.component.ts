@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angu
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
-import { Template } from '../../../sections/template/types/template';
+import { TemplateModel } from '../../../api/fb-management/swagger-codegen/model/templateModel';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 import { OperationType } from '../../constants/operation-type';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
@@ -19,7 +19,7 @@ import { TemplateService } from './services/template/template.service';
 export class CreateTemplateComponent implements OnInit {
     @Input() operationType: OperationType;
 
-    @Input() template: Template;
+    @Input() template: TemplateModel;
 
     form = this.templateService.form;
 

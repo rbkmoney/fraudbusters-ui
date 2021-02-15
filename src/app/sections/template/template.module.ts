@@ -26,9 +26,9 @@ import { ErrorHandlerService } from '../../shared/services/utils/error-handler.s
 import { ValidateResponseHandler } from '../../shared/services/utils/validate-response-handler.service';
 import { CreateTemplateComponent } from './create-template/create-template.component';
 import { EditTemplateComponent } from './edit-template/edit-template.component';
+import { TemplatesService } from './services/templates/templates.service';
 import { TemplateRoutingModule } from './template-routing.module';
 import { TemplateComponent } from './template.component';
-import { TemplatesService } from './templates.service';
 
 @NgModule({
     declarations: [TemplateComponent, EditTemplateComponent, CreateTemplateComponent],
