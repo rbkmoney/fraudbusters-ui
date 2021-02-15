@@ -1,20 +1,3 @@
-<mat-sidenav-container>
-    <mat-sidenav role="navigation" #sidenav mode="side" fixedInViewport="true" opened="true">
-        <fb-navigate-menu></fb-navigate-menu>
-    </mat-sidenav>
-
-    <mat-sidenav-content role="main" class="content" fxLayout="column" fxLayoutGap="24px">
-        <mat-toolbar color="primary" class="toolbar">
-            <button mat-icon-button (click)="sidenav.toggle()">
-                <mat-icon>menu</mat-icon>
-            </button>
-            <span class="fb-spacer"></span>
-            <button mat-icon-button (click)="logout()">
-                <mat-icon>logout</mat-icon>
-            </button>
-        </mat-toolbar>
-        <div class="container-fluid">
-            <router-outlet></router-outlet>
-        </div>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+<fb-container>
+    <router-outlet></router-outlet>
+</fb-container>

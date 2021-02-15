@@ -6,7 +6,7 @@ import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { debounceTime, shareReplay, switchMap } from 'rxjs/operators';
 
-import { TemplatesService } from '../../../../sections/template/templates.service';
+import { TemplatesService } from '../../../../sections/template/services/templates/templates.service';
 import { OperationType } from '../../../constants/operation-type';
 import { CustomFormControlComponent } from '../custom-form-control/custom-form-control.component';
 

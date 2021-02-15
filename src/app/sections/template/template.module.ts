@@ -1,13 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { P2pTemplatesModule, PaymentTemplatesModule } from '../../api';
+import { CreateTemplateModule } from '../../shared/components/create-template/create-template.module';
 import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
 import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
@@ -39,6 +43,10 @@ import { TemplatesService } from './templates.service';
         MatButtonModule,
         PaymentTemplatesModule,
         P2pTemplatesModule,
+        FlexModule,
+        CreateTemplateModule,
+        MatIconModule,
+        CommonModule,
     ],
     providers: [
         TemplatesService,
