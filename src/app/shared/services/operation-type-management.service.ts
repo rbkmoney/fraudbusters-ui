@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { P2pTemplatesService } from '../../api/p2p-templates';
+import { PaymentTemplatesService } from '../../api/payment-templates';
 import { OperationType } from '../constants/operation-type';
 import { IEmulationTemplateService } from './emulation/iemulation-template.service';
 import { PaymentEmulationTemplateService } from './emulation/payment-emulation-template-service';
@@ -15,9 +17,6 @@ import { PaymentListsService } from './lists/payment-lists.service';
 import { IReferencesService } from './reference/ireferences.service';
 import { P2pReferencesService } from './reference/p2p-references.service';
 import { PaymentReferencesService } from './reference/payment-references.service';
-import { ITemplatesService } from './template/itemplates.service';
-import { P2pTemplatesService } from './template/p2p-templates.service';
-import { PaymentTemplatesService } from './template/payment-templates.service';
 
 @Injectable()
 export class OperationTypeManagementService {
@@ -35,7 +34,10 @@ export class OperationTypeManagementService {
         private paymentEmulationTemplateServiceImpl: PaymentEmulationTemplateService
     ) {}
 
-    findTemplateService(type: OperationType): ITemplatesService {
+    /**
+     * @deprecated
+     */
+    findTemplateService(type: OperationType) {
         switch (type) {
             case OperationType.Payment:
                 return this.paymentTemplateService;

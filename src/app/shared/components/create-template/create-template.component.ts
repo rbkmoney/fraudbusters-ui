@@ -3,11 +3,11 @@ import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angu
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
-import { Template } from '../../../sections/template/types/template';
+import { TemplateModel } from '../../../api/fb-management/swagger-codegen/model/templateModel';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 import { OperationType } from '../../constants/operation-type';
+import { checkValidateResponse } from '../../services/utils/check-validation-response';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
-import { ValidateResponseHandler } from '../../services/utils/validate-response-handler.service';
 import { TemplateService } from './services/template/template.service';
 
 @Component({
@@ -19,7 +19,7 @@ import { TemplateService } from './services/template/template.service';
 export class CreateTemplateComponent implements OnInit {
     @Input() operationType: OperationType;
 
-    @Input() template: Template;
+    @Input() template: TemplateModel;
 
     form = this.templateService.form;
 
@@ -31,7 +31,6 @@ export class CreateTemplateComponent implements OnInit {
         private router: Router,
         private templateService: TemplateService,
         private errorHandlerService: ErrorHandlerService,
-        private validateResponseHandler: ValidateResponseHandler,
         private snackBar: MatSnackBar,
         @Inject(LAYOUT_GAP_L) public layoutGapL: string,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
@@ -59,7 +58,7 @@ export class CreateTemplateComponent implements OnInit {
         );
         this.validated$.subscribe(
             (response) => {
-                this.snackBar.open(this.validateResponseHandler.checkValidateResponse(response), 'OK', {
+                this.snackBar.open(checkValidateResponse(response), 'OK', {
                     duration: 3000,
                 });
             },

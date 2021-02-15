@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 
+import { TemplateModel } from '../../../../api/fb-management/swagger-codegen/model/templateModel';
 import { SortOrder } from '../../../../shared/constants/sort-order';
-import { Template } from '../../../template/types/template';
 import { Action, ActionType } from '../../action';
 
 @Component({
@@ -16,7 +16,7 @@ export class TemplatesTableComponent {
     action: EventEmitter<Action> = new EventEmitter();
 
     @Input()
-    templates: Template[];
+    templates: TemplateModel[];
 
     displayedColumns: string[] = ['id', 'template', 'updatedAt', 'actions'];
 

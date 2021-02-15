@@ -1,0 +1,8 @@
+{
+    "cliPath": "tools/codegens/swagger-codegen-cli-2.4.18.jar",
+    "outputRootDir": "src/app/api",
+    "outputDir": "swagger-codegen",
+    "schemes": {
+        "fb-management": "fb-management.json"
+    }
+}

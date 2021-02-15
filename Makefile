@@ -41,6 +41,7 @@ submodules: $(SUBTARGETS)
 init:
 	echo -e "//npm.pkg.github.com/:_authToken=$(NPM_TOKEN)" >> .npmrc
 	npm ci
+	npm run codegen
 
 build: check lint
 	npm run build
