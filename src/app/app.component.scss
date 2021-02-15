@@ -32,6 +32,17 @@
 }
 
 ::ng-deep {
+    .mat-card-footer {
+        margin-right: -24px !important;
+        margin-bottom: -24px !important;
+        margin-left: -24px !important;
+
+        .mat-progress-bar {
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+    }
+
     .mat-form-field-label {
         font-weight: 700 !important;
     }
