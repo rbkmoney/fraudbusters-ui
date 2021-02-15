@@ -23,7 +23,6 @@ import { OperationTypeManagementService } from '../../shared/services/operation-
 import { P2pReferencesService } from '../../shared/services/reference/p2p-references.service';
 import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { ValidateResponseHandler } from '../../shared/services/utils/validate-response-handler.service';
 import { CreateTemplateComponent } from './create-template/create-template.component';
 import { EditTemplateComponent } from './edit-template/edit-template.component';
 import { TemplatesService } from './services/templates/templates.service';
@@ -61,7 +60,6 @@ import { TemplateComponent } from './template.component';
         P2pListsService,
         PaymentEmulationTemplateService,
         ErrorHandlerService,
-        ValidateResponseHandler,
     ],
 })
 export class TemplateModule {}
