@@ -17,9 +17,9 @@ export class P2pReferencesTableComponent {
     action: EventEmitter<Action> = new EventEmitter();
 
     @Input()
-    references: P2pReferenceModel[] | PaymentReferenceModel[];
+    references: P2pReferenceModel[];
 
-    displayedColumns: string[] = ['id', 'templateID', 'updatedAt', 'actions'];
+    displayedColumns: string[] = ['id', 'templateID', 'identityID', 'updatedAt', 'actions'];
 
     sort(sort: Sort): void {
         switch (sort.direction) {

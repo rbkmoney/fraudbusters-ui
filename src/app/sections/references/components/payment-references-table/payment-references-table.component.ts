@@ -17,7 +17,7 @@ export class PaymentReferencesTableComponent {
     action: EventEmitter<Action> = new EventEmitter();
 
     @Input()
-    references: P2pReferenceModel[] | PaymentReferenceModel[];
+    references: PaymentReferenceModel[];
 
     displayedColumns: string[] = ['id', 'templateID', 'partyID', 'shopID', 'updatedAt', 'actions'];
 
