@@ -7,19 +7,19 @@ import { SortOrder } from '../../../../shared/constants/sort-order';
 import { Action, ActionType } from '../../action';
 
 @Component({
-    templateUrl: 'references-table.component.html',
-    selector: 'fb-references-table',
-    styleUrls: ['references-table.component.scss'],
+    templateUrl: 'p2p-references-table.component.html',
+    selector: 'fb-p2p-references-table',
+    styleUrls: ['p2p-references-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ReferencesTableComponent {
+export class P2pReferencesTableComponent {
     @Output()
     action: EventEmitter<Action> = new EventEmitter();
 
     @Input()
     references: P2pReferenceModel[] | PaymentReferenceModel[];
 
-    displayedColumns: string[] = ['id', 'templateID', 'partyID', 'shopID', 'updatedAt', 'actions'];
+    displayedColumns: string[] = ['id', 'templateID', 'updatedAt', 'actions'];
 
     sort(sort: Sort): void {
         switch (sort.direction) {
