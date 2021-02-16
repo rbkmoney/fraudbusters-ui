@@ -1,4 +1,25 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~@angular/material/theming';
 
-@import './overrides/body';
+@import './themes/deeppurple-amber';
+@import 'overrides/_body';
+@import 'overrides/mat-button';
+@import 'overrides/mat-form-field';
+@import 'overrides/mat-card';
+
+@import './utils/typography';
+
+@mixin fb-overrides() {
+    @include body-override();
+    @include mat-button-override();
+    @include mat-form-field-override();
+    @include mat-card-override();
+}
+
+@mixin fb-typography($config) {
+    @include mat-core($config);
+    @include fb-base-typography($config);
+}
+
+@include fb-overrides();
+@include fb-typography(fb-typography-config());

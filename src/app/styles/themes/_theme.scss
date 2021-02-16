@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+
+@import './src/app/shared/components/headline/secondary-title/secondary-title-theme';
+
+@mixin fb-theme($theme) {
+    body.#{map-get($theme, name)} {
+        @include fb-details-secondary-title-theme($theme);
+    }
+}

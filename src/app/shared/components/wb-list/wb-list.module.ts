@@ -24,6 +24,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { P2pTemplatesModule, PaymentTemplatesModule } from '../../../api';
 import { PaymentEmulationTemplateService } from '../../services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../services/groups-reference/p2p-groups-reference.service';
 import { PaymentGroupsReferenceService } from '../../services/groups-reference/payment-groups-reference.service';
@@ -34,8 +35,6 @@ import { PaymentListsService } from '../../services/lists/payment-lists.service'
 import { OperationTypeManagementService } from '../../services/operation-type-management.service';
 import { P2pReferencesService } from '../../services/reference/p2p-references.service';
 import { PaymentReferencesService } from '../../services/reference/payment-references.service';
-import { P2pTemplatesService } from '../../services/template/p2p-templates.service';
-import { PaymentTemplatesService } from '../../services/template/payment-templates.service';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
 import { SearchFieldService } from '../../services/utils/search-field.service';
 import { AddRowListComponent } from './add-row-list/add-row-list.component';
@@ -70,6 +69,8 @@ import { WbListService } from './wb-list.service';
         ReactiveFormsModule,
         FlexLayoutModule,
         FormsModule,
+        PaymentTemplatesModule,
+        P2pTemplatesModule,
     ],
     providers: [
         SearchFieldService,
@@ -81,11 +82,9 @@ import { WbListService } from './wb-list.service';
         ErrorHandlerService,
         P2pReferencesService,
         PaymentGroupsReferenceService,
-        PaymentTemplatesService,
         P2pGroupsService,
         PaymentReferencesService,
         PaymentGroupsService,
-        P2pTemplatesService,
         OperationTypeManagementService,
     ],
 })

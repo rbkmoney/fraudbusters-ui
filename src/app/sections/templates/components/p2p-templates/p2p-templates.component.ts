@@ -3,26 +3,26 @@ import { Router } from '@angular/router';
 
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { Action, ActionType } from '../../action';
-import { FetchTemplatesService } from '../../services/fetch-templates.service';
-import { RemoveTemplateService } from '../../services/remove-template.service';
+import { FetchP2pTemplatesService } from '../../services/fetch-p2p-templates.service';
+import { RemoveP2pTemplateService } from '../../services/remove-p2p-template.service';
 
 @Component({
     templateUrl: 'p2p-templates.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [FetchTemplatesService, RemoveTemplateService],
+    providers: [FetchP2pTemplatesService, RemoveP2pTemplateService],
 })
 export class P2pTemplatesComponent {
-    templates$ = this.fetchTemplatesService.searchResult$;
-    inProgress$ = this.fetchTemplatesService.inProgress$;
-    hasMore$ = this.fetchTemplatesService.hasMore$;
+    templates$ = this.fetchP2pTemplatesService.searchResult$;
+    inProgress$ = this.fetchP2pTemplatesService.inProgress$;
+    hasMore$ = this.fetchP2pTemplatesService.hasMore$;
 
     constructor(
         private router: Router,
-        private fetchTemplatesService: FetchTemplatesService,
-        private removeTemplateService: RemoveTemplateService
+        private fetchP2pTemplatesService: FetchP2pTemplatesService,
+        private removeP2pTemplateService: RemoveP2pTemplateService
     ) {
-        this.removeTemplateService.removed$.subscribe(() => {
-            this.fetchTemplatesService.search({ type: OperationType.PeerToPeer });
+        this.removeP2pTemplateService.removed$.subscribe(() => {
+            this.fetchP2pTemplatesService.search({});
         });
     }
 
@@ -35,13 +35,12 @@ export class P2pTemplatesComponent {
                 this.router.navigate([`/template/${action.templateID}`], { fragment: OperationType.PeerToPeer });
                 break;
             case ActionType.removeTemplate:
-                this.removeTemplateService.removeTemplate({
-                    type: OperationType.PeerToPeer,
+                this.removeP2pTemplateService.removeTemplate({
                     templateID: action.templateID,
                 });
                 break;
             case ActionType.sortTemplates:
-                this.fetchTemplatesService.search({ type: OperationType.Payment, sortOrder: action.sortDirection });
+                this.fetchP2pTemplatesService.search({ sortOrder: action.sortDirection });
                 break;
             default:
                 console.error('Wrong template action.');
@@ -53,10 +52,10 @@ export class P2pTemplatesComponent {
     }
 
     search(searchValue: string) {
-        this.fetchTemplatesService.search({ type: OperationType.PeerToPeer, searchValue });
+        this.fetchP2pTemplatesService.search({ searchValue });
     }
 
     fetchMore() {
-        this.fetchTemplatesService.fetchMore();
+        this.fetchP2pTemplatesService.fetchMore();
     }
 }

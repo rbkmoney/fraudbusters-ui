@@ -16,6 +16,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { P2pTemplatesModule, PaymentTemplatesModule } from '../../api';
 import { ConfirmActionDialogModule } from '../../shared/components/confirm-action-dialog';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
 import { SharedPipesModule } from '../../shared/pipes';
@@ -29,8 +30,6 @@ import { PaymentListsService } from '../../shared/services/lists/payment-lists.s
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { P2pReferencesService } from '../../shared/services/reference/p2p-references.service';
 import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
-import { P2pTemplatesService } from '../../shared/services/template/p2p-templates.service';
-import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
 import { P2pTemplatesComponent } from './components/p2p-templates/p2p-templates.component';
 import { PaymentTemplatesComponent } from './components/payment-templates/payment-templates.component';
 import { TemplatesSearchComponent } from './components/templates-search/templates-search.component';
@@ -60,6 +59,8 @@ import { TemplatesComponent } from './templates.component';
         ReactiveFormsModule,
         MatProgressSpinnerModule,
         MatProgressBarModule,
+        PaymentTemplatesModule,
+        P2pTemplatesModule,
     ],
     declarations: [
         TemplatesComponent,
@@ -71,8 +72,6 @@ import { TemplatesComponent } from './templates.component';
     // TODO: need to refactor these services
     providers: [
         OperationTypeManagementService,
-        PaymentTemplatesService,
-        P2pTemplatesService,
         PaymentGroupsService,
         P2pGroupsService,
         PaymentReferencesService,

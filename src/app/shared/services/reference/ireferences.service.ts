@@ -1,15 +1,16 @@
 import { Observable } from 'rxjs';
 
-import { P2pReference } from '../../../sections/reference/model/p2p-reference';
-import { PaymentReference } from '../../../sections/reference/model/payment-reference';
-import { Reference } from '../../../sections/reference/model/reference';
+import { P2pReferenceModel } from '../../../api/fb-management/swagger-codegen/model/p2pReferenceModel';
+import { PaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
 import { HttpSearchResponse } from '../../model/http-search-response';
 import { SearchReferenceParams } from './model/search-reference-params';
 
 export interface IReferencesService {
-    findReferences(params?: SearchReferenceParams): Observable<HttpSearchResponse<PaymentReference | P2pReference>>;
+    findReferences(
+        params?: SearchReferenceParams
+    ): Observable<HttpSearchResponse<PaymentReferenceModel | P2pReferenceModel>>;
 
-    deleteReference(reference: Reference): Observable<string>;
+    deleteReference(reference: PaymentReferenceModel | P2pReferenceModel): Observable<string>;
 
-    saveReferences(reference: Reference[]): Observable<string[]>;
+    saveReferences(reference: PaymentReferenceModel[] | P2pReferenceModel[]): Observable<string[]>;
 }

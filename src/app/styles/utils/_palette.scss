@@ -1,4 +1,4 @@
-$dark-text: rgba(black, 0.87);
+$dark-text: #655b76;
 $light-text: white;
 
 /*
@@ -8,6 +8,40 @@ How to create palette
 2. Enter color 500 (gotten at the previous step) into http://mcg.mbitson.com - get A100-A700 colors
    and find out recommendation when to use a dark font color and in which light
 */
+
+// base 600
+$fb-purple: (
+    50: #f6f2ff,
+    100: #d5c8ed,
+    200: #bfaae4,
+    300: #9d7dd6,
+    400: #875fcc,
+    500: #7b51c8,
+    600: #673ab7,
+    700: #5f35a8,
+    800: #4e2c8a,
+    900: #351e5e,
+    A100: #e1d7f2,
+    A200: #cab9e9,
+    A400: #7b51c8,
+    A700: #563199,
+    contrast: (
+        50: $dark-text,
+        100: $dark-text,
+        200: $dark-text,
+        300: $light-text,
+        400: $light-text,
+        500: $light-text,
+        600: $light-text,
+        700: $light-text,
+        800: $light-text,
+        900: $light-text,
+        A100: $dark-text,
+        A200: $dark-text,
+        A400: $light-text,
+        A700: $light-text,
+    ),
+);
 
 // base 400
 $fb-success: (
@@ -108,5 +142,38 @@ $fb-warn: (
         A200: $dark-text,
         A400: $dark-text,
         A700: $dark-text,
+    ),
+);
+
+$fb-grey: (
+    50: #fafafa,
+    100: #e6ecf5,
+    200: #eeeeee,
+    300: #e0e0e0,
+    400: #c4c4c4,
+    500: #8c819e,
+    600: #786c8c,
+    700: #655b76,
+    800: #36303f,
+    900: #212121,
+    A100: #ffffff,
+    A200: #eeeeee,
+    A400: #bdbdbd,
+    A700: #616161,
+    contrast: (
+        50: $dark-text,
+        100: $dark-text,
+        200: $dark-text,
+        300: $dark-text,
+        400: $dark-text,
+        500: $dark-text,
+        600: $light-text,
+        700: $light-text,
+        800: $light-text,
+        900: $light-text,
+        A100: $dark-text,
+        A200: $dark-text,
+        A400: $dark-text,
+        A700: $light-text,
     ),
 );

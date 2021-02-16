@@ -7,10 +7,10 @@
 
 <mat-card>
     <mat-card-content>
-        <div class="list-values" fxLayout="row" fxLayoutAlign="center center">
+        <div class="list-values" fxLayout fxLayoutAlign="center center">
             <div *ngIf="isPaymentReference()" fxFlex="100">
                 <div *ngFor="let reference of paymentRecords; let i = index">
-                    <div fxLayout="row">
+                    <div fxLayout>
                         <div fxFlex="22">
                             <mat-form-field floatLabel="always" class="full-width">
                                 <input
@@ -67,7 +67,7 @@
                             </button>
                         </div>
                     </div>
-                    <div fxLayout="row" *ngIf="isCounting">
+                    <div fxLayout *ngIf="isCounting">
                         <div fxFlex="100">
                             <div fxFlex="22">
                                 <mat-form-field floatLabel="always" class="full-width">
@@ -115,7 +115,7 @@
             </div>
             <div *ngIf="isP2pReference()" fxFlex="100">
                 <div *ngFor="let reference of p2pRecords; let i = index">
-                    <div fxLayout="row">
+                    <div fxLayout>
                         <div fxFlex="30">
                             <mat-form-field floatLabel="always" class="full-width">
                                 <input
@@ -155,7 +155,7 @@
                             </button>
                         </div>
                     </div>
-                    <div fxLayout="row" *ngIf="isCounting">
+                    <div fxLayout *ngIf="isCounting">
                         <div fxFlex="100">
                             <div fxFlex="30">
                                 <mat-form-field floatLabel="always" class="full-width">

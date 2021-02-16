@@ -2,10 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { P2pReferenceModel } from '../../../api/fb-management/swagger-codegen/model/p2pReferenceModel';
 import { ConfigService } from '../../../config';
-import { P2pReference } from '../../../sections/reference/model/p2p-reference';
-import { PaymentReference } from '../../../sections/reference/model/payment-reference';
-import { Reference } from '../../../sections/reference/model/reference';
+import { ReferenceModule } from '../../../sections/reference';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { HttpSearchResponse } from '../../model/http-search-response';
 import { filterParameters } from '../../utils/filter-params';
@@ -18,8 +17,8 @@ export class P2pReferencesService implements IReferencesService {
 
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
-    findReferences(params?: SearchReferenceParams): Observable<HttpSearchResponse<PaymentReference | P2pReference>> {
-        return this.http.get<HttpSearchResponse<PaymentReference | P2pReference>>(
+    findReferences(params?: SearchReferenceParams): Observable<HttpSearchResponse<P2pReferenceModel>> {
+        return this.http.get<HttpSearchResponse<P2pReferenceModel>>(
             `${this.fbManagementEndpoint}/p2p/reference/filter/`,
             {
                 params: filterParameters(params),
@@ -27,14 +26,14 @@ export class P2pReferencesService implements IReferencesService {
         );
     }
 
-    deleteReference(reference: P2pReference): Observable<string> {
+    deleteReference(reference: P2pReferenceModel): Observable<string> {
         return this.http.delete(`${this.fbManagementEndpoint}/p2p/template/${reference.templateId}/reference`, {
             params: { identityId: reference.identityId },
             responseType: 'text',
         });
     }
 
-    saveReferences(references: Reference[]): Observable<string[]> {
+    saveReferences(references: ReferenceModule[]): Observable<string[]> {
         return this.http.post<string[]>(
             `${this.fbManagementEndpoint}/p2p/template/references`,
             references,

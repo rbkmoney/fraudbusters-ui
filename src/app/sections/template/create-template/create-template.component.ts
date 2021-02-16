@@ -1,63 +1,24 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { OperationType } from '../../../shared/constants/operation-type';
-import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
-import { ValidateResponseHandler } from '../../../shared/services/utils/validate-response-handler.service';
-import { Template } from '../model/template';
-import { TemplatesService } from '../templates.service';
+import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 
 @Component({
     templateUrl: './create-template.component.html',
     styleUrls: ['./create-template.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CreateTemplateComponent implements OnInit {
-    private operationType: OperationType;
-    template: Template = { id: '', template: '' };
+export class CreateTemplateComponent {
+    operationType$ = this.route.fragment;
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private templateService: TemplatesService,
-        private errorHandlerService: ErrorHandlerService,
-        private validateResponseHandler: ValidateResponseHandler,
-        private snackBar: MatSnackBar
+        @Inject(LAYOUT_GAP_L) public layoutGapL: string,
+        @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {}
 
-    ngOnInit(): void {
-        this.getOperationTypeFromFragment();
-    }
-
-    getOperationTypeFromFragment(): void {
-        this.route.fragment.subscribe((fragment: string) => {
-            this.operationType = OperationType[fragment];
-        });
-    }
-
-    save(): void {
-        this.templateService.saveTemplate(this.operationType, this.template).subscribe(
-            (template) => {
-                this.navigateToEdit(template.id);
-            },
-            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
-        );
-    }
-
-    validate(): void {
-        this.templateService.validateTemplate(this.operationType, this.template).subscribe(
-            (response) => {
-                this.snackBar.open(this.validateResponseHandler.checkValidateResponse(response), 'OK', {
-                    duration: 3000,
-                });
-            },
-            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
-        );
-    }
-
-    navigateToEdit(id): void {
-        this.router.navigate([`../template/${id}`], { fragment: this.operationType.toString() });
+    back() {
+        this.router.navigate([`../templates`]);
     }
 }

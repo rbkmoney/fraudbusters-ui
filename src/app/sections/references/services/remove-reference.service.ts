@@ -5,15 +5,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, EMPTY, merge, of, Subject } from 'rxjs';
 import { catchError, filter, switchMap } from 'rxjs/operators';
 
+import { P2pReferenceModel } from '../../../api/fb-management/swagger-codegen/model/p2pReferenceModel';
+import { PaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
 import { ConfirmActionDialogComponent } from '../../../shared/components/confirm-action-dialog';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { progress } from '../../../shared/operators';
 import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
-import { Reference } from '../../reference/model/reference';
 
 export interface RemoveReferenceParams {
     type: OperationType;
-    reference: Reference;
+    reference: PaymentReferenceModel | P2pReferenceModel;
 }
 
 @Injectable()

@@ -38,6 +38,9 @@ testem.log
 .DS_Store
 Thumbs.db
 
-
 # Sonar
 .scannerwork
+
+# Swagger Codegen
+src/app/api/**/swagger-codegen
+

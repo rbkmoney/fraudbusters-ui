@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+
+@mixin fb-details-secondary-title-theme($theme) {
+    $headline: map-get($theme, headline);
+
+    .secondary-title {
+        color: $headline;
+    }
+}

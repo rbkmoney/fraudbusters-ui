@@ -1,0 +1,69 @@
+@import '~@angular/material/theming';
+@import './theme';
+
+@import '../utils/palette';
+
+$foreground: (
+    base: black,
+    divider: #e6ecf5,
+    dividers: #e6ecf5,
+    disabled: $dark-disabled-text,
+    disabled-button: white,
+    disabled-text: $dark-disabled-text,
+    elevation: map-get($fb-grey, 100),
+    hint-text: $dark-disabled-text,
+    secondary-text: map-get($fb-grey, 400),
+    icon: map-get($fb-grey, 700),
+    icons: map-get($fb-grey, 700),
+    text: map-get($fb-grey, 700),
+    slider-min: rgba(black, 0.87),
+    slider-off: rgba(black, 0.26),
+    slider-off-active: rgba(black, 0.38),
+    /*
+     * Custom
+     *
+  */
+);
+
+$background: (
+    status-bar: map-get($mat-grey, 300),
+    app-bar: map-get($mat-grey, 100),
+    background: map-get($mat-grey, 50),
+    hover: rgba(black, 0.04),
+    // TODO(kara): check style with Material Design UX
+    card: white,
+    dialog: white,
+    disabled-button: map-get($fb-grey, 400),
+    raised-button: white,
+    focused-button: $dark-focused,
+    selected-button: map-get($mat-grey, 300),
+    selected-disabled-button: map-get($mat-grey, 400),
+    disabled-button-toggle: map-get($mat-grey, 200),
+    unselected-chip: map-get($mat-grey, 300),
+    disabled-list-option: map-get($mat-grey, 200),
+    tooltip: map-get($mat-grey, 700),
+    /*
+     * Custom
+     *
+  */
+);
+
+$theme: (
+    primary: mat-palette($fb-purple),
+    accent: mat-palette($mat-blue),
+    warn: mat-palette($mat-red),
+    is-dark: false,
+    foreground: $foreground,
+    background: $background,
+    /*
+      * Custom
+      *
+    */ name: 'deeppurple-amber',
+    gray: mat-palette($fb-grey),
+    success-base: mat-color(mat-palette($fb-success), 400),
+    pending-base: mat-color(mat-palette($fb-pending), 800),
+    warn-base: mat-color(mat-palette($fb-warn), 300),
+    headline: #655b76,
+);
+
+@include fb-theme($theme);

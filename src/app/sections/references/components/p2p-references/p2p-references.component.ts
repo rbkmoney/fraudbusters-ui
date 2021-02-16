@@ -29,7 +29,7 @@ export class P2pReferencesComponent {
     action(action: Action) {
         switch (action.type) {
             case ActionType.createReference:
-                this.router.navigate(['/reference/new'], { fragment: OperationType.PeerToPeer });
+                this.router.navigate(['/reference/new/p2p']);
                 break;
             case ActionType.editReference:
                 this.router.navigate([`/reference/${action.reference.id}`], { fragment: OperationType.PeerToPeer });

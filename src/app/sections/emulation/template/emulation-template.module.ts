@@ -15,6 +15,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { P2pTemplatesModule, PaymentTemplatesModule } from '../../../api';
 import { SharedPipesModule } from '../../../shared/pipes';
 import { PaymentEmulationTemplateService } from '../../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../../shared/services/groups-reference/p2p-groups-reference.service';
@@ -26,8 +27,6 @@ import { PaymentListsService } from '../../../shared/services/lists/payment-list
 import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
 import { P2pReferencesService } from '../../../shared/services/reference/p2p-references.service';
 import { PaymentReferencesService } from '../../../shared/services/reference/payment-references.service';
-import { P2pTemplatesService } from '../../../shared/services/template/p2p-templates.service';
-import { PaymentTemplatesService } from '../../../shared/services/template/payment-templates.service';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { EmulationTemplateRoutingModule } from './emulation-template-routing.module';
 import { EmulationTemplateComponent } from './emulation-template.component';
@@ -53,15 +52,15 @@ import { EmulationTemplateService } from './emulation-template.service';
         FlexLayoutModule,
         FormsModule,
         SharedPipesModule,
+        PaymentTemplatesModule,
+        P2pTemplatesModule,
     ],
     providers: [
         EmulationTemplateService,
         PaymentEmulationTemplateService,
-        PaymentTemplatesService,
         ErrorHandlerService,
         PaymentReferencesService,
         PaymentListsService,
-        P2pTemplatesService,
         P2pGroupsService,
         P2pReferencesService,
         PaymentGroupsReferenceService,

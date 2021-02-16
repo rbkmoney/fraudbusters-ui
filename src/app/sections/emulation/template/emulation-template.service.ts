@@ -3,10 +3,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, combineLatest, Observable, of, Subject } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
+import { TemplateModel } from '../../../api/fb-management/swagger-codegen/model/templateModel';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
-import { Template } from '../../template/model/template';
 import { P2pEmulateFilter } from './model/p2p-emulate-filter';
 import { PaymentEmulateFilter } from './model/payment-emulate-filter';
 
@@ -14,7 +14,7 @@ import { PaymentEmulateFilter } from './model/payment-emulate-filter';
 export class EmulationTemplateService {
     queries$ = new Subject<PaymentEmulateFilter | P2pEmulateFilter>();
     operationType$ = new BehaviorSubject<string>(OperationType.Payment);
-    templates$: Observable<Template[]>;
+    templates$: Observable<TemplateModel[]>;
 
     constructor(
         private operationReferenceService: OperationTypeManagementService,
@@ -41,7 +41,7 @@ export class EmulationTemplateService {
         this.operationType$.next(next);
     }
 
-    emulate(type: OperationType, filter: PaymentEmulateFilter | P2pEmulateFilter): Observable<Template[]> {
+    emulate(type: OperationType, filter: PaymentEmulateFilter | P2pEmulateFilter): Observable<TemplateModel[]> {
         return this.operationReferenceService.findEmulationService(type).emulate(filter);
     }
 }

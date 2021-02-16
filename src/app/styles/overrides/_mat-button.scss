@@ -1,0 +1,17 @@
+@mixin mat-button-override() {
+    .mat-button.mat-accent {
+        background-color: #f6f2ff;
+
+        .mat-button-wrapper {
+            color: #673ab7;
+        }
+    }
+
+    .mat-button.mat-primary {
+        background-color: #673ab7;
+
+        .mat-button-wrapper {
+            color: white;
+        }
+    }
+}

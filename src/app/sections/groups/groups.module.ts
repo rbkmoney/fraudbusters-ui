@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -17,6 +17,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { P2pTemplatesModule, PaymentTemplatesModule } from '../../api';
 import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
 import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
@@ -27,11 +28,9 @@ import { PaymentListsService } from '../../shared/services/lists/payment-lists.s
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { P2pReferencesService } from '../../shared/services/reference/p2p-references.service';
 import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
-import { P2pTemplatesService } from '../../shared/services/template/p2p-templates.service';
-import { PaymentTemplatesService } from '../../shared/services/template/payment-templates.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
-import { TemplatesService } from '../template/templates.service';
+import { TemplatesService } from '../template/services/templates/templates.service';
 import { GroupsRoutingModule } from './groups-routing.module';
 import { GroupsComponent } from './groups.component';
 import { GroupsService } from './groups.service';
@@ -58,6 +57,9 @@ import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-d
         MatAutocompleteModule,
         FlexLayoutModule,
         FormsModule,
+        PaymentTemplatesModule,
+        P2pTemplatesModule,
+        ReactiveFormsModule,
     ],
     providers: [
         GroupsService,
@@ -65,8 +67,6 @@ import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-d
         P2pGroupsService,
         PaymentGroupsService,
         ErrorHandlerService,
-        PaymentTemplatesService,
-        P2pTemplatesService,
         PaymentReferencesService,
         PaymentEmulationTemplateService,
         P2pListsService,

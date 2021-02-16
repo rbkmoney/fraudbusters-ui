@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { Action, ActionType } from '../../action';
-import { FetchTemplatesService } from '../../services/fetch-templates.service';
-import { RemoveTemplateService } from '../../services/remove-template.service';
+import { FetchPaymentTemplatesService } from '../../services/fetch-payment-templates.service';
+import { RemovePaymentTemplateService } from '../../services/remove-payment-template.service';
 
 @Component({
     templateUrl: 'payment-templates.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [FetchTemplatesService, RemoveTemplateService],
+    providers: [FetchPaymentTemplatesService, RemovePaymentTemplateService],
 })
 export class PaymentTemplatesComponent {
     templates$ = this.fetchTemplatesService.searchResult$;
@@ -18,11 +18,11 @@ export class PaymentTemplatesComponent {
 
     constructor(
         private router: Router,
-        private fetchTemplatesService: FetchTemplatesService,
-        private removeTemplateService: RemoveTemplateService
+        private fetchTemplatesService: FetchPaymentTemplatesService,
+        private removeTemplateService: RemovePaymentTemplateService
     ) {
         this.removeTemplateService.removed$.subscribe(() => {
-            this.fetchTemplatesService.search({ type: OperationType.Payment });
+            this.fetchTemplatesService.search({});
         });
     }
 
@@ -36,12 +36,11 @@ export class PaymentTemplatesComponent {
                 break;
             case ActionType.removeTemplate:
                 this.removeTemplateService.removeTemplate({
-                    type: OperationType.Payment,
                     templateID: action.templateID,
                 });
                 break;
             case ActionType.sortTemplates:
-                this.fetchTemplatesService.search({ type: OperationType.Payment, sortOrder: action.sortDirection });
+                this.fetchTemplatesService.search({ sortOrder: action.sortDirection });
                 break;
             default:
                 console.error('Wrong template action.');
@@ -53,7 +52,7 @@ export class PaymentTemplatesComponent {
     }
 
     search(searchValue: string) {
-        this.fetchTemplatesService.search({ type: OperationType.Payment, searchValue });
+        this.fetchTemplatesService.search({ searchValue });
     }
 
     fetchMore() {
