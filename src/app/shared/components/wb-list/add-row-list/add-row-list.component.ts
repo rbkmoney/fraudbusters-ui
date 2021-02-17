@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import moment from 'moment';
 import { Observable } from 'rxjs';
 
 import { ListType } from '../../../constants/list-type';
@@ -53,17 +54,19 @@ export class AddRowListComponent extends OperationTypeComponent implements OnIni
     }
 
     addNewReference(): void {
+        const startCountTime = moment().utc().toISOString();
+        const endCountTime = moment().add('month').utc().toISOString();
         this.isPaymentReference()
             ? (this.paymentRecords = this.paymentRecords.concat([
                   new CountInfoListRecord(
                       new PaymentListRecord(null, '', '', null, null, '', ''),
-                      this.isCounting ? new CountInfo(0, '', '') : null
+                      this.isCounting ? new CountInfo(0, startCountTime, endCountTime) : null
                   ),
               ]))
             : (this.p2pRecords = this.p2pRecords.concat([
                   new CountInfoListRecord(
                       new P2pListRecord(null, '', '', null, null, ''),
-                      this.isCounting ? new CountInfo(0, '', '') : null
+                      this.isCounting ? new CountInfo(0, startCountTime, endCountTime) : null
                   ),
               ]));
     }

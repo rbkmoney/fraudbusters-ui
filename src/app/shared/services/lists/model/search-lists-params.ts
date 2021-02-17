@@ -1,7 +1,7 @@
 import { ListType } from '../../../constants/list-type';
-import { SearchParams } from '../../../model/search-params';
+import { SearchTemplatesParams } from '../../../model/search-templates-params';
 
-export interface SearchListsParams extends SearchParams {
+export interface SearchListsParams extends SearchTemplatesParams {
     searchValue: string;
     sortFieldValue: string;
     listNames: string[];

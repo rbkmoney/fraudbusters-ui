@@ -17,14 +17,12 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { P2pTemplatesModule, PaymentTemplatesModule } from '../../api';
+import { P2pTemplatesModule, P2pWbListsModule, PaymentTemplatesModule, PaymentWbListsModule } from '../../api';
 import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
 import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
 import { P2pGroupsService } from '../../shared/services/groups/p2p-groups.service';
 import { PaymentGroupsService } from '../../shared/services/groups/payment-groups.service';
-import { P2pListsService } from '../../shared/services/lists/p2p-lists.service';
-import { PaymentListsService } from '../../shared/services/lists/payment-lists.service';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { P2pReferencesService } from '../../shared/services/reference/p2p-references.service';
 import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
@@ -60,6 +58,8 @@ import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-d
         PaymentTemplatesModule,
         P2pTemplatesModule,
         ReactiveFormsModule,
+        PaymentWbListsModule,
+        P2pWbListsModule,
     ],
     providers: [
         GroupsService,
@@ -69,9 +69,7 @@ import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-d
         ErrorHandlerService,
         PaymentReferencesService,
         PaymentEmulationTemplateService,
-        P2pListsService,
         TemplatesService,
-        PaymentListsService,
         P2pReferencesService,
         P2pGroupsReferenceService,
         PaymentGroupsReferenceService,

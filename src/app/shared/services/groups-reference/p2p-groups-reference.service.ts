@@ -8,7 +8,7 @@ import { P2pGroupReferenceModel } from '../../../sections/groups-reference/model
 import { PaymentGroupReferenceModel } from '../../../sections/groups-reference/model/payment-groups-reference';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { HttpSearchResponse } from '../../model/http-search-response';
-import { SearchParams } from '../../model/search-params';
+import { SearchTemplatesParams } from '../../model/search-templates-params';
 import { filterParameters } from '../../utils/filter-params';
 import { IGroupsReferenceService } from './igroups-reference.service';
 
@@ -19,7 +19,7 @@ export class P2pGroupsReferenceService implements IGroupsReferenceService {
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
     findGroups(
-        params?: SearchParams
+        params?: SearchTemplatesParams
     ): Observable<HttpSearchResponse<PaymentGroupReferenceModel | P2pGroupReferenceModel>> {
         return this.http.get<HttpSearchResponse<PaymentGroupReferenceModel | P2pGroupReferenceModel>>(
             `${this.fbManagementEndpoint}/p2p/group/reference/filter`,

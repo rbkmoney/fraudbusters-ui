@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { P2pFilterListRecordsResponse } from '../../../api/fb-management/swagger-codegen/model/p2pFilterListRecordsResponse';
+import { PaymentFilterListRecordsResponse } from '../../../api/fb-management/swagger-codegen/model/paymentFilterListRecordsResponse';
 import { ListType } from '../../constants/list-type';
 import { OperationType } from '../../constants/operation-type';
 import { SortOrder } from '../../constants/sort-order';
-import { HttpSearchResponse } from '../../model/http-search-response';
 import { CountInfoListRecord } from '../../services/lists/model/count-info-list-record';
-import { P2pListRecord } from '../../services/lists/model/p2p-list-record';
-import { PaymentListRecord } from '../../services/lists/model/payment-list-record';
 import { OperationTypeManagementService } from '../../services/operation-type-management.service';
 
 @Injectable()
@@ -23,13 +22,11 @@ export class WbListService {
         lastInListName?: string,
         sortOrder?: SortOrder,
         sortField?: string
-    ): Observable<HttpSearchResponse<PaymentListRecord | P2pListRecord>> {
+    ): Observable<PaymentFilterListRecordsResponse | P2pFilterListRecordsResponse> {
         return this.operationTypeManagementService.findListsService(type).findListRows({
             searchValue: nameRegexp,
             lastId: lastInListName,
             size: sizeValue,
-            sortOrder: sortOrder ? sortOrder : SortOrder.ASC,
-            sortFieldValue: sortField,
             listNames: listNamesValue,
             listType: listTypeValue,
         });

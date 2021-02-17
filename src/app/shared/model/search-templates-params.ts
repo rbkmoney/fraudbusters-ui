@@ -1,4 +1,4 @@
-export interface SearchParams {
+export interface SearchTemplatesParams {
     id?: string;
     searchValue?: string;
     sortFieldValue?: string;

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../../auth';
-import { PaymentGreyListComponent } from './components/payment-grey-list/payment-grey-list.component';
+import { AddRowGreyListComponent } from './add-row-grey-list/add-row-grey-list.component';
 import { GreyListComponent } from './grey-list.component';
 
 @NgModule({
@@ -15,14 +15,10 @@ import { GreyListComponent } from './grey-list.component';
                 data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring] },
                 children: [
                     {
-                        path: 'payments',
-                        component: PaymentGreyListComponent,
+                        path: 'new',
+                        component: AddRowGreyListComponent,
                         canActivate: [AuthGuard],
                         data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring] },
-                    },
-                    {
-                        path: '',
-                        redirectTo: 'payments',
                     },
                 ],
             },

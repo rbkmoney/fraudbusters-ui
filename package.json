@@ -36,6 +36,7 @@
     "keycloak-angular": "^8.0.1",
     "keycloak-js": "^11.0.3",
     "lodash-es": "^4.17.20",
+    "moment": "^2.29.1",
     "ngx-papaparse": "^4.0.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

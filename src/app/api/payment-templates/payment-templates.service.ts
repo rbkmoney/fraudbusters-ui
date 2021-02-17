@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { ConfigService } from '../../config';
 import { HttpRequestModel } from '../../shared/model/http-request-model';
 import { HttpSearchResponse } from '../../shared/model/http-search-response';
-import { SearchParams } from '../../shared/model/search-params';
+import { SearchTemplatesParams } from '../../shared/model/search-templates-params';
 import { filterParameters } from '../../shared/utils/filter-params';
 import { CreateTemplateResponse } from '../fb-management/swagger-codegen/model/createTemplateResponse';
 import { TemplateModel } from '../fb-management/swagger-codegen/model/templateModel';
@@ -17,7 +17,7 @@ export class PaymentTemplatesService {
 
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
-    findTemplates(params?: SearchParams): Observable<HttpSearchResponse<TemplateModel>> {
+    findTemplates(params?: SearchTemplatesParams): Observable<HttpSearchResponse<TemplateModel>> {
         return this.http.get<HttpSearchResponse<TemplateModel>>(`${this.fbPaymentTemplatesEndpoint}/filter/`, {
             params: filterParameters(params),
         });

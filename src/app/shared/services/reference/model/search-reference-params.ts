@@ -1,6 +1,6 @@
-import { SearchParams } from '../../../model/search-params';
+import { SearchTemplatesParams } from '../../../model/search-templates-params';
 
-export interface SearchReferenceParams extends SearchParams {
+export interface SearchReferenceParams extends SearchTemplatesParams {
     searchValue: string;
     isGlobal: boolean;
     isDefault: boolean;
