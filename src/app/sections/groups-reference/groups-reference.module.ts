@@ -37,7 +37,6 @@ import { P2pReferencesComponent } from './components/p2p-references/p2p-referenc
 import { PaymentReferencesComponent } from './components/payment-references/payment-references.component';
 import { ReferencesSearchComponent } from './components/references-search/references-search.component';
 import { ReferencesTableComponent } from './components/references-table/references-table.component';
-import { RemoveReferenceDialogComponent } from './components/remove-reference-dialog/remove-reference-dialog.component';
 import { GroupsReferenceRoutingModule } from './groups-reference-routing.module';
 import { GroupsReferenceComponent } from './groups-reference.component';
 import { GroupsReferenceService } from './services/groups-reference/groups-reference.service';
@@ -45,7 +44,6 @@ import { GroupsReferenceService } from './services/groups-reference/groups-refer
 @NgModule({
     declarations: [
         GroupsReferenceComponent,
-        RemoveReferenceDialogComponent,
         PaymentReferencesComponent,
         P2pReferencesComponent,
         ReferencesTableComponent,
