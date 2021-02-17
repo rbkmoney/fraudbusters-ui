@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+
+@mixin fb-tag-colors-theme($theme) {
+    $foreground: map-get($theme, foreground);
+
+    .fb-tag {
+        color: map-get($foreground, light-text);
+        background-color: map-get($foreground, primary-color);
+    }
+}

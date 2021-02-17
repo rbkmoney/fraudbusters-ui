@@ -22,7 +22,8 @@ $foreground: (
     /*
      * Custom
      *
-  */
+  */ light-text: white,
+    primary-color: map-get($fb-purple, 600),
 );
 
 $background: (
@@ -45,13 +46,12 @@ $background: (
     /*
      * Custom
      *
-  */
+    */
 );
 
 $theme: (
     primary: mat-palette($fb-purple),
     accent: mat-palette($mat-blue),
-    warn: mat-palette($mat-red),
     is-dark: false,
     foreground: $foreground,
     background: $background,
@@ -59,10 +59,13 @@ $theme: (
       * Custom
       *
     */ name: 'deeppurple-amber',
-    gray: mat-palette($fb-grey),
+    success: mat-palette($fb-success),
+    pending: mat-palette($fb-pending),
+    warn: mat-palette($fb-warn),
     success-base: mat-color(mat-palette($fb-success), 400),
     pending-base: mat-color(mat-palette($fb-pending), 800),
     warn-base: mat-color(mat-palette($fb-warn), 300),
+    gray: mat-palette($fb-grey),
     headline: #655b76,
 );
 
