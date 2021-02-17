@@ -3,10 +3,10 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { OperationType } from '../../../shared/constants/operation-type';
-import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
-import { GroupsReferenceService } from '../groups-reference.service';
-import { GroupReferenceModel } from '../model/groups-reference';
+import { OperationType } from '../../../../shared/constants/operation-type';
+import { ErrorHandlerService } from '../../../../shared/services/utils/error-handler.service';
+import { GroupReferenceModel } from '../../model/groups-reference';
+import { GroupsReferenceService } from '../../services/groups-reference/groups-reference.service';
 
 export interface DialogData {
     reference: GroupReferenceModel;
@@ -14,23 +14,23 @@ export interface DialogData {
 }
 
 @Component({
-    templateUrl: './remove-group-reference-dialog.component.html',
+    templateUrl: './remove-reference-dialog.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RemoveGroupReferenceDialogComponent {
+export class RemoveReferenceDialogComponent {
     constructor(
         private groupsReferenceService: GroupsReferenceService,
         private snackBar: MatSnackBar,
         private errorHandlerService: ErrorHandlerService,
-        public dialogRef: MatDialogRef<RemoveGroupReferenceDialogComponent>,
+        public dialogRef: MatDialogRef<RemoveReferenceDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData
     ) {}
 
-    onNoClick(): void {
+    cancel(): void {
         this.dialogRef.close();
     }
 
-    delete(): void {
+    confirm(): void {
         this.groupsReferenceService.deleteGroupsReference(this.data.operationType, this.data.reference).subscribe(
             (id) => {
                 this.snackBar.open(`Delete succeeded: ${id}`, 'OK', {
