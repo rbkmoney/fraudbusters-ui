@@ -13,12 +13,14 @@
                 <mat-icon>account_circle</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <fb-user-info [username]="getUsername()" [roles]="getUserRoles()"></fb-user-info>
-                <mat-divider></mat-divider>
-                <button mat-menu-item (click)="logout()">
-                    <mat-icon>logout</mat-icon>
-                    <span>Logout</span>
-                </button>
+                <div fxLayout="column" [fxLayoutGap]="layoutGapS">
+                    <fb-user-info [username]="getUsername()" [roles]="getUserRoles()"></fb-user-info>
+                    <mat-divider></mat-divider>
+                    <button mat-menu-item (click)="logout()">
+                        <mat-icon>logout</mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </div>
             </mat-menu>
         </mat-toolbar>
         <div class="container-fluid">
