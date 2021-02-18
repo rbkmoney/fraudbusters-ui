@@ -6,8 +6,8 @@ import { ConfigService } from '../../config';
 import { HttpRequestModel } from '../../shared/model/http-request-model';
 import { SearchListParams } from '../../shared/model/search-list-params';
 import { filterParameters } from '../../shared/utils/filter-params';
+import { FilterResponseWbListRecords } from '../fb-management/swagger-codegen/model/filterResponseWbListRecords';
 import { P2pCountInfo } from '../fb-management/swagger-codegen/model/p2pCountInfo';
-import { P2pFilterListRecordsResponse } from '../fb-management/swagger-codegen/model/p2pFilterListRecordsResponse';
 import { WbListRecords } from '../fb-management/swagger-codegen/model/wbListRecords';
 import ListTypeEnum = WbListRecords.ListTypeEnum;
 
@@ -23,8 +23,8 @@ export class P2pWbListsService {
         });
     }
 
-    findListRows(params: SearchListParams): Observable<P2pFilterListRecordsResponse> {
-        return this.http.get<P2pFilterListRecordsResponse>(`${this.fbP2pListsEndpoint}/filter`, {
+    findListRows(params: SearchListParams): Observable<FilterResponseWbListRecords> {
+        return this.http.get<FilterResponseWbListRecords>(`${this.fbP2pListsEndpoint}/filter`, {
             params: filterParameters(params),
         });
     }
