@@ -29,10 +29,11 @@ import { PaymentListsService } from '../../shared/services/lists/payment-lists.s
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { P2pReferencesService } from '../../shared/services/reference/p2p-references.service';
 import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
+import { P2pReferencesTableComponent } from './components/p2p-references-table/p2p-references-table.component';
 import { P2pReferencesComponent } from './components/p2p-references/p2p-references.component';
+import { PaymentReferencesTableComponent } from './components/payment-references-table/payment-references-table.component';
 import { PaymentReferencesComponent } from './components/payment-references/payment-references.component';
 import { ReferencesSearchComponent } from './components/references-search/references-search.component';
-import { ReferencesTableComponent } from './components/references-table/references-table.component';
 import { ReferencesRoutingModule } from './references-routing.module';
 import { ReferencesComponent } from './references.component';
 
@@ -64,7 +65,8 @@ import { ReferencesComponent } from './references.component';
         ReferencesComponent,
         P2pReferencesComponent,
         PaymentReferencesComponent,
-        ReferencesTableComponent,
+        PaymentReferencesTableComponent,
+        P2pReferencesTableComponent,
         ReferencesSearchComponent,
     ],
     // TODO: need to refactor these services

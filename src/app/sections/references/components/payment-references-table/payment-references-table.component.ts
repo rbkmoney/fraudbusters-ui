@@ -1,25 +1,24 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 
-import { P2pReferenceModel } from '../../../../api/fb-management/swagger-codegen/model/p2pReferenceModel';
 import { PaymentReferenceModel } from '../../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
 import { SortOrder } from '../../../../shared/constants/sort-order';
 import { Action, ActionType } from '../../action';
 
 @Component({
-    templateUrl: 'references-table.component.html',
-    selector: 'fb-references-table',
-    styleUrls: ['references-table.component.scss'],
+    templateUrl: 'payment-references-table.component.html',
+    selector: 'fb-payment-references-table',
+    styleUrls: ['payment-references-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ReferencesTableComponent {
+export class PaymentReferencesTableComponent {
     @Output()
     action: EventEmitter<Action> = new EventEmitter();
 
     @Input()
-    references: P2pReferenceModel[] | PaymentReferenceModel[];
+    references: PaymentReferenceModel[];
 
-    displayedColumns: string[] = ['id', 'templateID', 'isGlobal', 'isDefault', 'updatedAt', 'actions'];
+    displayedColumns: string[] = ['id', 'templateID', 'partyID', 'shopID', 'updatedAt', 'actions'];
 
     sort(sort: Sort): void {
         switch (sort.direction) {
@@ -32,15 +31,15 @@ export class ReferencesTableComponent {
         }
     }
 
-    removeReference(reference: P2pReferenceModel | PaymentReferenceModel): void {
+    removeReference(reference: PaymentReferenceModel): void {
         this.action.emit({ type: ActionType.removeReference, reference });
     }
 
-    editReference(reference: P2pReferenceModel | PaymentReferenceModel) {
+    editReference(reference: PaymentReferenceModel) {
         this.action.emit({ type: ActionType.editReference, reference });
     }
 
-    goToTempalte(reference: P2pReferenceModel | PaymentReferenceModel) {
+    goToTempalte(reference: PaymentReferenceModel) {
         this.action.emit({ type: ActionType.goToTemplate, reference });
     }
 }
