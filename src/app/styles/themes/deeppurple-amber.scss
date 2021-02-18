@@ -65,9 +65,11 @@ $theme: (
     success: mat-palette($fb-success),
     pending: mat-palette($fb-pending),
     warn: mat-palette($fb-warn),
-    success-base: mat-color(mat-palette($fb-success), 400),
+    primary-base: mat-color(mat-palette($fb-purple), 600),
+    success-base: mat-color(mat-palette($fb-success), 500),
     pending-base: mat-color(mat-palette($fb-pending), 800),
-    warn-base: mat-color(mat-palette($fb-warn), 300),
+    warn-base: mat-color(mat-palette($fb-warn), 400),
+    blue-base: mat-color(mat-palette($fb-blue), 500),
     gray: mat-palette($fb-grey),
     headline: #655b76,
 );

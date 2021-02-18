@@ -5,6 +5,21 @@
 
     .fb-tag {
         color: map-get($foreground, light-text);
-        background-color: map-get($foreground, primary-color);
+
+        &-primary {
+            background-color: map-get($theme, primary-base);
+        }
+
+        &-success {
+            background-color: map-get($theme, success-base);
+        }
+
+        &-warn {
+            background-color: map-get($theme, warn-base);
+        }
+
+        &-blue {
+            background-color: map-get($theme, blue-base);
+        }
     }
 }
