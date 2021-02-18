@@ -13,7 +13,7 @@ import { NavigateMenuModule } from '../shared/components/navigate-menu/navigate-
 import { TagModule } from '../shared/components/tag';
 import { FilterRolesPipe } from './components/user-info/filter-roles.pipe';
 import { FormatRolePipe } from './components/user-info/format-role.pipe';
-import { RoleToColorPipe } from './components/user-info/role-to-color.pipe';
+import { RoleToClassPipe } from './components/user-info/role-to-class.pipe';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { ContainerComponent } from './container.component';
 
@@ -31,7 +31,7 @@ import { ContainerComponent } from './container.component';
         MatDividerModule,
         TagModule,
     ],
-    declarations: [ContainerComponent, UserInfoComponent, FilterRolesPipe, FormatRolePipe, RoleToColorPipe],
+    declarations: [ContainerComponent, UserInfoComponent, FilterRolesPipe, FormatRolePipe, RoleToClassPipe],
     exports: [ContainerComponent],
 })
 export class ContainerModule {}

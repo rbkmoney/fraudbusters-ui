@@ -10,5 +10,5 @@ export class TagComponent {
     title: string;
 
     @Input()
-    color: string;
+    colorClass: string;
 }

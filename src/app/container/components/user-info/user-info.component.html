@@ -3,8 +3,8 @@
     <div class="fb-caption roles" fxLayout fxLayoutGap="8px">
         <fb-tag
             *ngFor="let role of roles | filterRoles"
+            [colorClass]="role | roleToClass"
             [title]="role | formatRole"
-            [color]="role | roleToColor"
         ></fb-tag>
     </div>
 </div>

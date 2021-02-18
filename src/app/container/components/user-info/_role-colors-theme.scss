@@ -1,0 +1,21 @@
+@import '~@angular/material/theming';
+
+@mixin fb-role-colors-theme($theme) {
+    $background: map-get($theme, background);
+
+    .fb-role-color-fraud-officer {
+        background-color: map-get($background, role-color-officer);
+    }
+
+    .fb-role-color-fraud-monitoring {
+        background-color: map-get($background, role-color-monitoring);
+    }
+
+    .fb-role-color-fraud-auditor {
+        background-color: map-get($background, role-color-auditor);
+    }
+
+    .fb-role-color-fraud-support {
+        background-color: map-get($background, role-color-support);
+    }
+}
