@@ -2,12 +2,10 @@
 
 @import './src/app/shared/components/headline/secondary-title/secondary-title-theme';
 @import './src/app/shared/components/tag/tag-colors-theme';
-@import './src/app/container/components/user-info/role-colors-theme';
 
 @mixin fb-theme($theme) {
     body.#{map-get($theme, name)} {
         @include fb-details-secondary-title-theme($theme);
         @include fb-tag-colors-theme($theme);
-        @include fb-role-colors-theme($theme);
     }
 }
