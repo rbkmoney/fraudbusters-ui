@@ -1,7 +1,7 @@
 <div fxLayout="column" fxLayoutGap="8px">
     <div fxLayout fxLayoutAlign="space-between center">
-        <fb-wb-list-search (valueChanges)="search($event)"></fb-wb-list-search>
-        <!--        <button mat-button color="primary" (click)="createTemplate()">CREATE RECORD</button>-->
+        <fb-wb-list-search (valueChanges)="search($event)" [type]="operationType.Payment"></fb-wb-list-search>
+        <button mat-button color="primary" (click)="createRecord()">CREATE RECORD</button>
     </div>
     <div *ngIf="list$ | async as list; else Empty">
         <mat-card *ngIf="list.length > 0; else Empty">

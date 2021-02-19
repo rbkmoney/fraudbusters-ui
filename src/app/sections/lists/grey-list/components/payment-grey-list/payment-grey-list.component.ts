@@ -16,12 +16,14 @@ export class PaymentGreyListComponent {
     hasMore$ = this.fetchPaymentGreyListService.hasMore$;
     inProgress$ = this.fetchPaymentGreyListService.inProgress$;
 
+    operationType = OperationType;
+
     constructor(private fetchPaymentGreyListService: FetchPaymentGreyListService, private router: Router) {}
 
     action(action: Action) {
         switch (action.type) {
             case ActionType.createRecord:
-                this.router.navigate(['/template/new'], { fragment: OperationType.Payment });
+                this.router.navigate(['/lists/grey/new'], { fragment: OperationType.Payment });
                 break;
             case ActionType.editRecord:
                 this.router.navigate([`/template/${action.templateID}`], { fragment: OperationType.Payment });
@@ -43,7 +45,7 @@ export class PaymentGreyListComponent {
         }
     }
 
-    createTemplate() {
+    createRecord() {
         this.action({ type: ActionType.createRecord });
     }
 
@@ -51,7 +53,11 @@ export class PaymentGreyListComponent {
         this.fetchPaymentGreyListService.fetchMore();
     }
 
-    search(searchValue: string) {
-        this.fetchPaymentGreyListService.search({ searchValue, listNames: [], listType: ListTypeEnum.Grey });
+    search($event) {
+        this.fetchPaymentGreyListService.search({
+            searchValue: $event.searchQuery,
+            listNames: [$event.listName],
+            listType: ListTypeEnum.Grey,
+        });
     }
 }

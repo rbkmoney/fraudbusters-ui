@@ -11,7 +11,9 @@ import { P2pWbListsModule } from '../../../api/p2p-wb-lists';
 import { PaymentWbListsModule } from '../../../api/payment-wb-lists';
 import { EmptySearchResultModule } from '../../../shared/components/empty-search-result';
 import { WbListSearchModule } from '../../../shared/components/wb-list-search/wb-list-search.module';
+import { WbListModule } from '../../../shared/components/wb-list/wb-list.module';
 import { WbTableModule } from '../../../shared/components/wb-table';
+import { AddRowGreyListComponent } from './add-row-grey-list/add-row-grey-list.component';
 import { P2pGreyListComponent } from './components/p2p-grey-list/p2p-grey-list.component';
 import { PaymentGreyListComponent } from './components/payment-grey-list/payment-grey-list.component';
 import { GreyListRoutingModule } from './grey-list-routing.module';
@@ -32,7 +34,8 @@ import { GreyListComponent } from './grey-list.component';
         MatProgressSpinnerModule,
         EmptySearchResultModule,
         WbListSearchModule,
+        WbListModule,
     ],
-    declarations: [GreyListComponent, PaymentGreyListComponent, P2pGreyListComponent],
+    declarations: [GreyListComponent, PaymentGreyListComponent, P2pGreyListComponent, AddRowGreyListComponent],
 })
 export class GreyListModule {}
