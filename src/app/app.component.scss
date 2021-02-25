@@ -32,6 +32,10 @@
 }
 
 ::ng-deep {
+    .mat-menu-panel {
+        padding: 8px;
+    }
+
     .mat-card-footer {
         margin-right: -24px !important;
         margin-bottom: -24px !important;
