@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { OperationType } from '../../../../shared/constants/operation-type';
+import { LAYOUT_GAP_M } from '../../../../tokens';
 import { Action, ActionType } from '../../action';
 import { FetchPaymentTemplatesService } from '../../services/fetch-payment-templates.service';
 import { RemovePaymentTemplateService } from '../../services/remove-payment-template.service';
@@ -19,7 +20,8 @@ export class PaymentTemplatesComponent {
     constructor(
         private router: Router,
         private fetchTemplatesService: FetchPaymentTemplatesService,
-        private removeTemplateService: RemovePaymentTemplateService
+        private removeTemplateService: RemovePaymentTemplateService,
+        @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.removeTemplateService.removed$.subscribe(() => {
             this.fetchTemplatesService.search({});
@@ -48,7 +50,15 @@ export class PaymentTemplatesComponent {
     }
 
     createTemplate() {
-        this.action({ type: ActionType.createTemplate });
+        this.router.navigate(['/template/new'], { fragment: OperationType.Payment });
+    }
+
+    editTemplate(id: string) {
+        this.router.navigate([`/template/${id}`], { fragment: OperationType.Payment });
+    }
+
+    removeTemplate(templateID: string) {
+        this.removeTemplateService.removeTemplate({ templateID });
     }
 
     search(searchValue: string) {

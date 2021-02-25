@@ -19,6 +19,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { P2pTemplatesModule, PaymentTemplatesModule } from '../../api';
 import { ConfirmActionDialogModule } from '../../shared/components/confirm-action-dialog';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
+import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
 import { SharedPipesModule } from '../../shared/pipes';
 import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
@@ -34,6 +35,7 @@ import { P2pTemplatesComponent } from './components/p2p-templates/p2p-templates.
 import { PaymentTemplatesComponent } from './components/payment-templates/payment-templates.component';
 import { TemplatesSearchComponent } from './components/templates-search/templates-search.component';
 import { TemplatesTableComponent } from './components/templates-table/templates-table.component';
+import { PaymentTemplatesListModule } from './payment-templates-list';
 import { TemplatesRoutingModule } from './templates-routing.module';
 import { TemplatesComponent } from './templates.component';
 
@@ -61,6 +63,8 @@ import { TemplatesComponent } from './templates.component';
         MatProgressBarModule,
         PaymentTemplatesModule,
         P2pTemplatesModule,
+        PaymentTemplatesListModule,
+        ShowMorePanelModule,
     ],
     declarations: [
         TemplatesComponent,

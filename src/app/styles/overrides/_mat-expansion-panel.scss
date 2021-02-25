@@ -1,0 +1,21 @@
+@mixin mat-expansion-panel-override() {
+    .mat-expansion-panel {
+        padding: 16px 24px !important;
+        box-shadow: none !important;
+        border: 1px solid;
+    }
+
+    .mat-expansion-panel-header {
+        height: fit-content !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .mat-expansion-panel-header:hover {
+        background-color: transparent !important;
+    }
+
+    .mat-expansion-panel-body {
+        padding: 0 !important;
+    }
+}

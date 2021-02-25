@@ -1,0 +1,7 @@
+@mixin fb-template-header-theme($theme) {
+    $background: map-get($theme, background);
+
+    .template-header {
+        background-color: map-get($background, template-header);
+    }
+}
