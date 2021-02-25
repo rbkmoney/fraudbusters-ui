@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, EMPTY, merge, of, Subject } from 'rxjs';
 import { catchError, filter, switchMap } from 'rxjs/operators';
 
-import { PaymentTemplatesService } from '../../../api/payment-templates';
+import { PaymentTemplatesService } from '../../../api';
 import { ConfirmActionDialogComponent } from '../../../shared/components/confirm-action-dialog';
 import { progress } from '../../../shared/operators';
 

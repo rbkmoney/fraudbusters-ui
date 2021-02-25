@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+
+import { LAYOUT_GAP_M } from '../../tokens';
 
 @Component({
     templateUrl: 'templates.component.html',
@@ -15,4 +17,6 @@ export class TemplatesComponent {
             name: 'Peer To Peer',
         },
     ];
+
+    constructor(@Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
 }

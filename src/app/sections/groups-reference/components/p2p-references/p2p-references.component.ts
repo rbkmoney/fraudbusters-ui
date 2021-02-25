@@ -1,14 +1,15 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { OperationType } from '../../../../shared/constants/operation-type';
+import { LAYOUT_GAP_M } from '../../../../tokens';
 import { Action, ActionType } from '../../model/action';
 import { FetchReferencesService } from '../../services/fetch-references/fetch-references.service';
 import { RemoveReferenceService } from '../../services/remove-reference/remove-reference.service';
 
 @Component({
     selector: 'fb-p2p-references',
-    templateUrl: './p2p-references.component.html',
+    templateUrl: 'p2p-references.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [FetchReferencesService, RemoveReferenceService],
 })
@@ -22,7 +23,8 @@ export class P2pReferencesComponent {
     constructor(
         private router: Router,
         private fetchReferencesService: FetchReferencesService,
-        private removeReferenceService: RemoveReferenceService
+        private removeReferenceService: RemoveReferenceService,
+        @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.removeReferenceService.removed$.subscribe(() => {
             this.fetchReferencesService.search({ type: OperationType.PeerToPeer, isGlobal: false });
