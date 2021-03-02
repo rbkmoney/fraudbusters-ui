@@ -7,7 +7,7 @@ import { Action, ActionType } from '../action';
 
 @Component({
     templateUrl: 'payment-template-references-table.component.html',
-    selector: 'fb-payment-references-table',
+    selector: 'fb-payment-template-references-table',
     styleUrls: ['payment-template-references-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

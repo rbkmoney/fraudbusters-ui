@@ -1,15 +1,15 @@
 <div fxLayout="column" fxLayoutGap="8px">
     <div fxLayout fxLayoutAlign="space-between center">
-        <fb-references-search (valueChanges)="search($event)"></fb-references-search>
+        <fb-template-references-search (valueChanges)="search($event)"></fb-template-references-search>
         <button mat-button color="primary" (click)="createReference()">CREATE REFERENCE</button>
     </div>
     <div *ngIf="references$ | async as references; else Empty">
         <mat-card *ngIf="references.length > 0; else Empty">
             <mat-card-content fxLayout="column" fxLayoutGap="8px" fxLayoutAlign="space-around stretch">
-                <fb-payment-references-table
+                <fb-payment-template-references-table
                     (action)="action($event)"
                     [references]="references"
-                ></fb-payment-references-table>
+                ></fb-payment-template-references-table>
                 <button
                     fxFlex="100"
                     mat-button

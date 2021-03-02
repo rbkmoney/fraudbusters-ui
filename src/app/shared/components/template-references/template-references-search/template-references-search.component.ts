@@ -6,7 +6,7 @@ import { debounceTime, map, take } from 'rxjs/operators';
 import { removeEmptyProperties } from '../../../utils/remove-empty-properties';
 
 @Component({
-    selector: 'fb-references-search',
+    selector: 'fb-template-references-search',
     templateUrl: 'template-references-search.component.html',
 })
 export class TemplateReferencesSearchComponent {

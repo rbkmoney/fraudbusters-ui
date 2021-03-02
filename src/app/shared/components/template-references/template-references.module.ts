@@ -9,13 +9,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-
-import { P2pReferencesTableComponent } from './p2p-references-table/p2p-references-table.component';
-import { PaymentReferencesTableComponent } from './payment-references-table/payment-references-table.component';
-import { ReferencesSearchComponent } from './references-search/references-search.component';
+import { P2pTemplateReferencesTableComponent } from './p2p-template-references-table/p2p-template-references-table.component';
+import { PaymentTemplateReferencesTableComponent } from './payment-template-references-table/payment-template-references-table.component';
+import { TemplateReferencesSearchComponent } from './template-references-search/template-references-search.component';
 
 @NgModule({
-    declarations: [PaymentReferencesTableComponent, P2pReferencesTableComponent, ReferencesSearchComponent],
+    declarations: [
+        PaymentTemplateReferencesTableComponent,
+        P2pTemplateReferencesTableComponent,
+        TemplateReferencesSearchComponent,
+    ],
     imports: [
         CommonModule,
         FlexModule,
@@ -28,6 +31,10 @@ import { ReferencesSearchComponent } from './references-search/references-search
         MatMenuModule,
         MatButtonModule,
     ],
-    exports: [PaymentReferencesTableComponent, P2pReferencesTableComponent, ReferencesSearchComponent],
+    exports: [
+        PaymentTemplateReferencesTableComponent,
+        P2pTemplateReferencesTableComponent,
+        TemplateReferencesSearchComponent,
+    ],
 })
 export class TemplateReferencesModule {}

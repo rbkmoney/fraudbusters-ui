@@ -7,7 +7,7 @@ import { Action, ActionType } from '../action';
 
 @Component({
     templateUrl: 'p2p-template-references-table.component.html',
-    selector: 'fb-p2p-references-table',
+    selector: 'fb-p2p-template-references-table',
     styleUrls: ['p2p-template-references-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
