@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Action, ActionType } from '../../../../../shared/components/references/action';
+import { Action, ActionType } from '../../../../../shared/components/template-references/action';
 import { OperationType } from '../../../../../shared/constants/operation-type';
 import { LAYOUT_GAP_S } from '../../../../../tokens';
 import { FetchReferencesService } from '../../../services/fetch-references.service';
