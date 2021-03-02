@@ -9,7 +9,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 
 import { EmptySearchResultModule } from '../../../shared/components/empty-search-result';
-import { ReferencesModule } from '../../../shared/components/references';
+import { TemplateReferencesModule } from '../../../shared/components/template-references';
 import { DefaultP2pReferencesComponent } from './components/default-p2p-references/default-p2p-references.component';
 import { DefaultPaymentReferencesComponent } from './components/default-payment-references/default-payment-references.component';
 import { NavigationMenuComponent } from './components/navigation-menu/navigation-menu.component';
@@ -26,7 +26,7 @@ import { DefaultReferencesComponent } from './default-references.component';
     imports: [
         DefaultReferencesRoutingModule,
         FlexModule,
-        ReferencesModule,
+        TemplateReferencesModule,
         MatButtonModule,
         MatCardModule,
         CommonModule,

@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Action, ActionType } from '../../../../shared/components/references/action';
 import { OperationType } from '../../../../shared/constants/operation-type';
+import { LAYOUT_GAP_S } from '../../../../tokens';
 import { FetchReferencesService } from '../../services/fetch-references.service';
 import { RemoveReferenceService } from '../../services/remove-reference.service';
 
@@ -19,7 +20,8 @@ export class P2pReferencesComponent {
     constructor(
         private router: Router,
         private fetchReferencesService: FetchReferencesService,
-        private removeReferenceService: RemoveReferenceService
+        private removeReferenceService: RemoveReferenceService,
+        @Inject(LAYOUT_GAP_S) public layoutGapS: string
     ) {
         this.removeReferenceService.removed$.subscribe(() => {
             this.fetchReferencesService.search({ type: OperationType.PeerToPeer, isGlobal: false, isDefault: false });

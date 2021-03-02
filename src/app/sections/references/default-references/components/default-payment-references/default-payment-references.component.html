@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutGap="8px">
+<div fxLayout="column" [fxLayoutGap]="layoutGapS">
     <div fxLayout fxLayoutAlign="space-between center">
         <div fxLayout="row">
             <fb-navigation-menu></fb-navigation-menu>
@@ -8,7 +8,7 @@
     </div>
     <div *ngIf="references$ | async as references; else Empty">
         <mat-card *ngIf="references.length > 0; else Empty">
-            <mat-card-content fxLayout="column" fxLayoutGap="8px" fxLayoutAlign="space-around stretch">
+            <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapS" fxLayoutAlign="space-around stretch">
                 <fb-payment-template-references-table
                     (action)="action($event)"
                     [references]="references"
