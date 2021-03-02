@@ -1,6 +1,6 @@
-import { P2pReferenceModel } from '../../api/fb-management/swagger-codegen/model/p2pReferenceModel';
-import { PaymentReferenceModel } from '../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
-import { SortOrder } from '../../shared/constants/sort-order';
+import { P2pReferenceModel } from '../../../api/fb-management/swagger-codegen/model/p2pReferenceModel';
+import { PaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
+import { SortOrder } from '../../constants/sort-order';
 
 export enum ActionType {
     createReference = 'createReference',

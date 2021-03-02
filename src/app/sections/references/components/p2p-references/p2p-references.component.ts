@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { Action, ActionType } from '../../../../shared/components/references/action';
 import { OperationType } from '../../../../shared/constants/operation-type';
-import { Action, ActionType } from '../../action';
 import { FetchReferencesService } from '../../services/fetch-references.service';
 import { RemoveReferenceService } from '../../services/remove-reference.service';
 
@@ -22,7 +22,7 @@ export class P2pReferencesComponent {
         private removeReferenceService: RemoveReferenceService
     ) {
         this.removeReferenceService.removed$.subscribe(() => {
-            this.fetchReferencesService.search({ type: OperationType.PeerToPeer, isGlobal: false });
+            this.fetchReferencesService.search({ type: OperationType.PeerToPeer, isGlobal: false, isDefault: false });
         });
     }
 
@@ -50,6 +50,7 @@ export class P2pReferencesComponent {
                     type: OperationType.Payment,
                     sortOrder: action.sortDirection,
                     isGlobal: false,
+                    isDefault: false,
                 });
                 break;
             default:
@@ -62,7 +63,12 @@ export class P2pReferencesComponent {
     }
 
     search(searchValue: string) {
-        this.fetchReferencesService.search({ type: OperationType.PeerToPeer, searchValue, isGlobal: false });
+        this.fetchReferencesService.search({
+            type: OperationType.PeerToPeer,
+            searchValue,
+            isGlobal: false,
+            isDefault: false,
+        });
     }
 
     fetchMore() {
