@@ -34,7 +34,6 @@ import { PaymentReferencesService } from '../../shared/services/reference/paymen
 import { P2pTemplatesComponent } from './components/p2p-templates/p2p-templates.component';
 import { PaymentTemplatesComponent } from './components/payment-templates/payment-templates.component';
 import { TemplatesSearchComponent } from './components/templates-search/templates-search.component';
-import { TemplatesTableComponent } from './components/templates-table/templates-table.component';
 import { PaymentTemplatesListModule } from './payment-templates-list';
 import { TemplatesRoutingModule } from './templates-routing.module';
 import { TemplatesComponent } from './templates.component';
@@ -66,13 +65,7 @@ import { TemplatesComponent } from './templates.component';
         PaymentTemplatesListModule,
         ShowMorePanelModule,
     ],
-    declarations: [
-        TemplatesComponent,
-        P2pTemplatesComponent,
-        PaymentTemplatesComponent,
-        TemplatesTableComponent,
-        TemplatesSearchComponent,
-    ],
+    declarations: [TemplatesComponent, P2pTemplatesComponent, PaymentTemplatesComponent, TemplatesSearchComponent],
     // TODO: need to refactor these services
     providers: [
         OperationTypeManagementService,
