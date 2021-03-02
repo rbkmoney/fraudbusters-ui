@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, EMPTY, merge, of, Subject } from 'rxjs';
-import { catchError, filter, switchMap } from 'rxjs/operators';
+import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
 import { P2pTemplatesService } from '../../../api/p2p-templates';
 import { ConfirmActionDialogComponent } from '../../../shared/components/confirm-action-dialog';
@@ -38,7 +38,8 @@ export class RemoveP2pTemplateService {
                     return of(EMPTY);
                 })
             )
-        )
+        ),
+        shareReplay(1)
     );
 
     inProgress$ = progress(this.removeTemplate$, merge(this.hasError$, this.removed$));

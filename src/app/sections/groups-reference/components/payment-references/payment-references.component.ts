@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { OperationType } from '../../../../shared/constants/operation-type';
@@ -24,9 +25,13 @@ export class PaymentReferencesComponent {
         private router: Router,
         private fetchReferencesService: FetchReferencesService,
         private removeReferenceService: RemoveReferenceService,
+        private snackBar: MatSnackBar,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
-        this.removeReferenceService.removed$.subscribe(() => {
+        this.removeReferenceService.removed$.subscribe((id) => {
+            this.snackBar.open(`Reference ${id} has been deleted`, 'OK', {
+                duration: 1500,
+            });
             this.fetchReferencesService.search({ type: OperationType.Payment, isGlobal: false });
         });
     }

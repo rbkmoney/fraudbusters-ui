@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { OperationType } from '../../../../shared/constants/operation-type';
@@ -19,9 +20,13 @@ export class PaymentTemplatesComponent {
     constructor(
         private router: Router,
         private fetchTemplatesService: FetchPaymentTemplatesService,
-        private removeTemplateService: RemovePaymentTemplateService
+        private removeTemplateService: RemovePaymentTemplateService,
+        private snackBar: MatSnackBar
     ) {
-        this.removeTemplateService.removed$.subscribe(() => {
+        this.removeTemplateService.removed$.subscribe((id) => {
+            this.snackBar.open(`Template ${id} has been deleted`, 'OK', {
+                duration: 1500,
+            });
             this.fetchTemplatesService.search({});
         });
     }

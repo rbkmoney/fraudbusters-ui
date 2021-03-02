@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, EMPTY, merge, of, Subject } from 'rxjs';
-import { catchError, filter, switchMap } from 'rxjs/operators';
+import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
 import { ConfirmActionDialogComponent } from '../../../../shared/components/confirm-action-dialog';
 import { OperationType } from '../../../../shared/constants/operation-type';
@@ -47,7 +47,8 @@ export class RemoveReferenceService {
                         return of(EMPTY);
                     })
                 )
-        )
+        ),
+        shareReplay(1)
     );
 
     inProgress$ = progress(this.removeReference$, merge(this.hasError$, this.removed$));
