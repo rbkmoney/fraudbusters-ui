@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { combineLatest, EMPTY, merge, of, Subject } from 'rxjs';
+import { combineLatest, merge, NEVER, of, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
 import { ConfirmActionDialogComponent } from '../../../../shared/components/confirm-action-dialog';
@@ -44,7 +44,7 @@ export class RemoveReferenceService {
                             duration: 1500,
                         });
                         this.hasError$.next();
-                        return of(EMPTY);
+                        return NEVER;
                     })
                 )
         ),
