@@ -11,7 +11,7 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0"
         }
     },
-    "host": "localhost:8080",
+    "host": "localhost:1122",
     "basePath": "/fb-management/v1",
     "tags": [
         {
@@ -389,7 +389,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/CommandAuditFilterResponse"
+                            "$ref": "#/definitions/FilterResponse«CommandAudit»"
                         }
                     },
                     "401": {
@@ -518,17 +518,14 @@
         "/error": {
             "get": {
                 "tags": ["basic-error-controller"],
-                "summary": "error",
-                "operationId": "errorUsingGET",
-                "produces": ["*/*"],
+                "summary": "errorHtml",
+                "operationId": "errorHtmlUsingGET",
+                "produces": ["text/html"],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "object"
-                            }
+                            "$ref": "#/definitions/ModelAndView"
                         }
                     },
                     "401": {
@@ -545,18 +542,15 @@
             },
             "head": {
                 "tags": ["basic-error-controller"],
-                "summary": "error",
-                "operationId": "errorUsingHEAD",
+                "summary": "errorHtml",
+                "operationId": "errorHtmlUsingHEAD",
                 "consumes": ["application/json"],
-                "produces": ["*/*"],
+                "produces": ["text/html"],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "object"
-                            }
+                            "$ref": "#/definitions/ModelAndView"
                         }
                     },
                     "204": {
@@ -573,18 +567,15 @@
             },
             "post": {
                 "tags": ["basic-error-controller"],
-                "summary": "error",
-                "operationId": "errorUsingPOST",
+                "summary": "errorHtml",
+                "operationId": "errorHtmlUsingPOST",
                 "consumes": ["application/json"],
-                "produces": ["*/*"],
+                "produces": ["text/html"],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "object"
-                            }
+                            "$ref": "#/definitions/ModelAndView"
                         }
                     },
                     "201": {
@@ -604,18 +595,15 @@
             },
             "put": {
                 "tags": ["basic-error-controller"],
-                "summary": "error",
-                "operationId": "errorUsingPUT",
+                "summary": "errorHtml",
+                "operationId": "errorHtmlUsingPUT",
                 "consumes": ["application/json"],
-                "produces": ["*/*"],
+                "produces": ["text/html"],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "object"
-                            }
+                            "$ref": "#/definitions/ModelAndView"
                         }
                     },
                     "201": {
@@ -635,17 +623,14 @@
             },
             "delete": {
                 "tags": ["basic-error-controller"],
-                "summary": "error",
-                "operationId": "errorUsingDELETE",
-                "produces": ["*/*"],
+                "summary": "errorHtml",
+                "operationId": "errorHtmlUsingDELETE",
+                "produces": ["text/html"],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "object"
-                            }
+                            "$ref": "#/definitions/ModelAndView"
                         }
                     },
                     "204": {
@@ -662,18 +647,15 @@
             },
             "options": {
                 "tags": ["basic-error-controller"],
-                "summary": "error",
-                "operationId": "errorUsingOPTIONS",
+                "summary": "errorHtml",
+                "operationId": "errorHtmlUsingOPTIONS",
                 "consumes": ["application/json"],
-                "produces": ["*/*"],
+                "produces": ["text/html"],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "object"
-                            }
+                            "$ref": "#/definitions/ModelAndView"
                         }
                     },
                     "204": {
@@ -690,18 +672,15 @@
             },
             "patch": {
                 "tags": ["basic-error-controller"],
-                "summary": "error",
-                "operationId": "errorUsingPATCH",
+                "summary": "errorHtml",
+                "operationId": "errorHtmlUsingPATCH",
                 "consumes": ["application/json"],
-                "produces": ["*/*"],
+                "produces": ["text/html"],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "object"
-                            }
+                            "$ref": "#/definitions/ModelAndView"
                         }
                     },
                     "204": {
@@ -900,7 +879,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/FilterPaymentGroupsReferenceResponse"
+                            "$ref": "#/definitions/FilterResponse«PaymentGroupReferenceModel»"
                         }
                     },
                     "401": {
@@ -1325,7 +1304,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/PaymentFilterListRecordsResponse"
+                            "$ref": "#/definitions/FilterResponse«WbListRecords»"
                         }
                     },
                     "401": {
@@ -1688,7 +1667,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/FilterP2pGroupsReferenceResponse"
+                            "$ref": "#/definitions/FilterResponse«P2pGroupReferenceModel»"
                         }
                     },
                     "401": {
@@ -2108,7 +2087,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/P2pFilterListRecordsResponse"
+                            "$ref": "#/definitions/FilterResponse«P2pWbListRecords»"
                         }
                     },
                     "401": {
@@ -2210,6 +2189,78 @@
                 "deprecated": false
             }
         },
+        "/p2p/reference/default/filter": {
+            "get": {
+                "tags": ["p-2p-reference-query-resource"],
+                "summary": "filterDefaultReferences",
+                "operationId": "filterDefaultReferencesUsingGET",
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "name": "lastId",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "searchValue",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "sortBy",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "sortFieldValue",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "sortOrder",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["ASC", "DESC", "DEFAULT"]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/FilterResponse«DefaultP2pReferenceModel»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "/p2p/reference/filter": {
             "get": {
                 "tags": ["p-2p-reference-query-resource"],
@@ -2273,7 +2324,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/FilterP2pReferenceResponse"
+                            "$ref": "#/definitions/FilterResponse«P2pReferenceModel»"
                         }
                     },
                     "401": {
@@ -2392,7 +2443,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/FilterTemplateResponse"
+                            "$ref": "#/definitions/FilterResponse«TemplateModel»"
                         }
                     },
                     "401": {
@@ -2540,6 +2591,92 @@
                 "deprecated": false
             }
         },
+        "/p2p/template/{id}/default": {
+            "post": {
+                "tags": ["p-2-p-template-command-resource"],
+                "summary": "insertDefaultReference",
+                "operationId": "insertDefaultReferenceUsingPOST",
+                "consumes": ["application/json"],
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "referenceModel",
+                        "description": "referenceModel",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DefaultP2pReferenceModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "delete": {
+                "tags": ["p-2-p-template-command-resource"],
+                "summary": "removeDefaultReference",
+                "operationId": "removeDefaultReferenceUsingDELETE",
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "deprecated": false
+            }
+        },
         "/p2p/template/{id}/references": {
             "post": {
                 "tags": ["p-2-p-template-command-resource"],
@@ -2648,27 +2785,13 @@
                 "deprecated": false
             }
         },
-        "/reference/filter": {
+        "/reference/default/filter": {
             "get": {
                 "tags": ["reference-query-resource"],
-                "summary": "filterReferences",
-                "operationId": "filterReferencesUsingGET_1",
+                "summary": "filterDefaultReferences",
+                "operationId": "filterDefaultReferencesUsingGET_1",
                 "produces": ["*/*"],
                 "parameters": [
-                    {
-                        "name": "isDefault",
-                        "in": "query",
-                        "description": "isDefault",
-                        "required": false,
-                        "type": "boolean"
-                    },
-                    {
-                        "name": "isGlobal",
-                        "in": "query",
-                        "description": "isGlobal",
-                        "required": false,
-                        "type": "boolean"
-                    },
                     {
                         "name": "lastId",
                         "in": "query",
@@ -2718,7 +2841,79 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/FilterPaymentReferenceResponse"
+                            "$ref": "#/definitions/FilterResponse«DefaultPaymentReferenceModel»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/reference/filter": {
+            "get": {
+                "tags": ["reference-query-resource"],
+                "summary": "filterReferences",
+                "operationId": "filterReferencesUsingGET_1",
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "name": "lastId",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "searchValue",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "sortBy",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "sortFieldValue",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "sortOrder",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["ASC", "DESC", "DEFAULT"]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/FilterResponse«PaymentReferenceModel»"
                         }
                     },
                     "401": {
@@ -2888,7 +3083,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/FilterTemplateResponse"
+                            "$ref": "#/definitions/FilterResponse«TemplateModel»"
                         }
                     },
                     "401": {
@@ -3092,23 +3287,25 @@
         "/template/{id}/default": {
             "post": {
                 "tags": ["payment-template-command-resource"],
-                "summary": "markReferenceAsDefault",
-                "operationId": "markReferenceAsDefaultUsingPOST",
+                "summary": "insertDefaultReference",
+                "operationId": "insertDefaultReferenceUsingPOST_1",
                 "consumes": ["application/json"],
                 "produces": ["*/*"],
                 "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id",
-                        "required": true,
-                        "type": "string"
-                    },
                     {
                         "name": "name",
                         "in": "query",
                         "required": false,
                         "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "referenceModel",
+                        "description": "referenceModel",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DefaultPaymentReferenceModel"
+                        }
                     }
                 ],
                 "responses": {
@@ -3132,40 +3329,65 @@
                     }
                 },
                 "deprecated": false
-            }
-        },
-        "/template/{templateId}/reference": {
+            },
             "delete": {
                 "tags": ["payment-template-command-resource"],
-                "summary": "deleteReference",
-                "operationId": "deleteReferenceUsingDELETE_1",
+                "summary": "removeDefaultReference",
+                "operationId": "removeDefaultReferenceUsingDELETE_1",
                 "produces": ["*/*"],
                 "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "string"
+                    },
                     {
                         "name": "name",
                         "in": "query",
                         "required": false,
                         "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
-                    {
-                        "name": "partyId",
-                        "in": "query",
-                        "description": "partyId",
-                        "required": true,
-                        "type": "string"
+                    "204": {
+                        "description": "No Content"
                     },
-                    {
-                        "name": "shopId",
-                        "in": "query",
-                        "description": "shopId",
-                        "required": true,
-                        "type": "string"
+                    "401": {
+                        "description": "Unauthorized"
                     },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/template/{templateId}/reference/{id}": {
+            "delete": {
+                "tags": ["payment-template-command-resource"],
+                "summary": "removeReference",
+                "operationId": "removeReferenceUsingDELETE",
+                "produces": ["*/*"],
+                "parameters": [
                     {
-                        "name": "templateId",
+                        "name": "id",
                         "in": "path",
-                        "description": "templateId",
+                        "description": "id",
                         "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": false,
                         "type": "string"
                     }
                 ],
@@ -3253,22 +3475,6 @@
             },
             "title": "CommandAudit"
         },
-        "CommandAuditFilterResponse": {
-            "type": "object",
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "logs": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/CommandAudit"
-                    }
-                }
-            },
-            "title": "CommandAuditFilterResponse"
-        },
         "CountInfo": {
             "type": "object",
             "properties": {
@@ -3303,6 +3509,51 @@
             },
             "title": "CreateTemplateResponse"
         },
+        "DefaultP2pReferenceModel": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "identityId": {
+                    "type": "string"
+                },
+                "lastUpdateDate": {
+                    "type": "string"
+                },
+                "modifiedByUser": {
+                    "type": "string"
+                },
+                "templateId": {
+                    "type": "string"
+                }
+            },
+            "title": "DefaultP2pReferenceModel"
+        },
+        "DefaultPaymentReferenceModel": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "lastUpdateDate": {
+                    "type": "string"
+                },
+                "modifiedByUser": {
+                    "type": "string"
+                },
+                "partyId": {
+                    "type": "string"
+                },
+                "shopId": {
+                    "type": "string"
+                },
+                "templateId": {
+                    "type": "string"
+                }
+            },
+            "title": "DefaultPaymentReferenceModel"
+        },
         "ErrorTemplateModel": {
             "type": "object",
             "properties": {
@@ -3318,85 +3569,165 @@
             },
             "title": "ErrorTemplateModel"
         },
-        "FilterP2pGroupsReferenceResponse": {
+        "FilterResponse«CommandAudit»": {
             "type": "object",
             "properties": {
                 "count": {
                     "type": "integer",
                     "format": "int32"
                 },
-                "groupsReferenceModels": {
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CommandAudit"
+                    }
+                }
+            },
+            "title": "FilterResponse«CommandAudit»"
+        },
+        "FilterResponse«DefaultP2pReferenceModel»": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DefaultP2pReferenceModel"
+                    }
+                }
+            },
+            "title": "FilterResponse«DefaultP2pReferenceModel»"
+        },
+        "FilterResponse«DefaultPaymentReferenceModel»": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DefaultPaymentReferenceModel"
+                    }
+                }
+            },
+            "title": "FilterResponse«DefaultPaymentReferenceModel»"
+        },
+        "FilterResponse«P2pGroupReferenceModel»": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "result": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/P2pGroupReferenceModel"
                     }
                 }
             },
-            "title": "FilterP2pGroupsReferenceResponse"
+            "title": "FilterResponse«P2pGroupReferenceModel»"
         },
-        "FilterP2pReferenceResponse": {
+        "FilterResponse«P2pReferenceModel»": {
             "type": "object",
             "properties": {
                 "count": {
                     "type": "integer",
                     "format": "int32"
                 },
-                "referenceModels": {
+                "result": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/P2pReferenceModel"
                     }
                 }
             },
-            "title": "FilterP2pReferenceResponse"
+            "title": "FilterResponse«P2pReferenceModel»"
         },
-        "FilterPaymentGroupsReferenceResponse": {
+        "FilterResponse«P2pWbListRecords»": {
             "type": "object",
             "properties": {
                 "count": {
                     "type": "integer",
                     "format": "int32"
                 },
-                "groupsReferenceModels": {
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/P2pWbListRecords"
+                    }
+                }
+            },
+            "title": "FilterResponse«P2pWbListRecords»"
+        },
+        "FilterResponse«PaymentGroupReferenceModel»": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "result": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/PaymentGroupReferenceModel"
                     }
                 }
             },
-            "title": "FilterPaymentGroupsReferenceResponse"
+            "title": "FilterResponse«PaymentGroupReferenceModel»"
         },
-        "FilterPaymentReferenceResponse": {
+        "FilterResponse«PaymentReferenceModel»": {
             "type": "object",
             "properties": {
                 "count": {
                     "type": "integer",
                     "format": "int32"
                 },
-                "referenceModels": {
+                "result": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/PaymentReferenceModel"
                     }
                 }
             },
-            "title": "FilterPaymentReferenceResponse"
+            "title": "FilterResponse«PaymentReferenceModel»"
         },
-        "FilterTemplateResponse": {
+        "FilterResponse«TemplateModel»": {
             "type": "object",
             "properties": {
                 "count": {
                     "type": "integer",
                     "format": "int32"
                 },
-                "templateModels": {
+                "result": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/TemplateModel"
                     }
                 }
             },
-            "title": "FilterTemplateResponse"
+            "title": "FilterResponse«TemplateModel»"
+        },
+        "FilterResponse«WbListRecords»": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "result": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/WbListRecords"
+                    }
+                }
+            },
+            "title": "FilterResponse«WbListRecords»"
         },
         "GroupModel": {
             "type": "object",
@@ -3608,22 +3939,6 @@
             },
             "title": "P2pCountInfo"
         },
-        "P2pFilterListRecordsResponse": {
-            "type": "object",
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "wbListRecords": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/P2pWbListRecords"
-                    }
-                }
-            },
-            "title": "P2pFilterListRecordsResponse"
-        },
         "P2pGroupReferenceModel": {
             "type": "object",
             "properties": {
@@ -3685,9 +4000,6 @@
                 "identityId": {
                     "type": "string"
                 },
-                "isDefault": {
-                    "type": "boolean"
-                },
                 "isGlobal": {
                     "type": "boolean"
                 },
@@ -3744,22 +4056,6 @@
             },
             "title": "PaymentCountInfo"
         },
-        "PaymentFilterListRecordsResponse": {
-            "type": "object",
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "wbListRecords": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/WbListRecords"
-                    }
-                }
-            },
-            "title": "PaymentFilterListRecordsResponse"
-        },
         "PaymentGroupReferenceModel": {
             "type": "object",
             "properties": {
@@ -3807,9 +4103,6 @@
             "properties": {
                 "id": {
                     "type": "string"
-                },
-                "isDefault": {
-                    "type": "boolean"
                 },
                 "isGlobal": {
                     "type": "boolean"

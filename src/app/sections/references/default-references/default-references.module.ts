@@ -8,6 +8,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 
+import { DefaultP2pReferencesModule } from '../../../api/default-p2p-references';
+import { DefaultPaymentReferencesModule } from '../../../api/default-payment-references';
 import { EmptySearchResultModule } from '../../../shared/components/empty-search-result';
 import { TemplateReferencesModule } from '../../../shared/components/template-references';
 import { DefaultP2pReferencesComponent } from './components/default-p2p-references/default-p2p-references.component';
@@ -35,6 +37,8 @@ import { DefaultReferencesComponent } from './default-references.component';
         EmptySearchResultModule,
         MatSelectModule,
         ReactiveFormsModule,
+        DefaultPaymentReferencesModule,
+        DefaultP2pReferencesModule,
     ],
 })
 export class DefaultReferencesModule {}

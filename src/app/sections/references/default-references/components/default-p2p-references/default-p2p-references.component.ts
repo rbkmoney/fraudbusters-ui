@@ -4,29 +4,23 @@ import { Router } from '@angular/router';
 import { Action, ActionType } from '../../../../../shared/components/template-references/action';
 import { OperationType } from '../../../../../shared/constants/operation-type';
 import { LAYOUT_GAP_S } from '../../../../../tokens';
-import { FetchReferencesService } from '../../../services/fetch-references.service';
-import { RemoveReferenceService } from '../../../services/remove-reference.service';
+import { FetchDefaultP2pReferencesService } from '../../services/fetch-default-p2p-references.service';
 
 @Component({
     templateUrl: 'default-p2p-references.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [FetchReferencesService, RemoveReferenceService],
+    providers: [FetchDefaultP2pReferencesService],
 })
 export class DefaultP2pReferencesComponent {
-    references$ = this.fetchReferencesService.searchResult$;
-    inProgress$ = this.fetchReferencesService.inProgress$;
-    hasMore$ = this.fetchReferencesService.hasMore$;
+    references$ = this.fetchDefaultP2pReferencesService.searchResult$;
+    inProgress$ = this.fetchDefaultP2pReferencesService.inProgress$;
+    hasMore$ = this.fetchDefaultP2pReferencesService.hasMore$;
 
     constructor(
         private router: Router,
-        private fetchReferencesService: FetchReferencesService,
-        private removeReferenceService: RemoveReferenceService,
+        private fetchDefaultP2pReferencesService: FetchDefaultP2pReferencesService,
         @Inject(LAYOUT_GAP_S) public layoutGapS: string
-    ) {
-        this.removeReferenceService.removed$.subscribe(() => {
-            this.fetchReferencesService.search({ type: OperationType.PeerToPeer, isGlobal: false, isDefault: true });
-        });
-    }
+    ) {}
 
     action(action: Action) {
         switch (action.type) {
@@ -42,17 +36,14 @@ export class DefaultP2pReferencesComponent {
                 });
                 break;
             case ActionType.removeReference:
-                this.removeReferenceService.removeReference({
-                    type: OperationType.PeerToPeer,
-                    reference: action.reference,
-                });
+                // this.removeReferenceService.removeReference({
+                //     type: OperationType.PeerToPeer,
+                //     reference: action.reference,
+                // });
                 break;
             case ActionType.sortReferences:
-                this.fetchReferencesService.search({
-                    type: OperationType.Payment,
+                this.fetchDefaultP2pReferencesService.search({
                     sortOrder: action.sortDirection,
-                    isGlobal: false,
-                    isDefault: true,
                 });
                 break;
             default:
@@ -65,15 +56,12 @@ export class DefaultP2pReferencesComponent {
     }
 
     search(searchValue: string) {
-        this.fetchReferencesService.search({
-            type: OperationType.PeerToPeer,
+        this.fetchDefaultP2pReferencesService.search({
             searchValue,
-            isGlobal: false,
-            isDefault: true,
         });
     }
 
     fetchMore() {
-        this.fetchReferencesService.fetchMore();
+        this.fetchDefaultP2pReferencesService.fetchMore();
     }
 }

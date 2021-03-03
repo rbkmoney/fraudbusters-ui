@@ -4,29 +4,23 @@ import { Router } from '@angular/router';
 import { Action, ActionType } from '../../../../../shared/components/template-references/action';
 import { OperationType } from '../../../../../shared/constants/operation-type';
 import { LAYOUT_GAP_S } from '../../../../../tokens';
-import { FetchReferencesService } from '../../../services/fetch-references.service';
-import { RemoveReferenceService } from '../../../services/remove-reference.service';
+import { FetchDefaultPaymentReferencesService } from '../../services/fetch-default-payment-references.service';
 
 @Component({
     templateUrl: 'default-payment-references.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [FetchReferencesService, RemoveReferenceService],
+    providers: [FetchDefaultPaymentReferencesService],
 })
 export class DefaultPaymentReferencesComponent {
-    references$ = this.fetchReferencesService.searchResult$;
-    inProgress$ = this.fetchReferencesService.inProgress$;
-    hasMore$ = this.fetchReferencesService.hasMore$;
+    references$ = this.fetchDefaultPaymentReferencesService.searchResult$;
+    inProgress$ = this.fetchDefaultPaymentReferencesService.inProgress$;
+    hasMore$ = this.fetchDefaultPaymentReferencesService.hasMore$;
 
     constructor(
         private router: Router,
-        private fetchReferencesService: FetchReferencesService,
-        private removeReferenceService: RemoveReferenceService,
+        private fetchDefaultPaymentReferencesService: FetchDefaultPaymentReferencesService,
         @Inject(LAYOUT_GAP_S) public layoutGapS: string
-    ) {
-        this.removeReferenceService.removed$.subscribe(() => {
-            this.fetchReferencesService.search({ type: OperationType.Payment, isGlobal: false, isDefault: true });
-        });
-    }
+    ) {}
 
     action(action: Action) {
         switch (action.type) {
@@ -40,17 +34,14 @@ export class DefaultPaymentReferencesComponent {
                 this.router.navigate([`/template/${action.reference.templateId}`], { fragment: OperationType.Payment });
                 break;
             case ActionType.removeReference:
-                this.removeReferenceService.removeReference({
-                    type: OperationType.Payment,
-                    reference: action.reference,
-                });
+                // this.removeReferenceService.removeReference({
+                //     type: OperationType.Payment,
+                //     reference: action.reference,
+                // });
                 break;
             case ActionType.sortReferences:
-                this.fetchReferencesService.search({
-                    type: OperationType.Payment,
+                this.fetchDefaultPaymentReferencesService.search({
                     sortOrder: action.sortDirection,
-                    isGlobal: false,
-                    isDefault: true,
                 });
                 break;
             default:
@@ -63,15 +54,12 @@ export class DefaultPaymentReferencesComponent {
     }
 
     search(searchValue: string) {
-        this.fetchReferencesService.search({
-            type: OperationType.Payment,
+        this.fetchDefaultPaymentReferencesService.search({
             searchValue,
-            isGlobal: false,
-            isDefault: true,
         });
     }
 
     fetchMore() {
-        this.fetchReferencesService.fetchMore();
+        this.fetchDefaultPaymentReferencesService.fetchMore();
     }
 }
