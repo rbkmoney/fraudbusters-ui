@@ -8,7 +8,7 @@ import { P2pReferenceModel } from '../../../../api/fb-management/swagger-codegen
 import { PaymentReferenceModel } from '../../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
 import { ConfigService } from '../../../../config';
 import { SortOrder } from '../../../../shared/constants/sort-order';
-import { booleanDelay } from '../../../../shared/operators';
+import { booleanDebounceTime } from '../../../../shared/operators';
 import { FetchResult, PartialFetcher } from '../../../../shared/utils/partial-fetcher';
 
 export interface FetchDefaultReferencesParams {
@@ -26,7 +26,7 @@ export class FetchDefaultP2pReferencesService extends PartialFetcher<
     DefaultP2pReferenceModel,
     FetchDefaultReferencesParams
 > {
-    inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
+    inProgress$ = this.doAction$.pipe(booleanDebounceTime(), shareReplay(1));
     private SIZE = this.configService.pageSize;
 
     constructor(
