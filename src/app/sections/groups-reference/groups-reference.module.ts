@@ -20,8 +20,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { P2pReferencesService } from 'src/app/shared/services/reference/p2p-references.service';
 
+import { P2pTemplatesModule, P2pWbListsModule, PaymentTemplatesModule, PaymentWbListsModule } from '../../api';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
-import { P2pTemplatesModule, PaymentTemplatesModule, P2pWbListsModule, PaymentWbListsModule } from '../../api';
 import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
 import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';

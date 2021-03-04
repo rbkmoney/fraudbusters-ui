@@ -1,6 +1,6 @@
-import { SearchTemplatesParams } from '../../../model/search-templates-params';
+import { SearchParams } from '../../../model/search-params';
 
-export interface SearchAuditParams extends SearchTemplatesParams {
+export interface SearchAuditParams extends SearchParams {
     userName?: string;
     commandTypes?: string[];
     objectTypes?: string[];
