@@ -2,10 +2,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { combineLatest, EMPTY, merge, of, Subject } from 'rxjs';
-import { catchError, filter, switchMap } from 'rxjs/operators';
+import { combineLatest, merge, NEVER, of, Subject } from 'rxjs';
+import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
-import { PaymentTemplatesService } from '../../../api/payment-templates';
+import { PaymentTemplatesService } from '../../../api';
 import { ConfirmActionDialogComponent } from '../../../shared/components/confirm-action-dialog';
 import { progress } from '../../../shared/operators';
 
@@ -35,10 +35,11 @@ export class RemovePaymentTemplateService {
                         duration: 1500,
                     });
                     this.hasError$.next();
-                    return of(EMPTY);
+                    return NEVER;
                 })
             )
-        )
+        ),
+        shareReplay(1)
     );
 
     inProgress$ = progress(this.removeTemplate$, merge(this.hasError$, this.removed$));
@@ -47,9 +48,7 @@ export class RemovePaymentTemplateService {
         private dialog: MatDialog,
         private paymentTemplatesService: PaymentTemplatesService,
         private snackBar: MatSnackBar
-    ) {
-        this.removed$.subscribe();
-    }
+    ) {}
 
     removeTemplate(params: RemoveTemplatesParams) {
         this.removeTemplate$.next(params);

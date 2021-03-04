@@ -1,0 +1,22 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <div fxLayout fxFlexFill [fxLayoutGap]="layoutGapM">
+            <div class="fb-body-2" fxFlex>{{ template.id }}</div>
+            <div class="fb-body-2" fxFlex="160px">{{ template.lastUpdateDate | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
+        </div>
+    </mat-expansion-panel-header>
+    <div class="panel-content" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <mat-divider></mat-divider>
+        <div class="fb-body-1 fb-template" fxLayout="column" [fxLayoutGap]="layoutGapS">
+            <ng-container *ngFor="let rule of template.template | templateToRules">
+                <code>{{ rule }}</code>
+            </ng-container>
+        </div>
+        <mat-divider></mat-divider>
+        <fb-actions
+            [id]="template.id"
+            (editItem)="editItem.emit($event)"
+            (deleteItem)="deleteItem.emit($event)"
+        ></fb-actions>
+    </div>
+</mat-expansion-panel>

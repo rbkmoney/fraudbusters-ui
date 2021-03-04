@@ -43,7 +43,7 @@ $fb-purple: (
     ),
 );
 
-// base 400
+// base 500
 $fb-success: (
     50: #e7f8eb,
     100: #c5ecce,
@@ -111,13 +111,13 @@ $fb-pending: (
     ),
 );
 
-// base 300
+// base 400
 $fb-warn: (
     50: #ffecef,
     100: #ffd0d5,
     200: #ff9e9e,
     300: #fb7777,
-    400: #ff5552,
+    400: #f45b69,
     500: #ff4436,
     600: #ff3b37,
     700: #ec3031,
@@ -167,6 +167,40 @@ $fb-grey: (
         300: $dark-text,
         400: $dark-text,
         500: $dark-text,
+        600: $light-text,
+        700: $light-text,
+        800: $light-text,
+        900: $light-text,
+        A100: $dark-text,
+        A200: $dark-text,
+        A400: $dark-text,
+        A700: $light-text,
+    ),
+);
+
+// base 500
+$fb-blue: (
+    50: #e3f2fd,
+    100: #bbdefb,
+    200: #90caf9,
+    300: #64b5f6,
+    400: #42a5f5,
+    500: #2196f3,
+    600: #1e88e5,
+    700: #1976d2,
+    800: #1565c0,
+    900: #0d47a1,
+    A100: #82b1ff,
+    A200: #448aff,
+    A400: #2979ff,
+    A700: #2962ff,
+    contrast: (
+        50: $dark-text,
+        100: $dark-text,
+        200: $dark-text,
+        300: $dark-text,
+        400: $dark-text,
+        500: $light-text,
         600: $light-text,
         700: $light-text,
         800: $light-text,

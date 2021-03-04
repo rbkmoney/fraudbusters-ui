@@ -1,0 +1,10 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
+    <fb-template-header></fb-template-header>
+    <div *ngFor="let template of templates" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <fb-template-item
+            [template]="template"
+            (editItem)="editItem.emit($event)"
+            (deleteItem)="deleteItem.emit($event)"
+        ></fb-template-item>
+    </div>
+</div>
