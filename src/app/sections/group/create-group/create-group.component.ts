@@ -69,7 +69,7 @@ export class CreateGroupComponent implements OnInit {
     }
 
     navigateToEdit(id): void {
-        this.router.navigate([`../groups/${id}`], { fragment: this.operationType.toString() });
+        this.router.navigate([`../group/${id}`], { fragment: this.operationType.toString() });
     }
 
     sortData(sort: Sort, group: Group): void {

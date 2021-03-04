@@ -5,16 +5,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, merge, NEVER, of, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
-import { P2pReferenceModel } from '../../../api/fb-management/swagger-codegen/model/p2pReferenceModel';
-import { PaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
-import { ConfirmActionDialogComponent } from '../../../shared/components/confirm-action-dialog';
-import { OperationType } from '../../../shared/constants/operation-type';
-import { progress } from '../../../shared/operators';
-import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
+import { ConfirmActionDialogComponent } from '../../../../shared/components/confirm-action-dialog';
+import { OperationType } from '../../../../shared/constants/operation-type';
+import { progress } from '../../../../shared/operators';
+import { OperationTypeManagementService } from '../../../../shared/services/operation-type-management.service';
+import { P2pGroupReferenceModel } from '../../model/p2p-groups-reference';
+import { PaymentGroupReferenceModel } from '../../model/payment-groups-reference';
 
 export interface RemoveReferenceParams {
     type: OperationType;
-    reference: PaymentReferenceModel | P2pReferenceModel;
+    reference: PaymentGroupReferenceModel | P2pGroupReferenceModel;
 }
 
 @Injectable()
@@ -27,15 +27,17 @@ export class RemoveReferenceService {
             combineLatest([
                 of(params),
                 this.dialog
-                    .open(ConfirmActionDialogComponent, { data: { title: `Remove reference ${params.reference.id}?` } })
+                    .open(ConfirmActionDialogComponent, {
+                        data: { title: `Remove group reference ${params.reference.id}?` },
+                    })
                     .afterClosed()
                     .pipe(filter((r) => r === 'confirm')),
             ])
         ),
         switchMap(([params]) =>
             this.operationTypeManagementService
-                .findReferenceService(params.type)
-                .deleteReference(params.reference)
+                .findGroupsReferenceService(params.type)
+                .deleteGroupReference(params.reference)
                 .pipe(
                     catchError((error: HttpErrorResponse) => {
                         this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {

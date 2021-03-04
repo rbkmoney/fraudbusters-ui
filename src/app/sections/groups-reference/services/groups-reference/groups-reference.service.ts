@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { OperationType } from '../../shared/constants/operation-type';
-import { SortOrder } from '../../shared/constants/sort-order';
-import { HttpSearchResponse } from '../../shared/model/http-search-response';
-import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
-import { GroupReferenceModel } from './model/groups-reference';
-import { P2pGroupReferenceModel } from './model/p2p-groups-reference';
-import { PaymentGroupReferenceModel } from './model/payment-groups-reference';
+import { OperationType } from '../../../../shared/constants/operation-type';
+import { SortOrder } from '../../../../shared/constants/sort-order';
+import { HttpSearchResponse } from '../../../../shared/model/http-search-response';
+import { OperationTypeManagementService } from '../../../../shared/services/operation-type-management.service';
+import { GroupReferenceModel } from '../../model/groups-reference';
+import { P2pGroupReferenceModel } from '../../model/p2p-groups-reference';
+import { PaymentGroupReferenceModel } from '../../model/payment-groups-reference';
 
 @Injectable()
 export class GroupsReferenceService {

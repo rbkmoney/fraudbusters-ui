@@ -1,12 +1,16 @@
 <div fxLayout="column" [fxLayoutGap]="layoutGapM">
     <div fxLayout fxLayoutAlign="space-between center">
-        <fb-templates-search (valueChanges)="search($event)"></fb-templates-search>
-        <button mat-button color="primary" (click)="createTemplate()">CREATE TEMPLATE</button>
+        <fb-references-search (valueChanges)="search($event)"></fb-references-search>
+        <button mat-button color="primary" (click)="createReference()">CREATE REFERENCE</button>
     </div>
-    <div *ngIf="templates$ | async as templates; else Empty">
-        <mat-card *ngIf="templates.length > 0; else Empty">
+    <div *ngIf="references$ | async as references; else Empty">
+        <mat-card *ngIf="references.length > 0; else Empty">
             <mat-card-content fxLayout="column" fxLayoutGap="8px" fxLayoutAlign="space-around stretch">
-                <fb-templates-table (action)="action($event)" [templates]="templates"></fb-templates-table>
+                <fb-references-table
+                    (action)="action($event)"
+                    [references]="references"
+                    [displayedColumns]="displayedColumns"
+                ></fb-references-table>
                 <button
                     fxFlex="100"
                     mat-button
@@ -26,7 +30,7 @@
 
 <ng-template #Empty>
     <div *ngIf="inProgress$ | async" fxLayout fxLayoutAlign="center">
-        <mat-progress-spinner color="primary" mode="indeterminate" diameter="128"></mat-progress-spinner>
+        <mat-progress-spinner color="primary" mode="indeterminate" diameter="40"></mat-progress-spinner>
     </div>
     <fb-empty-search-result *ngIf="!(inProgress$ | async)"></fb-empty-search-result>
 </ng-template>
