@@ -1,5 +1,5 @@
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { OperationType } from '../../../../shared/constants/operation-type';
