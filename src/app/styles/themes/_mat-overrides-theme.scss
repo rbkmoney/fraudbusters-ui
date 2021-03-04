@@ -1,0 +1,26 @@
+@mixin mat-overrides-theme($theme) {
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    .mat-card {
+        color: map-get($foreground, text);
+    }
+
+    .mat-expansion-panel {
+        color: map-get($foreground, text);
+        border-color: map-get($foreground, divider);
+    }
+
+    .mat-button {
+        color: map-get($foreground, text);
+    }
+
+    .mat-button.mat-warn {
+        background-color: map-get($foreground, warn-button);
+        color: map-get($foreground, button-text);
+
+        &:hover {
+            background-color: map-get($foreground, warn-button-hovered);
+        }
+    }
+}
