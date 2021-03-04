@@ -3,13 +3,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, map, take } from 'rxjs/operators';
 
-import { removeEmptyProperties } from '../../../../shared/utils/remove-empty-properties';
+import { removeEmptyProperties } from '../../../utils/remove-empty-properties';
 
 @Component({
-    selector: 'fb-references-search',
-    templateUrl: 'references-search.component.html',
+    selector: 'fb-template-references-search',
+    templateUrl: 'template-references-search.component.html',
 })
-export class ReferencesSearchComponent {
+export class TemplateReferencesSearchComponent {
     @Output() valueChanges: EventEmitter<string> = new EventEmitter();
 
     form: FormGroup = this.fb.group({

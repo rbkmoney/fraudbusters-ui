@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -21,9 +22,13 @@ export class PaymentTemplatesComponent {
         private router: Router,
         private fetchTemplatesService: FetchPaymentTemplatesService,
         private removeTemplateService: RemovePaymentTemplateService,
+        private snackBar: MatSnackBar,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
-        this.removeTemplateService.removed$.subscribe(() => {
+        this.removeTemplateService.removed$.subscribe((id) => {
+            this.snackBar.open(`Template ${id} has been deleted`, 'OK', {
+                duration: 1500,
+            });
             this.fetchTemplatesService.search({});
         });
     }

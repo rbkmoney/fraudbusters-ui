@@ -69,6 +69,13 @@ export class CreateGroupReferenceComponent extends OperationTypeComponent implem
     }
 
     navigateToList(): void {
-        this.router.navigate(['../groups-reference'], { fragment: this.operationType });
+        switch (this.operationType) {
+            case OperationType.Payment:
+                this.router.navigate(['../groups-reference/payments']);
+                break;
+            case OperationType.PeerToPeer:
+                this.router.navigate(['../groups-reference/p2p']);
+                break;
+        }
     }
 }

@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { Action, ActionType } from '../../../../shared/components/template-references/action';
 import { OperationType } from '../../../../shared/constants/operation-type';
-import { Action, ActionType } from '../../action';
+import { LAYOUT_GAP_S } from '../../../../tokens';
 import { FetchReferencesService } from '../../services/fetch-references.service';
 import { RemoveReferenceService } from '../../services/remove-reference.service';
 
@@ -19,10 +20,11 @@ export class PaymentReferencesComponent {
     constructor(
         private router: Router,
         private fetchReferencesService: FetchReferencesService,
-        private removeReferenceService: RemoveReferenceService
+        private removeReferenceService: RemoveReferenceService,
+        @Inject(LAYOUT_GAP_S) public layoutGapS: string
     ) {
         this.removeReferenceService.removed$.subscribe(() => {
-            this.fetchReferencesService.search({ type: OperationType.Payment, isGlobal: false });
+            this.fetchReferencesService.search({ type: OperationType.Payment, isGlobal: false, isDefault: false });
         });
     }
 
@@ -48,6 +50,7 @@ export class PaymentReferencesComponent {
                     type: OperationType.Payment,
                     sortOrder: action.sortDirection,
                     isGlobal: false,
+                    isDefault: false,
                 });
                 break;
             default:
@@ -60,7 +63,12 @@ export class PaymentReferencesComponent {
     }
 
     search(searchValue: string) {
-        this.fetchReferencesService.search({ type: OperationType.Payment, searchValue, isGlobal: false });
+        this.fetchReferencesService.search({
+            type: OperationType.Payment,
+            searchValue,
+            isGlobal: false,
+            isDefault: false,
+        });
     }
 
     fetchMore() {

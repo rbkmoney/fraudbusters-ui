@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { OperationType } from '../../../../shared/constants/operation-type';
+import { LAYOUT_GAP_M } from '../../../../tokens';
 import { Action, ActionType } from '../../action';
 import { FetchP2pTemplatesService } from '../../services/fetch-p2p-templates.service';
 import { RemoveP2pTemplateService } from '../../services/remove-p2p-template.service';
@@ -19,7 +20,8 @@ export class P2pTemplatesComponent {
     constructor(
         private router: Router,
         private fetchP2pTemplatesService: FetchP2pTemplatesService,
-        private removeP2pTemplateService: RemoveP2pTemplateService
+        private removeP2pTemplateService: RemoveP2pTemplateService,
+        @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.removeP2pTemplateService.removed$.subscribe(() => {
             this.fetchP2pTemplatesService.search({});

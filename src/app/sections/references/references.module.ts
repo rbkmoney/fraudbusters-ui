@@ -19,6 +19,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { P2pTemplatesModule, PaymentTemplatesModule } from '../../api';
 import { ConfirmActionDialogModule } from '../../shared/components/confirm-action-dialog';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
+import { TemplateReferencesModule } from '../../shared/components/template-references';
 import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
 import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
@@ -29,11 +30,8 @@ import { PaymentListsService } from '../../shared/services/lists/payment-lists.s
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { P2pReferencesService } from '../../shared/services/reference/p2p-references.service';
 import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
-import { P2pReferencesTableComponent } from './components/p2p-references-table/p2p-references-table.component';
 import { P2pReferencesComponent } from './components/p2p-references/p2p-references.component';
-import { PaymentReferencesTableComponent } from './components/payment-references-table/payment-references-table.component';
 import { PaymentReferencesComponent } from './components/payment-references/payment-references.component';
-import { ReferencesSearchComponent } from './components/references-search/references-search.component';
 import { ReferencesRoutingModule } from './references-routing.module';
 import { ReferencesComponent } from './references.component';
 
@@ -60,15 +58,9 @@ import { ReferencesComponent } from './references.component';
         MatProgressBarModule,
         PaymentTemplatesModule,
         P2pTemplatesModule,
+        TemplateReferencesModule,
     ],
-    declarations: [
-        ReferencesComponent,
-        P2pReferencesComponent,
-        PaymentReferencesComponent,
-        PaymentReferencesTableComponent,
-        P2pReferencesTableComponent,
-        ReferencesSearchComponent,
-    ],
+    declarations: [ReferencesComponent, P2pReferencesComponent, PaymentReferencesComponent],
     // TODO: need to refactor these services
     providers: [
         OperationTypeManagementService,
