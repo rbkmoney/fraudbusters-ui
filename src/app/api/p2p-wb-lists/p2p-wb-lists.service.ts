@@ -13,33 +13,33 @@ import ListTypeEnum = WbListRecords.ListTypeEnum;
 
 @Injectable()
 export class P2pWbListsService {
-    private readonly fbP2pListsEndpoint = `${this.configService.fbManagementEndpoint}/p2p/lists`;
+    private readonly endpoint = `${this.configService.fbManagementEndpoint}/p2p/lists`;
 
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
     deleteListRow(id: string): Observable<string> {
-        return this.http.delete(`${this.fbP2pListsEndpoint}/${id}`, {
+        return this.http.delete(`${this.endpoint}/${id}`, {
             responseType: 'text',
         });
     }
 
     findListRows(params: SearchListParams): Observable<FilterResponseWbListRecords> {
-        return this.http.get<FilterResponseWbListRecords>(`${this.fbP2pListsEndpoint}/filter`, {
+        return this.http.get<FilterResponseWbListRecords>(`${this.endpoint}/filter`, {
             params: filterParameters(params),
         });
     }
 
     getNames(listTypeSearch: ListTypeEnum): Observable<string[]> {
-        return this.http.get<string[]>(`${this.fbP2pListsEndpoint}/names`, {
+        return this.http.get<string[]>(`${this.endpoint}/names`, {
             params: { listType: listTypeSearch },
         });
     }
 
     getAvailableListNames(): Observable<string[]> {
-        return this.http.get<string[]>(`${this.fbP2pListsEndpoint}/availableListNames`);
+        return this.http.get<string[]>(`${this.endpoint}/availableListNames`);
     }
 
     saveListsRows(listType: ListTypeEnum, records: P2pCountInfo[]): Observable<string[]> {
-        return this.http.post<string[]>(`${this.fbP2pListsEndpoint}`, { listType, records }, new HttpRequestModel());
+        return this.http.post<string[]>(`${this.endpoint}`, { listType, records }, new HttpRequestModel());
     }
 }

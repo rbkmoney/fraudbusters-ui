@@ -32,7 +32,7 @@ export class WbListService {
     }
 
     deleteListRow(type: OperationType, id: string): Observable<string> {
-        return this.operationTypeManagementService.findListsService(type).deleteListRow(id);
+        return this.operationTypeManagementService.findListsService(type).deleteListRecord(id);
     }
 
     getNames(type: OperationType, listType: ListType): Observable<string[]> {

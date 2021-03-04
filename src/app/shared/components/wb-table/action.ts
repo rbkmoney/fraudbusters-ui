@@ -10,5 +10,6 @@ export enum ActionType {
 export interface Action {
     type: ActionType;
     templateID?: string;
+    recordID?: string;
     sortDirection?: SortOrder;
 }

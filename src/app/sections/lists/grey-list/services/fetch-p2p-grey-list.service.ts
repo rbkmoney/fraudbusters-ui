@@ -6,12 +6,12 @@ import { WbListRecords } from '../../../../api/fb-management/swagger-codegen/mod
 import { P2pWbListsService } from '../../../../api/p2p-wb-lists';
 import { ConfigService } from '../../../../config';
 import { SearchListParams } from '../../../../shared/model/search-list-params';
-import { booleanDelay } from '../../../../shared/operators';
+import { booleanDebounceTime } from '../../../../shared/operators';
 import { FetchResult, PartialFetcher } from '../../../../shared/utils/partial-fetcher';
 
 @Injectable()
 export class FetchP2pGreyListService extends PartialFetcher<WbListRecords, SearchListParams> {
-    inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
+    inProgress$ = this.doAction$.pipe(booleanDebounceTime(), shareReplay(1));
     private SIZE = this.configService.pageSize;
 
     constructor(private p2pWbListsService: P2pWbListsService, private configService: ConfigService) {

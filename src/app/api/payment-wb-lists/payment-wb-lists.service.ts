@@ -13,37 +13,33 @@ import ListTypeEnum = WbListRecords.ListTypeEnum;
 
 @Injectable()
 export class PaymentWbListsService {
-    private readonly fbPaymentListsEndpoint = `${this.configService.fbManagementEndpoint}/lists`;
+    private readonly endpoint = `${this.configService.fbManagementEndpoint}/lists`;
 
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
-    deleteListRow(id: string): Observable<string> {
-        return this.http.delete(`${this.fbPaymentListsEndpoint}/${id}`, {
+    deleteListRecord(id: string): Observable<string> {
+        return this.http.delete(`${this.endpoint}/${id}`, {
             responseType: 'text',
         });
     }
 
     findListRows(params: SearchListParams): Observable<FilterResponseWbListRecords> {
-        return this.http.get<FilterResponseWbListRecords>(`${this.fbPaymentListsEndpoint}/filter`, {
+        return this.http.get<FilterResponseWbListRecords>(`${this.endpoint}/filter`, {
             params: filterParameters(params),
         });
     }
 
     getNames(listTypeSearch: ListTypeEnum): Observable<string[]> {
-        return this.http.get<string[]>(`${this.fbPaymentListsEndpoint}/names`, {
+        return this.http.get<string[]>(`${this.endpoint}/names`, {
             params: { listType: listTypeSearch },
         });
     }
 
     getAvailableListNames(): Observable<string[]> {
-        return this.http.get<string[]>(`${this.fbPaymentListsEndpoint}/availableListNames`);
+        return this.http.get<string[]>(`${this.endpoint}/availableListNames`);
     }
 
     saveListsRows(listType: ListTypeEnum, records: PaymentCountInfo[]): Observable<string[]> {
-        return this.http.post<string[]>(
-            `${this.fbPaymentListsEndpoint}`,
-            { listType, records },
-            new HttpRequestModel()
-        );
+        return this.http.post<string[]>(`${this.endpoint}`, { listType, records }, new HttpRequestModel());
     }
 }

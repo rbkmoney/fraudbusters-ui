@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { WbListRecords } from '../../../../../api/fb-management/swagger-codegen/model/wbListRecords';
 import { Action, ActionType } from '../../../../../shared/components/wb-table/action';
 import { OperationType } from '../../../../../shared/constants/operation-type';
+import { LAYOUT_GAP_S } from '../../../../../tokens';
 import { FetchPaymentGreyListService } from '../../services/fetch-payment-grey-list.service';
+import { RemoveListRecordService } from '../../services/remove-list-record.service';
 import ListTypeEnum = WbListRecords.ListTypeEnum;
 
 @Component({
     templateUrl: 'payment-grey-list.component.html',
-    providers: [FetchPaymentGreyListService],
+    providers: [FetchPaymentGreyListService, RemoveListRecordService],
 })
 export class PaymentGreyListComponent {
     list$ = this.fetchPaymentGreyListService.searchResult$;
@@ -18,7 +20,16 @@ export class PaymentGreyListComponent {
 
     operationType = OperationType;
 
-    constructor(private fetchPaymentGreyListService: FetchPaymentGreyListService, private router: Router) {}
+    constructor(
+        private fetchPaymentGreyListService: FetchPaymentGreyListService,
+        private router: Router,
+        private removeListRowService: RemoveListRecordService,
+        @Inject(LAYOUT_GAP_S) public layoutGapS: string
+    ) {
+        this.removeListRowService.removed$.subscribe(() => {
+            this.fetchPaymentGreyListService.search({ listType: 'grey', listNames: [] });
+        });
+    }
 
     action(action: Action) {
         switch (action.type) {
@@ -28,11 +39,9 @@ export class PaymentGreyListComponent {
             case ActionType.editRecord:
                 this.router.navigate([`/template/${action.templateID}`], { fragment: OperationType.Payment });
                 break;
-            // case ActionType.removeRecord:
-            //   this.removeTemplateService.removeTemplate({
-            //     templateID: action.templateID,
-            //   });
-            //   break;
+            case ActionType.removeRecord:
+                this.removeListRowService.removeRecord(action.recordID);
+                break;
             case ActionType.sortList:
                 this.fetchPaymentGreyListService.search({
                     sortBy: action.sortDirection,
@@ -41,7 +50,7 @@ export class PaymentGreyListComponent {
                 });
                 break;
             default:
-                console.error('Wrong template action.');
+                console.error('Wrong list action.');
         }
     }
 

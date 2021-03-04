@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 
 import { WbListRecords } from '../../../api/fb-management/swagger-codegen/model/wbListRecords';
+import { LAYOUT_GAP_M } from '../../../tokens';
 import { SortOrder } from '../../constants/sort-order';
 import { ActionType } from './action';
 
@@ -11,12 +12,14 @@ import { ActionType } from './action';
 })
 export class WbTableComponent {
     @Input()
-    list: WbListRecords;
+    records: WbListRecords[];
 
     @Output()
     action = new EventEmitter();
 
     displayedColumns = ['listName', 'partyID', 'shopID', 'value', 'insertTime'];
+
+    constructor(@Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
 
     sort(sort: Sort): void {
         switch (sort.direction) {

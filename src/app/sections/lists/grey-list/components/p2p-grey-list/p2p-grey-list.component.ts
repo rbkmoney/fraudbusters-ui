@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { WbListRecords } from '../../../../../api/fb-management/swagger-codegen/model/wbListRecords';
 import { Action, ActionType } from '../../../../../shared/components/wb-table/action';
 import { OperationType } from '../../../../../shared/constants/operation-type';
+import { LAYOUT_GAP_S } from '../../../../../tokens';
 import { FetchP2pGreyListService } from '../../services/fetch-p2p-grey-list.service';
+import { RemoveListRecordService } from '../../services/remove-list-record.service';
 import ListTypeEnum = WbListRecords.ListTypeEnum;
 
 @Component({
     templateUrl: 'p2p-grey-list.component.html',
-    providers: [FetchP2pGreyListService],
+    providers: [FetchP2pGreyListService, RemoveListRecordService],
 })
 export class P2pGreyListComponent {
     list$ = this.fetchP2pGreyListService.searchResult$;
@@ -18,7 +20,16 @@ export class P2pGreyListComponent {
 
     operationType = OperationType;
 
-    constructor(private fetchP2pGreyListService: FetchP2pGreyListService, private router: Router) {}
+    constructor(
+        private fetchP2pGreyListService: FetchP2pGreyListService,
+        private router: Router,
+        private removeListRowService: RemoveListRecordService,
+        @Inject(LAYOUT_GAP_S) public layoutGapS: string
+    ) {
+        this.removeListRowService.removed$.subscribe(() => {
+            this.fetchP2pGreyListService.search({ listType: 'grey', listNames: [] });
+        });
+    }
 
     action(action: Action) {
         switch (action.type) {
@@ -28,11 +39,9 @@ export class P2pGreyListComponent {
             case ActionType.editRecord:
                 this.router.navigate([`/template/${action.templateID}`], { fragment: OperationType.PeerToPeer });
                 break;
-            // case ActionType.removeRecord:
-            //   this.removeTemplateService.removeTemplate({
-            //     templateID: action.templateID,
-            //   });
-            //   break;
+            case ActionType.removeRecord:
+                this.removeListRowService.removeRecord(action.recordID);
+                break;
             case ActionType.sortList:
                 this.fetchP2pGreyListService.search({
                     sortBy: action.sortDirection,
@@ -41,7 +50,7 @@ export class P2pGreyListComponent {
                 });
                 break;
             default:
-                console.error('Wrong template action.');
+                console.error('Wrong list action.');
         }
     }
 

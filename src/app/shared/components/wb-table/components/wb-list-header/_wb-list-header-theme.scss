@@ -1,0 +1,7 @@
+@mixin fb-wb-list-header-theme($theme) {
+    $background: map-get($theme, background);
+
+    .wb-list-header {
+        background-color: map-get($background, template-header);
+    }
+}
