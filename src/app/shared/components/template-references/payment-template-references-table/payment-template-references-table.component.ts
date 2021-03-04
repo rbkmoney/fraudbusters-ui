@@ -1,24 +1,24 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 
-import { P2pReferenceModel } from '../../../../api/fb-management/swagger-codegen/model/p2pReferenceModel';
-import { SortOrder } from '../../../../shared/constants/sort-order';
-import { Action, ActionType } from '../../action';
+import { PaymentReferenceModel } from '../../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
+import { SortOrder } from '../../../constants/sort-order';
+import { Action, ActionType } from '../action';
 
 @Component({
-    templateUrl: 'p2p-references-table.component.html',
-    selector: 'fb-p2p-references-table',
-    styleUrls: ['p2p-references-table.component.scss'],
+    templateUrl: 'payment-template-references-table.component.html',
+    selector: 'fb-payment-template-references-table',
+    styleUrls: ['payment-template-references-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class P2pReferencesTableComponent {
+export class PaymentTemplateReferencesTableComponent {
     @Output()
     action: EventEmitter<Action> = new EventEmitter();
 
     @Input()
-    references: P2pReferenceModel[];
+    references: PaymentReferenceModel[];
 
-    displayedColumns: string[] = ['id', 'templateID', 'identityID', 'updatedAt', 'actions'];
+    displayedColumns: string[] = ['id', 'templateID', 'partyID', 'shopID', 'updatedAt', 'actions'];
 
     sort(sort: Sort): void {
         switch (sort.direction) {
@@ -31,15 +31,15 @@ export class P2pReferencesTableComponent {
         }
     }
 
-    removeReference(reference: P2pReferenceModel): void {
+    removeReference(reference: PaymentReferenceModel): void {
         this.action.emit({ type: ActionType.removeReference, reference });
     }
 
-    editReference(reference: P2pReferenceModel) {
+    editReference(reference: PaymentReferenceModel) {
         this.action.emit({ type: ActionType.editReference, reference });
     }
 
-    goToTempalte(reference: P2pReferenceModel) {
+    goToTempalte(reference: PaymentReferenceModel) {
         this.action.emit({ type: ActionType.goToTemplate, reference });
     }
 }
