@@ -16,7 +16,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { P2pTemplatesModule, PaymentTemplatesModule } from '../../api';
+import { P2pTemplatesModule, P2pWbListsModule, PaymentTemplatesModule, PaymentWbListsModule } from '../../api';
 import { ConfirmActionDialogModule } from '../../shared/components/confirm-action-dialog';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
 import { TemplateReferencesModule } from '../../shared/components/template-references';
@@ -25,8 +25,6 @@ import { P2pGroupsReferenceService } from '../../shared/services/groups-referenc
 import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
 import { P2pGroupsService } from '../../shared/services/groups/p2p-groups.service';
 import { PaymentGroupsService } from '../../shared/services/groups/payment-groups.service';
-import { P2pListsService } from '../../shared/services/lists/p2p-lists.service';
-import { PaymentListsService } from '../../shared/services/lists/payment-lists.service';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { P2pReferencesService } from '../../shared/services/reference/p2p-references.service';
 import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
@@ -58,6 +56,8 @@ import { ReferencesComponent } from './references.component';
         MatProgressBarModule,
         PaymentTemplatesModule,
         P2pTemplatesModule,
+        PaymentWbListsModule,
+        P2pWbListsModule,
         TemplateReferencesModule,
     ],
     declarations: [ReferencesComponent, P2pReferencesComponent, PaymentReferencesComponent],
@@ -70,8 +70,6 @@ import { ReferencesComponent } from './references.component';
         P2pReferencesService,
         PaymentGroupsReferenceService,
         P2pGroupsReferenceService,
-        PaymentListsService,
-        P2pListsService,
         PaymentEmulationTemplateService,
     ],
 })

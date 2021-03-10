@@ -13,39 +13,31 @@ import { ValidationResponse } from '../fb-management/swagger-codegen/model/valid
 
 @Injectable()
 export class P2pTemplatesService {
-    private readonly fbP2pTemplatesEndpoint = `${this.configService.fbManagementEndpoint}/p2p`;
+    private readonly endpoint = `${this.configService.fbManagementEndpoint}/p2p/template`;
 
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
     findTemplates(params?: SearchParams): Observable<HttpSearchResponse<TemplateModel>> {
-        return this.http.get<HttpSearchResponse<TemplateModel>>(`${this.fbP2pTemplatesEndpoint}/template/filter/`, {
+        return this.http.get<HttpSearchResponse<TemplateModel>>(`${this.endpoint}/filter/`, {
             params: filterParameters(params),
         });
     }
 
     deleteTemplate(id: string): Observable<string> {
-        return this.http.delete<string>(`${this.fbP2pTemplatesEndpoint}/template/${id}`);
+        return this.http.delete<string>(`${this.endpoint}/${id}`);
     }
 
     saveTemplate(template: TemplateModel): Observable<CreateTemplateResponse> {
-        return this.http.post<CreateTemplateResponse>(
-            `${this.fbP2pTemplatesEndpoint}/template`,
-            template,
-            new HttpRequestModel()
-        );
+        return this.http.post<CreateTemplateResponse>(`${this.endpoint}`, template, new HttpRequestModel());
     }
 
     getTemplatesName(nameRegexp: string): Observable<string[]> {
-        return this.http.get<string[]>(`${this.fbP2pTemplatesEndpoint}/template/names`, {
+        return this.http.get<string[]>(`${this.endpoint}/names`, {
             params: filterParameters({ regexpName: nameRegexp }),
         });
     }
 
     validateTemplate(template: TemplateModel): Observable<ValidationResponse> {
-        return this.http.post<ValidationResponse>(
-            `${this.fbP2pTemplatesEndpoint}/template/validate`,
-            template,
-            new HttpRequestModel()
-        );
+        return this.http.post<ValidationResponse>(`${this.endpoint}/validate`, template, new HttpRequestModel());
     }
 }

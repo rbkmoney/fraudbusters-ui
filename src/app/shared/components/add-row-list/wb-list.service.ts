@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { FilterResponseWbListRecords } from '../../../api/fb-management/swagger-codegen/model/filterResponseWbListRecords';
 import { ListType } from '../../constants/list-type';
 import { OperationType } from '../../constants/operation-type';
 import { SortOrder } from '../../constants/sort-order';
-import { HttpSearchResponse } from '../../model/http-search-response';
 import { CountInfoListRecord } from '../../services/lists/model/count-info-list-record';
-import { P2pListRecord } from '../../services/lists/model/p2p-list-record';
-import { PaymentListRecord } from '../../services/lists/model/payment-list-record';
 import { OperationTypeManagementService } from '../../services/operation-type-management.service';
 
 @Injectable()
@@ -23,20 +21,18 @@ export class WbListService {
         lastInListName?: string,
         sortOrder?: SortOrder,
         sortField?: string
-    ): Observable<HttpSearchResponse<PaymentListRecord | P2pListRecord>> {
+    ): Observable<FilterResponseWbListRecords> {
         return this.operationTypeManagementService.findListsService(type).findListRows({
             searchValue: nameRegexp,
             lastId: lastInListName,
             size: sizeValue,
-            sortOrder: sortOrder ? sortOrder : SortOrder.ASC,
-            sortFieldValue: sortField,
             listNames: listNamesValue,
             listType: listTypeValue,
         });
     }
 
     deleteListRow(type: OperationType, id: string): Observable<string> {
-        return this.operationTypeManagementService.findListsService(type).deleteListRow(id);
+        return this.operationTypeManagementService.findListsService(type).deleteListRecord(id);
     }
 
     getNames(type: OperationType, listType: ListType): Observable<string[]> {

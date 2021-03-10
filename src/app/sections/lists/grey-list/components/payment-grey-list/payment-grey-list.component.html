@@ -1,0 +1,32 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapS">
+    <div fxLayout fxLayoutAlign="space-between center">
+        <fb-wb-list-search (valueChanges)="search($event)" [type]="operationType.Payment"></fb-wb-list-search>
+        <button mat-button color="primary" (click)="createRecord()">CREATE RECORD</button>
+    </div>
+    <div *ngIf="list$ | async as list; else Empty">
+        <ng-container *ngIf="list.length > 0; else Empty">
+            <div fxLayout="column" [fxLayoutGap]="layoutGapS" fxLayoutAlign="space-around stretch">
+                <fb-wb-list [records]="list" (action)="action($event)"></fb-wb-list>
+                <button
+                    fxFlex="100"
+                    mat-button
+                    *ngIf="hasMore$ | async"
+                    (click)="fetchMore()"
+                    [disabled]="inProgress$ | async"
+                >
+                    SHOW MORE
+                </button>
+            </div>
+            <mat-card-footer *ngIf="inProgress$ | async">
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </mat-card-footer>
+        </ng-container>
+    </div>
+</div>
+
+<ng-template #Empty>
+    <div *ngIf="inProgress$ | async" fxLayout fxLayoutAlign="center">
+        <mat-progress-spinner color="primary" mode="indeterminate" diameter="64"></mat-progress-spinner>
+    </div>
+    <fb-empty-search-result *ngIf="!(inProgress$ | async)"></fb-empty-search-result>
+</ng-template>

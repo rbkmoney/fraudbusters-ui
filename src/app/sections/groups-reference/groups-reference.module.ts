@@ -20,15 +20,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { P2pReferencesService } from 'src/app/shared/services/reference/p2p-references.service';
 
-import { P2pTemplatesModule, PaymentTemplatesModule } from '../../api';
+import { P2pTemplatesModule, P2pWbListsModule, PaymentTemplatesModule, PaymentWbListsModule } from '../../api';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
 import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
 import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
 import { P2pGroupsService } from '../../shared/services/groups/p2p-groups.service';
 import { PaymentGroupsService } from '../../shared/services/groups/payment-groups.service';
-import { P2pListsService } from '../../shared/services/lists/p2p-lists.service';
-import { PaymentListsService } from '../../shared/services/lists/payment-lists.service';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
@@ -74,6 +72,8 @@ import { GroupsReferenceService } from './services/groups-reference/groups-refer
         MatMenuModule,
         EmptySearchResultModule,
         MatProgressSpinnerModule,
+        PaymentWbListsModule,
+        P2pWbListsModule,
     ],
     providers: [
         SearchFieldService,
@@ -83,8 +83,6 @@ import { GroupsReferenceService } from './services/groups-reference/groups-refer
         ErrorHandlerService,
         OperationTypeManagementService,
         PaymentReferencesService,
-        PaymentListsService,
-        P2pListsService,
         PaymentEmulationTemplateService,
         P2pReferencesService,
         P2pGroupsService,

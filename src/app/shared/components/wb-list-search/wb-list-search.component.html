@@ -1,0 +1,13 @@
+<form fxLayout [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <input matInput placeholder="Search" formControlName="searchQuery" type="string" autocomplete="false" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <input matInput placeholder="List Name" formControlName="listName" [matAutocomplete]="auto" />
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let name of names$ | async" [value]="name">
+                {{ name }}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>

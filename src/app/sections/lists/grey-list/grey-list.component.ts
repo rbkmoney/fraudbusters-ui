@@ -1,11 +1,17 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-
-import { ListType } from '../../../shared/constants/list-type';
+import { Component } from '@angular/core';
 
 @Component({
-    templateUrl: './grey-list.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: 'grey-list.component.html',
 })
 export class GreyListComponent {
-    LIST_TYPE = ListType.grey;
+    links = [
+        {
+            path: 'payments',
+            name: 'Payments',
+        },
+        {
+            path: 'p2p',
+            name: 'Peer To Peer',
+        },
+    ];
 }

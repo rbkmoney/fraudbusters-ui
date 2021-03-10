@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import { P2pTemplatesService } from '../../api/p2p-templates';
+import { P2pWbListsService } from '../../api/p2p-wb-lists';
 import { PaymentTemplatesService } from '../../api/payment-templates';
+import { PaymentWbListsService } from '../../api/payment-wb-lists';
 import { OperationType } from '../constants/operation-type';
 import { IEmulationTemplateService } from './emulation/iemulation-template.service';
 import { PaymentEmulationTemplateService } from './emulation/payment-emulation-template-service';
@@ -11,9 +13,6 @@ import { PaymentGroupsReferenceService } from './groups-reference/payment-groups
 import { IGroupsService } from './groups/igroups.service';
 import { P2pGroupsService } from './groups/p2p-groups.service';
 import { PaymentGroupsService } from './groups/payment-groups.service';
-import { IListsService } from './lists/ilists.service';
-import { P2pListsService } from './lists/p2p-lists.service';
-import { PaymentListsService } from './lists/payment-lists.service';
 import { IReferencesService } from './reference/ireferences.service';
 import { P2pReferencesService } from './reference/p2p-references.service';
 import { PaymentReferencesService } from './reference/payment-references.service';
@@ -29,8 +28,8 @@ export class OperationTypeManagementService {
         private p2pReferenceService: P2pReferencesService,
         private paymentGroupsReferenceService: PaymentGroupsReferenceService,
         private p2pGroupsReferenceService: P2pGroupsReferenceService,
-        private paymentListsService: PaymentListsService,
-        private p2pListsService: P2pListsService,
+        private paymentWbListsService: PaymentWbListsService,
+        private p2pWbListsService: P2pWbListsService,
         private paymentEmulationTemplateServiceImpl: PaymentEmulationTemplateService
     ) {}
 
@@ -81,12 +80,15 @@ export class OperationTypeManagementService {
         }
     }
 
-    findListsService(type: OperationType): IListsService {
+    /**
+     * @deprecated
+     */
+    findListsService(type: OperationType) {
         switch (type) {
             case OperationType.Payment:
-                return this.paymentListsService;
+                return this.paymentWbListsService;
             case OperationType.PeerToPeer:
-                return this.p2pListsService;
+                return this.p2pWbListsService;
             default:
                 throw new Error(`Unknown type of operations: ${type}`);
         }

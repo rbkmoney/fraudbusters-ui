@@ -3,22 +3,24 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import moment from 'moment';
 import { Observable } from 'rxjs';
 
-import { ListType } from '../../../constants/list-type';
-import { OperationType } from '../../../constants/operation-type';
-import { CountInfo } from '../../../services/lists/model/count-info';
-import { CountInfoListRecord } from '../../../services/lists/model/count-info-list-record';
-import { P2pListRecord } from '../../../services/lists/model/p2p-list-record';
-import { PaymentListRecord } from '../../../services/lists/model/payment-list-record';
-import { ErrorHandlerService } from '../../../services/utils/error-handler.service';
-import { OperationTypeComponent } from '../../operation-type-component';
-import { WbListService } from '../wb-list.service';
+import { ListType } from '../../constants/list-type';
+import { OperationType } from '../../constants/operation-type';
+import { CountInfo } from '../../services/lists/model/count-info';
+import { CountInfoListRecord } from '../../services/lists/model/count-info-list-record';
+import { P2pListRecord } from '../../services/lists/model/p2p-list-record';
+import { PaymentListRecord } from '../../services/lists/model/payment-list-record';
+import { ErrorHandlerService } from '../../services/utils/error-handler.service';
+import { OperationTypeComponent } from '../operation-type-component';
+import { WbListService } from './wb-list.service';
 
 @Component({
     selector: 'fb-add-row-list',
     templateUrl: './add-row-list.component.html',
     styleUrls: ['./add-row-list.component.scss'],
+    providers: [WbListService],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddRowListComponent extends OperationTypeComponent implements OnInit {
@@ -53,17 +55,19 @@ export class AddRowListComponent extends OperationTypeComponent implements OnIni
     }
 
     addNewReference(): void {
+        const startCountTime = moment().utc().toISOString();
+        const endCountTime = moment().add('month').utc().toISOString();
         this.isPaymentReference()
             ? (this.paymentRecords = this.paymentRecords.concat([
                   new CountInfoListRecord(
                       new PaymentListRecord(null, '', '', null, null, '', ''),
-                      this.isCounting ? new CountInfo(0, '', '') : null
+                      this.isCounting ? new CountInfo(0, startCountTime, endCountTime) : null
                   ),
               ]))
             : (this.p2pRecords = this.p2pRecords.concat([
                   new CountInfoListRecord(
                       new P2pListRecord(null, '', '', null, null, ''),
-                      this.isCounting ? new CountInfo(0, '', '') : null
+                      this.isCounting ? new CountInfo(0, startCountTime, endCountTime) : null
                   ),
               ]));
     }

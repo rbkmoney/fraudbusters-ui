@@ -26,8 +26,6 @@ import { P2pGroupsReferenceService } from '../../shared/services/groups-referenc
 import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
 import { P2pGroupsService } from '../../shared/services/groups/p2p-groups.service';
 import { PaymentGroupsService } from '../../shared/services/groups/payment-groups.service';
-import { P2pListsService } from '../../shared/services/lists/p2p-lists.service';
-import { PaymentListsService } from '../../shared/services/lists/payment-lists.service';
 import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { P2pReferencesService } from '../../shared/services/reference/p2p-references.service';
 import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
@@ -75,8 +73,6 @@ import { TemplatesComponent } from './templates.component';
         P2pReferencesService,
         PaymentGroupsReferenceService,
         P2pGroupsReferenceService,
-        PaymentListsService,
-        P2pListsService,
         PaymentEmulationTemplateService,
     ],
 })

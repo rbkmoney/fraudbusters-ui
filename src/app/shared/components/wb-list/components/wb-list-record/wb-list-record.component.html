@@ -1,0 +1,21 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <div fxLayout fxFlexFill [fxLayoutGap]="layoutGapM">
+            <div class="fb-body-2" fxFlex>{{ record.listName }}</div>
+            <div class="fb-body-2" fxFlex>{{ record.partyId }}</div>
+            <div class="fb-body-2" fxFlex>{{ record.shopId }}</div>
+            <div class="fb-body-2" fxFlex>{{ record.value }}</div>
+            <div class="fb-body-2" fxFlex="160px">{{ record.insertTime | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
+        </div>
+    </mat-expansion-panel-header>
+    <div class="panel-content" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <mat-divider></mat-divider>
+        <div fxLayout="row">
+            <fb-details-item title="Info">{{ record.rowInfo }}</fb-details-item>
+            <!--        <fb-details-item title="From Time" fxFlex="33"></fb-details-item>-->
+            <!--        <fb-details-item title="To Time" fxFlex="33"></fb-details-item>-->
+        </div>
+        <mat-divider></mat-divider>
+        <fb-actions [id]="record.id" (deleteItem)="deleteItem.emit($event)"></fb-actions>
+    </div>
+</mat-expansion-panel>

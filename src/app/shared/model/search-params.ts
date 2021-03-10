@@ -1,9 +1,11 @@
+import { SortOrder } from '../constants/sort-order';
+
 export interface SearchParams {
-    id?: string;
-    searchValue?: string;
-    sortFieldValue?: string;
     lastId?: string;
+    name?: string;
+    searchValue?: string;
     size?: number;
     sortBy?: string;
-    sortOrder: string;
+    sortFieldValue?: string;
+    sortOrder?: SortOrder;
 }
