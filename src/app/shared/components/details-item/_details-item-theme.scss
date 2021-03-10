@@ -1,0 +1,11 @@
+@import '~@angular/material/theming';
+
+@mixin fb-details-item-theme($theme) {
+    $gray: map-get($theme, gray);
+
+    .fb-details-item {
+        &-title {
+            color: map-get($gray, 700);
+        }
+    }
+}

@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, merge, NEVER, of, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
+
 import { PaymentWbListsService } from '../../../../api/payment-wb-lists';
 import { ConfirmActionDialogComponent } from '../../../../shared/components/confirm-action-dialog';
 import { progress } from '../../../../shared/operators';
@@ -14,17 +15,17 @@ export class RemoveListRecordService {
     private hasError$ = new Subject();
 
     removed$ = this.removeRecord$.pipe(
-        switchMap((params) =>
+        switchMap((recordID) =>
             combineLatest([
-                of(params),
+                of(recordID),
                 this.dialog
-                    .open(ConfirmActionDialogComponent, { data: { title: `Remove record ${params.recordID}?` } })
+                    .open(ConfirmActionDialogComponent, { data: { title: `Remove record ${recordID}?` } })
                     .afterClosed()
                     .pipe(filter((r) => r === 'confirm')),
             ])
         ),
-        switchMap(([params]) =>
-            this.paymentWbListsService.deleteListRecord(params.recordID).pipe(
+        switchMap(([recordID]) =>
+            this.paymentWbListsService.deleteListRecord(recordID).pipe(
                 catchError((error: HttpErrorResponse) => {
                     this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
                         duration: 1500,
@@ -46,6 +47,6 @@ export class RemoveListRecordService {
     ) {}
 
     removeRecord(recordID: string) {
-        this.removeRecord$.next(params);
+        this.removeRecord$.next(recordID);
     }
 }

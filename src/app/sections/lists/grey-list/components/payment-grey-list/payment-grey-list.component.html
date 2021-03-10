@@ -4,9 +4,9 @@
         <button mat-button color="primary" (click)="createRecord()">CREATE RECORD</button>
     </div>
     <div *ngIf="list$ | async as list; else Empty">
-        <mat-card *ngIf="list.length > 0; else Empty">
-            <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapS" fxLayoutAlign="space-around stretch">
-                <fb-wb-table [records]="list"></fb-wb-table>
+        <ng-container *ngIf="list.length > 0; else Empty">
+            <div fxLayout="column" [fxLayoutGap]="layoutGapS" fxLayoutAlign="space-around stretch">
+                <fb-wb-list [records]="list" (action)="action($event)"></fb-wb-list>
                 <button
                     fxFlex="100"
                     mat-button
@@ -16,11 +16,11 @@
                 >
                     SHOW MORE
                 </button>
-            </mat-card-content>
+            </div>
             <mat-card-footer *ngIf="inProgress$ | async">
                 <mat-progress-bar mode="indeterminate"></mat-progress-bar>
             </mat-card-footer>
-        </mat-card>
+        </ng-container>
     </div>
 </div>
 

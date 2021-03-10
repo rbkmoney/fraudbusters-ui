@@ -1,0 +1,11 @@
+$fb-details-item-title-padding: 0 0 8px 0;
+
+.fb-details-item {
+    &-title {
+        padding: $fb-details-item-title-padding;
+    }
+
+    &-content {
+        word-wrap: break-word;
+    }
+}

@@ -17,7 +17,7 @@ export class P2pWbListsService {
 
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
-    deleteListRow(id: string): Observable<string> {
+    deleteListRecord(id: string): Observable<string> {
         return this.http.delete(`${this.endpoint}/${id}`, {
             responseType: 'text',
         });

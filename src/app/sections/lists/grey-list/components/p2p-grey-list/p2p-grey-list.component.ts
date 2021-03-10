@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { WbListRecords } from '../../../../../api/fb-management/swagger-codegen/model/wbListRecords';
-import { Action, ActionType } from '../../../../../shared/components/wb-table/action';
+import { Action, ActionType } from '../../../../../shared/components/wb-list/action';
 import { OperationType } from '../../../../../shared/constants/operation-type';
 import { LAYOUT_GAP_S } from '../../../../../tokens';
 import { FetchP2pGreyListService } from '../../services/fetch-p2p-grey-list.service';
