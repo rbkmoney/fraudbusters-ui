@@ -50,4 +50,8 @@ export class WbListService {
     saveListRow(type: OperationType, listType: ListType, rows: CountInfoListRecord[]): Observable<string[]> {
         return this.operationTypeManagementService.findListsService(type).saveListsRows(listType, rows);
     }
+
+    saveListRowsFromFile(type: OperationType, listType: ListType, file: File): Observable<any> {
+        return this.operationTypeManagementService.findListsService(type).saveListsRowsFromFile(listType, file);
+    }
 }

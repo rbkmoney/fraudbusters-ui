@@ -68,6 +68,18 @@ export class AddRowListComponent extends OperationTypeComponent implements OnIni
               ]));
     }
 
+    loadListFromCsv(filesToUpload: Array<any>): void {
+        this.listService.saveListRowsFromFile(this.operationType, this.listType, filesToUpload[0]).subscribe(
+            () => {
+                this.navigateToList();
+                this.snackBar.open(`Saved succeeded`, 'OK', {
+                    duration: 1500,
+                });
+            },
+            (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
+        );
+    }
+
     deleteRef(i): void {
         this.isPaymentReference() ? this.paymentRecords.splice(i, 1) : this.p2pRecords.splice(i, 1);
     }
