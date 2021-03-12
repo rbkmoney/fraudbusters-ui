@@ -59,4 +59,13 @@ export class PaymentListsService implements IListsService {
             new HttpRequestModel()
         );
     }
+
+    saveListsRowsFromFile(listType: ListType, file: File): Observable<any> {
+        const formData: FormData = new FormData();
+        formData.append('file', file, file.name);
+        return this.http.post<any>(`${this.fbManagementEndpoint}/lists/insertFromCsv/${listType}`, formData, {
+            reportProgress: true,
+            observe: 'events',
+        });
+    }
 }
