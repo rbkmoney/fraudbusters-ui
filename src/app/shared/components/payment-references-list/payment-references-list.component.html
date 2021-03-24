@@ -1,0 +1,10 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
+    <fb-reference-header></fb-reference-header>
+    <div *ngFor="let template of references" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <fb-reference-item
+            [reference]="template"
+            (goToTemplate)="goToTemplate.emit($event)"
+            (deleteItem)="onItemDelete($event)"
+        ></fb-reference-item>
+    </div>
+</div>

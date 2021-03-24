@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Action, ActionType } from '../../../../shared/components/template-references/action';
+import { PaymentReferenceModel } from '../../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { LAYOUT_GAP_S } from '../../../../tokens';
 import { FetchReferencesService } from '../../services/fetch-references.service';
@@ -28,38 +28,8 @@ export class PaymentReferencesComponent {
         });
     }
 
-    action(action: Action) {
-        switch (action.type) {
-            case ActionType.createReference:
-                this.router.navigate(['/reference/new/payment']);
-                break;
-            case ActionType.editReference:
-                this.router.navigate([`/reference/${action.reference.id}`], { fragment: OperationType.Payment });
-                break;
-            case ActionType.goToTemplate:
-                this.router.navigate([`/template/${action.reference.templateId}`], { fragment: OperationType.Payment });
-                break;
-            case ActionType.removeReference:
-                this.removeReferenceService.removeReference({
-                    type: OperationType.Payment,
-                    reference: action.reference,
-                });
-                break;
-            case ActionType.sortReferences:
-                this.fetchReferencesService.search({
-                    type: OperationType.Payment,
-                    sortOrder: action.sortDirection,
-                    isGlobal: false,
-                    isDefault: false,
-                });
-                break;
-            default:
-                console.error('Wrong reference action.');
-        }
-    }
-
     createReference() {
-        this.action({ type: ActionType.createReference });
+        this.router.navigate(['/reference/new/payment']);
     }
 
     search(searchValue: string) {
@@ -73,5 +43,16 @@ export class PaymentReferencesComponent {
 
     fetchMore() {
         this.fetchReferencesService.fetchMore();
+    }
+
+    goToTemplate(id: string) {
+        this.router.navigate([`/template/${id}`], { fragment: OperationType.Payment });
+    }
+
+    removeReference(reference: PaymentReferenceModel) {
+        this.removeReferenceService.removeReference({
+            type: OperationType.Payment,
+            reference,
+        });
     }
 }
