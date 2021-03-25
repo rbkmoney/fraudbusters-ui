@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule, _MatMenuDirectivesModule } from '@angular/material/menu';
 
 import { SharedPipesModule } from '../../../shared/pipes';
+import { ListHeaderModule } from '../list-header';
 import { ActionsComponent } from './components/actions/actions.component';
 import { ReferenceHeaderComponent } from './components/reference-header/reference-header.component';
 import { ReferenceItemComponent } from './components/reference-item/reference-item.component';
@@ -26,6 +27,7 @@ import { PaymentReferencesListComponent } from './payment-references-list.compon
         _MatMenuDirectivesModule,
         MatIconModule,
         MatMenuModule,
+        ListHeaderModule,
     ],
     declarations: [PaymentReferencesListComponent, ReferenceHeaderComponent, ReferenceItemComponent, ActionsComponent],
     exports: [PaymentReferencesListComponent],

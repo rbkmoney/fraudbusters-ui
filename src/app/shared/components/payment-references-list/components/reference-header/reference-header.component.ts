@@ -5,7 +5,6 @@ import { LAYOUT_GAP_M } from '../../../../../tokens';
 @Component({
     selector: 'fb-reference-header',
     templateUrl: 'reference-header.component.html',
-    styleUrls: ['reference-header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReferenceHeaderComponent {

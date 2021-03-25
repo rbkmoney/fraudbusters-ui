@@ -54,7 +54,7 @@ $background: (
     role-color-auditor: map-get($fb-warn, 500),
     role-color-support: map-get($fb-blue, 500),
     border: map-get($fb-grey, 100),
-    template-header: mat-color(mat-palette($fb-purple), 50),
+    list-header: mat-color(mat-palette($fb-purple), 50),
 );
 
 $theme: (
