@@ -8,15 +8,13 @@
                 [fxLayoutGap]="layoutGapM"
                 fxLayoutAlign="center center"
             >
-                <mat-form-field fxFlex appearance="outline">
-                    <input
-                        matInput
-                        placeholder="Template ID"
-                        formControlName="templateId"
-                        type="string"
-                        autocomplete="false"
-                    />
-                </mat-form-field>
+                <fb-template-id
+                    formControlName="templateId"
+                    [operationType]="operationType.Payment"
+                    [floatLabelType]="'never'"
+                    [appearanceType]="'outline'"
+                    fxFlex
+                ></fb-template-id>
                 <mat-form-field fxFlex appearance="outline">
                     <input
                         matInput

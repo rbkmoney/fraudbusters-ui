@@ -1,4 +1,5 @@
-::ng-deep .create-payment-reference-form > .mat-form-field > .mat-form-field-wrapper {
+::ng-deep .create-payment-reference-form > .mat-form-field > .mat-form-field-wrapper,
+::ng-deep .create-payment-reference-form > fb-template-id > .mat-form-field > .mat-form-field-wrapper {
     margin: 0 !important;
     .mat-form-field-flex {
         padding: 0 !important;
