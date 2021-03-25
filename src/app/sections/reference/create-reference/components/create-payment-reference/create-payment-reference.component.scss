@@ -1,3 +1,6 @@
-.remove-btn {
-    top: 10px;
+::ng-deep .create-payment-reference-form > .mat-form-field > .mat-form-field-wrapper {
+    margin: 0 !important;
+    .mat-form-field-flex {
+        padding: 0 !important;
+    }
 }
