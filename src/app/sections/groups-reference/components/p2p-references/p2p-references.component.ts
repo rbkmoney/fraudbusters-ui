@@ -34,7 +34,7 @@ export class P2pReferencesComponent {
     action(action: Action) {
         switch (action.type) {
             case ActionType.createReference:
-                this.router.navigate(['/group-reference/new'], { fragment: OperationType.PeerToPeer });
+                this.router.navigate(['/create-group-reference/p2p'], { fragment: OperationType.PeerToPeer });
                 break;
             case ActionType.removeReference:
                 this.removeReferenceService.removeReference({

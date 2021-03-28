@@ -36,8 +36,8 @@ const routes: Routes = [
         loadChildren: () => import('./groups-reference').then((m) => m.GroupsReferenceModule),
     },
     {
-        path: 'group-reference',
-        loadChildren: () => import('./group-reference').then((m) => m.GroupReferenceModule),
+        path: 'create-group-reference',
+        loadChildren: () => import('./create-group-reference').then((m) => m.CreateGroupReferenceModule),
     },
     {
         path: 'lists',
