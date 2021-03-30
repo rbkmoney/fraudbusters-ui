@@ -8,7 +8,6 @@ import { CreateP2pReferenceService } from '../../services/create-p2p-reference.s
 @Component({
     templateUrl: 'create-p2p-reference.component.html',
     providers: [CreateP2pReferenceService],
-    styleUrls: ['create-p2p-reference.component.scss'],
 })
 export class CreateP2pReferenceComponent {
     forms = this.createPaymentReferenceService.forms;

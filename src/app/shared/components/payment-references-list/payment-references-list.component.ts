@@ -19,8 +19,4 @@ export class PaymentReferencesListComponent {
     deleteItem = new EventEmitter<PaymentReferenceModel>();
 
     constructor(@Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
-
-    onItemDelete(id: string) {
-        this.deleteItem.emit(this.references.find((ref) => ref.id === id));
-    }
 }

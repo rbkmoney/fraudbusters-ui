@@ -7,7 +7,6 @@ import { CreatePaymentReferenceService } from '../../services/create-payment-ref
 
 @Component({
     templateUrl: 'create-payment-reference.component.html',
-    styleUrls: ['create-payment-reference.component.scss'],
     providers: [CreatePaymentReferenceService],
 })
 export class CreatePaymentReferenceComponent {
