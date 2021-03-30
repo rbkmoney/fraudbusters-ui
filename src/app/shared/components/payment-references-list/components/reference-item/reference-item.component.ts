@@ -17,7 +17,7 @@ export class ReferenceItemComponent {
     goToTemplate = new EventEmitter<string>();
 
     @Output()
-    deleteItem = new EventEmitter<string>();
+    deleteItem = new EventEmitter<PaymentReferenceModel>();
 
     constructor(@Inject(LAYOUT_GAP_S) public layoutGapS: string, @Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
 }
