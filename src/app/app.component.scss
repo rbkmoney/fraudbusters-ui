@@ -32,6 +32,13 @@
 }
 
 ::ng-deep {
+    .mat-form-field > .mat-form-field-wrapper {
+        margin: 0 !important;
+        .mat-form-field-flex {
+            padding: 0 !important;
+        }
+    }
+
     .mat-menu-panel {
         padding: 8px;
     }

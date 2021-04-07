@@ -1,33 +1,52 @@
 <mat-card>
     <mat-card-content fxLayout="column" fxLayoutGap="16px">
-        <div fxLayout="column" fxLayoutGap="8px">
-            <ng-container *ngFor="let form of forms.controls; let i = index">
-                <form [formGroup]="form" fxLayout fxLayoutGap="8px" fxLayoutAlign="space-between center">
-                    <fb-template-id
-                        formControlName="templateId"
-                        [operationType]="operationType.Payment"
-                        fxFlex="33"
-                    ></fb-template-id>
-                    <mat-form-field floatLabel="always" fxFlex="33">
-                        <input
-                            matInput
-                            placeholder="Party ID"
-                            label="partyId"
-                            formControlName="partyId"
-                            name="partyId"
-                        />
-                    </mat-form-field>
-                    <mat-form-field floatLabel="always" fxFlex="33">
-                        <input matInput placeholder="Shop ID" label="shopId" formControlName="shopId" name="shopId" />
-                    </mat-form-field>
-                    <button mat-icon-button class="remove-btn" (click)="removeItem(i)" [disabled]="inProgress$ | async">
-                        <mat-icon>remove</mat-icon>
-                    </button>
-                </form>
-            </ng-container>
-            <button mat-button (click)="addItem()" fxFlex [disabled]="inProgress$ | async">ADD ROW</button>
-        </div>
-        <div fxLayout fxLayoutAlign="end center" fxLayoutGap="8px">
+        <ng-container *ngFor="let form of forms.controls; let i = index">
+            <form
+                class="create-payment-reference-form"
+                [formGroup]="form"
+                fxLayout
+                [fxLayoutGap]="layoutGapM"
+                fxLayoutAlign="center center"
+            >
+                <fb-template-id
+                    formControlName="templateId"
+                    [operationType]="operationType.Payment"
+                    [floatLabelType]="'never'"
+                    [appearanceType]="'outline'"
+                    fxFlex
+                ></fb-template-id>
+                <mat-form-field fxFlex appearance="outline">
+                    <input
+                        matInput
+                        placeholder="Party ID"
+                        formControlName="partyId"
+                        type="string"
+                        autocomplete="false"
+                    />
+                </mat-form-field>
+                <mat-form-field fxFlex appearance="outline">
+                    <input matInput placeholder="Shop ID" formControlName="shopId" type="string" autocomplete="false" />
+                </mat-form-field>
+                <button
+                    [style.visibility]="i ? 'visible' : 'hidden'"
+                    mat-icon-button
+                    class="remove-btn"
+                    (click)="removeItem(i)"
+                    [disabled]="inProgress$ | async"
+                >
+                    <mat-icon>remove</mat-icon>
+                </button>
+            </form>
+        </ng-container>
+        <div fxLayout fxLayoutAlign="end center" [fxLayoutGap]="layoutGapM">
+            <button
+                mat-button
+                color="accent"
+                (click)="addItem()"
+                [disabled]="!forms.valid || (inProgress$ | async) || forms.value.length < 1"
+            >
+                Add Reference
+            </button>
             <button
                 mat-raised-button
                 color="primary"
