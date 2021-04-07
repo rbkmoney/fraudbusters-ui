@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
 import { GroupReferenceModel } from '../../../sections/groups-reference/model/groups-reference';
@@ -37,10 +37,14 @@ export class PaymentGroupsReferenceService implements IGroupsReferenceService {
     }
 
     saveGroupReference(groupReferenceModels: GroupReferenceModel[]): Observable<string[]> {
-        return this.http.post<string[]>(
-            `${this.fbManagementEndpoint}/group/${groupReferenceModels[0].groupId}/reference`,
-            groupReferenceModels,
-            new HttpRequestModel()
+        return forkJoin(
+            groupReferenceModels.map((ref) =>
+                this.http.post<string>(
+                    `${this.fbManagementEndpoint}/group/${ref.groupId}/reference`,
+                    [ref],
+                    new HttpRequestModel()
+                )
+            )
         );
     }
 }

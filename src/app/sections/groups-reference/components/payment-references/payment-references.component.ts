@@ -39,7 +39,7 @@ export class PaymentReferencesComponent {
     action(action: Action) {
         switch (action.type) {
             case ActionType.createReference:
-                this.router.navigate(['/group-reference/new'], { fragment: OperationType.Payment });
+                this.router.navigate(['/create-group-reference/payment'], { fragment: OperationType.Payment });
                 break;
             case ActionType.removeReference:
                 this.removeReferenceService.removeReference({

@@ -1,0 +1,59 @@
+<div fxLayout="column">
+    <fb-headline fbSecondaryTitle>New P2P Payment References</fb-headline>
+    <mat-card>
+        <mat-card-content fxLayout="column" fxLayoutGap="16px">
+            <ng-container *ngFor="let form of forms.controls; let i = index">
+                <form [formGroup]="form" fxLayout [fxLayoutGap]="layoutGapM" fxLayoutAlign="center center">
+                    <mat-form-field fxFlex appearance="outline">
+                        <input
+                            matInput
+                            placeholder="Group ID"
+                            formControlName="groupId"
+                            type="string"
+                            autocomplete="false"
+                        />
+                    </mat-form-field>
+                    <mat-form-field fxFlex appearance="outline">
+                        <input
+                            matInput
+                            placeholder="Identity ID"
+                            formControlName="identityId"
+                            type="string"
+                            autocomplete="false"
+                        />
+                    </mat-form-field>
+                    <button
+                        [style.visibility]="i ? 'visible' : 'hidden'"
+                        mat-icon-button
+                        class="remove-btn"
+                        (click)="removeItem(i)"
+                        [disabled]="inProgress$ | async"
+                    >
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                </form>
+            </ng-container>
+            <div fxLayout fxLayoutAlign="end center" [fxLayoutGap]="layoutGapM">
+                <button
+                    mat-button
+                    color="accent"
+                    (click)="addItem()"
+                    [disabled]="!forms.valid || (inProgress$ | async) || forms.value.length < 1"
+                >
+                    Add Reference
+                </button>
+                <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="createReference()"
+                    [disabled]="!forms.valid || (inProgress$ | async) || forms.value.length < 1"
+                >
+                    Create
+                </button>
+            </div>
+        </mat-card-content>
+        <mat-card-footer *ngIf="inProgress$ | async">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer>
+    </mat-card>
+</div>
