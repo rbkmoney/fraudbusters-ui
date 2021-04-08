@@ -1,18 +1,20 @@
-<div fxLayout="column" [fxLayoutGap]="layoutGapS">
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
     <div fxLayout fxLayoutAlign="space-between center">
         <fb-template-references-search (valueChanges)="search($event)"></fb-template-references-search>
         <button mat-button color="primary" (click)="createReference()">CREATE REFERENCE</button>
     </div>
-    <div *ngIf="references$ | async as references; else Empty">
+    <div *ngIf="references$ | async as references; else Empty" fxLayout="column" [fxLayoutGap]="layoutGapM">
         <fb-payment-references-list
             *ngIf="references.length > 0; else Empty"
             [references]="references"
             (goToTemplate)="goToTemplate($event)"
             (deleteItem)="removeReference($event)"
         ></fb-payment-references-list>
-        <button fxFlex="100" mat-button *ngIf="hasMore$ | async" (click)="fetchMore()" [disabled]="inProgress$ | async">
-            SHOW MORE
-        </button>
+        <fb-show-more-panel
+            *ngIf="hasMore$ | async"
+            [isLoading]="inProgress$ | async"
+            (showMore)="fetchMore()"
+        ></fb-show-more-panel>
     </div>
 </div>
 

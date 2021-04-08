@@ -21,6 +21,7 @@ import { P2pTemplatesModule, PaymentTemplatesModule } from '../../api';
 import { ConfirmActionDialogModule } from '../../shared/components/confirm-action-dialog';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
 import { PaymentReferencesListModule } from '../../shared/components/payment-references-list';
+import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
 import { TemplateReferencesModule } from '../../shared/components/template-references';
 import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
@@ -63,6 +64,7 @@ import { ReferencesComponent } from './references.component';
         TemplateReferencesModule,
         PaymentReferencesListModule,
         MatDividerModule,
+        ShowMorePanelModule,
     ],
     declarations: [ReferencesComponent, P2pReferencesComponent, PaymentReferencesComponent],
     // TODO: need to refactor these services
