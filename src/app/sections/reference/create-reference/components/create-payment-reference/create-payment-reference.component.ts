@@ -31,4 +31,8 @@ export class CreatePaymentReferenceComponent {
     createReference() {
         this.createPaymentReferenceService.create();
     }
+
+    prepareFilesList(files: Array<any>): void {
+        this.createPaymentReferenceService.prepareFilesList(files);
+    }
 }

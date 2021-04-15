@@ -2,11 +2,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Papa } from 'ngx-papaparse';
 import { EMPTY, merge, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { progress } from '../../../../shared/operators';
+import { CsvUtilsService } from '../../../../shared/services/utils/csv-utils.service';
 import { ReferencesService } from '../../references.service';
 
 @Injectable()
@@ -32,7 +34,13 @@ export class CreateP2pReferenceService {
 
     inProgress$ = progress(this.create$, merge(this.created$, this.errors$));
 
-    constructor(private fb: FormBuilder, private referenceService: ReferencesService, private snackBar: MatSnackBar) {
+    constructor(
+        private fb: FormBuilder,
+        private referenceService: ReferencesService,
+        private snackBar: MatSnackBar,
+        private csvUtilsService: CsvUtilsService,
+        private papa: Papa
+    ) {
         this.addItem();
         this.created$.subscribe();
         this.inProgress$.subscribe((inProgress) => {
@@ -56,10 +64,33 @@ export class CreateP2pReferenceService {
         this.forms.removeAt(i);
     }
 
-    private createItem() {
+    prepareFilesList(files: Array<any>): void {
+        Object.values(files)
+            .filter((value) => this.csvUtilsService.isValidFile(value, 'text/csv', 2097152))
+            .forEach((item) =>
+                this.papa.parse(item, {
+                    skipEmptyLines: true,
+                    header: true,
+                    complete: (results) => {
+                        const data = results.data;
+                        if (this.csvUtilsService.isValidFormatCsv(data, item, ['template'])) {
+                            this.processCsv(data);
+                        }
+                    },
+                })
+            );
+    }
+
+    private processCsv(data): void {
+        for (const item of data) {
+            this.forms.push(this.createItem(item.template, item.identityId));
+        }
+    }
+
+    private createItem(templateId = '', identityId = '') {
         return this.fb.group({
-            templateId: ['', Validators.required],
-            identityId: ['', Validators.required],
+            templateId: [templateId, Validators.required],
+            identityId: [identityId, Validators.required],
             isDefault: false,
             isGlobal: false,
         });
