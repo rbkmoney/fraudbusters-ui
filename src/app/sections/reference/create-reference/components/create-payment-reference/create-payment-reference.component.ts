@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { OperationType } from '../../../../../shared/constants/operation-type';
+import { CsvUtilsService } from '../../../../../shared/services/utils/csv-utils.service';
 import { CreatePaymentReferenceService } from '../../services/create-payment-reference.service';
 
 @Component({
     templateUrl: 'create-payment-reference.component.html',
-    providers: [CreatePaymentReferenceService],
+    providers: [CreatePaymentReferenceService, CsvUtilsService],
     styleUrls: ['create-payment-reference.component.scss'],
 })
 export class CreatePaymentReferenceComponent {
