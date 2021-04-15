@@ -25,6 +25,15 @@
             <button mat-button (click)="addItem()" fxFlex [disabled]="inProgress$ | async">ADD ROW</button>
         </div>
         <div fxLayout fxLayoutAlign="end center" fxLayoutGap="8px">
+            <input
+                hidden
+                type="file"
+                #fileDropRef
+                id="fileDropRef"
+                multiple
+                (change)="prepareFilesList($event.target.files)"
+            />
+            <button mat-button color="accent" (click)="fileDropRef.click()">Add from CSV</button>
             <button
                 mat-raised-button
                 color="primary"

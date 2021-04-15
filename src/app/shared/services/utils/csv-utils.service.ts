@@ -3,6 +3,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ErrorHandlerService } from './error-handler.service';
 
+/**
+ *  @deprecated
+ */
 @Injectable()
 export class CsvUtilsService {
     constructor(private errorHandlerService: ErrorHandlerService, private snackBar: MatSnackBar) {}
