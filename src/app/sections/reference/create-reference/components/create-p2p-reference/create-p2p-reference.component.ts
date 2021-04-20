@@ -9,14 +9,17 @@ import { CreateP2pReferenceService } from '../../services/create-p2p-reference.s
 @Component({
     templateUrl: 'create-p2p-reference.component.html',
     providers: [CreateP2pReferenceService, CsvUtilsService],
-    styleUrls: ['create-p2p-reference.component.scss'],
 })
 export class CreateP2pReferenceComponent {
     forms = this.createP2pReferenceService.forms;
     operationType = OperationType;
     inProgress$ = this.createP2pReferenceService.inProgress$;
 
-    constructor(private createP2pReferenceService: CreateP2pReferenceService, private router: Router, @Inject(LAYOUT_GAP_M) public layoutGapM: string) {
+    constructor(
+        private createP2pReferenceService: CreateP2pReferenceService,
+        private router: Router,
+        @Inject(LAYOUT_GAP_M) public layoutGapM: string
+    ) {
         this.createP2pReferenceService.created$.subscribe((q) => {
             this.router.navigate(['/references/p2p']);
         });

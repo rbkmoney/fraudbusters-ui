@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-card-content fxLayout="column" fxLayoutGap="16px">
+    <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapM">
         <ng-container *ngFor="let form of forms.controls; let i = index">
             <form
                 class="create-payment-reference-form"
@@ -28,7 +28,7 @@
                     <input matInput placeholder="Shop ID" formControlName="shopId" type="string" autocomplete="false" />
                 </mat-form-field>
                 <button
-                    [style.visibility]="i ? 'visible' : 'hidden'"
+                    [style.visibility]="forms.length > 1 ? 'visible' : 'hidden'"
                     mat-icon-button
                     class="remove-btn"
                     (click)="removeItem(i)"
@@ -39,6 +39,14 @@
             </form>
         </ng-container>
         <div fxLayout fxLayoutAlign="end center" [fxLayoutGap]="layoutGapM">
+            <input
+                hidden
+                type="file"
+                #fileDropRef
+                id="fileDropRef"
+                multiple
+                (change)="prepareFilesList($event.target.files)"
+            />
             <button mat-button color="accent" (click)="fileDropRef.click()">Add from CSV</button>
             <button
                 mat-button

@@ -2,14 +2,13 @@ import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { OperationType } from '../../../../../shared/constants/operation-type';
-import { LAYOUT_GAP_M } from '../../../../../tokens';
 import { CsvUtilsService } from '../../../../../shared/services/utils/csv-utils.service';
+import { LAYOUT_GAP_M } from '../../../../../tokens';
 import { CreatePaymentReferenceService } from '../../services/create-payment-reference.service';
 
 @Component({
     templateUrl: 'create-payment-reference.component.html',
     providers: [CreatePaymentReferenceService, CsvUtilsService],
-    styleUrls: ['create-payment-reference.component.scss'],
 })
 export class CreatePaymentReferenceComponent {
     forms = this.createPaymentReferenceService.forms;
