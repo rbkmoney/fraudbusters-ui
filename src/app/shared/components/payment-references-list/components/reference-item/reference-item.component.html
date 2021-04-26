@@ -1,0 +1,20 @@
+<mat-card class="fb-list-item" fxLayout fxFlexFill fxLayoutAlign="center center" [fxLayoutGap]="layoutGapM">
+    <div class="fb-body-2 wrap" fxFlex fxGrow="2">{{ reference.id }}</div>
+    <div class="fb-body-2 wrap" fxFlex fxGrow="2">{{ reference.templateId }}</div>
+    <div class="fb-body-2 wrap" fxFlex>{{ reference.partyId }}</div>
+    <div class="fb-body-2 wrap" fxFlex>{{ reference.shopId }}</div>
+    <div class="fb-body-2 wrap" fxFlex="160px">{{ reference.lastUpdateDate | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
+    <ng-container>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="deleteItem.emit(reference)">
+                <span>Remove reference</span>
+            </button>
+            <button mat-menu-item (click)="goToTemplate.emit(reference.templateId)">
+                <span>Go to template</span>
+            </button>
+        </mat-menu>
+    </ng-container>
+</mat-card>

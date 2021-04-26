@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { Action, ActionType } from '../../../../shared/components/template-references/action';
 import { OperationType } from '../../../../shared/constants/operation-type';
-import { LAYOUT_GAP_S } from '../../../../tokens';
+import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchReferencesService } from '../../services/fetch-references.service';
 import { RemoveReferenceService } from '../../services/remove-reference.service';
 
@@ -21,7 +21,7 @@ export class P2pReferencesComponent {
         private router: Router,
         private fetchReferencesService: FetchReferencesService,
         private removeReferenceService: RemoveReferenceService,
-        @Inject(LAYOUT_GAP_S) public layoutGapS: string
+        @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.removeReferenceService.removed$.subscribe(() => {
             this.fetchReferencesService.search({ type: OperationType.PeerToPeer, isGlobal: false, isDefault: false });

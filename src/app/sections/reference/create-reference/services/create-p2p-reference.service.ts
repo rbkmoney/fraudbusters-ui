@@ -85,6 +85,7 @@ export class CreateP2pReferenceService {
         for (const item of data) {
             this.forms.push(this.createItem(item.template, item.identityId));
         }
+        this.forms.patchValue(this.forms.value);
     }
 
     private createItem(templateId = '', identityId = '') {

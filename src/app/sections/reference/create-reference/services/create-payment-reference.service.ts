@@ -85,6 +85,7 @@ export class CreatePaymentReferenceService {
         for (const item of data) {
             this.forms.push(this.createItem(item.template, item.partyId, item.shopId));
         }
+        this.forms.patchValue(this.forms.value);
     }
 
     private createItem(templateId = '', partyId = '', shopId = '') {

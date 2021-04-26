@@ -1,14 +1,13 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { OperationType } from '../../../../../shared/constants/operation-type';
-import { CsvUtilsService } from '../../../../../shared/services/utils/csv-utils.service';
-import { LAYOUT_GAP_M } from '../../../../../tokens';
+import { OperationType } from '../../../../shared/constants/operation-type';
+import { LAYOUT_GAP_M } from '../../../../tokens';
 import { CreatePaymentReferenceService } from '../../services/create-payment-reference.service';
 
 @Component({
     templateUrl: 'create-payment-reference.component.html',
-    providers: [CreatePaymentReferenceService, CsvUtilsService],
+    providers: [CreatePaymentReferenceService],
 })
 export class CreatePaymentReferenceComponent {
     forms = this.createPaymentReferenceService.forms;
@@ -21,7 +20,7 @@ export class CreatePaymentReferenceComponent {
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.createPaymentReferenceService.created$.subscribe((q) => {
-            this.router.navigate(['/references/payments']);
+            this.router.navigate(['/groups-reference/payments']);
         });
     }
 
@@ -35,9 +34,5 @@ export class CreatePaymentReferenceComponent {
 
     createReference() {
         this.createPaymentReferenceService.create();
-    }
-
-    prepareFilesList(files: Array<any>): void {
-        this.createPaymentReferenceService.prepareFilesList(files);
     }
 }

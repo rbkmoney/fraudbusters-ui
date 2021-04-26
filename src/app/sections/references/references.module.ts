@@ -4,6 +4,7 @@ import { FlexModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -19,6 +20,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { P2pTemplatesModule, PaymentTemplatesModule } from '../../api';
 import { ConfirmActionDialogModule } from '../../shared/components/confirm-action-dialog';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
+import { PaymentReferencesListModule } from '../../shared/components/payment-references-list';
+import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
 import { TemplateReferencesModule } from '../../shared/components/template-references';
 import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
 import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
@@ -59,6 +62,9 @@ import { ReferencesComponent } from './references.component';
         PaymentTemplatesModule,
         P2pTemplatesModule,
         TemplateReferencesModule,
+        PaymentReferencesListModule,
+        MatDividerModule,
+        ShowMorePanelModule,
     ],
     declarations: [ReferencesComponent, P2pReferencesComponent, PaymentReferencesComponent],
     // TODO: need to refactor these services

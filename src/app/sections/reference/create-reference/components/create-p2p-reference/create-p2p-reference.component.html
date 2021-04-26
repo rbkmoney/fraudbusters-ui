@@ -2,27 +2,34 @@
     <mat-card-content fxLayout="column" fxLayoutGap="16px">
         <div fxLayout="column" fxLayoutGap="8px">
             <ng-container *ngFor="let form of forms.controls; let i = index">
-                <form [formGroup]="form" fxLayout fxLayoutGap="8px" fxLayoutAlign="space-between center">
+                <form
+                    class="create-p2p-reference-form"
+                    [formGroup]="form"
+                    fxLayout
+                    [fxLayoutGap]="layoutGapM"
+                    fxLayoutAlign="space-between center"
+                >
                     <fb-template-id
                         formControlName="templateId"
                         [operationType]="operationType.Payment"
-                        fxFlex="50"
+                        [floatLabelType]="'never'"
+                        [appearanceType]="'outline'"
+                        fxFlex
                     ></fb-template-id>
-                    <mat-form-field floatLabel="always" fxFlex="50">
-                        <input
-                            matInput
-                            placeholder="Identity ID"
-                            label="identityId"
-                            formControlName="identityId"
-                            name="identityId"
-                        />
+                    <mat-form-field fxFlex floatLabel="never" appearance="outline">
+                        <input matInput placeholder="Identity ID" formControlName="identityId" />
                     </mat-form-field>
-                    <button mat-icon-button class="remove-btn" (click)="removeItem(i)" [disabled]="inProgress$ | async">
+                    <button
+                        [style.visibility]="i ? 'visible' : 'hidden'"
+                        mat-icon-button
+                        class="remove-btn"
+                        (click)="removeItem(i)"
+                        [disabled]="inProgress$ | async"
+                    >
                         <mat-icon>remove</mat-icon>
                     </button>
                 </form>
             </ng-container>
-            <button mat-button (click)="addItem()" fxFlex [disabled]="inProgress$ | async">ADD ROW</button>
         </div>
         <div fxLayout fxLayoutAlign="end center" fxLayoutGap="8px">
             <input
@@ -34,6 +41,14 @@
                 (change)="prepareFilesList($event.target.files)"
             />
             <button mat-button color="accent" (click)="fileDropRef.click()">Add from CSV</button>
+            <button
+                mat-button
+                color="accent"
+                (click)="addItem()"
+                [disabled]="!forms.valid || (inProgress$ | async) || forms.value.length < 1"
+            >
+                Add Reference
+            </button>
             <button
                 mat-raised-button
                 color="primary"
