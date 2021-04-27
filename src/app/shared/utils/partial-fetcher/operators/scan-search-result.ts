@@ -4,7 +4,6 @@ import { catchError, first, map, mergeScan } from 'rxjs/operators';
 import { FetchAction } from '../fetch-action';
 import { FetchFn } from '../fetch-fn';
 import { FetchResult } from '../fetch-result';
-import { log } from 'util';
 
 export const handleFetchResultError = <R>(result: R[] = [], count?: number) => (
     s: Observable<FetchResult<R>>
