@@ -67,7 +67,7 @@ export class PaymentReferencesComponent {
         this.fetchReferencesService.search({ type: OperationType.Payment, searchValue, isGlobal: false });
     }
 
-    fetchMore() {
-        this.fetchReferencesService.fetchMore();
+    fetchMore(sortFieldValue: string) {
+        this.fetchReferencesService.fetchMore({ type: OperationType.Payment, sortFieldValue, isGlobal: false });
     }
 }

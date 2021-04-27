@@ -62,7 +62,7 @@ export class P2pReferencesComponent {
         this.fetchReferencesService.search({ type: OperationType.PeerToPeer, searchValue, isGlobal: false });
     }
 
-    fetchMore() {
-        this.fetchReferencesService.fetchMore();
+    fetchMore(sortFieldValue: string) {
+        this.fetchReferencesService.fetchMore({ type: OperationType.PeerToPeer, sortFieldValue, isGlobal: false });
     }
 }

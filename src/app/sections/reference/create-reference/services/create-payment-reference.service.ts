@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Papa } from 'ngx-papaparse';
 import { EMPTY, merge, Subject } from 'rxjs';
@@ -92,7 +92,7 @@ export class CreatePaymentReferenceService {
         return this.fb.group({
             templateId: [templateId, Validators.required],
             partyId: [partyId, Validators.required],
-            shopId: [shopId, Validators.required],
+            shopId: [shopId],
             isDefault: false,
             isGlobal: false,
         });

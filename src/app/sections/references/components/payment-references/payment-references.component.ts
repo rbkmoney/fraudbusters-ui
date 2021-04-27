@@ -41,8 +41,13 @@ export class PaymentReferencesComponent {
         });
     }
 
-    fetchMore() {
-        this.fetchReferencesService.fetchMore();
+    fetchMore(sortFieldValue: string) {
+        this.fetchReferencesService.fetchMore({
+            type: OperationType.Payment,
+            sortFieldValue,
+            isGlobal: false,
+            isDefault: false,
+        });
     }
 
     goToTemplate(id: string) {
