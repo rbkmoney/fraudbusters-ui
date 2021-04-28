@@ -75,8 +75,8 @@ export abstract class PartialFetcher<R, P> {
         this.action$.next({ type: 'search' });
     }
 
-    fetchMore() {
-        this.action$.next({ type: 'fetchMore' });
+    fetchMore(value?: P) {
+        this.action$.next(value ? { type: 'fetchMore', value } : { type: 'fetchMore' });
     }
 
     protected abstract fetch(...args: Parameters<FetchFn<P, R>>): ReturnType<FetchFn<P, R>>;

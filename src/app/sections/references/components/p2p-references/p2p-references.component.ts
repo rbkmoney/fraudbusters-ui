@@ -73,7 +73,12 @@ export class P2pReferencesComponent {
         });
     }
 
-    fetchMore() {
-        this.fetchReferencesService.fetchMore();
+    fetchMore(sortFieldValue: string) {
+        this.fetchReferencesService.fetchMore({
+            type: OperationType.PeerToPeer,
+            sortFieldValue,
+            isGlobal: false,
+            isDefault: false,
+        });
     }
 }

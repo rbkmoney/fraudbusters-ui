@@ -15,7 +15,7 @@
                     fxFlex="100"
                     mat-button
                     *ngIf="hasMore$ | async"
-                    (click)="fetchMore()"
+                    (click)="fetchMore(references[references.length - 1].groupId)"
                     [disabled]="inProgress$ | async"
                 >
                     SHOW MORE

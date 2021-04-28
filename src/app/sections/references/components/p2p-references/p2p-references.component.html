@@ -13,7 +13,7 @@
                 <fb-show-more-panel
                     *ngIf="hasMore$ | async"
                     [isLoading]="inProgress$ | async"
-                    (showMore)="fetchMore()"
+                    (showMore)="fetchMore(references[references.length - 1].templateId)"
                 ></fb-show-more-panel>
             </mat-card-content>
             <mat-card-footer *ngIf="inProgress$ | async">

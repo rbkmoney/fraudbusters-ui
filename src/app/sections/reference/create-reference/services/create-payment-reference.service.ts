@@ -92,7 +92,7 @@ export class CreatePaymentReferenceService {
         return this.fb.group({
             templateId: [templateId, Validators.required],
             partyId: [partyId, Validators.required],
-            shopId: [shopId, Validators.required],
+            shopId: [shopId],
             isDefault: false,
             isGlobal: false,
         });
