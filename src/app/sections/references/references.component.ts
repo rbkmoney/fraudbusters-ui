@@ -20,11 +20,6 @@ export class ReferencesComponent {
             name: 'Peer To Peer',
             otherActiveUrlFragments: [],
         },
-        {
-            path: 'default',
-            name: 'Default References',
-            otherActiveUrlFragments: ['default'],
-        },
     ];
 
     constructor(private router: Router, @Inject(LAYOUT_GAP_S) public layoutGapS: string) {}

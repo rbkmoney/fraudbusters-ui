@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('./references').then((m) => m.ReferencesModule),
     },
     {
+        path: 'default-references',
+        loadChildren: () => import('./default-references').then((m) => m.DefaultReferencesModule),
+    },
+    {
         path: 'reference',
         loadChildren: () => import('./reference').then((m) => m.ReferenceModule),
     },

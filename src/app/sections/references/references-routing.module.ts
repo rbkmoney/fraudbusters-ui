@@ -28,10 +28,6 @@ import { ReferencesComponent } from './references.component';
                         data: { roles: [Roles.fraudOfficer] },
                     },
                     {
-                        path: 'default',
-                        loadChildren: () => import('./default-references').then((m) => m.DefaultReferencesModule),
-                    },
-                    {
                         path: '',
                         redirectTo: 'payments',
                     },

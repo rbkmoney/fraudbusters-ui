@@ -9,6 +9,9 @@ import { HttpSearchResponse } from '../../model/http-search-response';
 import { filterParameters } from '../../utils/filter-params';
 import { IReferencesService } from './ireferences.service';
 import { SearchReferenceParams } from './model/search-reference-params';
+import { SearchParams } from '../../model/search-params';
+import { DefaultPaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/defaultPaymentReferenceModel';
+import { TemplateModel } from '../../../api/fb-management/swagger-codegen/model/templateModel';
 
 @Injectable()
 export class PaymentReferencesService implements IReferencesService {
@@ -36,6 +39,15 @@ export class PaymentReferencesService implements IReferencesService {
             `${this.fbManagementEndpoint}/template/references`,
             references,
             new HttpRequestModel()
+        );
+    }
+
+    findDefaultReferences(params?: SearchParams): Observable<HttpSearchResponse<DefaultPaymentReferenceModel>> {
+        return this.http.get<HttpSearchResponse<TemplateModel>>(
+            `${this.fbManagementEndpoint}/reference/default/filter/`,
+            {
+                params: filterParameters(params),
+            }
         );
     }
 }

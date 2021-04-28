@@ -10,6 +10,10 @@ import { HttpSearchResponse } from '../../model/http-search-response';
 import { filterParameters } from '../../utils/filter-params';
 import { IReferencesService } from './ireferences.service';
 import { SearchReferenceParams } from './model/search-reference-params';
+import { SearchParams } from '../../model/search-params';
+import { DefaultPaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/defaultPaymentReferenceModel';
+import { TemplateModel } from '../../../api/fb-management/swagger-codegen/model/templateModel';
+import { DefaultP2pReferenceModel } from '../../../api/fb-management/swagger-codegen/model/defaultP2pReferenceModel';
 
 @Injectable()
 export class P2pReferencesService implements IReferencesService {
@@ -38,6 +42,15 @@ export class P2pReferencesService implements IReferencesService {
             `${this.fbManagementEndpoint}/p2p/template/references`,
             references,
             new HttpRequestModel()
+        );
+    }
+
+    findDefaultReferences(params?: SearchParams): Observable<HttpSearchResponse<DefaultP2pReferenceModel>> {
+        return this.http.get<HttpSearchResponse<TemplateModel>>(
+            `${this.fbManagementEndpoint}/p2p/reference/default/filter/`,
+            {
+                params: filterParameters(params),
+            }
         );
     }
 }

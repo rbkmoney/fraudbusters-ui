@@ -1,27 +1,20 @@
-<div fxLayout="column" [fxLayoutGap]="layoutGapS">
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
     <div fxLayout fxLayoutAlign="space-between center">
-        <div fxLayout="row">
-            <fb-navigation-menu></fb-navigation-menu>
-            <fb-template-references-search (valueChanges)="search($event)"></fb-template-references-search>
-        </div>
+        <fb-template-references-search (valueChanges)="search($event)"></fb-template-references-search>
         <button mat-button color="primary" (click)="createReference()">CREATE REFERENCE</button>
     </div>
     <div *ngIf="references$ | async as references; else Empty">
         <mat-card *ngIf="references.length > 0; else Empty">
-            <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapS" fxLayoutAlign="space-around stretch">
-                <fb-payment-template-references-table
+            <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapM" fxLayoutAlign="space-around stretch">
+                <fb-p2p-template-references-table
                     (action)="action($event)"
                     [references]="references"
-                ></fb-payment-template-references-table>
-                <button
-                    fxFlex="100"
-                    mat-button
+                ></fb-p2p-template-references-table>
+                <fb-show-more-panel
                     *ngIf="hasMore$ | async"
-                    (click)="fetchMore()"
-                    [disabled]="inProgress$ | async"
-                >
-                    SHOW MORE
-                </button>
+                    [isLoading]="inProgress$ | async"
+                    (showMore)="fetchMore(references[references.length - 1].templateId)"
+                ></fb-show-more-panel>
             </mat-card-content>
             <mat-card-footer *ngIf="inProgress$ | async">
                 <mat-progress-bar mode="indeterminate"></mat-progress-bar>
