@@ -1,0 +1,38 @@
+<mat-card>
+    <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <form
+            class="create-payment-reference-form"
+            [formGroup]="form"
+            fxLayout
+            [fxLayoutGap]="layoutGapM"
+            fxLayoutAlign="center center"
+        >
+            <fb-template-id
+                formControlName="templateId"
+                [operationType]="operationType.Payment"
+                [floatLabelType]="'never'"
+                [appearanceType]="'outline'"
+                fxFlex
+            ></fb-template-id>
+            <mat-form-field fxFlex appearance="outline">
+                <input matInput placeholder="Party ID" formControlName="partyId" type="string" autocomplete="false" />
+            </mat-form-field>
+            <mat-form-field fxFlex appearance="outline">
+                <input matInput placeholder="Shop ID" formControlName="shopId" type="string" autocomplete="false" />
+            </mat-form-field>
+        </form>
+        <div fxLayout fxLayoutAlign="end center" [fxLayoutGap]="layoutGapM">
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="createReference()"
+                [disabled]="!form.valid || (inProgress$ | async) || form.value.length < 1"
+            >
+                Create
+            </button>
+        </div>
+    </mat-card-content>
+    <mat-card-footer *ngIf="inProgress$ | async">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+</mat-card>

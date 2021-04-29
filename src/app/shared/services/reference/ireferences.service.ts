@@ -17,6 +17,10 @@ export interface IReferencesService {
 
     saveReferences(reference: PaymentReferenceModel[] | P2pReferenceModel[]): Observable<string[]>;
 
+    saveDefaultReference(reference: DefaultPaymentReferenceModel | DefaultP2pReferenceModel): Observable<string>;
+
+    deleteDefaultReference(reference: DefaultPaymentReferenceModel | DefaultP2pReferenceModel): Observable<string>;
+
     findDefaultReferences(
         params?: SearchParams
     ): Observable<HttpSearchResponse<DefaultPaymentReferenceModel | DefaultP2pReferenceModel>>;

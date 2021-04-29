@@ -42,6 +42,18 @@ export class PaymentReferencesService implements IReferencesService {
         );
     }
 
+    deleteDefaultReference(reference: DefaultPaymentReferenceModel): Observable<string> {
+        return this.http.delete(`${this.fbManagementEndpoint}/template/${reference.id}/default`, {
+            responseType: 'text',
+        });
+    }
+
+    saveDefaultReference(reference: DefaultPaymentReferenceModel): Observable<string> {
+        return this.http.post(`${this.fbManagementEndpoint}/template/${reference.templateId}/default`, reference, {
+            responseType: 'text',
+        });
+    }
+
     findDefaultReferences(params?: SearchParams): Observable<HttpSearchResponse<DefaultPaymentReferenceModel>> {
         return this.http.get<HttpSearchResponse<TemplateModel>>(
             `${this.fbManagementEndpoint}/reference/default/filter/`,

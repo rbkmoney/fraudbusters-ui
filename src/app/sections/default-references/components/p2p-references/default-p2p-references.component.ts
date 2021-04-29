@@ -31,7 +31,7 @@ export class DefaultP2pReferencesComponent {
     }
 
     createReference() {
-        this.router.navigate(['/default-reference/new/payment']);
+        this.router.navigate(['/default-reference/new/p2p']);
     }
 
     search(searchValue: string) {

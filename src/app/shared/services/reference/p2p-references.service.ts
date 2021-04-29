@@ -13,6 +13,7 @@ import { SearchParams } from '../../model/search-params';
 import { filterParameters } from '../../utils/filter-params';
 import { IReferencesService } from './ireferences.service';
 import { SearchReferenceParams } from './model/search-reference-params';
+import { DefaultPaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/defaultPaymentReferenceModel';
 
 @Injectable()
 export class P2pReferencesService implements IReferencesService {
@@ -51,5 +52,17 @@ export class P2pReferencesService implements IReferencesService {
                 params: filterParameters(params),
             }
         );
+    }
+
+    deleteDefaultReference(reference: DefaultP2pReferenceModel): Observable<string> {
+        return this.http.delete<string>(
+            `${this.fbManagementEndpoint}/p2p/template/${reference.templateId}/reference/${reference.id}`
+        );
+    }
+
+    saveDefaultReference(reference: DefaultP2pReferenceModel): Observable<string> {
+        return this.http.post(`${this.fbManagementEndpoint}/p2p/template/${reference.templateId}/default`, reference, {
+            responseType: 'text',
+        });
     }
 }
