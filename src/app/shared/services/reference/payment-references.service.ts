@@ -2,16 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { DefaultPaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/defaultPaymentReferenceModel';
 import { PaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
+import { TemplateModel } from '../../../api/fb-management/swagger-codegen/model/templateModel';
 import { ConfigService } from '../../../config';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { HttpSearchResponse } from '../../model/http-search-response';
+import { SearchParams } from '../../model/search-params';
 import { filterParameters } from '../../utils/filter-params';
 import { IReferencesService } from './ireferences.service';
 import { SearchReferenceParams } from './model/search-reference-params';
-import { SearchParams } from '../../model/search-params';
-import { DefaultPaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/defaultPaymentReferenceModel';
-import { TemplateModel } from '../../../api/fb-management/swagger-codegen/model/templateModel';
 
 @Injectable()
 export class PaymentReferencesService implements IReferencesService {

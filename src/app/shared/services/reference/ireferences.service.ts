@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs';
 
+import { DefaultP2pReferenceModel } from '../../../api/fb-management/swagger-codegen/model/defaultP2pReferenceModel';
+import { DefaultPaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/defaultPaymentReferenceModel';
 import { P2pReferenceModel } from '../../../api/fb-management/swagger-codegen/model/p2pReferenceModel';
 import { PaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
 import { HttpSearchResponse } from '../../model/http-search-response';
-import { SearchReferenceParams } from './model/search-reference-params';
 import { SearchParams } from '../../model/search-params';
-import { DefaultPaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/defaultPaymentReferenceModel';
-import { DefaultP2pReferenceModel } from '../../../api/fb-management/swagger-codegen/model/defaultP2pReferenceModel';
+import { SearchReferenceParams } from './model/search-reference-params';
 
 export interface IReferencesService {
     findReferences(

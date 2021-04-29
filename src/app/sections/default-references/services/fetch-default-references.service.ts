@@ -8,8 +8,8 @@ import { ConfigService } from '../../../config';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDelay } from '../../../shared/operators';
-import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
 import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
+import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
 
 export interface FetchDefaultReferencesParams {
     type: OperationType;

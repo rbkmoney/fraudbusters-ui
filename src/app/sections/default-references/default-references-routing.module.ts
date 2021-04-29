@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { DefaultReferencesComponent } from './default-references.component';
 import { AuthGuard, Roles } from '../../auth';
 import { DefaultP2pReferencesComponent } from './components/p2p-references/default-p2p-references.component';
 import { DefaultPaymentReferencesComponent } from './components/payment-references/default-payment-references.component';
+import { DefaultReferencesComponent } from './default-references.component';
 
 @NgModule({
     imports: [
