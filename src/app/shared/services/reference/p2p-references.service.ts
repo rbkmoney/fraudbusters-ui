@@ -54,13 +54,13 @@ export class P2pReferencesService implements IReferencesService {
     }
 
     deleteDefaultReference(reference: DefaultP2pReferenceModel): Observable<string> {
-        return this.http.delete(`${this.fbManagementEndpoint}/p2p/template/${reference.id}/default`, {
+        return this.http.delete(`${this.fbManagementEndpoint}/p2p/template/default-references/${reference.id}`, {
             responseType: 'text',
         });
     }
 
     saveDefaultReference(reference: DefaultP2pReferenceModel): Observable<string> {
-        return this.http.post(`${this.fbManagementEndpoint}/p2p/template/${reference.templateId}/default`, reference, {
+        return this.http.post(`${this.fbManagementEndpoint}/p2p/template/default-references`, reference, {
             responseType: 'text',
         });
     }

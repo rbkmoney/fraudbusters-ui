@@ -43,13 +43,13 @@ export class PaymentReferencesService implements IReferencesService {
     }
 
     deleteDefaultReference(reference: DefaultPaymentReferenceModel): Observable<string> {
-        return this.http.delete(`${this.fbManagementEndpoint}/template/${reference.id}/default`, {
+        return this.http.delete(`${this.fbManagementEndpoint}/template/default-references/${reference.id}`, {
             responseType: 'text',
         });
     }
 
     saveDefaultReference(reference: DefaultPaymentReferenceModel): Observable<string> {
-        return this.http.post(`${this.fbManagementEndpoint}/template/${reference.templateId}/default`, reference, {
+        return this.http.post(`${this.fbManagementEndpoint}/template/default-references`, reference, {
             responseType: 'text',
         });
     }
