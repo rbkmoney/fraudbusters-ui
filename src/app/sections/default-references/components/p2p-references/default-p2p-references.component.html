@@ -4,22 +4,17 @@
         <button mat-button color="primary" (click)="createReference()">CREATE REFERENCE</button>
     </div>
     <div *ngIf="references$ | async as references; else Empty">
-        <mat-card *ngIf="references.length > 0; else Empty">
-            <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapM" fxLayoutAlign="space-around stretch">
-                <fb-p2p-template-references-table
-                    (action)="action($event)"
-                    [references]="references"
-                ></fb-p2p-template-references-table>
-                <fb-show-more-panel
-                    *ngIf="hasMore$ | async"
-                    [isLoading]="inProgress$ | async"
-                    (showMore)="fetchMore(references[references.length - 1].templateId)"
-                ></fb-show-more-panel>
-            </mat-card-content>
-            <mat-card-footer *ngIf="inProgress$ | async">
-                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-            </mat-card-footer>
-        </mat-card>
+        <fb-payment-references-list
+            *ngIf="references.length > 0; else Empty"
+            [references]="references"
+            (goToTemplate)="goToTemplate($event)"
+            (deleteItem)="removeReference($event)"
+        ></fb-payment-references-list>
+        <fb-show-more-panel
+            *ngIf="hasMore$ | async"
+            [isLoading]="inProgress$ | async"
+            (showMore)="fetchMore(references[references.length - 1].templateId)"
+        ></fb-show-more-panel>
     </div>
 </div>
 

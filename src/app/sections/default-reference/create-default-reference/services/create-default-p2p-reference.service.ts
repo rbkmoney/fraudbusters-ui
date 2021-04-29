@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, merge, Subject } from 'rxjs';
-import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
+import { catchError, shareReplay, switchMap } from 'rxjs/operators';
 
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { progress } from '../../../../shared/operators';
