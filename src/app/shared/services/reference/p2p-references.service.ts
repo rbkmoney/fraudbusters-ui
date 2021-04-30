@@ -2,11 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { DefaultP2pReferenceModel } from '../../../api/fb-management/swagger-codegen/model/defaultP2pReferenceModel';
 import { P2pReferenceModel } from '../../../api/fb-management/swagger-codegen/model/p2pReferenceModel';
+import { TemplateModel } from '../../../api/fb-management/swagger-codegen/model/templateModel';
 import { ConfigService } from '../../../config';
 import { ReferenceModule } from '../../../sections/reference';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { HttpSearchResponse } from '../../model/http-search-response';
+import { SearchParams } from '../../model/search-params';
 import { filterParameters } from '../../utils/filter-params';
 import { IReferencesService } from './ireferences.service';
 import { SearchReferenceParams } from './model/search-reference-params';
@@ -39,5 +42,26 @@ export class P2pReferencesService implements IReferencesService {
             references,
             new HttpRequestModel()
         );
+    }
+
+    findDefaultReferences(params?: SearchParams): Observable<HttpSearchResponse<DefaultP2pReferenceModel>> {
+        return this.http.get<HttpSearchResponse<TemplateModel>>(
+            `${this.fbManagementEndpoint}/p2p/reference/default/filter/`,
+            {
+                params: filterParameters(params),
+            }
+        );
+    }
+
+    deleteDefaultReference(reference: DefaultP2pReferenceModel): Observable<string> {
+        return this.http.delete(`${this.fbManagementEndpoint}/p2p/template/default-references/${reference.id}`, {
+            responseType: 'text',
+        });
+    }
+
+    saveDefaultReference(reference: DefaultP2pReferenceModel): Observable<string> {
+        return this.http.post(`${this.fbManagementEndpoint}/p2p/template/default-references`, reference, {
+            responseType: 'text',
+        });
     }
 }

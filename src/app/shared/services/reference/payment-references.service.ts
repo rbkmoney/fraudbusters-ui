@@ -2,10 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { DefaultPaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/defaultPaymentReferenceModel';
 import { PaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
+import { TemplateModel } from '../../../api/fb-management/swagger-codegen/model/templateModel';
 import { ConfigService } from '../../../config';
 import { HttpRequestModel } from '../../model/http-request-model';
 import { HttpSearchResponse } from '../../model/http-search-response';
+import { SearchParams } from '../../model/search-params';
 import { filterParameters } from '../../utils/filter-params';
 import { IReferencesService } from './ireferences.service';
 import { SearchReferenceParams } from './model/search-reference-params';
@@ -36,6 +39,27 @@ export class PaymentReferencesService implements IReferencesService {
             `${this.fbManagementEndpoint}/template/references`,
             references,
             new HttpRequestModel()
+        );
+    }
+
+    deleteDefaultReference(reference: DefaultPaymentReferenceModel): Observable<string> {
+        return this.http.delete(`${this.fbManagementEndpoint}/template/default-references/${reference.id}`, {
+            responseType: 'text',
+        });
+    }
+
+    saveDefaultReference(reference: DefaultPaymentReferenceModel): Observable<string> {
+        return this.http.post(`${this.fbManagementEndpoint}/template/default-references`, reference, {
+            responseType: 'text',
+        });
+    }
+
+    findDefaultReferences(params?: SearchParams): Observable<HttpSearchResponse<DefaultPaymentReferenceModel>> {
+        return this.http.get<HttpSearchResponse<TemplateModel>>(
+            `${this.fbManagementEndpoint}/reference/default/filter/`,
+            {
+                params: filterParameters(params),
+            }
         );
     }
 }

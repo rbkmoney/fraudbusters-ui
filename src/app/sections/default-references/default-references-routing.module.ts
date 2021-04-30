@@ -2,28 +2,28 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../auth';
-import { P2pReferencesComponent } from './components/p2p-references/p2p-references.component';
-import { PaymentReferencesComponent } from './components/payment-references/payment-references.component';
-import { ReferencesComponent } from './references.component';
+import { DefaultP2pReferencesComponent } from './components/p2p-references/default-p2p-references.component';
+import { DefaultPaymentReferencesComponent } from './components/payment-references/default-payment-references.component';
+import { DefaultReferencesComponent } from './default-references.component';
 
 @NgModule({
     imports: [
         RouterModule.forChild([
             {
                 path: '',
-                component: ReferencesComponent,
+                component: DefaultReferencesComponent,
                 canActivate: [AuthGuard],
                 data: { roles: [Roles.fraudOfficer] },
                 children: [
                     {
                         path: 'p2p',
-                        component: P2pReferencesComponent,
+                        component: DefaultP2pReferencesComponent,
                         canActivate: [AuthGuard],
                         data: { roles: [Roles.fraudOfficer] },
                     },
                     {
                         path: 'payments',
-                        component: PaymentReferencesComponent,
+                        component: DefaultPaymentReferencesComponent,
                         canActivate: [AuthGuard],
                         data: { roles: [Roles.fraudOfficer] },
                     },
@@ -37,4 +37,4 @@ import { ReferencesComponent } from './references.component';
     ],
     exports: [RouterModule],
 })
-export class ReferencesRoutingModule {}
+export class DefaultReferencesRoutingModule {}

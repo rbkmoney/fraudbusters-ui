@@ -18,6 +18,11 @@ export class MenuModel {
                     route: 'references',
                     roles: [Roles.fraudOfficer],
                 },
+                {
+                    displayName: 'Default reference',
+                    route: 'default-references',
+                    roles: [Roles.fraudOfficer],
+                },
             ],
         },
         {
