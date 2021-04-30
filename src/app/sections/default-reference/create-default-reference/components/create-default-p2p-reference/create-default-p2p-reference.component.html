@@ -1,0 +1,37 @@
+<mat-card>
+    <mat-card-content fxLayout="column" fxLayoutGap="16px">
+        <div fxLayout="column" fxLayoutGap="8px">
+            <form
+                class="create-p2p-reference-form"
+                [formGroup]="form"
+                fxLayout
+                [fxLayoutGap]="layoutGapM"
+                fxLayoutAlign="space-between center"
+            >
+                <fb-template-id
+                    formControlName="templateId"
+                    [operationType]="operationType.PeerToPeer"
+                    [floatLabelType]="'never'"
+                    [appearanceType]="'outline'"
+                    fxFlex
+                ></fb-template-id>
+                <mat-form-field fxFlex floatLabel="never" appearance="outline">
+                    <input matInput placeholder="Identity ID" formControlName="identityId" />
+                </mat-form-field>
+            </form>
+        </div>
+        <div fxLayout fxLayoutAlign="end center" fxLayoutGap="8px">
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="createReference()"
+                [disabled]="!form.valid || (inProgress$ | async) || form.value.length < 1"
+            >
+                Create
+            </button>
+        </div>
+    </mat-card-content>
+    <mat-card-footer *ngIf="inProgress$ | async">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+</mat-card>

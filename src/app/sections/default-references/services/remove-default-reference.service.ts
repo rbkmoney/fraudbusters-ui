@@ -35,7 +35,7 @@ export class RemoveDefaultReferenceService {
         switchMap(([params]) =>
             this.operationTypeManagementService
                 .findReferenceService(params.type)
-                .deleteReference(params.reference)
+                .deleteDefaultReference(params.reference)
                 .pipe(
                     catchError((error: HttpErrorResponse) => {
                         this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
