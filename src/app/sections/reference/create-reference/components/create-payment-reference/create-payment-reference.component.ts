@@ -5,6 +5,7 @@ import { OperationType } from '../../../../../shared/constants/operation-type';
 import { CsvUtilsService } from '../../../../../shared/services/utils/csv-utils.service';
 import { LAYOUT_GAP_M } from '../../../../../tokens';
 import { CreatePaymentReferenceService } from '../../services/create-payment-reference.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     templateUrl: 'create-payment-reference.component.html',

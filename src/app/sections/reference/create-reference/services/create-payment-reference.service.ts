@@ -22,7 +22,11 @@ export class CreatePaymentReferenceService {
         switchMap(() =>
             this.referenceService.saveReferences(OperationType.Payment, this.forms.value).pipe(
                 catchError((error: HttpErrorResponse) => {
-                    this.snackBar.open(`${error.status}: ${error.message}`, 'OK');
+                    if (error.status === 422) {
+                        this.snackBar.open(`Unknown template ids: ${error.error}`, 'ERROR');
+                    } else {
+                        this.snackBar.open(`${error.status}: ${error.message}`, 'ERROR');
+                    }
                     this.errors$.next();
                     return EMPTY;
                 })
