@@ -7,9 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { TemplatesService } from '../../template/services/templates/templates.service';
-import { GroupsService } from '../groups.service';
 import { Group } from '../model/group';
 import { GroupUtilsService } from '../utils/group-utils.service';
+import { PaymentGroupsService } from '../../../api/payments/groups';
 
 @Component({
     templateUrl: './create-group.component.html',
@@ -24,7 +24,7 @@ export class CreateGroupComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private groupsService: GroupsService,
+        private groupsService: PaymentGroupsService,
         private templatesService: TemplatesService,
         private errorHandlerService: ErrorHandlerService,
         private groupUtilsService: GroupUtilsService,
@@ -38,7 +38,7 @@ export class CreateGroupComponent implements OnInit {
     private preloadData(): void {
         this.route.fragment.subscribe((fragment: string) => {
             this.operationType = OperationType[fragment];
-            this.templatesService.getTemplatesName(this.operationType, '').subscribe(
+            this.templatesService.getTemplatesName('').subscribe(
                 (names) => {
                     this.options = names;
                 },
@@ -49,7 +49,7 @@ export class CreateGroupComponent implements OnInit {
     }
 
     save(): void {
-        this.groupsService.saveGroup(this.operationType, this.newGroup).subscribe(
+        this.groupsService.save(this.newGroup).subscribe(
             (id) => {
                 this.navigateToEdit(id);
                 this.snackBar.open(`Saved success: ${id}`, 'OK', {

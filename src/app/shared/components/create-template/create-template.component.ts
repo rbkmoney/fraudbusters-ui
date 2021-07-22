@@ -2,13 +2,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-
-import { TemplateModel } from '../../../api/fb-management/swagger-codegen/model/templateModel';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 import { OperationType } from '../../constants/operation-type';
 import { checkValidateResponse } from '../../services/utils/check-validation-response';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
 import { TemplateService } from './services/template/template.service';
+import { Template } from '../../../api/fb-management/swagger-codegen/model/template';
 
 @Component({
     selector: 'fb-create-template',
@@ -19,7 +18,7 @@ import { TemplateService } from './services/template/template.service';
 export class CreateTemplateComponent implements OnInit {
     @Input() operationType: OperationType;
 
-    @Input() template: TemplateModel;
+    @Input() template: Template;
 
     form = this.templateService.form;
 

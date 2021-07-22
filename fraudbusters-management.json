@@ -1,0 +1,2274 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "version": "1.0.0",
+        "title": "RBKmoney Fraudbusters Management API",
+        "description": "Fraudbusters management API является интерфейсом для \nсервиса управления антифрод системой.\n\nМы предоставляем REST API поверх HTTP-протокола, схема которого описывается в\nсоответствии со стандартом [OpenAPI 3][OAS3].\nКоды возврата описываются соответствующими HTTP-статусами. Платформа принимает и\nвозвращает значения JSON в теле запросов и ответов.\n\n[OAS3]: https://swagger.io/specification/\n\n## Формат содержимого\n\nЛюбой запрос к API должен выполняться в кодировке UTF-8 и с указанием\nсодержимого в формате JSON.\n\n```\nContent-Type: application/json; charset=utf-8\n```\n",
+        "termsOfService": "https://rbk.money/",
+        "contact": {
+            "name": "RBKmoney Support Team",
+            "email": "support@rbk.money",
+            "url": "https://developer.rbk.money"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "security": [
+        {
+            "bearer": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "audit",
+            "x-displayName": "Audit"
+        },
+        {
+            "name": "notification",
+            "x-displayName": "Notifications"
+        },
+        {
+            "name": "group",
+            "x-displayName": "Groups"
+        },
+        {
+            "name": "group-reference",
+            "x-displayName": "Groups reference"
+        },
+        {
+            "name": "lists",
+            "x-displayName": "Lists"
+        },
+        {
+            "name": "emulation",
+            "x-displayName": "Emulation"
+        },
+        {
+            "name": "load-data",
+            "x-displayName": "Load data"
+        },
+        {
+            "name": "template",
+            "x-displayName": "Templates"
+        },
+        {
+            "name": "reference",
+            "x-displayName": "References"
+        },
+        {
+            "name": "historical-data",
+            "x-displayName": "Historical data"
+        }
+    ],
+    "paths": {
+        "/audit/commandTypes": {
+            "get": {
+                "summary": "Список команд",
+                "operationId": "getCommandTypes",
+                "tags": ["audit"],
+                "responses": {
+                    "201": {
+                        "description": "Command types list",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/audit/filter": {
+            "get": {
+                "summary": "Поиск логов аудита",
+                "operationId": "filterLogs",
+                "tags": ["audit"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/lastId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortOrder"
+                    },
+                    {
+                        "$ref": "#/components/parameters/searchValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortFieldValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/size"
+                    },
+                    {
+                        "name": "commandTypes",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "objectTypes",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Audit logs",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FilterLogsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/audit/objectTypes": {
+            "get": {
+                "summary": "Список объектов",
+                "operationId": "getObjectTypes",
+                "tags": ["audit"],
+                "responses": {
+                    "201": {
+                        "description": "Object types list",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/notifications": {
+            "post": {
+                "summary": "Создание нотификации",
+                "operationId": "createOrUpdateNotification",
+                "tags": ["notification"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created row in list",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Notification"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/notifications/{name}": {
+            "delete": {
+                "summary": "Удалить нотификацию",
+                "operationId": "removeNotification",
+                "tags": ["notification"],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Removed notification"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/notifications/validate": {
+            "post": {
+                "summary": "Проверка нотификации",
+                "operationId": "validateNotification",
+                "tags": ["notification"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Notification"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created row in list",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/notifications/channels": {
+            "post": {
+                "summary": "Создание канала для нотификаций",
+                "operationId": "createChannel",
+                "tags": ["notification"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Channel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created row in list",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Channel"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/notifications/channels/{name}": {
+            "delete": {
+                "summary": "Удалить канал для нотификации",
+                "operationId": "removeChannel",
+                "tags": ["notification"],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Removed notification"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-load-data/fraud-payments": {
+            "post": {
+                "summary": "Загрузка данных из файла с фродовыми операциями",
+                "operationId": "loadFraudPayments",
+                "tags": ["load-data"],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Load file with fraud data"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-groups": {
+            "post": {
+                "summary": "Создание группы",
+                "operationId": "insertGroup",
+                "tags": ["group"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Group"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created group id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-groups/{groupId}": {
+            "delete": {
+                "summary": "Удаление группы",
+                "operationId": "removeGroup",
+                "tags": ["group"],
+                "parameters": [
+                    {
+                        "name": "groupId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Removed group id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-groups/filter": {
+            "get": {
+                "summary": "Поиск груп",
+                "operationId": "filterGroups",
+                "tags": ["group"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/sortOrder"
+                    },
+                    {
+                        "$ref": "#/components/parameters/searchValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortFieldValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/size"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Groups models",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GroupsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-groups/{id}": {
+            "get": {
+                "summary": "Поиск группы",
+                "operationId": "getGroup",
+                "tags": ["group"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Group model",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Group"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-groups/{id}/references": {
+            "post": {
+                "summary": "Привязка группы к магазинам",
+                "operationId": "insertGroupReferences",
+                "tags": ["group-reference"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/GroupReference"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created group id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-groups/{id}/references/remove": {
+            "delete": {
+                "summary": "Удаление ссылки на группу",
+                "operationId": "removeGroupReference",
+                "tags": ["group-reference"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "groupId",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "partyId",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "shopId",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Removed group reference id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-groups/references/filter": {
+            "get": {
+                "summary": "Поиск ссылок на группы",
+                "operationId": "filterGroupsReferences",
+                "tags": ["group-reference"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/sortOrder"
+                    },
+                    {
+                        "$ref": "#/components/parameters/searchValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortFieldValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/size"
+                    },
+                    {
+                        "$ref": "#/components/parameters/lastId"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Groups references",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GroupsReferencesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-lists": {
+            "post": {
+                "summary": "Добавление записей в ЧБ списках",
+                "operationId": "insertRow",
+                "tags": ["lists"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RowListRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created row in list",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-lists/csv": {
+            "post": {
+                "summary": "Добавление записей в ЧБ списки из csv",
+                "operationId": "insertFromCsv",
+                "tags": ["lists"],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "listType": {
+                                        "type": "string"
+                                    },
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Load file with lists"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-lists/{id}": {
+            "delete": {
+                "summary": "Удаление записи из списка",
+                "operationId": "removeRow",
+                "tags": ["lists"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Removed row from list",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-lists/availableListNames": {
+            "get": {
+                "summary": "Запросить перечень списков",
+                "operationId": "getAvailableListNames",
+                "tags": ["lists"],
+                "responses": {
+                    "201": {
+                        "description": "Available list names",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-lists/currentListNames": {
+            "get": {
+                "summary": "Запросить перечень уже созданных списков",
+                "operationId": "getCurrentListNames",
+                "tags": ["lists"],
+                "parameters": [
+                    {
+                        "name": "listType",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Current list names",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-lists/filter": {
+            "get": {
+                "summary": "Поиск по ЧБ спискам",
+                "operationId": "filterLists",
+                "tags": ["lists"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/lastId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortOrder"
+                    },
+                    {
+                        "$ref": "#/components/parameters/searchValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortFieldValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/size"
+                    },
+                    {
+                        "name": "listNames",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "listType",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": ["white", "black", "grey", "naming"]
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "WbList record models",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WbListRecordsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-templates": {
+            "post": {
+                "summary": "Добавление нового темплейта",
+                "operationId": "insertTemplate",
+                "tags": ["template"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Template"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created new template",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreateTemplateResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-templates/{id}": {
+            "delete": {
+                "summary": "Удаление темплейта",
+                "operationId": "removeTemplate",
+                "tags": ["template"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Removed template",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-templates/filter": {
+            "get": {
+                "summary": "Поиск по шаблонов",
+                "operationId": "filterTemplates",
+                "tags": ["template"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/lastId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortOrder"
+                    },
+                    {
+                        "$ref": "#/components/parameters/searchValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortFieldValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/size"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Groups models",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TemplatesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-templates/names": {
+            "get": {
+                "summary": "Запросить список темплейтов",
+                "operationId": "getTemplateNames",
+                "tags": ["template"],
+                "parameters": [
+                    {
+                        "name": "regexpName",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Templates names",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-templates/validate": {
+            "post": {
+                "summary": "Проверка темплейта",
+                "operationId": "validateTemplate",
+                "tags": ["template"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Template"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created new template",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidateTemplatesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-references": {
+            "post": {
+                "summary": "Добавление новых привязок",
+                "operationId": "insertReferences",
+                "tags": ["reference"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/PaymentReference"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created new references",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-references/{id}": {
+            "delete": {
+                "summary": "Удаление привязки",
+                "operationId": "removeReference",
+                "tags": ["reference"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Removed reference",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-references/filter": {
+            "get": {
+                "summary": "Поиск по привязкам",
+                "operationId": "filterReferences",
+                "tags": ["reference"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/lastId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortOrder"
+                    },
+                    {
+                        "$ref": "#/components/parameters/searchValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortFieldValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/size"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Groups models",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReferencesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-references/default": {
+            "post": {
+                "summary": "Добавление новых привязок по умолчанию",
+                "operationId": "insertDefaultReference",
+                "tags": ["reference"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PaymentReference"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created new default references",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-references/default/{id}": {
+            "delete": {
+                "summary": "Удаление привязки по умолчанию",
+                "operationId": "removeDefaultReference",
+                "tags": ["reference"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Removed default reference",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-references/default/filter": {
+            "get": {
+                "summary": "Поиск привязок по умолчанию",
+                "operationId": "filterDefaultReferences",
+                "tags": ["reference"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/lastId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortOrder"
+                    },
+                    {
+                        "$ref": "#/components/parameters/searchValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortFieldValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/size"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Groups models",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReferencesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-emulations": {
+            "get": {
+                "summary": "Список исполняемых темплейтов в порядке выполнения",
+                "operationId": "getTemplatesFlow",
+                "tags": ["emulation"],
+                "parameters": [
+                    {
+                        "name": "partyId",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "shopId",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Object types list",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EmulateResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-historical-data/payments-info": {
+            "get": {
+                "summary": "Поиск по истории платежей",
+                "operationId": "filterPaymentsInfo",
+                "tags": ["historical-data"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/lastId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortOrder"
+                    },
+                    {
+                        "$ref": "#/components/parameters/searchValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortFieldValue"
+                    },
+                    {
+                        "$ref": "#/components/parameters/size"
+                    },
+                    {
+                        "name": "partyId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "shopId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "paymentId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "providerCountry",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "cardToken",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fingerprint",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "terminal",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Payments",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PaymentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "servers": [
+        {
+            "url": "https://fb-management:8080/fb-management/v1"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "bearer": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "description": "Для аутентификации вызовов мы используем [JWT](https://jwt.io). Токен доступа передается в заголовке.\n```shell\n Authorization: Bearer {JWT}\n```\nЗапросы к данному API авторизуются сессионным токеном доступа, который вы получаете в результате аутентификации в личном кабинете по адресу https://dashboard.rbk.money/.\n"
+            }
+        },
+        "schemas": {
+            "ArrayResult": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "ListResponse": {
+                "type": "object",
+                "required": ["result"],
+                "properties": {
+                    "result": {
+                        "$ref": "#/components/schemas/ArrayResult"
+                    }
+                }
+            },
+            "CommandAudit": {
+                "description": "Лог изменений в личном кабинете",
+                "properties": {
+                    "commandType": {
+                        "type": "string",
+                        "enum": ["CREATE", "DELETE"]
+                    },
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "initiator": {
+                        "type": "string"
+                    },
+                    "insertTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "object": {
+                        "type": "string"
+                    },
+                    "objectType": {
+                        "type": "string",
+                        "enum": [
+                            "template",
+                            "reference",
+                            "group_reference",
+                            "group",
+                            "black",
+                            "white",
+                            "grey",
+                            "naming"
+                        ]
+                    }
+                }
+            },
+            "FilterLogsResponse": {
+                "type": "object",
+                "required": ["result", "count"],
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CommandAudit"
+                        }
+                    }
+                }
+            },
+            "Notification": {
+                "type": "object",
+                "properties": {
+                    "alertchanel": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "frequency": {
+                        "type": "string"
+                    },
+                    "groupbyparams": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "period": {
+                        "type": "string"
+                    },
+                    "queryText": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": ["CREATED", "ACTIVE", "ARCHIVE"]
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "templateType": {
+                        "type": "string"
+                    },
+                    "templateValue": {
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "ValidationError": {
+                "type": "object",
+                "properties": {
+                    "errorReason": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ValidationResponse": {
+                "type": "object",
+                "required": ["result"],
+                "properties": {
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    },
+                    "result": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Channel": {
+                "type": "object",
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "destination": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["mail"]
+                    }
+                }
+            },
+            "PriorityId": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "lastUpdateTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "Group": {
+                "type": "object",
+                "properties": {
+                    "groupId": {
+                        "type": "string"
+                    },
+                    "modifiedByUser": {
+                        "type": "string"
+                    },
+                    "priorityTemplates": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PriorityId"
+                        }
+                    }
+                }
+            },
+            "GroupsResponse": {
+                "type": "object",
+                "required": ["result", "count"],
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Group"
+                        }
+                    }
+                }
+            },
+            "GroupReference": {
+                "type": "object",
+                "properties": {
+                    "groupId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "lastUpdateDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "modifiedByUser": {
+                        "type": "string"
+                    },
+                    "partyId": {
+                        "type": "string"
+                    },
+                    "shopId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GroupsReferencesResponse": {
+                "type": "object",
+                "required": ["result"],
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/GroupReference"
+                        }
+                    }
+                }
+            },
+            "CountInfo": {
+                "type": "object",
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "endCountTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "startCountTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "PaymentListRecord": {
+                "type": "object",
+                "properties": {
+                    "listName": {
+                        "type": "string"
+                    },
+                    "partyId": {
+                        "type": "string"
+                    },
+                    "shopId": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PaymentCountInfo": {
+                "type": "object",
+                "properties": {
+                    "countInfo": {
+                        "$ref": "#/components/schemas/CountInfo"
+                    },
+                    "listRecord": {
+                        "$ref": "#/components/schemas/PaymentListRecord"
+                    }
+                }
+            },
+            "ListType": {
+                "type": "string",
+                "enum": ["black", "white", "grey", "naming"]
+            },
+            "RowListRequest": {
+                "type": "object",
+                "required": ["records", "listType"],
+                "properties": {
+                    "records": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PaymentCountInfo"
+                        }
+                    },
+                    "listType": {
+                        "$ref": "#/components/schemas/ListType"
+                    }
+                }
+            },
+            "WbListRecord": {
+                "type": "object",
+                "properties": {
+                    "groupId": {
+                        "type": "string"
+                    },
+                    "insertTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "createdByUser": {
+                        "type": "string"
+                    },
+                    "listName": {
+                        "type": "string"
+                    },
+                    "partyId": {
+                        "type": "string"
+                    },
+                    "shopId": {
+                        "type": "string"
+                    },
+                    "rowInfo": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "listType": {
+                        "type": "string",
+                        "enum": ["white", "black", "grey", "naming"]
+                    }
+                }
+            },
+            "WbListRecordsResponse": {
+                "type": "object",
+                "required": ["result", "count"],
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/WbListRecord"
+                        }
+                    }
+                }
+            },
+            "Template": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "lastUpdateDate": {
+                        "type": "string"
+                    },
+                    "modifiedByUser": {
+                        "type": "string"
+                    },
+                    "template": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CreateTemplateResponse": {
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "template": {
+                        "type": "string"
+                    }
+                }
+            },
+            "TemplatesResponse": {
+                "type": "object",
+                "required": ["result", "count"],
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Template"
+                        }
+                    }
+                }
+            },
+            "ErrorTemplate": {
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ValidateTemplatesResponse": {
+                "type": "object",
+                "required": ["validateResults"],
+                "properties": {
+                    "validateResults": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ErrorTemplate"
+                        }
+                    }
+                }
+            },
+            "PaymentReference": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "lastUpdateDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "modifiedByUser": {
+                        "type": "string"
+                    },
+                    "partyId": {
+                        "type": "string"
+                    },
+                    "shopId": {
+                        "type": "string"
+                    },
+                    "templateId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ReferencesResponse": {
+                "type": "object",
+                "required": ["result", "count"],
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PaymentReference"
+                        }
+                    }
+                }
+            },
+            "EmulateResponse": {
+                "type": "object",
+                "required": ["result"],
+                "properties": {
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Template"
+                        }
+                    }
+                }
+            },
+            "MerchantInfo": {
+                "type": "object",
+                "properties": {
+                    "partyId": {
+                        "type": "string"
+                    },
+                    "shopId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ClientInfo": {
+                "type": "object",
+                "properties": {
+                    "ip": {
+                        "type": "string"
+                    },
+                    "fingerprint": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "string"
+                    },
+                    "errorReason": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ProviderInfo": {
+                "type": "object",
+                "properties": {
+                    "providerId": {
+                        "type": "string"
+                    },
+                    "terminalId": {
+                        "type": "string"
+                    },
+                    "country": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Payment": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "eventTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "merchantInfo": {
+                        "$ref": "#/components/schemas/MerchantInfo"
+                    },
+                    "amount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "currency": {
+                        "type": "string"
+                    },
+                    "cardToken": {
+                        "type": "string"
+                    },
+                    "clientInfo": {
+                        "$ref": "#/components/schemas/ClientInfo"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": ["processed", "captured", "failed"]
+                    },
+                    "error": {
+                        "$ref": "#/components/schemas/Error"
+                    },
+                    "paymentSystem": {
+                        "type": "string"
+                    },
+                    "paymentCountry": {
+                        "type": "string"
+                    },
+                    "paymentTool": {
+                        "type": "string"
+                    },
+                    "provider": {
+                        "$ref": "#/components/schemas/ProviderInfo"
+                    }
+                }
+            },
+            "PaymentResponse": {
+                "type": "object",
+                "required": ["result", "continuationId"],
+                "properties": {
+                    "continuationId": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Payment"
+                        }
+                    }
+                }
+            }
+        },
+        "parameters": {
+            "lastId": {
+                "name": "lastId",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "sortOrder": {
+                "name": "sortOrder",
+                "in": "query",
+                "required": false,
+                "schema": {
+                    "type": "string",
+                    "enum": ["ASC", "DESC", "DEFAULT"]
+                }
+            },
+            "searchValue": {
+                "name": "searchValue",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "sortBy": {
+                "name": "sortBy",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "sortFieldValue": {
+                "name": "sortFieldValue",
+                "in": "query",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "size": {
+                "name": "size",
+                "in": "query",
+                "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        }
+    }
+}

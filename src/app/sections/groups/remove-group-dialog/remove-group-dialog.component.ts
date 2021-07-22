@@ -1,11 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { OperationType } from '../../../shared/constants/operation-type';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
-import { GroupsService } from '../groups.service';
+import { PaymentGroupsService } from '../../../api/payments/groups';
 
 export interface DialogData {
     id: string;
@@ -18,7 +18,7 @@ export interface DialogData {
 })
 export class RemoveGroupDialogComponent {
     constructor(
-        private groupsService: GroupsService,
+        private groupsService: PaymentGroupsService,
         private snackBar: MatSnackBar,
         private errorHandlerService: ErrorHandlerService,
         public dialogRef: MatDialogRef<RemoveGroupDialogComponent>,
@@ -30,7 +30,7 @@ export class RemoveGroupDialogComponent {
     }
 
     delete(): void {
-        this.groupsService.deleteGroup((OperationType as any)[this.data.operationType], this.data.id).subscribe(
+        this.groupsService.delete(this.data.id).subscribe(
             (id) => {
                 this.snackBar.open(`Delete group success: ${id}`, 'OK', {
                     duration: 1500,

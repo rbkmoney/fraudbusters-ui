@@ -6,10 +6,10 @@ import { ConfigService } from '../../../../config';
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { SortOrder } from '../../../../shared/constants/sort-order';
 import { booleanDebounceTime } from '../../../../shared/operators';
-import { OperationTypeManagementService } from '../../../../shared/services/operation-type-management.service';
-import { FetchResult, PartialFetcher } from '../../../../shared/utils/partial-fetcher';
-import { P2pGroupReferenceModel } from '../../model/p2p-groups-reference';
-import { PaymentGroupReferenceModel } from '../../model/payment-groups-reference';
+import { PartialFetcher } from '../../../../shared/utils/partial-fetcher';
+import { PaymentGroupsReferencesService } from '../../../../api/payments/groups-references';
+import { GroupsReferencesResponse } from '../../../../api/fb-management/swagger-codegen/model/groupsReferencesResponse';
+import { GroupReference } from '../../../../api/fb-management/swagger-codegen/model/groupReference';
 
 export interface FetchReferencesParams {
     type: OperationType;
@@ -22,26 +22,20 @@ export interface FetchReferencesParams {
 }
 
 @Injectable()
-export class FetchReferencesService extends PartialFetcher<
-    PaymentGroupReferenceModel | P2pGroupReferenceModel,
-    FetchReferencesParams
-> {
+export class FetchReferencesService extends PartialFetcher<GroupReference, FetchReferencesParams> {
     inProgress$ = this.doAction$.pipe(booleanDebounceTime(0), shareReplay(1));
     private SIZE = this.configService.pageSize;
 
     constructor(
-        private operationReferenceService: OperationTypeManagementService,
+        private paymentGroupsReferencesService: PaymentGroupsReferencesService,
         private configService: ConfigService
     ) {
         super();
     }
 
-    protected fetch(
-        params: FetchReferencesParams,
-        lastId?: string
-    ): Observable<FetchResult<PaymentGroupReferenceModel | P2pGroupReferenceModel>> {
+    protected fetch(params: FetchReferencesParams, lastId?: string): Observable<GroupsReferencesResponse> {
         const { type, searchValue, sortOrder, sortFieldValue, size, sortBy } = params;
-        return this.operationReferenceService.findGroupsReferenceService(type).findGroups({
+        return this.paymentGroupsReferencesService.filter({
             searchValue: searchValue || '',
             size: size || this.SIZE,
             sortOrder: sortOrder || SortOrder.ASC,

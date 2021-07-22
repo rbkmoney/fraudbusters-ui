@@ -19,13 +19,12 @@ import { CustomFormControlComponent } from '../custom-form-control/custom-form-c
     providers: [TemplatesService],
 })
 export class TemplateIdComponent extends CustomFormControlComponent {
-    @Input() operationType: OperationType;
     @Input() floatLabelType: FloatLabelType = 'always';
     @Input() appearanceType: MatFormFieldAppearance = 'legacy';
 
     templates$ = this.formControl.valueChanges.pipe(
         debounceTime(300),
-        switchMap((v) => this.templatesService.getTemplatesName(this.operationType, v)),
+        switchMap((v) => this.templatesService.getTemplatesName(v)),
         shareReplay(1)
     );
 

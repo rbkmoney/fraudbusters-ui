@@ -9,19 +9,6 @@ import { LAYOUT_GAP_S } from '../../tokens';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReferencesComponent {
-    links = [
-        {
-            path: 'payments',
-            name: 'Payments',
-            otherActiveUrlFragments: [],
-        },
-        {
-            path: 'p2p',
-            name: 'Peer To Peer',
-            otherActiveUrlFragments: [],
-        },
-    ];
-
     constructor(private router: Router, @Inject(LAYOUT_GAP_S) public layoutGapS: string) {}
 
     hasActiveFragments(fragments: string[]): boolean {

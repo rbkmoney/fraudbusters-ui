@@ -1,11 +1,6 @@
 <mat-toolbar>
     <mat-toolbar-row>
         <h3>Lists {{ listType }}</h3>
-        <mat-form-field appearance="fill">
-            <mat-select [(value)]="this.operationType" (selectionChange)="selectionChange()">
-                <mat-option *ngFor="let typeItem of operationTypes" [value]="typeItem">{{ typeItem }}</mat-option>
-            </mat-select>
-        </mat-form-field>
         <button mat-stroked-button color="primary" (click)="navigateToNew()">New</button>
         <span class="fb-spacer"></span>
         <mat-form-field appearance="fill">

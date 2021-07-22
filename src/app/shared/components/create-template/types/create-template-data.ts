@@ -1,7 +1,7 @@
-import { TemplateModel } from '../../../../api/fb-management/swagger-codegen/model/templateModel';
 import { OperationType } from '../../../constants/operation-type';
+import { Template } from '../../../../api/fb-management/swagger-codegen/model/template';
 
 export interface CreateTemplateData {
     type: OperationType;
-    template: TemplateModel;
+    template: Template;
 }

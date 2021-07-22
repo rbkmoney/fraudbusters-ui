@@ -18,40 +18,30 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { P2pReferencesService } from 'src/app/shared/services/reference/p2p-references.service';
 
-import { P2pTemplatesModule, PaymentTemplatesModule } from '../../api';
+import { PaymentTemplatesModule } from '../../api';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
-import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
-import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
-import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
-import { P2pGroupsService } from '../../shared/services/groups/p2p-groups.service';
-import { PaymentGroupsService } from '../../shared/services/groups/payment-groups.service';
-import { P2pListsService } from '../../shared/services/lists/p2p-lists.service';
-import { PaymentListsService } from '../../shared/services/lists/payment-lists.service';
-import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
-import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
-import { P2pReferencesComponent } from './components/p2p-references/p2p-references.component';
 import { PaymentReferencesComponent } from './components/payment-references/payment-references.component';
 import { ReferencesSearchComponent } from './components/references-search/references-search.component';
 import { ReferencesTableComponent } from './components/references-table/references-table.component';
 import { GroupsReferenceRoutingModule } from './groups-reference-routing.module';
 import { GroupsReferenceComponent } from './groups-reference.component';
 import { GroupsReferenceService } from './services/groups-reference/groups-reference.service';
+import { PaymentGroupsReferencesModule, PaymentGroupsReferencesService } from '../../api/payments/groups-references';
 
 @NgModule({
     declarations: [
         GroupsReferenceComponent,
         PaymentReferencesComponent,
-        P2pReferencesComponent,
         ReferencesTableComponent,
         ReferencesSearchComponent,
     ],
     imports: [
         CommonModule,
         GroupsReferenceRoutingModule,
+        PaymentGroupsReferencesModule,
         MatTableModule,
         MatCardModule,
         MatButtonModule,
@@ -67,7 +57,6 @@ import { GroupsReferenceService } from './services/groups-reference/groups-refer
         FlexLayoutModule,
         FormsModule,
         PaymentTemplatesModule,
-        P2pTemplatesModule,
         ReactiveFormsModule,
         MatProgressBarModule,
         MatTabsModule,
@@ -75,20 +64,6 @@ import { GroupsReferenceService } from './services/groups-reference/groups-refer
         EmptySearchResultModule,
         MatProgressSpinnerModule,
     ],
-    providers: [
-        SearchFieldService,
-        GroupsReferenceService,
-        P2pGroupsReferenceService,
-        PaymentGroupsReferenceService,
-        ErrorHandlerService,
-        OperationTypeManagementService,
-        PaymentReferencesService,
-        PaymentListsService,
-        P2pListsService,
-        PaymentEmulationTemplateService,
-        P2pReferencesService,
-        P2pGroupsService,
-        PaymentGroupsService,
-    ],
+    providers: [SearchFieldService, GroupsReferenceService, PaymentGroupsReferencesService, ErrorHandlerService],
 })
 export class GroupsReferenceModule {}

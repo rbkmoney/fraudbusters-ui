@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { PaymentReferenceModel } from '../../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchDefaultReferencesService } from '../../services/fetch-default-references.service';
 import { RemoveDefaultReferenceService } from '../../services/remove-default-reference.service';
+import { PaymentReference } from '../../../../api/fb-management/swagger-codegen/model/paymentReference';
 
 @Component({
     templateUrl: 'default-payment-references.component.html',
@@ -56,7 +56,7 @@ export class DefaultPaymentReferencesComponent {
         this.router.navigate([`/template/${id}`], { fragment: OperationType.Payment });
     }
 
-    removeReference(reference: PaymentReferenceModel) {
+    removeReference(reference: PaymentReference) {
         this.removeDefaultReferenceService.removeReference({
             type: this.OPERATION_TYPE,
             reference,

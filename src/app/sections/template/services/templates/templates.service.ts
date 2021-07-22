@@ -2,25 +2,24 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { CreateTemplateResponse } from '../../../../api/fb-management/swagger-codegen/model/createTemplateResponse';
-import { TemplateModel } from '../../../../api/fb-management/swagger-codegen/model/templateModel';
 import { ValidationResponse } from '../../../../api/fb-management/swagger-codegen/model/validationResponse';
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { SortOrder } from '../../../../shared/constants/sort-order';
 import { HttpSearchResponse } from '../../../../shared/model/http-search-response';
-import { OperationTypeManagementService } from '../../../../shared/services/operation-type-management.service';
+import { PaymentTemplatesService } from '../../../../api';
+import { Template } from '../../../../api/fb-management/swagger-codegen/model/template';
 
 @Injectable()
 export class TemplatesService {
-    constructor(private operationTemplateService: OperationTypeManagementService) {}
+    constructor(private paymentTemplatesService: PaymentTemplatesService) {}
 
     getTemplates(
-        type: OperationType,
         sizeValue?: number,
         nameRegexp?: string,
         lastInListName?: string,
         sortOrder?: SortOrder
-    ): Observable<HttpSearchResponse<TemplateModel>> {
-        return this.operationTemplateService.findTemplateService(type).findTemplates({
+    ): Observable<HttpSearchResponse<Template>> {
+        return this.paymentTemplatesService.findTemplates({
             searchValue: nameRegexp,
             lastId: lastInListName,
             size: sizeValue,
@@ -28,19 +27,19 @@ export class TemplatesService {
         });
     }
 
-    deleteTemplate(type: OperationType, id: string): Observable<string> {
-        return this.operationTemplateService.findTemplateService(type).deleteTemplate(id);
+    deleteTemplate(id: string): Observable<string> {
+        return this.paymentTemplatesService.deleteTemplate(id);
     }
 
-    getTemplatesName(type: OperationType, regexp?: string): Observable<string[]> {
-        return this.operationTemplateService.findTemplateService(type).getTemplatesName(regexp);
+    getTemplatesName(regexp?: string): Observable<string[]> {
+        return this.paymentTemplatesService.getTemplatesName(regexp);
     }
 
-    saveTemplate(type: OperationType, template: TemplateModel): Observable<CreateTemplateResponse> {
-        return this.operationTemplateService.findTemplateService(type).saveTemplate(template);
+    saveTemplate(template: Template): Observable<CreateTemplateResponse> {
+        return this.paymentTemplatesService.saveTemplate(template);
     }
 
-    validateTemplate(type: OperationType, template: TemplateModel): Observable<ValidationResponse> {
-        return this.operationTemplateService.findTemplateService(type).validateTemplate(template);
+    validateTemplate(template: Template): Observable<ValidationResponse> {
+        return this.paymentTemplatesService.validateTemplate(template);
     }
 }

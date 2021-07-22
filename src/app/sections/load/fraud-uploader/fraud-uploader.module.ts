@@ -16,12 +16,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { FraudUploaderService } from '../../../shared/services/fraud-uploader/fraud-uploader.service';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { DndDirective } from './dnd.directive';
 import { FraudUploaderRoutingModule } from './fraud-uploader-routing.module';
 import { FraudUploaderComponent } from './fraud-uploader.component';
 import { ProgressComponent } from './progress/progress.component';
+import { PaymentLoadDataService } from '../../../api/payments/load-data';
 
 @NgModule({
     declarations: [FraudUploaderComponent, ProgressComponent, DndDirective],
@@ -44,6 +44,6 @@ import { ProgressComponent } from './progress/progress.component';
         MatGridListModule,
         FlexLayoutModule,
     ],
-    providers: [FraudUploaderService, ErrorHandlerService],
+    providers: [PaymentLoadDataService, ErrorHandlerService],
 })
 export class FraudUploaderListModule {}

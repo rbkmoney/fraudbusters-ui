@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
-
-import { TemplateModel } from '../../../api/fb-management/swagger-codegen/model/templateModel';
-import { PaymentTemplatesService } from '../../../api/payment-templates';
+import { PaymentTemplatesService } from '../../../api/payments/templates';
 import { ConfigService } from '../../../config';
 import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDebounceTime } from '../../../shared/operators';
 import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
+import { Template } from '../../../api/fb-management/swagger-codegen/model/template';
 
 export interface FetchTemplatesParams {
     searchValue?: string;
@@ -16,7 +15,7 @@ export interface FetchTemplatesParams {
 }
 
 @Injectable()
-export class FetchPaymentTemplatesService extends PartialFetcher<TemplateModel, FetchTemplatesParams> {
+export class FetchPaymentTemplatesService extends PartialFetcher<Template, FetchTemplatesParams> {
     inProgress$ = this.doAction$.pipe(booleanDebounceTime(), shareReplay(1));
     private SIZE = this.configService.pageSize;
 
@@ -24,7 +23,7 @@ export class FetchPaymentTemplatesService extends PartialFetcher<TemplateModel, 
         super();
     }
 
-    protected fetch(params: FetchTemplatesParams, lastId?: string): Observable<FetchResult<TemplateModel>> {
+    protected fetch(params: FetchTemplatesParams, lastId?: string): Observable<FetchResult<Template>> {
         const { searchValue, sortOrder, pageSize } = params;
         return this.paymentTemplatesService.findTemplates({
             size: pageSize ? pageSize : this.SIZE,

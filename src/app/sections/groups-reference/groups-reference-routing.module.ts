@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../auth';
-import { P2pReferencesComponent } from './components/p2p-references/p2p-references.component';
 import { PaymentReferencesComponent } from './components/payment-references/payment-references.component';
 import { GroupsReferenceComponent } from './groups-reference.component';
 
@@ -15,12 +14,6 @@ import { GroupsReferenceComponent } from './groups-reference.component';
                 canActivate: [AuthGuard],
                 data: { roles: [Roles.fraudOfficer] },
                 children: [
-                    {
-                        path: 'p2p',
-                        component: P2pReferencesComponent,
-                        canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
-                    },
                     {
                         path: 'payments',
                         component: PaymentReferencesComponent,

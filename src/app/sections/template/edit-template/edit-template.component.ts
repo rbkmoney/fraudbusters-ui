@@ -16,7 +16,7 @@ export class EditTemplateComponent {
         pluck('id'),
         withLatestFrom(this.operationType$),
         switchMap(([id, type]) => {
-            return this.templateService.getTemplates(type as any, 1, id);
+            return this.templateService.getTemplates(1, id);
         }),
         pluck('result'),
         map((res) => res[0]),

@@ -14,14 +14,16 @@ import { HeadlineModule } from '../../../shared/components/headline';
 import { TemplateIdModule } from '../../../shared/components/inputs/template-id';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { ReferencesService } from '../references.service';
-import { CreateP2pReferenceComponent, CreatePaymentReferenceComponent } from './components';
+import { CreatePaymentReferenceComponent } from './components';
 import { CreateReferenceRoutingModule } from './create-reference-routing.module';
 import { CreateReferenceComponent } from './create-reference.component';
+import { PaymentReferencesModule, PaymentReferencesService } from '../../../api/payments/references';
 
 @NgModule({
-    declarations: [CreateReferenceComponent, CreatePaymentReferenceComponent, CreateP2pReferenceComponent],
+    declarations: [CreateReferenceComponent, CreatePaymentReferenceComponent],
     imports: [
         CreateReferenceRoutingModule,
+        PaymentReferencesModule,
         MatCardModule,
         FlexModule,
         CommonModule,
@@ -36,6 +38,6 @@ import { CreateReferenceComponent } from './create-reference.component';
         HeadlineModule,
     ],
     exports: [CreateReferenceComponent],
-    providers: [ReferencesService, ErrorHandlerService],
+    providers: [ReferencesService, ErrorHandlerService, PaymentReferencesService],
 })
 export class CreateReferenceModule {}

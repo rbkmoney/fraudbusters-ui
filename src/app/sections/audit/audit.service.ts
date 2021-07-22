@@ -6,10 +6,10 @@ import { BehaviorSubject, combineLatest, Observable, of, ReplaySubject, Subject 
 import { catchError, debounceTime, map, scan, switchMap, tap } from 'rxjs/operators';
 
 import { SortOrder } from '../../shared/constants/sort-order';
-import { AuditRemoteService } from '../../shared/services/audit/audit-remote.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { Filter } from './model/filter';
 import { Log } from './model/log';
+import { AuditRemoteService } from '../../api/audit';
 
 @Injectable()
 export class AuditService {

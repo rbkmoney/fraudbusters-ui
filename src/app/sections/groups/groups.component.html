@@ -1,11 +1,6 @@
 <mat-toolbar>
     <mat-toolbar-row>
         <h3>Groups</h3>
-        <mat-form-field appearance="fill">
-            <mat-select [(value)]="operationType" (selectionChange)="search()">
-                <mat-option *ngFor="let typeItem of operationTypes" [value]="typeItem">{{ typeItem }}</mat-option>
-            </mat-select>
-        </mat-form-field>
         <button mat-stroked-button color="primary" (click)="navigateToNew()">New</button>
         <span class="fb-spacer"></span>
         <mat-form-field class="search fb-full-width" appearance="outline">

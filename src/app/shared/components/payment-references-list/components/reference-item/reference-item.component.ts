@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 
-import { PaymentReferenceModel } from '../../../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
 import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../tokens';
+import { PaymentReference } from '../../../../../api/fb-management/swagger-codegen/model/paymentReference';
 
 @Component({
     selector: 'fb-reference-item',
@@ -11,13 +11,13 @@ import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../tokens';
 })
 export class ReferenceItemComponent {
     @Input()
-    reference: PaymentReferenceModel;
+    reference: PaymentReference;
 
     @Output()
     goToTemplate = new EventEmitter<string>();
 
     @Output()
-    deleteItem = new EventEmitter<PaymentReferenceModel>();
+    deleteItem = new EventEmitter<PaymentReference>();
 
     constructor(@Inject(LAYOUT_GAP_S) public layoutGapS: string, @Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
 }

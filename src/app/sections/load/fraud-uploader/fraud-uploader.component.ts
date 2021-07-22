@@ -2,10 +2,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { FraudUploaderService } from '../../../shared/services/fraud-uploader/fraud-uploader.service';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { UploadStatus } from './constants/upload-status';
 import { UploadFile } from './model/upload-file';
+import { PaymentLoadDataService } from '../../../api/payments/load-data';
 
 @Component({
     templateUrl: './fraud-uploader.component.html',
@@ -17,7 +17,7 @@ export class FraudUploaderComponent {
     uploadFiles = new Map<string, UploadFile>();
 
     constructor(
-        private fraudUploadService: FraudUploaderService,
+        private fraudUploadService: PaymentLoadDataService,
         private errorHandlerService: ErrorHandlerService,
         private snackBar: MatSnackBar
     ) {}

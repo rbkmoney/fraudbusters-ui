@@ -1,8 +1,8 @@
 {
-    "cliPath": "tools/codegens/swagger-codegen-cli-2.4.18.jar",
+    "cliPath": "tools/codegens/swagger-codegen-cli-3.0.13-20191015.162315-7.jar",
     "outputRootDir": "src/app/api",
     "outputDir": "swagger-codegen",
     "schemes": {
-        "fb-management": "fb-management.json"
+        "fb-management": "fraudbusters-management.json"
     }
 }

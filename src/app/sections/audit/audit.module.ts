@@ -22,17 +22,18 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { AuditRemoteService } from '../../shared/services/audit/audit-remote.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { AuditRoutingModule } from './audit-routing.module';
 import { AuditComponent } from './audit.component';
 import { AuditService } from './audit.service';
+import { AuditRemoteModule } from '../../api/audit';
 
 @NgModule({
     declarations: [AuditComponent],
     imports: [
         CommonModule,
         AuditRoutingModule,
+        AuditRemoteModule,
         MatTableModule,
         MatCardModule,
         MatButtonModule,
@@ -53,6 +54,6 @@ import { AuditService } from './audit.service';
         NgxMatDatetimePickerModule,
         FormsModule,
     ],
-    providers: [ErrorHandlerService, AuditService, AuditRemoteService, DatePipe],
+    providers: [ErrorHandlerService, AuditService, DatePipe],
 })
 export class AuditModule {}

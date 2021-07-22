@@ -36,7 +36,7 @@ async function swaggerCodegenAngularCli({
     outputRootDir: string;
     cliPath: string;
 }) {
-    const swaggerLog = createLog('Swagger 2 Codegen');
+    const swaggerLog = createLog('Swagger 3 Codegen');
     swaggerLog('Generate...');
     await Promise.all(
         Object.entries(schemes).map(async ([specName, specPath]) => {

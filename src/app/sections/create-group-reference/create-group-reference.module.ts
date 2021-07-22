@@ -12,12 +12,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { HeadlineModule } from '../../shared/components/headline';
 import { TemplateIdModule } from '../../shared/components/inputs/template-id';
-import { CreateP2pReferenceComponent, CreatePaymentReferenceComponent } from './components';
+import { CreatePaymentReferenceComponent } from './components';
 import { CreateGroupReferenceRoutingModule } from './create-group-reference-routing.module';
 import { CreateGroupReferenceComponent } from './create-group-reference.component';
+import { PaymentGroupsReferencesService } from '../../api/payments/groups-references';
 
 @NgModule({
-    declarations: [CreateGroupReferenceComponent, CreatePaymentReferenceComponent, CreateP2pReferenceComponent],
+    declarations: [CreateGroupReferenceComponent, CreatePaymentReferenceComponent],
     imports: [
         CreateGroupReferenceRoutingModule,
         CommonModule,
@@ -34,5 +35,6 @@ import { CreateGroupReferenceComponent } from './create-group-reference.componen
         MatSnackBarModule,
     ],
     exports: [CreateGroupReferenceComponent],
+    providers: [PaymentGroupsReferencesService],
 })
 export class CreateGroupReferenceModule {}

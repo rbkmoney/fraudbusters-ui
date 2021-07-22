@@ -4,8 +4,8 @@ import { merge, Subject } from 'rxjs';
 import { shareReplay, switchMap } from 'rxjs/operators';
 
 import { progress } from '../../../../operators';
-import { OperationTypeManagementService } from '../../../../services/operation-type-management.service';
 import { CreateTemplateData } from '../../types/create-template-data';
+import { PaymentTemplatesService } from '../../../../../api';
 
 @Injectable()
 export class TemplateService {
@@ -18,24 +18,20 @@ export class TemplateService {
     private validate$ = new Subject<CreateTemplateData>();
 
     saved$ = this.save$.pipe(
-        switchMap(({ type, template }) =>
-            this.operationTemplateService.findTemplateService(type).saveTemplate(template)
-        ),
+        switchMap(({ template }) => this.paymentTemplatesService.saveTemplate(template)),
         shareReplay(1)
     );
 
     validated$ = this.validate$.pipe(
-        switchMap(({ type, template }) =>
-            this.operationTemplateService.findTemplateService(type).validateTemplate(template)
-        ),
+        switchMap(({ template }) => this.paymentTemplatesService.validateTemplate(template)),
         shareReplay(1)
     );
 
     inProgress$ = progress(merge(this.save$, this.validate$), merge(this.saved$, this.validated$));
 
-    form = this.fb.group(TemplateService.defaultParams);
+    constructor(private fb: FormBuilder, private paymentTemplatesService: PaymentTemplatesService) {}
 
-    constructor(private fb: FormBuilder, private operationTemplateService: OperationTypeManagementService) {}
+    form = this.fb.group(TemplateService.defaultParams);
 
     saveTemplate(data: CreateTemplateData) {
         this.save$.next(data);

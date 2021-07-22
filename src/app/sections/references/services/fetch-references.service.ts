@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
-
-import { P2pReferenceModel } from '../../../api/fb-management/swagger-codegen/model/p2pReferenceModel';
-import { PaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
 import { ConfigService } from '../../../config';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDelay } from '../../../shared/operators';
-import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
 import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
+import { PaymentReference } from '../../../api/fb-management/swagger-codegen/model/paymentReference';
+import { PaymentReferencesService } from '../../../api/payments/references';
 
 export interface FetchReferencesParams {
     type: OperationType;
@@ -25,26 +23,17 @@ export interface FetchReferencesParams {
 }
 
 @Injectable()
-export class FetchReferencesService extends PartialFetcher<
-    PaymentReferenceModel | P2pReferenceModel,
-    FetchReferencesParams
-> {
+export class FetchReferencesService extends PartialFetcher<PaymentReference, FetchReferencesParams> {
     inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
     private SIZE = this.configService.pageSize;
 
-    constructor(
-        private operationTypeManagementService: OperationTypeManagementService,
-        private configService: ConfigService
-    ) {
+    constructor(private paymentReferencesService: PaymentReferencesService, private configService: ConfigService) {
         super();
     }
 
-    protected fetch(
-        params: FetchReferencesParams,
-        lastId?: string
-    ): Observable<FetchResult<PaymentReferenceModel | P2pReferenceModel>> {
+    protected fetch(params: FetchReferencesParams, lastId?: string): Observable<FetchResult<PaymentReference>> {
         const { type, searchValue, sortOrder, sortFieldValue, sortBy, id, isDefault, isGlobal, name, size } = params;
-        return this.operationTypeManagementService.findReferenceService(type).findReferences({
+        return this.paymentReferencesService.findReferences({
             isDefault: isDefault || false,
             searchValue: searchValue || '',
             sortFieldValue: sortFieldValue || '',

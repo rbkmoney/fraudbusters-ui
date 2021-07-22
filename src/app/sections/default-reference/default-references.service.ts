@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-import { P2pReferenceModel } from '../../api/fb-management/swagger-codegen/model/p2pReferenceModel';
-import { PaymentReferenceModel } from '../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
 import { OperationType } from '../../shared/constants/operation-type';
-import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
+import { PaymentDefaultReferencesService } from '../../api/payments/default-references';
+import { PaymentReference } from '../../api/fb-management/swagger-codegen/model/paymentReference';
 
 @Injectable()
 export class DefaultReferencesService {
-    references$ = new Observable<PaymentReferenceModel[] | P2pReferenceModel[]>();
+    references$ = new Observable<PaymentReference[]>();
 
-    constructor(private operationReferenceService: OperationTypeManagementService) {}
+    constructor(private paymentDefaultReferencesService: PaymentDefaultReferencesService) {}
 
-    saveReference(type: OperationType, reference: P2pReferenceModel | PaymentReferenceModel): Observable<string> {
-        return this.operationReferenceService.findReferenceService(type).saveDefaultReference(reference);
+    saveReference(type: OperationType, reference: PaymentReference): Observable<string> {
+        return this.paymentDefaultReferencesService.save(reference);
     }
 }

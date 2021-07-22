@@ -11,7 +11,6 @@ import { CreateDefaultPaymentReferenceService } from '../../services/create-defa
 })
 export class CreateDefaultPaymentReferenceComponent {
     form = this.createDefaultPaymentReferenceService.form;
-    operationType = OperationType;
     inProgress$ = this.createDefaultPaymentReferenceService.inProgress$;
 
     constructor(

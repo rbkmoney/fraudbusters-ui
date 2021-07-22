@@ -1,16 +1,16 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ListType } from '../../../constants/list-type';
 import { OperationType } from '../../../constants/operation-type';
-import { ListRecord } from '../../../services/lists/model/list-record';
 import { ErrorHandlerService } from '../../../services/utils/error-handler.service';
-import { WbListService } from '../wb-list.service';
+import { PaymentListsService } from '../../../../api/payments/lists/payment-lists.service';
+import { WbListRecord } from '../../../../api/fb-management/swagger-codegen/model/wbListRecord';
 
 export interface DialogData {
-    listRecord: ListRecord;
+    listRecord: WbListRecord;
     operationType: OperationType;
     listType: ListType;
 }
@@ -21,7 +21,7 @@ export interface DialogData {
 })
 export class RemoveRowListDialogComponent {
     constructor(
-        private listsService: WbListService,
+        private listsService: PaymentListsService,
         private snackBar: MatSnackBar,
         private errorHandlerService: ErrorHandlerService,
         public dialogRef: MatDialogRef<RemoveRowListDialogComponent>,
@@ -33,7 +33,7 @@ export class RemoveRowListDialogComponent {
     }
 
     delete(): void {
-        this.listsService.deleteListRow(this.data.operationType, this.data.listRecord.id).subscribe(
+        this.listsService.deleteListRow(this.data.listRecord.groupId).subscribe(
             (id) => {
                 this.snackBar.open(`Delete succeeded: ${id}`, 'OK', {
                     duration: 1500,
