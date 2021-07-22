@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OperationType } from '../../shared/constants/operation-type';
-import { PaymentDefaultReferencesService } from '../../api/payments/default-references';
+
 import { PaymentReference } from '../../api/fb-management/swagger-codegen/model/paymentReference';
+import { PaymentDefaultReferencesService } from '../../api/payments/default-references';
+import { OperationType } from '../../shared/constants/operation-type';
 
 @Injectable()
 export class DefaultReferencesService {

@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { ConfigService } from '../../../config';
 import { SearchParams } from '../../../shared/model/search-params';
 import { filterParameters } from '../../../shared/utils/filter-params';
-import { ReferencesResponse } from '../../fb-management/swagger-codegen/model/referencesResponse';
 import { PaymentReference } from '../../fb-management/swagger-codegen/model/paymentReference';
+import { ReferencesResponse } from '../../fb-management/swagger-codegen/model/referencesResponse';
 
 @Injectable()
 export class PaymentDefaultReferencesService {

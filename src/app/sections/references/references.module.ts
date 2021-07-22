@@ -18,6 +18,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { PaymentTemplatesModule } from '../../api';
+import { PaymentReferencesService } from '../../api/payments/references';
 import { ConfirmActionDialogModule } from '../../shared/components/confirm-action-dialog';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
 import { PaymentReferencesListModule } from '../../shared/components/payment-references-list';
@@ -26,7 +27,6 @@ import { TemplateReferencesModule } from '../../shared/components/template-refer
 import { PaymentReferencesComponent } from './components/payment-references/payment-references.component';
 import { ReferencesRoutingModule } from './references-routing.module';
 import { ReferencesComponent } from './references.component';
-import { PaymentReferencesService } from '../../api/payments/references';
 
 @NgModule({
     imports: [

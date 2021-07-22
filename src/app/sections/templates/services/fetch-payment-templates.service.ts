@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
+
+import { Template } from '../../../api/fb-management/swagger-codegen/model/template';
 import { PaymentTemplatesService } from '../../../api/payments/templates';
 import { ConfigService } from '../../../config';
 import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDebounceTime } from '../../../shared/operators';
 import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
-import { Template } from '../../../api/fb-management/swagger-codegen/model/template';
 
 export interface FetchTemplatesParams {
     searchValue?: string;

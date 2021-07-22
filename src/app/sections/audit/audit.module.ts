@@ -22,11 +22,11 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { AuditRemoteModule } from '../../api/audit';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { AuditRoutingModule } from './audit-routing.module';
 import { AuditComponent } from './audit.component';
 import { AuditService } from './audit.service';
-import { AuditRemoteModule } from '../../api/audit';
 
 @NgModule({
     declarations: [AuditComponent],

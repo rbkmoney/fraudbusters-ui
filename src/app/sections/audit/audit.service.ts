@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, combineLatest, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { catchError, debounceTime, map, scan, switchMap, tap } from 'rxjs/operators';
 
+import { AuditRemoteService } from '../../api/audit';
 import { SortOrder } from '../../shared/constants/sort-order';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { Filter } from './model/filter';
 import { Log } from './model/log';
-import { AuditRemoteService } from '../../api/audit';
 
 @Injectable()
 export class AuditService {

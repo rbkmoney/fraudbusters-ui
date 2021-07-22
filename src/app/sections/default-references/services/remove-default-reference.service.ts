@@ -4,11 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, merge, NEVER, of, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
+
+import { PaymentReference } from '../../../api/fb-management/swagger-codegen/model/paymentReference';
+import { PaymentDefaultReferencesService } from '../../../api/payments/default-references';
 import { ConfirmActionDialogComponent } from '../../../shared/components/confirm-action-dialog';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { progress } from '../../../shared/operators';
-import { PaymentReference } from '../../../api/fb-management/swagger-codegen/model/paymentReference';
-import { PaymentDefaultReferencesService } from '../../../api/payments/default-references';
 
 export interface RemoveReferenceParams {
     type: OperationType;

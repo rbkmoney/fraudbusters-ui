@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
+import { GroupReference } from '../../../../api/fb-management/swagger-codegen/model/groupReference';
+import { GroupsReferencesResponse } from '../../../../api/fb-management/swagger-codegen/model/groupsReferencesResponse';
+import { PaymentGroupsReferencesService } from '../../../../api/payments/groups-references';
 import { ConfigService } from '../../../../config';
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { SortOrder } from '../../../../shared/constants/sort-order';
 import { booleanDebounceTime } from '../../../../shared/operators';
 import { PartialFetcher } from '../../../../shared/utils/partial-fetcher';
-import { PaymentGroupsReferencesService } from '../../../../api/payments/groups-references';
-import { GroupsReferencesResponse } from '../../../../api/fb-management/swagger-codegen/model/groupsReferencesResponse';
-import { GroupReference } from '../../../../api/fb-management/swagger-codegen/model/groupReference';
 
 export interface FetchReferencesParams {
     type: OperationType;
@@ -34,7 +34,7 @@ export class FetchReferencesService extends PartialFetcher<GroupReference, Fetch
     }
 
     protected fetch(params: FetchReferencesParams, lastId?: string): Observable<GroupsReferencesResponse> {
-        const { type, searchValue, sortOrder, sortFieldValue, size, sortBy } = params;
+        const { searchValue, sortOrder, sortFieldValue, size, sortBy } = params;
         return this.paymentGroupsReferencesService.filter({
             searchValue: searchValue || '',
             size: size || this.SIZE,

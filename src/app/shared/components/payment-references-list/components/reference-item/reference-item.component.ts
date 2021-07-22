@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 
-import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../tokens';
 import { PaymentReference } from '../../../../../api/fb-management/swagger-codegen/model/paymentReference';
+import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../tokens';
 
 @Component({
     selector: 'fb-reference-item',

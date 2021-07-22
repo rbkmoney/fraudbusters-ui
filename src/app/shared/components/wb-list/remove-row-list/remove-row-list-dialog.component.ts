@@ -1,13 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { WbListRecord } from '../../../../api/fb-management/swagger-codegen/model/wbListRecord';
+import { PaymentListsService } from '../../../../api/payments/lists/payment-lists.service';
 import { ListType } from '../../../constants/list-type';
 import { OperationType } from '../../../constants/operation-type';
 import { ErrorHandlerService } from '../../../services/utils/error-handler.service';
-import { PaymentListsService } from '../../../../api/payments/lists/payment-lists.service';
-import { WbListRecord } from '../../../../api/fb-management/swagger-codegen/model/wbListRecord';
 
 export interface DialogData {
     listRecord: WbListRecord;

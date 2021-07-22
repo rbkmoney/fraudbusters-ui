@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, Observable, of, Subject } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
+
+import { Template } from '../../../api/fb-management/swagger-codegen/model/template';
+import { PaymentEmulateService } from '../../../api/payments/emulate';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { PaymentEmulateFilter } from './model/payment-emulate-filter';
-import { PaymentEmulateService } from '../../../api/payments/emulate';
-import { Template } from '../../../api/fb-management/swagger-codegen/model/template';
 
 @Injectable()
 export class EmulationTemplateService {

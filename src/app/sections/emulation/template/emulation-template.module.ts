@@ -14,12 +14,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+
+import { PaymentEmulateModule } from '../../../api/payments/emulate';
 import { SharedPipesModule } from '../../../shared/pipes';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { EmulationTemplateRoutingModule } from './emulation-template-routing.module';
 import { EmulationTemplateComponent } from './emulation-template.component';
 import { EmulationTemplateService } from './emulation-template.service';
-import { PaymentEmulateModule } from '../../../api/payments/emulate';
 
 @NgModule({
     declarations: [EmulationTemplateComponent],

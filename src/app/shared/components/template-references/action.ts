@@ -1,5 +1,5 @@
-import { SortOrder } from '../../constants/sort-order';
 import { PaymentReference } from '../../../api/fb-management/swagger-codegen/model/paymentReference';
+import { SortOrder } from '../../constants/sort-order';
 
 export enum ActionType {
     createReference = 'createReference',

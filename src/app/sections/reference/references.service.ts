@@ -3,13 +3,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { catchError, map, scan, switchMap } from 'rxjs/operators';
 
+import { PaymentReference } from '../../api/fb-management/swagger-codegen/model/paymentReference';
+import { PaymentReferencesService } from '../../api/payments/references';
 import { OperationType } from '../../shared/constants/operation-type';
 import { SortOrder } from '../../shared/constants/sort-order';
 import { HttpSearchResponse } from '../../shared/model/http-search-response';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { FilterReference } from './model/filter-reference';
-import { PaymentReferencesService } from '../../api/payments/references';
-import { PaymentReference } from '../../api/fb-management/swagger-codegen/model/paymentReference';
 
 @Injectable()
 export class ReferencesService {

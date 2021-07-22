@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
+
+import { PaymentReference } from '../../../api/fb-management/swagger-codegen/model/paymentReference';
+import { PaymentDefaultReferencesService } from '../../../api/payments/default-references';
 import { ConfigService } from '../../../config';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDelay } from '../../../shared/operators';
 import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
-import { PaymentDefaultReferencesService } from '../../../api/payments/default-references';
-import { PaymentReference } from '../../../api/fb-management/swagger-codegen/model/paymentReference';
 
 export interface FetchDefaultReferencesParams {
     type: OperationType;
@@ -35,7 +36,7 @@ export class FetchDefaultReferencesService extends PartialFetcher<PaymentReferen
     }
 
     protected fetch(params: FetchDefaultReferencesParams, lastId?: string): Observable<FetchResult<PaymentReference>> {
-        const { searchValue, sortOrder, sortFieldValue, sortBy, id, name, size, type } = params;
+        const { searchValue, sortOrder, sortFieldValue, sortBy, id, name, size } = params;
         return this.paymentDefaultReferencesService.filter({
             searchValue: searchValue || '',
             sortFieldValue: sortFieldValue || '',

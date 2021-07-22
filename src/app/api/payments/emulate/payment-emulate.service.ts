@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { PaymentEmulateFilter } from '../../../sections/emulation/template/model/payment-emulate-filter';
-import { Template } from '../../fb-management/swagger-codegen/model/template';
 import { EmulateResponse } from '../../fb-management/swagger-codegen/model/emulateResponse';
-import { map } from 'rxjs/operators';
+import { Template } from '../../fb-management/swagger-codegen/model/template';
 
 @Injectable()
 export class PaymentEmulateService {

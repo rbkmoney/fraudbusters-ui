@@ -5,8 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, merge, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
-import { progress } from '../../../shared/operators';
 import { PaymentGroupsReferencesService } from '../../../api/payments/groups-references';
+import { progress } from '../../../shared/operators';
 
 @Injectable()
 export class CreatePaymentReferenceService {

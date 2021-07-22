@@ -23,12 +23,13 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { PaymentListsService } from '../../../api/payments/lists/payment-lists.service';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
 import { SearchFieldService } from '../../services/utils/search-field.service';
 import { AddRowListComponent } from './add-row-list/add-row-list.component';
 import { RemoveRowListDialogComponent } from './remove-row-list/remove-row-list-dialog.component';
 import { WbListComponent } from './wb-list.component';
-import { PaymentListsService } from '../../../api/payments/lists/payment-lists.service';
 
 @NgModule({
     declarations: [WbListComponent, RemoveRowListDialogComponent, AddRowListComponent],

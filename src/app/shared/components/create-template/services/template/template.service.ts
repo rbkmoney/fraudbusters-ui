@@ -3,9 +3,9 @@ import { FormBuilder } from '@angular/forms';
 import { merge, Subject } from 'rxjs';
 import { shareReplay, switchMap } from 'rxjs/operators';
 
+import { PaymentTemplatesService } from '../../../../../api';
 import { progress } from '../../../../operators';
 import { CreateTemplateData } from '../../types/create-template-data';
-import { PaymentTemplatesService } from '../../../../../api';
 
 @Injectable()
 export class TemplateService {

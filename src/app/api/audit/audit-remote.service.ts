@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { filterParameters } from '../../shared/utils/filter-params';
 import { ConfigService } from '../../config';
+import { filterParameters } from '../../shared/utils/filter-params';
 import { FilterLogsResponse } from '../fb-management/swagger-codegen/model/filterLogsResponse';
 import { ListResponse } from '../fb-management/swagger-codegen/model/listResponse';
-import { map } from 'rxjs/operators';
 import { SearchAuditParams } from './searchAuditParams';
 
 @Injectable()

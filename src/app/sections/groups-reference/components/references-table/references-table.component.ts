@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 
+import { GroupReference } from '../../../../api/fb-management/swagger-codegen/model/groupReference';
 import { SortOrder } from '../../../../shared/constants/sort-order';
 import { Action, ActionType } from '../../model/action';
 import { PaymentGroupReferenceModel } from '../../model/payment-groups-reference';
-import { GroupReference } from '../../../../api/fb-management/swagger-codegen/model/groupReference';
 
 @Component({
     templateUrl: 'references-table.component.html',

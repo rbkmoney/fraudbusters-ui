@@ -16,12 +16,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { PaymentLoadDataService } from '../../../api/payments/load-data';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { DndDirective } from './dnd.directive';
 import { FraudUploaderRoutingModule } from './fraud-uploader-routing.module';
 import { FraudUploaderComponent } from './fraud-uploader.component';
 import { ProgressComponent } from './progress/progress.component';
-import { PaymentLoadDataService } from '../../../api/payments/load-data';
 
 @NgModule({
     declarations: [FraudUploaderComponent, ProgressComponent, DndDirective],

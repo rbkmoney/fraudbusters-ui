@@ -1,5 +1,5 @@
-import { SortOrder } from '../../../shared/constants/sort-order';
 import { GroupReference } from '../../../api/fb-management/swagger-codegen/model/groupReference';
+import { SortOrder } from '../../../shared/constants/sort-order';
 
 export enum ActionType {
     createReference = 'createReference',

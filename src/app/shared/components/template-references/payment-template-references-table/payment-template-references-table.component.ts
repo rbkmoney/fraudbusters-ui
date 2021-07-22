@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 
+import { PaymentReference } from '../../../../api/fb-management/swagger-codegen/model/paymentReference';
 import { SortOrder } from '../../../constants/sort-order';
 import { Action, ActionType } from '../action';
-import { PaymentReference } from '../../../../api/fb-management/swagger-codegen/model/paymentReference';
 
 @Component({
     templateUrl: 'payment-template-references-table.component.html',

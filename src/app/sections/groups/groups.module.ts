@@ -18,12 +18,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { PaymentTemplatesModule } from '../../api';
+import { PaymentGroupsModule } from '../../api/payments/groups';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { GroupsRoutingModule } from './groups-routing.module';
 import { GroupsComponent } from './groups.component';
 import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-dialog.component';
-import { PaymentGroupsModule } from '../../api/payments/groups';
 
 @NgModule({
     declarations: [GroupsComponent, RemoveGroupDialogComponent],

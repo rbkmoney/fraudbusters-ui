@@ -13,15 +13,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { PaymentTemplatesModule } from '../../api';
+import { PaymentGroupsService } from '../../api/payments/groups';
+import { PaymentGroupsReferencesModule, PaymentGroupsReferencesService } from '../../api/payments/groups-references';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { CreateGroupReferenceModule } from '../create-group-reference';
 import { TemplatesService } from '../template/services/templates/templates.service';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { EditGroupComponent } from './edit-group/edit-group.component';
 import { GroupRoutingModule } from './group-routing.module';
 import { GroupComponent } from './group.component';
-import { PaymentGroupsReferencesModule, PaymentGroupsReferencesService } from '../../api/payments/groups-references';
-import { PaymentGroupsService } from '../../api/payments/groups';
-import { CreateGroupReferenceModule } from '../create-group-reference';
 
 @NgModule({
     imports: [

@@ -5,10 +5,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, merge, NEVER, of, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
+import { GroupReference } from '../../../../api/fb-management/swagger-codegen/model/groupReference';
+import { PaymentGroupsReferencesService } from '../../../../api/payments/groups-references';
 import { ConfirmActionDialogComponent } from '../../../../shared/components/confirm-action-dialog';
 import { progress } from '../../../../shared/operators';
-import { PaymentGroupsReferencesService } from '../../../../api/payments/groups-references';
-import { GroupReference } from '../../../../api/fb-management/swagger-codegen/model/groupReference';
 
 export interface RemoveReferenceParams {
     reference: GroupReference;

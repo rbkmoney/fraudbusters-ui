@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
+import { HttpRequestModel } from '../../../shared/model/http-request-model';
 import { SearchParams } from '../../../shared/model/search-params';
 import { filterParameters } from '../../../shared/utils/filter-params';
-import { HttpRequestModel } from '../../../shared/model/http-request-model';
-import { GroupsReferencesResponse } from '../../fb-management/swagger-codegen/model/groupsReferencesResponse';
 import { GroupReference } from '../../fb-management/swagger-codegen/model/groupReference';
+import { GroupsReferencesResponse } from '../../fb-management/swagger-codegen/model/groupsReferencesResponse';
 import { ListResponse } from '../../fb-management/swagger-codegen/model/listResponse';
-import { map } from 'rxjs/operators';
 
 @Injectable()
 export class PaymentGroupsReferencesService {

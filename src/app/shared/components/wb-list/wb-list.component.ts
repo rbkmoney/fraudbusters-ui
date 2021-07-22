@@ -8,14 +8,13 @@ import { Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
+import { PaymentListsService } from '../../../api/payments/lists/payment-lists.service';
 import { ConfigService } from '../../../config';
 import { ListType } from '../../constants/list-type';
-import { OperationType } from '../../constants/operation-type';
 import { SortOrder } from '../../constants/sort-order';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
 import { SearchFieldService } from '../../services/utils/search-field.service';
 import { RemoveRowListDialogComponent } from './remove-row-list/remove-row-list-dialog.component';
-import { PaymentListsService } from '../../../api/payments/lists/payment-lists.service';
 
 @Component({
     selector: 'fb-wb-list',

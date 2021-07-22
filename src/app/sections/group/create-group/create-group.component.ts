@@ -4,12 +4,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { PaymentGroupsService } from '../../../api/payments/groups';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { TemplatesService } from '../../template/services/templates/templates.service';
 import { Group } from '../model/group';
 import { GroupUtilsService } from '../utils/group-utils.service';
-import { PaymentGroupsService } from '../../../api/payments/groups';
 
 @Component({
     templateUrl: './create-group.component.html',

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+
 import { EmulationTemplateService } from './emulation-template.service';
 import { PaymentEmulateFilter } from './model/payment-emulate-filter';
 

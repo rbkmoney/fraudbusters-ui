@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { PaymentTemplatesService } from '../../../../api';
 import { CreateTemplateResponse } from '../../../../api/fb-management/swagger-codegen/model/createTemplateResponse';
+import { Template } from '../../../../api/fb-management/swagger-codegen/model/template';
 import { ValidationResponse } from '../../../../api/fb-management/swagger-codegen/model/validationResponse';
-import { OperationType } from '../../../../shared/constants/operation-type';
 import { SortOrder } from '../../../../shared/constants/sort-order';
 import { HttpSearchResponse } from '../../../../shared/model/http-search-response';
-import { PaymentTemplatesService } from '../../../../api';
-import { Template } from '../../../../api/fb-management/swagger-codegen/model/template';
 
 @Injectable()
 export class TemplatesService {

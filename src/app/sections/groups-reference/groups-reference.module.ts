@@ -20,6 +20,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { PaymentTemplatesModule } from '../../api';
+import { PaymentGroupsReferencesModule, PaymentGroupsReferencesService } from '../../api/payments/groups-references';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
@@ -29,7 +30,6 @@ import { ReferencesTableComponent } from './components/references-table/referenc
 import { GroupsReferenceRoutingModule } from './groups-reference-routing.module';
 import { GroupsReferenceComponent } from './groups-reference.component';
 import { GroupsReferenceService } from './services/groups-reference/groups-reference.service';
-import { PaymentGroupsReferencesModule, PaymentGroupsReferencesService } from '../../api/payments/groups-references';
 
 @NgModule({
     declarations: [

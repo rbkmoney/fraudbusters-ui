@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { PaymentDefaultReferencesService } from '../../../api/payments/default-references';
 import { HeadlineModule } from '../../../shared/components/headline';
 import { TemplateIdModule } from '../../../shared/components/inputs/template-id';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
@@ -18,7 +19,6 @@ import { CreateDefaultPaymentReferenceComponent } from './components';
 import { CreateDefaultReferenceRoutingModule } from './create-default-reference-routing.module';
 import { CreateDefaultReferenceComponent } from './create-default-reference.component';
 import { CreateDefaultPaymentReferenceService } from './services/create-default-payment-reference.service';
-import { PaymentDefaultReferencesService } from '../../../api/payments/default-references';
 
 @NgModule({
     declarations: [CreateDefaultReferenceComponent, CreateDefaultPaymentReferenceComponent],

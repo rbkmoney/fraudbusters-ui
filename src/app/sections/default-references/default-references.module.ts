@@ -17,6 +17,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
+
+import { PaymentDefaultReferencesService } from '../../api/payments/default-references';
+import { PaymentEmulateService } from '../../api/payments/emulate';
+import { PaymentGroupsReferencesService } from '../../api/payments/groups-references';
 import { PaymentTemplatesModule } from '../../api/payments/templates';
 import { ConfirmActionDialogModule } from '../../shared/components/confirm-action-dialog';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
@@ -28,9 +32,6 @@ import { DefaultPaymentReferencesComponent } from './components/payment-referenc
 import { DefaultReferencesRoutingModule } from './default-references-routing.module';
 import { DefaultReferencesComponent } from './default-references.component';
 import { FetchDefaultReferencesService } from './services/fetch-default-references.service';
-import { PaymentGroupsReferencesService } from '../../api/payments/groups-references';
-import { PaymentEmulateService } from '../../api/payments/emulate';
-import { PaymentDefaultReferencesService } from '../../api/payments/default-references';
 
 @NgModule({
     declarations: [DefaultReferencesComponent, DefaultPaymentReferencesComponent],

@@ -4,14 +4,15 @@ import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Sort } from '@angular/material/sort';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs/operators';
+
+import { PaymentGroupsService } from '../../api/payments/groups';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { PriorityIdModel } from './model/priority-id-model';
 import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-dialog.component';
 import { GroupUtilsService } from './utils/group-utils.service';
-import { PaymentGroupsService } from '../../api/payments/groups';
 
 @Component({
     templateUrl: './groups.component.html',
@@ -26,7 +27,6 @@ export class GroupsComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private route: ActivatedRoute,
         private errorHandlerService: ErrorHandlerService,
         private groupsService: PaymentGroupsService,
         private groupUtilsService: GroupUtilsService,

@@ -2,15 +2,14 @@ import { Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { ListType } from '../../../constants/list-type';
-import { ErrorHandlerService } from '../../../services/utils/error-handler.service';
-import { PaymentListsService } from '../../../../api/payments/lists/payment-lists.service';
+import { CountInfo } from '../../../../api/fb-management/swagger-codegen/model/countInfo';
 import { PaymentCountInfo } from '../../../../api/fb-management/swagger-codegen/model/paymentCountInfo';
 import { PaymentListRecord } from '../../../../api/fb-management/swagger-codegen/model/paymentListRecord';
-import { CountInfo } from '../../../../api/fb-management/swagger-codegen/model/countInfo';
+import { PaymentListsService } from '../../../../api/payments/lists/payment-lists.service';
+import { ListType } from '../../../constants/list-type';
+import { ErrorHandlerService } from '../../../services/utils/error-handler.service';
 
 @Component({
     selector: 'fb-add-row-list',
@@ -27,7 +26,6 @@ export class AddRowListComponent implements OnInit {
     filteredOptions: Observable<string[]>;
 
     constructor(
-        private route: ActivatedRoute,
         private listService: PaymentListsService,
         private errorHandlerService: ErrorHandlerService,
         private snackBar: MatSnackBar,

@@ -9,7 +9,6 @@ import { MatFormFieldAppearance } from '@angular/material/form-field/form-field'
 import { debounceTime, shareReplay, switchMap } from 'rxjs/operators';
 
 import { TemplatesService } from '../../../../sections/template/services/templates/templates.service';
-import { OperationType } from '../../../constants/operation-type';
 import { CustomFormControlComponent } from '../custom-form-control/custom-form-control.component';
 
 @Component({

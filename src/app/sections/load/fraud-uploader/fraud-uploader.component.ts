@@ -2,10 +2,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { PaymentLoadDataService } from '../../../api/payments/load-data';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { UploadStatus } from './constants/upload-status';
 import { UploadFile } from './model/upload-file';
-import { PaymentLoadDataService } from '../../../api/payments/load-data';
 
 @Component({
     templateUrl: './fraud-uploader.component.html',
