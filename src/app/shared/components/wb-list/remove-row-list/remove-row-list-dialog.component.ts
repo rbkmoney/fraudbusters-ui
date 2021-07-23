@@ -33,7 +33,7 @@ export class RemoveRowListDialogComponent {
     }
 
     delete(): void {
-        this.listsService.deleteListRow(this.data.listRecord.groupId).subscribe(
+        this.listsService.deleteListRow(this.data.listRecord.id).subscribe(
             (id) => {
                 this.snackBar.open(`Delete succeeded: ${id}`, 'OK', {
                     duration: 1500,

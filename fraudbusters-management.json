@@ -502,19 +502,7 @@
                 "tags": ["group"],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/sortOrder"
-                    },
-                    {
                         "$ref": "#/components/parameters/searchValue"
-                    },
-                    {
-                        "$ref": "#/components/parameters/sortBy"
-                    },
-                    {
-                        "$ref": "#/components/parameters/sortFieldValue"
-                    },
-                    {
-                        "$ref": "#/components/parameters/size"
                     }
                 ],
                 "responses": {
@@ -1935,7 +1923,7 @@
             "WbListRecord": {
                 "type": "object",
                 "properties": {
-                    "groupId": {
+                    "id": {
                         "type": "string"
                     },
                     "insertTime": {
@@ -1989,7 +1977,8 @@
                         "type": "string"
                     },
                     "lastUpdateDate": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "date-time"
                     },
                     "modifiedByUser": {
                         "type": "string"
@@ -2209,7 +2198,7 @@
             },
             "PaymentResponse": {
                 "type": "object",
-                "required": ["result", "continuationId"],
+                "required": ["result"],
                 "properties": {
                     "continuationId": {
                         "type": "string"

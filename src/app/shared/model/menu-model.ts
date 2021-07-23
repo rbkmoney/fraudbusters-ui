@@ -80,6 +80,12 @@ export class MenuModel {
             roles: [Roles.fraudOfficer, Roles.fraudMonitoring, Roles.fraudSupport],
         },
         {
+            displayName: 'Historical data',
+            iconName: 'history',
+            route: 'historical-data/payments',
+            roles: [Roles.fraudOfficer, Roles.fraudMonitoring],
+        },
+        {
             displayName: 'Audit',
             iconName: 'wysiwyg',
             route: 'audit',

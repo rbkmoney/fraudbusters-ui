@@ -67,6 +67,10 @@ const routes: Routes = [
         path: 'audit',
         loadChildren: () => import('./audit').then((m) => m.AuditModule),
     },
+    {
+        path: 'historical-data',
+        loadChildren: () => import('./historical-data').then((m) => m.HistoricalDataModule),
+    },
 ];
 
 @NgModule({
