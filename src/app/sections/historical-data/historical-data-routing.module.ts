@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../auth';
-import { HistoricalDataComponent } from './historical-data.component';
 import { HistoricalPaymentsDataComponent } from './components/payments/historical-payments-data.component';
+import { HistoricalDataComponent } from './historical-data.component';
 
 @NgModule({
     imports: [

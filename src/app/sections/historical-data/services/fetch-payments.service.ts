@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
+import { Payment } from '../../../api/fb-management/swagger-codegen/model/payment';
 import { PaymentReference } from '../../../api/fb-management/swagger-codegen/model/paymentReference';
 import { PaymentReferencesService } from '../../../api/payments/references';
 import { ConfigService } from '../../../config';
@@ -9,7 +10,6 @@ import { OperationType } from '../../../shared/constants/operation-type';
 import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDelay } from '../../../shared/operators';
 import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
-import { Payment } from '../../../api/fb-management/swagger-codegen/model/payment';
 
 export interface FetchPaymentParams {
     type: OperationType;

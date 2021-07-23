@@ -54,7 +54,7 @@ export class PaymentListsService {
     saveListsRows(listType: ListType, records: PaymentCountInfo[]): Observable<string[]> {
         return this.http.post<string[]>(
             `${this.fbPaymentReferenceEndpoint}`,
-            { listType: listType, records: records },
+            { listType, records },
             new HttpRequestModel()
         );
     }

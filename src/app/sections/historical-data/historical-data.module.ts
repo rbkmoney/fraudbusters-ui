@@ -17,17 +17,16 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ConfirmActionDialogModule } from '../../shared/components/confirm-action-dialog';
+
+import { PaymentReferencesService } from '../../api/payments/references';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
+import { PaymentReferencesListModule } from '../../shared/components/payment-references-list';
 import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
-import { ReferencesRoutingModule } from '../references/references-routing.module';
-import { HistoricalDataComponent } from './historical-data.component';
+import { TemplateReferencesModule } from '../../shared/components/template-references';
 import { HistoricalPaymentsDataComponent } from './components/payments/historical-payments-data.component';
 import { HistoricalDataRoutingModule } from './historical-data-routing.module';
-import { TemplateReferencesModule } from '../../shared/components/template-references';
-import { PaymentReferencesListModule } from '../../shared/components/payment-references-list';
+import { HistoricalDataComponent } from './historical-data.component';
 import { FetchPaymentsService } from './services/fetch-payments.service';
-import { PaymentReferencesService } from '../../api/payments/references';
 
 @NgModule({
     declarations: [HistoricalDataComponent, HistoricalPaymentsDataComponent],

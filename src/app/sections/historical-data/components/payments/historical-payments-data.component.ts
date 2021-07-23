@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { LAYOUT_GAP_M } from '../../../../tokens';
+
 import { OperationType } from '../../../../shared/constants/operation-type';
+import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchPaymentsService } from '../../services/fetch-payments.service';
 
 @Component({
