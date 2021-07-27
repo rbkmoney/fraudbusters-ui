@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -17,19 +17,26 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
-import { PaymentReferencesService } from '../../api/payments/references';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
-import { PaymentReferencesListModule } from '../../shared/components/payment-references-list';
 import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
-import { TemplateReferencesModule } from '../../shared/components/template-references';
 import { HistoricalPaymentsDataComponent } from './components/payments/historical-payments-data.component';
 import { HistoricalDataRoutingModule } from './historical-data-routing.module';
 import { HistoricalDataComponent } from './historical-data.component';
-import { FetchPaymentsService } from './services/fetch-payments.service';
+import { FetchHistoricalPaymentsService } from './services/fetch-historical-payments.service';
+import { PaymentHistoricalDataService } from '../../api/payments/historical-data';
+import { HistoricalDataPaymentListModule } from './components/payments/historical-payment-list';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
+import { HistoryDataSearchComponent } from './components/search/history-data-search.component';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 
 @NgModule({
-    declarations: [HistoricalDataComponent, HistoricalPaymentsDataComponent],
+    declarations: [HistoricalDataComponent, HistoricalPaymentsDataComponent, HistoryDataSearchComponent],
     imports: [
         FlexModule,
         MatButtonModule,
@@ -37,7 +44,6 @@ import { FetchPaymentsService } from './services/fetch-payments.service';
         CommonModule,
         MatProgressBarModule,
         MatProgressSpinnerModule,
-        EmptySearchResultModule,
         MatSelectModule,
         ReactiveFormsModule,
         HistoricalDataRoutingModule,
@@ -56,9 +62,13 @@ import { FetchPaymentsService } from './services/fetch-payments.service';
         MatInputModule,
         MatDividerModule,
         ShowMorePanelModule,
-        TemplateReferencesModule,
-        PaymentReferencesListModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        NgxMatTimepickerModule,
+        NgxMatNativeDateModule,
+        NgxMatDatetimePickerModule,
+        HistoricalDataPaymentListModule,
     ],
-    providers: [FetchPaymentsService, PaymentReferencesService],
+    providers: [FetchHistoricalPaymentsService, PaymentHistoricalDataService, DatePipe, SearchFieldService],
 })
 export class HistoricalDataModule {}

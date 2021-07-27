@@ -10,6 +10,11 @@ import { LAYOUT_GAP_S } from '../../tokens';
 export class HistoricalDataComponent {
     links = [
         {
+            path: 'inspect-results',
+            name: 'Inspect results',
+            otherActiveUrlFragments: [],
+        },
+        {
             path: 'payments',
             name: 'Payments',
             otherActiveUrlFragments: [],
@@ -20,13 +25,13 @@ export class HistoricalDataComponent {
             otherActiveUrlFragments: [],
         },
         {
-            path: 'fraud-results',
-            name: 'Fraud results',
+            path: 'chargebacks',
+            name: 'Chargebacks',
             otherActiveUrlFragments: [],
         },
         {
-            path: 'chargebacks',
-            name: 'Chargebacks',
+            path: 'loaded-fraud',
+            name: 'Loaded fraud',
             otherActiveUrlFragments: [],
         },
     ];

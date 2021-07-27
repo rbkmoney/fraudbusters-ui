@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { OperationType } from '../../../../shared/constants/operation-type';
 import { LAYOUT_GAP_M } from '../../../../tokens';
-import { FetchPaymentsService } from '../../services/fetch-payments.service';
+import { FetchHistoricalPaymentsService } from '../../services/fetch-historical-payments.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     templateUrl: 'historical-payments-data.component.html',
@@ -17,25 +16,29 @@ export class HistoricalPaymentsDataComponent {
 
     constructor(
         private router: Router,
-        private fetchPaymentsService: FetchPaymentsService,
+        private fetchPaymentsService: FetchHistoricalPaymentsService,
+        public datepipe: DatePipe,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
-    ) {}
+    ) {
+        this.fetchPaymentsService.search({});
+    }
 
-    search(searchValue: string) {
+    search(event) {
         this.fetchPaymentsService.search({
-            type: OperationType.Payment,
-            searchValue,
-            isGlobal: false,
-            isDefault: false,
+            from: this.datepipe.transform(event.from, 'yyyy-MM-dd HH:mm:ss'),
+            to: this.datepipe.transform(event.to, 'yyyy-MM-dd HH:mm:ss'),
         });
     }
 
     fetchMore(sortFieldValue: string) {
         this.fetchPaymentsService.fetchMore({
-            type: OperationType.Payment,
             sortFieldValue,
-            isGlobal: false,
-            isDefault: false,
         });
+    }
+
+    todayFromTime(): Date {
+        const now = new Date();
+        now.setHours(0, 0, 0, 0);
+        return now;
     }
 }

@@ -1,16 +1,14 @@
 <div fxLayout="column" [fxLayoutGap]="layoutGapM">
-    <div fxLayout fxLayoutAlign="space-between center">
-        <fb-template-references-search (valueChanges)="search($event)"></fb-template-references-search>
-    </div>
-    <div *ngIf="payments$ | async as references; else Empty" fxLayout="column" [fxLayoutGap]="layoutGapM">
-        <fb-payment-references-list
-            *ngIf="references.length > 0; else Empty"
-            [references]="references"
-        ></fb-payment-references-list>
+    <fb-history-data-search (valueChanges)="search($event)"></fb-history-data-search>
+    <div *ngIf="payments$ | async as payments; else Empty" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <fb-historical-data-payment-list
+            *ngIf="payments.length > 0; else Empty"
+            [payments]="payments"
+        ></fb-historical-data-payment-list>
         <fb-show-more-panel
             *ngIf="hasMore$ | async"
             [isLoading]="inProgress$ | async"
-            (showMore)="fetchMore(references[references.length - 1].id)"
+            (showMore)="fetchMore(payments[payments.length - 1].id)"
         ></fb-show-more-panel>
     </div>
 </div>

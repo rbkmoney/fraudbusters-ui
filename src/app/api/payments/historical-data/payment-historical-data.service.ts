@@ -3,29 +3,19 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
-import { Group } from '../../../sections/groups/model/group';
+import { filterParameters } from '../../../shared/utils/filter-params';
+import { PaymentResponse } from '../../fb-management/swagger-codegen/model/paymentResponse';
+import { SearchHistoricalParams } from '../../../sections/historical-data/search-historical-params';
 
 @Injectable()
 export class PaymentHistoricalDataService {
-    private readonly fbPaymentReferenceEndpoint = `${this.configService.fbManagementEndpoint}/payments/group`;
+    private readonly fbPaymentReferenceEndpoint = `${this.configService.fbManagementEndpoint}/payments-historical-data/payments-info`;
 
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
-    findGroups(filterId: string): Observable<Group[]> {
-        return this.http.get<Group[]>(`${this.fbPaymentReferenceEndpoint}/filter/`, {
-            params: filterId ? { id: filterId } : {},
+    filter(params: SearchHistoricalParams): Observable<PaymentResponse> {
+        return this.http.get<PaymentResponse>(`${this.fbPaymentReferenceEndpoint}`, {
+            params: filterParameters(params),
         });
-    }
-
-    getGroupById(id: string): Observable<Group> {
-        return this.http.get<Group>(`${this.fbPaymentReferenceEndpoint}/${id}`);
-    }
-
-    deleteGroup(id: string): Observable<string> {
-        return this.http.delete(`${this.fbPaymentReferenceEndpoint}/${id}`, { responseType: 'text' });
-    }
-
-    saveGroup(group: Group): Observable<string> {
-        return this.http.post(`${this.fbPaymentReferenceEndpoint}`, group, { responseType: 'text' });
     }
 }
