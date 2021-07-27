@@ -1,8 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchHistoricalPaymentsService } from '../../services/fetch-historical-payments.service';
-import { DatePipe } from '@angular/common';
 
 @Component({
     templateUrl: 'historical-payments-data.component.html',

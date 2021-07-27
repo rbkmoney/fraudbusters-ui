@@ -3,13 +3,13 @@ import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
 import { Payment } from '../../../api/fb-management/swagger-codegen/model/payment';
+import { PaymentHistoricalDataService } from '../../../api/payments/historical-data';
 import { ConfigService } from '../../../config';
 import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDelay } from '../../../shared/operators';
-import { PartialFetcher } from '../../../shared/utils/partial-fetcher';
-import { PaymentHistoricalDataService } from '../../../api/payments/historical-data';
-import { FetchResultContinuation } from '../../../shared/utils/partial-fetcher/fetch-result-continuation';
 import { SearchFieldService } from '../../../shared/services/utils/search-field.service';
+import { PartialFetcher } from '../../../shared/utils/partial-fetcher';
+import { FetchResultContinuation } from '../../../shared/utils/partial-fetcher/fetch-result-continuation';
 
 export interface FetchPaymentParams {
     searchValue?: string;

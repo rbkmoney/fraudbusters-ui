@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
+
 import { Payment } from '../../../../../api/fb-management/swagger-codegen/model/payment';
 import { LAYOUT_GAP_M } from '../../../../../tokens';
 

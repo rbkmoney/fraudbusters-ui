@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
+import { SearchHistoricalParams } from '../../../sections/historical-data/search-historical-params';
 import { filterParameters } from '../../../shared/utils/filter-params';
 import { PaymentResponse } from '../../fb-management/swagger-codegen/model/paymentResponse';
-import { SearchHistoricalParams } from '../../../sections/historical-data/search-historical-params';
 
 @Injectable()
 export class PaymentHistoricalDataService {
