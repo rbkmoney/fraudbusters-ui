@@ -5,7 +5,6 @@ import { debounceTime, map, take } from 'rxjs/operators';
 
 import { SearchFieldService } from '../../../../shared/services/utils/search-field.service';
 import { removeEmptyProperties } from '../../../../shared/utils/remove-empty-properties';
-import { MAT_DATE_FORMATS } from '@angular/material/core';
 
 @Component({
     selector: 'fb-history-data-search',
