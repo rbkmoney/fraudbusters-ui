@@ -12,15 +12,19 @@ import { PartialFetcher } from '../../../shared/utils/partial-fetcher';
 import { FetchResultContinuation } from '../../../shared/utils/partial-fetcher/fetch-result-continuation';
 
 export interface FetchPaymentParams {
-    searchValue?: string;
     sortOrder?: SortOrder;
     size?: number;
-    id?: string;
-    name?: string;
     sortBy?: string;
     sortFieldValue?: string;
     from?: string;
     to?: string;
+    paymentId?: string;
+    cardToken?: string;
+    shopId?: string;
+    partyId?: string;
+    status?: string;
+    fingerprint?: string;
+    email?: string;
 }
 
 @Injectable()
@@ -37,13 +41,32 @@ export class FetchHistoricalPaymentsService extends PartialFetcher<Payment, Fetc
     }
 
     protected fetch(params: FetchPaymentParams, lastId?: string): Observable<FetchResultContinuation<Payment>> {
-        const { searchValue, sortOrder, sortFieldValue, size, from, to } = params;
+        const {
+            sortOrder,
+            sortFieldValue,
+            size,
+            from,
+            to,
+            paymentId,
+            cardToken,
+            shopId,
+            partyId,
+            status,
+            fingerprint,
+            email,
+        } = params;
         return this.paymentHistoricalDataService.filter({
-            searchValue: searchValue || '',
             sortFieldValue: sortFieldValue || '',
             from: from || this.searchFieldService.todayFromTime().toISOString(),
             to: to || new Date().toISOString(),
             sortOrder: sortOrder || SortOrder.ASC,
+            paymentId: paymentId || '',
+            cardToken: cardToken || '',
+            shopId: shopId || '',
+            partyId: partyId || '',
+            status: status || '',
+            fingerprint: fingerprint || '',
+            email: email || '',
             size: size ? size : this.SIZE,
         });
     }

@@ -26,6 +26,13 @@ export class HistoricalPaymentsDataComponent {
 
     search(event) {
         this.fetchPaymentsService.search({
+            paymentId: event.paymentId,
+            cardToken: event.cardToken,
+            shopId: event.shopId,
+            partyId: event.partyId,
+            status: event.status,
+            fingerprint: event.fingerprint,
+            email: event.email,
             from: this.datepipe.transform(event.from, 'yyyy-MM-dd HH:mm:ss'),
             to: this.datepipe.transform(event.to, 'yyyy-MM-dd HH:mm:ss'),
         });
