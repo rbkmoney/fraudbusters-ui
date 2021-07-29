@@ -8,16 +8,17 @@ import { ConfigService } from '../../../config';
 import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDelay } from '../../../shared/operators';
 import { SearchFieldService } from '../../../shared/services/utils/search-field.service';
-import { PartialFetcher } from '../../../shared/utils/partial-fetcher';
 import { FetchResultContinuation } from '../../../shared/utils/partial-fetcher/fetch-result-continuation';
+import { PartialFetcherContinuation } from '../../../shared/utils/partial-fetcher/partial-fetcher-continuation';
+import { DatePipe } from '@angular/common';
 
 export interface FetchPaymentParams {
     sortOrder?: SortOrder;
     size?: number;
     sortBy?: string;
     sortFieldValue?: string;
-    from?: string;
-    to?: string;
+    from?: Date;
+    to?: Date;
     paymentId?: string;
     cardToken?: string;
     shopId?: string;
@@ -28,17 +29,19 @@ export interface FetchPaymentParams {
 }
 
 @Injectable()
-export class FetchHistoricalPaymentsService extends PartialFetcher<Payment, FetchPaymentParams> {
+export class FetchHistoricalPaymentsService extends PartialFetcherContinuation<Payment, FetchPaymentParams> {
     inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
     private SIZE = this.configService.pageSize;
 
     constructor(
         private paymentHistoricalDataService: PaymentHistoricalDataService,
         private configService: ConfigService,
-        private searchFieldService: SearchFieldService
+        public datepipe: DatePipe
     ) {
         super();
     }
+
+    private readonly _yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
 
     protected fetch(params: FetchPaymentParams, lastId?: string): Observable<FetchResultContinuation<Payment>> {
         const {
@@ -57,8 +60,8 @@ export class FetchHistoricalPaymentsService extends PartialFetcher<Payment, Fetc
         } = params;
         return this.paymentHistoricalDataService.filter({
             sortFieldValue: sortFieldValue || '',
-            from: from || this.searchFieldService.todayFromTime().toISOString(),
-            to: to || new Date().toISOString(),
+            from: this.datepipe.transform(from, this._yyyyMMDdHHMmSs),
+            to: this.datepipe.transform(to, this._yyyyMMDdHHMmSs),
             sortOrder: sortOrder || SortOrder.ASC,
             paymentId: paymentId || '',
             cardToken: cardToken || '',
@@ -68,6 +71,7 @@ export class FetchHistoricalPaymentsService extends PartialFetcher<Payment, Fetc
             fingerprint: fingerprint || '',
             email: email || '',
             size: size ? size : this.SIZE,
+            ...(lastId ? { lastId } : {}),
         });
     }
 }

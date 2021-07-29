@@ -27,6 +27,7 @@ import { ErrorHandlerService } from '../../shared/services/utils/error-handler.s
 import { AuditRoutingModule } from './audit-routing.module';
 import { AuditComponent } from './audit.component';
 import { AuditService } from './audit.service';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 
 @NgModule({
     declarations: [AuditComponent],
@@ -54,6 +55,6 @@ import { AuditService } from './audit.service';
         NgxMatDatetimePickerModule,
         FormsModule,
     ],
-    providers: [ErrorHandlerService, AuditService, DatePipe],
+    providers: [ErrorHandlerService, AuditService, DatePipe, SearchFieldService],
 })
 export class AuditModule {}

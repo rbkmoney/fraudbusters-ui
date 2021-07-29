@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -18,7 +17,6 @@ export class HistoricalPaymentsDataComponent {
     constructor(
         private router: Router,
         private fetchPaymentsService: FetchHistoricalPaymentsService,
-        public datepipe: DatePipe,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.fetchPaymentsService.search({});
@@ -33,20 +31,22 @@ export class HistoricalPaymentsDataComponent {
             status: event.status,
             fingerprint: event.fingerprint,
             email: event.email,
-            from: this.datepipe.transform(event.from, 'yyyy-MM-dd HH:mm:ss'),
-            to: this.datepipe.transform(event.to, 'yyyy-MM-dd HH:mm:ss'),
+            from: event.from,
+            to: event.to,
         });
     }
 
-    fetchMore(sortFieldValue: string) {
+    fetchMore(event) {
         this.fetchPaymentsService.fetchMore({
-            sortFieldValue,
+            paymentId: event.paymentId,
+            cardToken: event.cardToken,
+            shopId: event.shopId,
+            partyId: event.partyId,
+            status: event.status,
+            fingerprint: event.fingerprint,
+            email: event.email,
+            from: event.from,
+            to: event.to,
         });
-    }
-
-    todayFromTime(): Date {
-        const now = new Date();
-        now.setHours(0, 0, 0, 0);
-        return now;
     }
 }

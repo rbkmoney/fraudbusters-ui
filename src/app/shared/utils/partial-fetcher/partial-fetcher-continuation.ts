@@ -17,11 +17,14 @@ import { FetchAction } from './fetch-action';
 import { FetchFn } from './fetch-fn';
 import { FetchResult } from './fetch-result';
 import { scanAction, scanFetchResult } from './operators';
+import { FetchResultContinuation } from './fetch-result-continuation';
+import { scanFetchResultContinuation } from './operators/scan-continuation-search-result';
+import { FetchFnContinuation } from './fetch-fn-continuation';
 
-export abstract class PartialFetcher<R, P> {
+export abstract class PartialFetcherContinuation<R, P> {
     private action$ = new Subject<FetchAction<P>>();
 
-    fetchResultChanges$: Observable<{ result: R[]; hasMore: boolean; count: number }>;
+    fetchResultChanges$: Observable<{ result: R[]; hasMore: boolean; continuationId: string }>;
 
     readonly searchResult$: Observable<R[]>;
     readonly hasMore$: Observable<boolean>;
@@ -34,10 +37,10 @@ export abstract class PartialFetcher<R, P> {
         const fetchResult$ = this.getFetchResult(actionWithParams$);
 
         this.fetchResultChanges$ = fetchResult$.pipe(
-            map(({ result, count }) => ({
+            map(({ result, continuationId }) => ({
                 result,
-                count,
-                hasMore: result.length < count,
+                continuationId,
+                hasMore: !!continuationId,
             })),
             share()
         );
@@ -85,10 +88,10 @@ export abstract class PartialFetcher<R, P> {
         return this.action$.pipe(scanAction, debounceActionTime ? debounceTime(debounceActionTime) : tap(), share());
     }
 
-    protected getFetchResult(actionWithParams$: Observable<FetchAction<P>>): Observable<FetchResult<R>> {
-        const fetchFn = this.fetch.bind(this) as FetchFn<P, R>;
+    protected getFetchResult(actionWithParams$: Observable<FetchAction<P>>): Observable<FetchResultContinuation<R>> {
+        const fetchFn = this.fetch.bind(this) as FetchFnContinuation<P, R>;
         return actionWithParams$.pipe(
-            scanFetchResult(fetchFn),
+            scanFetchResultContinuation(fetchFn),
             shareReplay(1),
             catchError((error) => {
                 this.errors$.next(error);
