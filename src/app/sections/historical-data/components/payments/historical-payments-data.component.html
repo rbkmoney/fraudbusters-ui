@@ -5,11 +5,11 @@
             *ngIf="payments.length > 0; else Empty"
             [payments]="payments"
         ></fb-historical-data-payment-list>
-        <fb-show-more-panel
+        <fb-show-more-continuation-panel
             *ngIf="hasMore$ | async"
             [isLoading]="inProgress$ | async"
             (showMore)="fetchMore($event)"
-        ></fb-show-more-panel>
+        ></fb-show-more-continuation-panel>
     </div>
 </div>
 

@@ -35,6 +35,7 @@ import { HistoryDataSearchComponent } from './components/search/history-data-sea
 import { HistoricalDataRoutingModule } from './historical-data-routing.module';
 import { HistoricalDataComponent } from './historical-data.component';
 import { FetchHistoricalPaymentsService } from './services/fetch-historical-payments.service';
+import { ShowMoreContinuationPanelModule } from '../../shared/components/show-more-panel-continuation';
 
 @NgModule({
     declarations: [HistoricalDataComponent, HistoricalPaymentsDataComponent, HistoryDataSearchComponent],
@@ -69,6 +70,7 @@ import { FetchHistoricalPaymentsService } from './services/fetch-historical-paym
         NgxMatNativeDateModule,
         NgxMatDatetimePickerModule,
         HistoricalDataPaymentListModule,
+        ShowMoreContinuationPanelModule,
     ],
     providers: [FetchHistoricalPaymentsService, PaymentHistoricalDataService, DatePipe, SearchFieldService],
 })
