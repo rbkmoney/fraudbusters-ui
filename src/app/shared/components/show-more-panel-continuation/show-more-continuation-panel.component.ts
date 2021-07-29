@@ -21,7 +21,6 @@ export class ShowMoreContinuationPanelComponent {
     }
 
     getMore() {
-        console.log(this.queryParams);
         this.showMore.emit(this.queryParams);
     }
 }

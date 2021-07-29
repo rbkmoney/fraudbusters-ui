@@ -43,7 +43,7 @@ export class AuditComponent implements OnInit {
                 user: !params[2].userId ? '' : params[2].userId,
                 commandTypes: !params[2].commandTypes ? params[0] : JSON.parse(params[2].commandTypes),
                 objectTypes: !params[2].objectTypes ? params[1] : JSON.parse(params[2].objectTypes),
-                from: !params[2].dateFrom ? searchFieldService.todayFromTime() : new Date(params[2].dateFrom),
+                from: !params[2].dateFrom ? this.searchFieldService.todayFromTime() : new Date(params[2].dateFrom),
                 to: !params[2].dateTo ? new Date() : new Date(params[2].dateTo),
             };
             this.auditService.mergeQueryParam({

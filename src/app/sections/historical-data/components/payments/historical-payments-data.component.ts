@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchHistoricalPaymentsService } from '../../services/fetch-historical-payments.service';
@@ -15,7 +14,6 @@ export class HistoricalPaymentsDataComponent {
     hasMore$ = this.fetchPaymentsService.hasMore$;
 
     constructor(
-        private router: Router,
         private fetchPaymentsService: FetchHistoricalPaymentsService,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
