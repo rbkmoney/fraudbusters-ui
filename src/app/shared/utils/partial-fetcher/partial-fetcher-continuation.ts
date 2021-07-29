@@ -15,11 +15,10 @@ import {
 import { progress } from '../../operators';
 import { FetchAction } from './fetch-action';
 import { FetchFn } from './fetch-fn';
-import { FetchResult } from './fetch-result';
-import { scanAction, scanFetchResult } from './operators';
-import { FetchResultContinuation } from './fetch-result-continuation';
-import { scanFetchResultContinuation } from './operators/scan-continuation-search-result';
 import { FetchFnContinuation } from './fetch-fn-continuation';
+import { FetchResultContinuation } from './fetch-result-continuation';
+import { scanAction } from './operators';
+import { scanFetchResultContinuation } from './operators/scan-continuation-search-result';
 
 export abstract class PartialFetcherContinuation<R, P> {
     private action$ = new Subject<FetchAction<P>>();

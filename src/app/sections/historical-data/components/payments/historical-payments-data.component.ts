@@ -23,21 +23,15 @@ export class HistoricalPaymentsDataComponent {
     }
 
     search(event) {
-        this.fetchPaymentsService.search({
-            paymentId: event.paymentId,
-            cardToken: event.cardToken,
-            shopId: event.shopId,
-            partyId: event.partyId,
-            status: event.status,
-            fingerprint: event.fingerprint,
-            email: event.email,
-            from: event.from,
-            to: event.to,
-        });
+        this.fetchPaymentsService.search(this.initParams(event));
     }
 
     fetchMore(event) {
-        this.fetchPaymentsService.fetchMore({
+        this.fetchPaymentsService.fetchMore(this.initParams(event));
+    }
+
+    private initParams(event) {
+        return {
             paymentId: event.paymentId,
             cardToken: event.cardToken,
             shopId: event.shopId,
@@ -45,8 +39,10 @@ export class HistoricalPaymentsDataComponent {
             status: event.status,
             fingerprint: event.fingerprint,
             email: event.email,
+            terminal: event.terminal,
+            maskedPan: event.maskedPan,
             from: event.from,
             to: event.to,
-        });
+        };
     }
 }

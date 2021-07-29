@@ -1,8 +1,5 @@
 export interface SearchHistoricalParams {
-    id?: string;
-    searchValue?: string;
-    sortFieldValue?: string;
-    lastId?: string;
+    continuationId?: string;
     size?: number;
     sortBy?: string;
     sortOrder: string;
@@ -15,4 +12,6 @@ export interface SearchHistoricalParams {
     status?: string;
     fingerprint?: string;
     email?: string;
+    terminal?: string;
+    maskedPan?: string;
 }

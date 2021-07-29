@@ -5,9 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
 
 import { SortOrder } from '../../shared/constants/sort-order';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { AuditService } from './audit.service';
 import { Filter } from './model/filter';
-import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 
 @Component({
     templateUrl: './audit.component.html',

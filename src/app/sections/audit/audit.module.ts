@@ -24,10 +24,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AuditRemoteModule } from '../../api/audit';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { AuditRoutingModule } from './audit-routing.module';
 import { AuditComponent } from './audit.component';
 import { AuditService } from './audit.service';
-import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 
 @NgModule({
     declarations: [AuditComponent],

@@ -1474,23 +1474,17 @@
         "/payments-historical-data/payments-info": {
             "get": {
                 "summary": "Поиск по истории платежей",
-                "operationId": "filterPaymentsInfo",
+                "operationId": "filterPayments",
                 "tags": ["historical-data"],
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/lastId"
+                        "$ref": "#/components/parameters/continuationId"
                     },
                     {
                         "$ref": "#/components/parameters/sortOrder"
                     },
                     {
-                        "$ref": "#/components/parameters/searchValue"
-                    },
-                    {
                         "$ref": "#/components/parameters/sortBy"
-                    },
-                    {
-                        "$ref": "#/components/parameters/sortFieldValue"
                     },
                     {
                         "$ref": "#/components/parameters/size"
@@ -2297,6 +2291,13 @@
                 "schema": {
                     "type": "integer",
                     "format": "int32"
+                }
+            },
+            "continuationId": {
+                "name": "continuationId",
+                "in": "query",
+                "schema": {
+                    "type": "string"
                 }
             }
         }

@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, map, take } from 'rxjs/operators';
@@ -23,6 +23,7 @@ export class HistoryDataSearchComponent {
         paymentId: '',
         fingerprint: '',
         email: '',
+        terminal: '',
         from: this.searchFieldService.todayFromTime().toISOString(),
         to: new Date().toISOString(),
     });

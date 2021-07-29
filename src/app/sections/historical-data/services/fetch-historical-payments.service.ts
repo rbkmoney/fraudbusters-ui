@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
@@ -7,10 +8,8 @@ import { PaymentHistoricalDataService } from '../../../api/payments/historical-d
 import { ConfigService } from '../../../config';
 import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDelay } from '../../../shared/operators';
-import { SearchFieldService } from '../../../shared/services/utils/search-field.service';
 import { FetchResultContinuation } from '../../../shared/utils/partial-fetcher/fetch-result-continuation';
 import { PartialFetcherContinuation } from '../../../shared/utils/partial-fetcher/partial-fetcher-continuation';
-import { DatePipe } from '@angular/common';
 
 export interface FetchPaymentParams {
     sortOrder?: SortOrder;
@@ -43,23 +42,9 @@ export class FetchHistoricalPaymentsService extends PartialFetcherContinuation<P
 
     private readonly _yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
 
-    protected fetch(params: FetchPaymentParams, lastId?: string): Observable<FetchResultContinuation<Payment>> {
-        const {
-            sortOrder,
-            sortFieldValue,
-            size,
-            from,
-            to,
-            paymentId,
-            cardToken,
-            shopId,
-            partyId,
-            status,
-            fingerprint,
-            email,
-        } = params;
+    protected fetch(params: FetchPaymentParams, continuationId?: string): Observable<FetchResultContinuation<Payment>> {
+        const { sortOrder, size, from, to, paymentId, cardToken, shopId, partyId, status, fingerprint, email } = params;
         return this.paymentHistoricalDataService.filter({
-            sortFieldValue: sortFieldValue || '',
             from: this.datepipe.transform(from, this._yyyyMMDdHHMmSs),
             to: this.datepipe.transform(to, this._yyyyMMDdHHMmSs),
             sortOrder: sortOrder || SortOrder.ASC,
@@ -71,7 +56,7 @@ export class FetchHistoricalPaymentsService extends PartialFetcherContinuation<P
             fingerprint: fingerprint || '',
             email: email || '',
             size: size ? size : this.SIZE,
-            ...(lastId ? { lastId } : {}),
+            ...(continuationId ? { continuationId } : {}),
         });
     }
 }

@@ -28,6 +28,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { PaymentHistoricalDataService } from '../../api/payments/historical-data';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
 import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
+import { ShowMoreContinuationPanelModule } from '../../shared/components/show-more-panel-continuation';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { HistoricalDataPaymentListModule } from './components/payments/historical-payment-list';
 import { HistoricalPaymentsDataComponent } from './components/payments/historical-payments-data.component';
@@ -35,7 +36,6 @@ import { HistoryDataSearchComponent } from './components/search/history-data-sea
 import { HistoricalDataRoutingModule } from './historical-data-routing.module';
 import { HistoricalDataComponent } from './historical-data.component';
 import { FetchHistoricalPaymentsService } from './services/fetch-historical-payments.service';
-import { ShowMoreContinuationPanelModule } from '../../shared/components/show-more-panel-continuation';
 
 @NgModule({
     declarations: [HistoricalDataComponent, HistoricalPaymentsDataComponent, HistoryDataSearchComponent],
