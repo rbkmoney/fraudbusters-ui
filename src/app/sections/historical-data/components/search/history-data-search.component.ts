@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { AfterViewChecked, Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, map, take } from 'rxjs/operators';
@@ -34,7 +34,10 @@ export class HistoryDataSearchComponent {
         private searchFieldService: SearchFieldService
     ) {
         this.form.valueChanges.pipe(debounceTime(600), map(removeEmptyProperties)).subscribe((v) => {
-            this.router.navigate([location.pathname], { queryParams: v });
+            const params = Object.create(v);
+            params.from = new Date(v.from).toISOString();
+            params.to = new Date(v.to).toISOString();
+            this.router.navigate([location.pathname], { queryParams: params });
             this.valueChanges.emit(v);
         });
         this.route.queryParams.pipe(take(1)).subscribe((v) => this.form.patchValue(v));
