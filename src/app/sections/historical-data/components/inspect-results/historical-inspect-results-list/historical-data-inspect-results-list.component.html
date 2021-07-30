@@ -1,0 +1,8 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
+    <fb-historical-data-inspect-results-header></fb-historical-data-inspect-results-header>
+    <div *ngFor="let inspectResult of inspectResults" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <fb-historical-data-inspect-results-item
+            [inspectResult]="inspectResult"
+        ></fb-historical-data-inspect-results-item>
+    </div>
+</div>

@@ -9,7 +9,10 @@ import { InspectResult } from '../../../api/fb-management/swagger-codegen/model/
 import { InspectResultsResponse } from '../../../api/fb-management/swagger-codegen/model/inspectResultsResponse';
 
 @Injectable()
-export class FetchHistoricalRefundsService extends FetchHistoricalService<InspectResult, InspectResultsResponse> {
+export class FetchHistoricalInspectResultsService extends FetchHistoricalService<
+    InspectResult,
+    InspectResultsResponse
+> {
     constructor(
         private historicalDataService: HistoricalDataService,
         protected configService: ConfigService,

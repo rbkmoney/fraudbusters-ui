@@ -37,6 +37,9 @@ import { HistoricalDataRoutingModule } from './historical-data-routing.module';
 import { HistoricalDataComponent } from './historical-data.component';
 import { FetchHistoricalPaymentsService } from './services/fetch-historical-payments.service';
 import { HistoricalChargebacksDataComponent } from './components/chargebacks/historical-chargebacks-data.component';
+import { HistoricalInspectResultsDataComponent } from './components/inspect-results/historical-inspect-results-data.component';
+import { FetchHistoricalInspectResultsService } from './services/fetch-historical-inspect-results.service';
+import { FetchHistoricalChargebacksService } from './services/fetch-historical-chargebacks.service';
 
 @NgModule({
     declarations: [
@@ -44,6 +47,7 @@ import { HistoricalChargebacksDataComponent } from './components/chargebacks/his
         HistoricalPaymentsDataComponent,
         HistoryDataSearchComponent,
         HistoricalChargebacksDataComponent,
+        HistoricalInspectResultsDataComponent,
     ],
     imports: [
         FlexModule,
@@ -78,6 +82,13 @@ import { HistoricalChargebacksDataComponent } from './components/chargebacks/his
         HistoricalDataPaymentListModule,
         ShowMoreContinuationPanelModule,
     ],
-    providers: [FetchHistoricalPaymentsService, HistoricalDataService, DatePipe, SearchFieldService],
+    providers: [
+        FetchHistoricalPaymentsService,
+        FetchHistoricalInspectResultsService,
+        FetchHistoricalChargebacksService,
+        HistoricalDataService,
+        DatePipe,
+        SearchFieldService,
+    ],
 })
 export class HistoricalDataModule {}
