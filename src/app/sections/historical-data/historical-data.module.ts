@@ -30,19 +30,19 @@ import { EmptySearchResultModule } from '../../shared/components/empty-search-re
 import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
 import { ShowMoreContinuationPanelModule } from '../../shared/components/show-more-panel-continuation';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
+import { HistoricalChargebacksDataComponent } from './components/chargebacks/historical-chargebacks-data.component';
+import { HistoricalFraudPaymentsDataComponent } from './components/fraud-payments/historical-fraud-payments-data.component';
+import { HistoricalInspectResultsDataComponent } from './components/inspect-results/historical-inspect-results-data.component';
 import { HistoricalDataPaymentListModule } from './components/payments/historical-payment-list';
 import { HistoricalPaymentsDataComponent } from './components/payments/historical-payments-data.component';
+import { HistoricalRefundsDataComponent } from './components/refunds/historical-refunds-data.component';
 import { HistoryDataSearchComponent } from './components/search/history-data-search.component';
 import { HistoricalDataRoutingModule } from './historical-data-routing.module';
 import { HistoricalDataComponent } from './historical-data.component';
-import { FetchHistoricalPaymentsService } from './services/fetch-historical-payments.service';
-import { HistoricalChargebacksDataComponent } from './components/chargebacks/historical-chargebacks-data.component';
-import { HistoricalInspectResultsDataComponent } from './components/inspect-results/historical-inspect-results-data.component';
-import { FetchHistoricalInspectResultsService } from './services/fetch-historical-inspect-results.service';
 import { FetchHistoricalChargebacksService } from './services/fetch-historical-chargebacks.service';
-import { HistoricalFraudPaymentsDataComponent } from './components/fraud-payments/historical-fraud-payments-data.component';
 import { FetchHistoricalFraudPaymentsService } from './services/fetch-historical-fraud-payments.service';
-import { HistoricalRefundsDataComponent } from './components/refunds/historical-refunds-data.component';
+import { FetchHistoricalInspectResultsService } from './services/fetch-historical-inspect-results.service';
+import { FetchHistoricalPaymentsService } from './services/fetch-historical-payments.service';
 
 @NgModule({
     declarations: [

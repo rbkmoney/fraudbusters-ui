@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Payment } from '../../../api/fb-management/swagger-codegen/model/payment';
+import { PaymentsResponse } from '../../../api/fb-management/swagger-codegen/model/paymentsResponse';
 import { HistoricalDataService } from '../../../api/payments/historical-data';
 import { ConfigService } from '../../../config';
-import { FetchHistoricalService } from './fetch-historical.service';
-import { PaymentsResponse } from '../../../api/fb-management/swagger-codegen/model/paymentsResponse';
 import { SearchHistoricalParams } from '../search-historical-params';
+import { FetchHistoricalService } from './fetch-historical.service';
 
 @Injectable()
 export class FetchHistoricalPaymentsService extends FetchHistoricalService<Payment, PaymentsResponse> {

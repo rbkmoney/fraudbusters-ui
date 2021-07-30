@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 
 import { LAYOUT_GAP_M } from '../../../../tokens';
-import { FetchHistoricalPaymentsService } from '../../services/fetch-historical-payments.service';
 import { FetchHistoricalRefundsService } from '../../services/fetch-historical-refunds.service';
 
 @Component({

@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
 import { ConfigService } from '../../../config';
 import { SearchHistoricalParams } from '../../../sections/historical-data/search-historical-params';
 import { filterParameters } from '../../../shared/utils/filter-params';
-import { PaymentsResponse } from '../../fb-management/swagger-codegen/model/paymentsResponse';
-import { InspectResultsResponse } from '../../fb-management/swagger-codegen/model/inspectResultsResponse';
 import { ChargebacksResponse } from '../../fb-management/swagger-codegen/model/chargebacksResponse';
-import { RefundsResponse } from '../../fb-management/swagger-codegen/model/refundsResponse';
 import { FraudPaymentsResponse } from '../../fb-management/swagger-codegen/model/fraudPaymentsResponse';
+import { InspectResultsResponse } from '../../fb-management/swagger-codegen/model/inspectResultsResponse';
+import { PaymentsResponse } from '../../fb-management/swagger-codegen/model/paymentsResponse';
+import { RefundsResponse } from '../../fb-management/swagger-codegen/model/refundsResponse';
 
 @Injectable()
 export class HistoricalDataService {

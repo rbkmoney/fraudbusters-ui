@@ -1,13 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
+import { Refund } from '../../../api/fb-management/swagger-codegen/model/refund';
+import { RefundsResponse } from '../../../api/fb-management/swagger-codegen/model/refundsResponse';
 import { HistoricalDataService } from '../../../api/payments/historical-data';
 import { ConfigService } from '../../../config';
-import { Refund } from '../../../api/fb-management/swagger-codegen/model/refund';
 import { SearchHistoricalParams } from '../search-historical-params';
-import { PaymentsResponse } from '../../../api/fb-management/swagger-codegen/model/paymentsResponse';
 import { FetchHistoricalService } from './fetch-historical.service';
-import { RefundsResponse } from '../../../api/fb-management/swagger-codegen/model/refundsResponse';
 
 @Injectable()
 export class FetchHistoricalRefundsService extends FetchHistoricalService<Refund, RefundsResponse> {

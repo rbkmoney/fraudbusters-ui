@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../auth';
-import { HistoricalPaymentsDataComponent } from './components/payments/historical-payments-data.component';
-import { HistoricalDataComponent } from './historical-data.component';
 import { HistoricalChargebacksDataComponent } from './components/chargebacks/historical-chargebacks-data.component';
-import { HistoricalInspectResultsDataComponent } from './components/inspect-results/historical-inspect-results-data.component';
 import { HistoricalFraudPaymentsDataComponent } from './components/fraud-payments/historical-fraud-payments-data.component';
+import { HistoricalInspectResultsDataComponent } from './components/inspect-results/historical-inspect-results-data.component';
+import { HistoricalPaymentsDataComponent } from './components/payments/historical-payments-data.component';
 import { HistoricalRefundsDataComponent } from './components/refunds/historical-refunds-data.component';
+import { HistoricalDataComponent } from './historical-data.component';
 
 @NgModule({
     imports: [

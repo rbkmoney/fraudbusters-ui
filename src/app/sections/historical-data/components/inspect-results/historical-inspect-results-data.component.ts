@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 
 import { LAYOUT_GAP_M } from '../../../../tokens';
-import { FetchHistoricalChargebacksService } from '../../services/fetch-historical-chargebacks.service';
 import { FetchHistoricalInspectResultsService } from '../../services/fetch-historical-inspect-results.service';
 
 @Component({

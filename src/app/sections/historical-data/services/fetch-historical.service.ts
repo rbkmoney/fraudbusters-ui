@@ -1,17 +1,13 @@
 import { DatePipe } from '@angular/common';
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
-import { Payment } from '../../../api/fb-management/swagger-codegen/model/payment';
-import { HistoricalDataService } from '../../../api/payments/historical-data';
 import { ConfigService } from '../../../config';
 import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDelay } from '../../../shared/operators';
 import { FetchResultContinuation } from '../../../shared/utils/partial-fetcher/fetch-result-continuation';
 import { PartialFetcherContinuation } from '../../../shared/utils/partial-fetcher/partial-fetcher-continuation';
 import { SearchHistoricalParams } from '../search-historical-params';
-import { PaymentsResponse } from '../../../api/fb-management/swagger-codegen/model/paymentsResponse';
 
 export interface FetchPaymentParams {
     sortOrder?: SortOrder;
