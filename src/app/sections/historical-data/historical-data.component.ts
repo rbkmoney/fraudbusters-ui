@@ -30,8 +30,8 @@ export class HistoricalDataComponent {
             otherActiveUrlFragments: [],
         },
         {
-            path: 'loaded-fraud',
-            name: 'Loaded fraud',
+            path: 'fraud-payments',
+            name: 'Fraud payments',
             otherActiveUrlFragments: [],
         },
     ];

@@ -1,0 +1,6 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
+    <fb-historical-data-fraud-payments-header></fb-historical-data-fraud-payments-header>
+    <div *ngFor="let fraudPayment of fraudPayments" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <fb-historical-data-fraud-payments-item [fraudPayment]="fraudPayment"></fb-historical-data-fraud-payments-item>
+    </div>
+</div>

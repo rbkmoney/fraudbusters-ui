@@ -1,0 +1,21 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
+    <fb-history-data-search (valueChanges)="search($event)"></fb-history-data-search>
+    <div *ngIf="refunds$ | async as refunds; else Empty" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <fb-historical-data-payment-list
+            *ngIf="refunds.length > 0; else Empty"
+            [payments]="refunds"
+        ></fb-historical-data-payment-list>
+        <fb-show-more-continuation-panel
+            *ngIf="hasMore$ | async"
+            [isLoading]="inProgress$ | async"
+            (showMore)="fetchMore($event)"
+        ></fb-show-more-continuation-panel>
+    </div>
+</div>
+
+<ng-template #Empty>
+    <div *ngIf="inProgress$ | async" fxLayout fxLayoutAlign="center">
+        <mat-progress-spinner color="primary" mode="indeterminate" diameter="128"></mat-progress-spinner>
+    </div>
+    <fb-empty-search-result *ngIf="!(inProgress$ | async)"></fb-empty-search-result>
+</ng-template>

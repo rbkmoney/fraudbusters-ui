@@ -9,7 +9,7 @@ import { FraudPaymentsResponse } from '../../../api/fb-management/swagger-codege
 import { FraudPayment } from '../../../api/fb-management/swagger-codegen/model/fraudPayment';
 
 @Injectable()
-export class FetchHistoricalRefundsService extends FetchHistoricalService<FraudPayment, FraudPaymentsResponse> {
+export class FetchHistoricalFraudPaymentsService extends FetchHistoricalService<FraudPayment, FraudPaymentsResponse> {
     constructor(
         private historicalDataService: HistoricalDataService,
         protected configService: ConfigService,

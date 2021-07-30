@@ -6,6 +6,8 @@ import { HistoricalPaymentsDataComponent } from './components/payments/historica
 import { HistoricalDataComponent } from './historical-data.component';
 import { HistoricalChargebacksDataComponent } from './components/chargebacks/historical-chargebacks-data.component';
 import { HistoricalInspectResultsDataComponent } from './components/inspect-results/historical-inspect-results-data.component';
+import { HistoricalFraudPaymentsDataComponent } from './components/fraud-payments/historical-fraud-payments-data.component';
+import { HistoricalRefundsDataComponent } from './components/refunds/historical-refunds-data.component';
 
 @NgModule({
     imports: [
@@ -30,13 +32,13 @@ import { HistoricalInspectResultsDataComponent } from './components/inspect-resu
                     },
                     {
                         path: 'refunds',
-                        component: HistoricalPaymentsDataComponent,
+                        component: HistoricalRefundsDataComponent,
                         canActivate: [AuthGuard],
                         data: { roles: [Roles.fraudOfficer] },
                     },
                     {
-                        path: 'fraud-results',
-                        component: HistoricalPaymentsDataComponent,
+                        path: 'fraud-payments',
+                        component: HistoricalFraudPaymentsDataComponent,
                         canActivate: [AuthGuard],
                         data: { roles: [Roles.fraudOfficer] },
                     },

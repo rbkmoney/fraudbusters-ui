@@ -40,6 +40,9 @@ import { HistoricalChargebacksDataComponent } from './components/chargebacks/his
 import { HistoricalInspectResultsDataComponent } from './components/inspect-results/historical-inspect-results-data.component';
 import { FetchHistoricalInspectResultsService } from './services/fetch-historical-inspect-results.service';
 import { FetchHistoricalChargebacksService } from './services/fetch-historical-chargebacks.service';
+import { HistoricalFraudPaymentsDataComponent } from './components/fraud-payments/historical-fraud-payments-data.component';
+import { FetchHistoricalFraudPaymentsService } from './services/fetch-historical-fraud-payments.service';
+import { HistoricalRefundsDataComponent } from './components/refunds/historical-refunds-data.component';
 
 @NgModule({
     declarations: [
@@ -48,6 +51,8 @@ import { FetchHistoricalChargebacksService } from './services/fetch-historical-c
         HistoryDataSearchComponent,
         HistoricalChargebacksDataComponent,
         HistoricalInspectResultsDataComponent,
+        HistoricalFraudPaymentsDataComponent,
+        HistoricalRefundsDataComponent,
     ],
     imports: [
         FlexModule,
@@ -86,6 +91,7 @@ import { FetchHistoricalChargebacksService } from './services/fetch-historical-c
         FetchHistoricalPaymentsService,
         FetchHistoricalInspectResultsService,
         FetchHistoricalChargebacksService,
+        FetchHistoricalFraudPaymentsService,
         HistoricalDataService,
         DatePipe,
         SearchFieldService,
