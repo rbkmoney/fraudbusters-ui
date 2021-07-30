@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AuthGuard, Roles } from '../../auth';
 import { HistoricalPaymentsDataComponent } from './components/payments/historical-payments-data.component';
 import { HistoricalDataComponent } from './historical-data.component';
+import { HistoricalChargebacksDataComponent } from './components/chargebacks/historical-chargebacks-data.component';
 
 @NgModule({
     imports: [
@@ -34,7 +35,7 @@ import { HistoricalDataComponent } from './historical-data.component';
                     },
                     {
                         path: 'chargebacks',
-                        component: HistoricalPaymentsDataComponent,
+                        component: HistoricalChargebacksDataComponent,
                         canActivate: [AuthGuard],
                         data: { roles: [Roles.fraudOfficer] },
                     },

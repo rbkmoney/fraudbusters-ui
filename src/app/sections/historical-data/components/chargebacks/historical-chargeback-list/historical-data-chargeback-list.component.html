@@ -1,0 +1,6 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
+    <fb-historical-data-payment-header></fb-historical-data-payment-header>
+    <div *ngFor="let payment of chargebacks" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <fb-historical-data-payment-item [payment]="payment"></fb-historical-data-payment-item>
+    </div>
+</div>

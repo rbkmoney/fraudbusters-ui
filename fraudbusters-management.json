@@ -1600,7 +1600,591 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/PaymentResponse"
+                                    "$ref": "#/components/schemas/PaymentsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-historical-data/fraud-results": {
+            "get": {
+                "summary": "Поиск по истории результатов срабатывания антифрода",
+                "operationId": "filterInspectResults",
+                "tags": ["historical-data"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/continuationId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortOrder"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/size"
+                    },
+                    {
+                        "name": "partyId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "shopId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "paymentId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "providerCountry",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "cardToken",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fingerprint",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "terminal",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "invoiceId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "maskedPan",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Payments",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InspectResultsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-historical-data/chargebacks": {
+            "get": {
+                "summary": "Поиск по истории чарджбеков",
+                "operationId": "filterChargebacks",
+                "tags": ["historical-data"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/continuationId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortOrder"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/size"
+                    },
+                    {
+                        "name": "partyId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "shopId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "paymentId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "providerCountry",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "cardToken",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fingerprint",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "terminal",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "invoiceId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "maskedPan",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Payments",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChargebacksResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-historical-data/fraud-payments": {
+            "get": {
+                "summary": "Поиск по истории мошеннических платежей",
+                "operationId": "filterFraudPayments",
+                "tags": ["historical-data"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/continuationId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortOrder"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/size"
+                    },
+                    {
+                        "name": "partyId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "shopId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "paymentId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "providerCountry",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "cardToken",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fingerprint",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "terminal",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "invoiceId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "maskedPan",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Payments",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FraudPaymentsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payments-historical-data/filter-refunds": {
+            "get": {
+                "summary": "Поиск по истории возвратов",
+                "operationId": "filterRefunds",
+                "tags": ["historical-data"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/continuationId"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortOrder"
+                    },
+                    {
+                        "$ref": "#/components/parameters/sortBy"
+                    },
+                    {
+                        "$ref": "#/components/parameters/size"
+                    },
+                    {
+                        "name": "partyId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "shopId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "paymentId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "providerCountry",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "cardToken",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fingerprint",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "terminal",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "invoiceId",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "maskedPan",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Payments",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RefundsResponse"
                                 }
                             }
                         }
@@ -2231,7 +2815,7 @@
                     }
                 }
             },
-            "PaymentResponse": {
+            "PaymentsResponse": {
                 "type": "object",
                 "required": ["result"],
                 "properties": {
@@ -2242,6 +2826,192 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/Payment"
+                        }
+                    }
+                }
+            },
+            "InspectResult": {
+                "type": "object",
+                "properties": {
+                    "payment": {
+                        "$ref": "#/components/schemas/Payment"
+                    },
+                    "checkedTemplate": {
+                        "type": "string"
+                    },
+                    "resultStatus": {
+                        "type": "string"
+                    },
+                    "ruleChecked": {
+                        "type": "string"
+                    },
+                    "notificationsRule": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "InspectResultsResponse": {
+                "type": "object",
+                "required": ["result"],
+                "properties": {
+                    "continuationId": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InspectResult"
+                        }
+                    }
+                }
+            },
+            "Chargeback": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "paymentId": {
+                        "type": "string"
+                    },
+                    "eventTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "merchantInfo": {
+                        "$ref": "#/components/schemas/MerchantInfo"
+                    },
+                    "paymentTool": {
+                        "type": "string"
+                    },
+                    "amount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "currency": {
+                        "type": "string"
+                    },
+                    "provider": {
+                        "$ref": "#/components/schemas/ProviderInfo"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "chargebackCode": {
+                        "type": "string"
+                    },
+                    "clientInfo": {
+                        "$ref": "#/components/schemas/ClientInfo"
+                    },
+                    "payerType": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ChargebacksResponse": {
+                "type": "object",
+                "required": ["result"],
+                "properties": {
+                    "continuationId": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Chargeback"
+                        }
+                    }
+                }
+            },
+            "FraudPayment": {
+                "type": "object",
+                "properties": {
+                    "payment": {
+                        "$ref": "#/components/schemas/Payment"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "comment": {
+                        "type": "string"
+                    }
+                }
+            },
+            "FraudPaymentsResponse": {
+                "type": "object",
+                "required": ["result"],
+                "properties": {
+                    "continuationId": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/FraudPayment"
+                        }
+                    }
+                }
+            },
+            "Refund": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "paymentId": {
+                        "type": "string"
+                    },
+                    "eventTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "merchantInfo": {
+                        "$ref": "#/components/schemas/MerchantInfo"
+                    },
+                    "paymentTool": {
+                        "type": "string"
+                    },
+                    "amount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "currency": {
+                        "type": "string"
+                    },
+                    "provider": {
+                        "$ref": "#/components/schemas/ProviderInfo"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "error": {
+                        "$ref": "#/components/schemas/Error"
+                    },
+                    "clientInfo": {
+                        "$ref": "#/components/schemas/ClientInfo"
+                    },
+                    "payerType": {
+                        "type": "string"
+                    }
+                }
+            },
+            "RefundsResponse": {
+                "type": "object",
+                "required": ["result"],
+                "properties": {
+                    "continuationId": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Refund"
                         }
                     }
                 }

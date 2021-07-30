@@ -1,62 +1,25 @@
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { shareReplay } from 'rxjs/operators';
 
 import { Payment } from '../../../api/fb-management/swagger-codegen/model/payment';
-import { PaymentHistoricalDataService } from '../../../api/payments/historical-data';
+import { HistoricalDataService } from '../../../api/payments/historical-data';
 import { ConfigService } from '../../../config';
-import { SortOrder } from '../../../shared/constants/sort-order';
-import { booleanDelay } from '../../../shared/operators';
-import { FetchResultContinuation } from '../../../shared/utils/partial-fetcher/fetch-result-continuation';
-import { PartialFetcherContinuation } from '../../../shared/utils/partial-fetcher/partial-fetcher-continuation';
-
-export interface FetchPaymentParams {
-    sortOrder?: SortOrder;
-    size?: number;
-    sortBy?: string;
-    sortFieldValue?: string;
-    from?: Date;
-    to?: Date;
-    paymentId?: string;
-    cardToken?: string;
-    shopId?: string;
-    partyId?: string;
-    status?: string;
-    fingerprint?: string;
-    email?: string;
-}
+import { FetchHistoricalService } from './fetch-historical.service';
+import { PaymentsResponse } from '../../../api/fb-management/swagger-codegen/model/paymentsResponse';
+import { SearchHistoricalParams } from '../search-historical-params';
 
 @Injectable()
-export class FetchHistoricalPaymentsService extends PartialFetcherContinuation<Payment, FetchPaymentParams> {
-    inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
-    private SIZE = this.configService.pageSize;
-
+export class FetchHistoricalPaymentsService extends FetchHistoricalService<Payment, PaymentsResponse> {
     constructor(
-        private paymentHistoricalDataService: PaymentHistoricalDataService,
-        private configService: ConfigService,
+        private paymentHistoricalDataService: HistoricalDataService,
+        protected configService: ConfigService,
         public datepipe: DatePipe
     ) {
-        super();
+        super(configService, datepipe);
     }
 
-    private readonly _yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
-
-    protected fetch(params: FetchPaymentParams, continuationId?: string): Observable<FetchResultContinuation<Payment>> {
-        const { sortOrder, size, from, to, paymentId, cardToken, shopId, partyId, status, fingerprint, email } = params;
-        return this.paymentHistoricalDataService.filter({
-            from: this.datepipe.transform(from, this._yyyyMMDdHHMmSs),
-            to: this.datepipe.transform(to, this._yyyyMMDdHHMmSs),
-            sortOrder: sortOrder || SortOrder.ASC,
-            paymentId: paymentId || '',
-            cardToken: cardToken || '',
-            shopId: shopId || '',
-            partyId: partyId || '',
-            status: status || '',
-            fingerprint: fingerprint || '',
-            email: email || '',
-            size: size ? size : this.SIZE,
-            ...(continuationId ? { continuationId } : {}),
-        });
+    protected filter(params: SearchHistoricalParams): Observable<PaymentsResponse> {
+        return this.paymentHistoricalDataService.filterPayments(params);
     }
 }
