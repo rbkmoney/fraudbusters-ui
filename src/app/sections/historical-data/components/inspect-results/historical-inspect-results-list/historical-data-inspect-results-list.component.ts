@@ -3,7 +3,7 @@ import { LAYOUT_GAP_M } from '../../../../../tokens';
 import { InspectResult } from '../../../../../api/fb-management/swagger-codegen/model/inspectResult';
 
 @Component({
-    selector: 'fb-historical-data-chargeback-list',
+    selector: 'fb-historical-data-inspect-results-list',
     templateUrl: 'historical-data-inspect-results-list.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

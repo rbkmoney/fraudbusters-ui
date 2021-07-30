@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { LAYOUT_GAP_M } from '../../../../../../../tokens';
 
 @Component({
-    selector: 'fb-historical-data-chargeback-header',
+    selector: 'fb-historical-data-fraud-payments-header',
     templateUrl: 'historical-data-fraud-payments-header.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

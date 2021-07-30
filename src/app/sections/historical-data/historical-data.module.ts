@@ -43,6 +43,11 @@ import { FetchHistoricalChargebacksService } from './services/fetch-historical-c
 import { FetchHistoricalFraudPaymentsService } from './services/fetch-historical-fraud-payments.service';
 import { FetchHistoricalInspectResultsService } from './services/fetch-historical-inspect-results.service';
 import { FetchHistoricalPaymentsService } from './services/fetch-historical-payments.service';
+import { FetchHistoricalRefundsService } from './services/fetch-historical-refunds.service';
+import { HistoricalDataChargebackListModule } from './components/chargebacks/historical-chargeback-list';
+import { HistoricalDataRefundsListModule } from './components/refunds/historical-refunds-list';
+import { HistoricalDataInspectResultsListModule } from './components/inspect-results/historical-inspect-results-list';
+import { HistoricalDataFraudPaymentsListModule } from './components/fraud-payments/historical-fraud-payments-list';
 
 @NgModule({
     declarations: [
@@ -85,6 +90,10 @@ import { FetchHistoricalPaymentsService } from './services/fetch-historical-paym
         NgxMatNativeDateModule,
         NgxMatDatetimePickerModule,
         HistoricalDataPaymentListModule,
+        HistoricalDataChargebackListModule,
+        HistoricalDataRefundsListModule,
+        HistoricalDataInspectResultsListModule,
+        HistoricalDataFraudPaymentsListModule,
         ShowMoreContinuationPanelModule,
     ],
     providers: [
@@ -92,6 +101,7 @@ import { FetchHistoricalPaymentsService } from './services/fetch-historical-paym
         FetchHistoricalInspectResultsService,
         FetchHistoricalChargebacksService,
         FetchHistoricalFraudPaymentsService,
+        FetchHistoricalRefundsService,
         HistoricalDataService,
         DatePipe,
         SearchFieldService,

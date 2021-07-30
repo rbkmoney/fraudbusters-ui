@@ -1,10 +1,10 @@
 <div fxLayout="column" [fxLayoutGap]="layoutGapM">
     <fb-history-data-search (valueChanges)="search($event)"></fb-history-data-search>
     <div *ngIf="fraudPayments$ | async as item; else Empty" fxLayout="column" [fxLayoutGap]="layoutGapM">
-        <fb-historical-data-chargebacks-list
+        <fb-historical-data-fraud-payments-list
             *ngIf="item.length > 0; else Empty"
-            [chargebacks]="item"
-        ></fb-historical-data-chargebacks-list>
+            [fraudPayments]="item"
+        ></fb-historical-data-fraud-payments-list>
         <fb-show-more-continuation-panel
             *ngIf="hasMore$ | async"
             [isLoading]="inProgress$ | async"

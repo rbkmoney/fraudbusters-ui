@@ -3,7 +3,7 @@ import { LAYOUT_GAP_M } from '../../../../../tokens';
 import { Refund } from '../../../../../api/fb-management/swagger-codegen/model/refund';
 
 @Component({
-    selector: 'fb-historical-data-payment-list',
+    selector: 'fb-historical-data-refunds-list',
     templateUrl: 'historical-data-refunds-list.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

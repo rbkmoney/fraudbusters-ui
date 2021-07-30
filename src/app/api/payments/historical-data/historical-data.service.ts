@@ -36,13 +36,13 @@ export class HistoricalDataService {
     }
 
     filterRefunds(params: SearchHistoricalParams): Observable<RefundsResponse> {
-        return this.http.get<RefundsResponse>(`${this.fbPaymentReferenceEndpoint}/fraud-payments`, {
+        return this.http.get<RefundsResponse>(`${this.fbPaymentReferenceEndpoint}/refunds`, {
             params: filterParameters(params),
         });
     }
 
     filterFraudPayments(params: SearchHistoricalParams): Observable<FraudPaymentsResponse> {
-        return this.http.get<FraudPaymentsResponse>(`${this.fbPaymentReferenceEndpoint}/refunds`, {
+        return this.http.get<FraudPaymentsResponse>(`${this.fbPaymentReferenceEndpoint}/fraud-payments`, {
             params: filterParameters(params),
         });
     }
