@@ -6,7 +6,6 @@ import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../../../tokens';
 @Component({
     selector: 'fb-historical-data-refunds-item',
     templateUrl: 'historical-data-refunds-item.component.html',
-    styleUrls: ['historical-data-refunds-item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HistoricalDataRefundsItemComponent {

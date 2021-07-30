@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
-import { LAYOUT_GAP_M } from '../../../../../tokens';
+
 import { InspectResult } from '../../../../../api/fb-management/swagger-codegen/model/inspectResult';
+import { LAYOUT_GAP_M } from '../../../../../tokens';
 
 @Component({
     selector: 'fb-historical-data-inspect-results-list',

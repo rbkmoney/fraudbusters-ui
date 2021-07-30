@@ -6,6 +6,7 @@ import { LAYOUT_GAP_S } from '../../tokens';
 
 @Component({
     templateUrl: 'historical-data.component.html',
+    styleUrls: ['historical-data.component.scss'],
 })
 export class HistoricalDataComponent {
     links = [

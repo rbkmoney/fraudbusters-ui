@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
-import { LAYOUT_GAP_M } from '../../../../../tokens';
+
 import { FraudPayment } from '../../../../../api/fb-management/swagger-codegen/model/fraudPayment';
+import { LAYOUT_GAP_M } from '../../../../../tokens';
 
 @Component({
     selector: 'fb-historical-data-fraud-payments-list',

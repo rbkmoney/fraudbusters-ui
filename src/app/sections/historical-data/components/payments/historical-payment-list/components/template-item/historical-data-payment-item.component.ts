@@ -6,7 +6,6 @@ import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../../../tokens';
 @Component({
     selector: 'fb-historical-data-payment-item',
     templateUrl: 'historical-data-payment-item.component.html',
-    styleUrls: ['historical-data-payment-item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HistoricalDataPaymentItemComponent {

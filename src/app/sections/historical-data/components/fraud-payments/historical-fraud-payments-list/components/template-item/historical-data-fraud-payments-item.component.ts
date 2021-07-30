@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
-import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../../../tokens';
+
 import { FraudPayment } from '../../../../../../../api/fb-management/swagger-codegen/model/fraudPayment';
+import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../../../tokens';
 
 @Component({
     selector: 'fb-historical-data-fraud-payments-item',
     templateUrl: 'historical-data-fraud-payments-item.component.html',
-    styleUrls: ['historical-data-fraud-payments-item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HistoricalDataFraudPaymentsItemComponent {

@@ -30,12 +30,16 @@ import { EmptySearchResultModule } from '../../shared/components/empty-search-re
 import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
 import { ShowMoreContinuationPanelModule } from '../../shared/components/show-more-panel-continuation';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
+import { HistoricalDataChargebackListModule } from './components/chargebacks/historical-chargeback-list';
 import { HistoricalChargebacksDataComponent } from './components/chargebacks/historical-chargebacks-data.component';
 import { HistoricalFraudPaymentsDataComponent } from './components/fraud-payments/historical-fraud-payments-data.component';
+import { HistoricalDataFraudPaymentsListModule } from './components/fraud-payments/historical-fraud-payments-list';
 import { HistoricalInspectResultsDataComponent } from './components/inspect-results/historical-inspect-results-data.component';
+import { HistoricalDataInspectResultsListModule } from './components/inspect-results/historical-inspect-results-list';
 import { HistoricalDataPaymentListModule } from './components/payments/historical-payment-list';
 import { HistoricalPaymentsDataComponent } from './components/payments/historical-payments-data.component';
 import { HistoricalRefundsDataComponent } from './components/refunds/historical-refunds-data.component';
+import { HistoricalDataRefundsListModule } from './components/refunds/historical-refunds-list';
 import { HistoryDataSearchComponent } from './components/search/history-data-search.component';
 import { HistoricalDataRoutingModule } from './historical-data-routing.module';
 import { HistoricalDataComponent } from './historical-data.component';
@@ -44,10 +48,6 @@ import { FetchHistoricalFraudPaymentsService } from './services/fetch-historical
 import { FetchHistoricalInspectResultsService } from './services/fetch-historical-inspect-results.service';
 import { FetchHistoricalPaymentsService } from './services/fetch-historical-payments.service';
 import { FetchHistoricalRefundsService } from './services/fetch-historical-refunds.service';
-import { HistoricalDataChargebackListModule } from './components/chargebacks/historical-chargeback-list';
-import { HistoricalDataRefundsListModule } from './components/refunds/historical-refunds-list';
-import { HistoricalDataInspectResultsListModule } from './components/inspect-results/historical-inspect-results-list';
-import { HistoricalDataFraudPaymentsListModule } from './components/fraud-payments/historical-fraud-payments-list';
 
 @NgModule({
     declarations: [
