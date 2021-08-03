@@ -4,8 +4,8 @@
             <div class="fb-body-2" fxFlex>{{ chargeback.id }}</div>
             <div class="fb-body-2" fxFlex>{{ chargeback.merchantInfo.partyId }}</div>
             <div class="fb-body-2" fxFlex>{{ chargeback.merchantInfo.shopId }}</div>
-            <div class="fb-body-2" fxFlex>{{ chargeback.amount }}</div>
-            <div class="fb-body-2" fxFlex>{{ chargeback.currency }}</div>
+            <div class="fb-body-2" fxFlex>{{ chargeback.category }}</div>
+            <div class="fb-body-2" fxFlex>{{ chargeback.chargebackCode }}</div>
             <div class="fb-body-2" fxFlex>{{ chargeback.clientInfo.email }}</div>
             <div class="fb-body-2" fxFlex="160px">{{ chargeback.eventTime | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
         </div>
@@ -13,14 +13,20 @@
     <div class="panel-content" fxLayout="column" [fxLayoutGap]="layoutGapM">
         <mat-divider></mat-divider>
         <div class="row">
-            <div class="column">
-                <div fxFlex>Fingerprint:</div>
-                <div fxFlex>{{ chargeback.clientInfo.fingerprint }}</div>
-            </div>
-            <div fxLayout="column">
-                <div fxFlex>Terminal:</div>
-                <div fxFlex>{{ chargeback.provider.terminalId }}</div>
-            </div>
+            <div fxFlex>Fingerprint:</div>
+            <div fxFlex>{{ chargeback.clientInfo.fingerprint }}</div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex>Terminal:</div>
+            <div fxFlex>{{ chargeback.provider.terminalId }}</div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex>Amount:</div>
+            <div fxFlex>{{ chargeback.amount }}</div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex>Currency:</div>
+            <div fxFlex>{{ chargeback.currency }}</div>
         </div>
         <mat-divider></mat-divider>
     </div>

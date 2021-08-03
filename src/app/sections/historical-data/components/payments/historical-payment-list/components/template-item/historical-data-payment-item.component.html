@@ -13,22 +13,20 @@
     <div class="panel-content" fxLayout="column" [fxLayoutGap]="layoutGapM">
         <mat-divider></mat-divider>
         <div class="row">
-            <div class="column">
-                <div fxFlex>Token:</div>
-                <div fxFlex>{{ payment.cardToken }}</div>
-            </div>
-            <div class="column">
-                <div fxFlex>Fingerprint:</div>
-                <div fxFlex>{{ payment.clientInfo.fingerprint }}</div>
-            </div>
-            <div fxLayout="column">
-                <div fxFlex>Country:</div>
-                <div fxFlex>{{ payment.paymentCountry }}</div>
-            </div>
-            <div fxLayout="column">
-                <div fxFlex>Terminal:</div>
-                <div fxFlex>{{ payment.provider.terminalId }}</div>
-            </div>
+            <div fxFlex>Token:</div>
+            <div fxFlex>{{ payment.cardToken }}</div>
+        </div>
+        <div class="row">
+            <div fxFlex>Fingerprint:</div>
+            <div fxFlex>{{ payment.clientInfo.fingerprint }}</div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex>Country:</div>
+            <div fxFlex>{{ payment.paymentCountry }}</div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex>Terminal:</div>
+            <div fxFlex>{{ payment.provider.terminalId }}</div>
         </div>
         <mat-divider></mat-divider>
     </div>
