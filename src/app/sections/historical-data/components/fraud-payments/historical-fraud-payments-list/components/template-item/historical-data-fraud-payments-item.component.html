@@ -7,6 +7,7 @@
             <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.amount }}</div>
             <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.currency }}</div>
             <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.clientInfo.email }}</div>
+            <div class="fb-body-2" fxFlex>{{ fraudPayment.type }}</div>
             <div class="fb-body-2" fxFlex="160px">
                 {{ fraudPayment.payment.eventTime | date: 'yyyy-MM-dd HH:mm:ss' }}
             </div>
@@ -14,14 +15,18 @@
     </mat-expansion-panel-header>
     <div class="panel-content" fxLayout="column" [fxLayoutGap]="layoutGapM">
         <mat-divider></mat-divider>
-        <div class="row">
-            <div class="column">
+        <div class="column">
+            <div class="row">
                 <div fxFlex>Fingerprint:</div>
                 <div fxFlex>{{ fraudPayment.payment.clientInfo.fingerprint }}</div>
             </div>
-            <div fxLayout="column">
+            <div class="row">
                 <div fxFlex>Terminal:</div>
                 <div fxFlex>{{ fraudPayment.payment.provider.terminalId }}</div>
+            </div>
+            <div class="row">
+                <div fxFlex>Comment:</div>
+                <div fxFlex>{{ fraudPayment.comment }}</div>
             </div>
         </div>
         <mat-divider></mat-divider>

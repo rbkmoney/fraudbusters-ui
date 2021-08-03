@@ -4,9 +4,10 @@
             <div class="fb-body-2" fxFlex>{{ inspectResult.payment.id }}</div>
             <div class="fb-body-2" fxFlex>{{ inspectResult.payment.merchantInfo.partyId }}</div>
             <div class="fb-body-2" fxFlex>{{ inspectResult.payment.merchantInfo.shopId }}</div>
-            <div class="fb-body-2" fxFlex>{{ inspectResult.payment.amount }}</div>
-            <div class="fb-body-2" fxFlex>{{ inspectResult.payment.currency }}</div>
             <div class="fb-body-2" fxFlex>{{ inspectResult.payment.clientInfo.email }}</div>
+            <div class="fb-body-2" fxFlex>{{ inspectResult.resultStatus }}</div>
+            <div class="fb-body-2" fxFlex>{{ inspectResult.checkedTemplate }}</div>
+            <div class="fb-body-2" fxFlex>{{ inspectResult.ruleChecked }}</div>
             <div class="fb-body-2" fxFlex="160px">
                 {{ inspectResult.payment.eventTime | date: 'yyyy-MM-dd HH:mm:ss' }}
             </div>
@@ -15,14 +16,24 @@
     <div class="panel-content" fxLayout="column" [fxLayoutGap]="layoutGapM">
         <mat-divider></mat-divider>
         <div class="row">
-            <div class="column">
-                <div fxFlex>Fingerprint:</div>
-                <div fxFlex>{{ inspectResult.payment.clientInfo.fingerprint }}</div>
-            </div>
-            <div fxLayout="column">
-                <div fxFlex>Terminal:</div>
-                <div fxFlex>{{ inspectResult.payment.provider.terminalId }}</div>
-            </div>
+            <div fxFlex>Fingerprint:</div>
+            <div fxFlex>{{ inspectResult.payment.clientInfo.fingerprint }}</div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex>Terminal:</div>
+            <div fxFlex>{{ inspectResult.payment.provider.terminalId }}</div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex>Amount:</div>
+            <div fxFlex>{{ inspectResult.payment.amount }}</div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex>Currency:</div>
+            <div fxFlex>{{ inspectResult.payment.currency }}</div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex>Notification rule:</div>
+            <div fxFlex>{{ inspectResult.notificationsRule }}</div>
         </div>
         <mat-divider></mat-divider>
     </div>
