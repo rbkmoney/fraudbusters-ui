@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 
-import { TemplateModel } from '../../../api/fb-management/swagger-codegen/model/templateModel';
+import { Template } from '../../../api/fb-management/swagger-codegen/model/template';
 import { LAYOUT_GAP_M } from '../../../tokens';
 
 @Component({
@@ -10,7 +10,7 @@ import { LAYOUT_GAP_M } from '../../../tokens';
 })
 export class PaymentTemplatesListComponent {
     @Input()
-    templates: TemplateModel[];
+    templates: Template[];
 
     @Output()
     editItem = new EventEmitter<string>();

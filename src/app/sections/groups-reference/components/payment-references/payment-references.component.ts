@@ -43,7 +43,6 @@ export class PaymentReferencesComponent {
                 break;
             case ActionType.removeReference:
                 this.removeReferenceService.removeReference({
-                    type: OperationType.Payment,
                     reference: action.reference,
                 });
                 break;

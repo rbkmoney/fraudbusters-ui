@@ -5,26 +5,24 @@ import { ListType } from '../../constants/list-type';
 import { OperationType } from '../../constants/operation-type';
 import { SortOrder } from '../../constants/sort-order';
 import { HttpSearchResponse } from '../../model/http-search-response';
-import { CountInfoListRecord } from '../../services/lists/model/count-info-list-record';
-import { P2pListRecord } from '../../services/lists/model/p2p-list-record';
-import { PaymentListRecord } from '../../services/lists/model/payment-list-record';
-import { OperationTypeManagementService } from '../../services/operation-type-management.service';
+import { PaymentListsService } from '../../../api/payments/lists/payment-lists.service';
+import { PaymentListRecord } from '../../../api/fb-management/swagger-codegen/model/paymentListRecord';
+import { PaymentCountInfo } from '../../../api/fb-management/swagger-codegen/model/paymentCountInfo';
 
 @Injectable()
 export class WbListService {
-    constructor(private operationTypeManagementService: OperationTypeManagementService) {}
+    constructor(private paymentListsService: PaymentListsService) {}
 
     findLists(
         listNamesValue: string[],
         listTypeValue: ListType,
-        type: OperationType,
         sizeValue?: number,
         nameRegexp?: string,
         lastInListName?: string,
         sortOrder?: SortOrder,
         sortField?: string
-    ): Observable<HttpSearchResponse<PaymentListRecord | P2pListRecord>> {
-        return this.operationTypeManagementService.findListsService(type).findListRows({
+    ): Observable<HttpSearchResponse<PaymentListRecord>> {
+        return this.paymentListsService.findListRows({
             searchValue: nameRegexp,
             lastId: lastInListName,
             size: sizeValue,
@@ -35,23 +33,23 @@ export class WbListService {
         });
     }
 
-    deleteListRow(type: OperationType, id: string): Observable<string> {
-        return this.operationTypeManagementService.findListsService(type).deleteListRow(id);
+    deleteListRow(id: string): Observable<string> {
+        return this.paymentListsService.deleteListRow(id);
     }
 
-    getNames(type: OperationType, listType: ListType): Observable<string[]> {
-        return this.operationTypeManagementService.findListsService(type).getNames(listType);
+    getNames(listType: ListType): Observable<string[]> {
+        return this.paymentListsService.getNames(listType);
     }
 
-    getAvailableListNames(type: OperationType): Observable<string[]> {
-        return this.operationTypeManagementService.findListsService(type).getAvailableListNames();
+    getAvailableListNames(): Observable<string[]> {
+        return this.paymentListsService.getAvailableListNames();
     }
 
-    saveListRow(type: OperationType, listType: ListType, rows: CountInfoListRecord[]): Observable<string[]> {
-        return this.operationTypeManagementService.findListsService(type).saveListsRows(listType, rows);
+    saveListRow(listType: ListType, rows: PaymentCountInfo[]): Observable<string[]> {
+        return this.paymentListsService.saveListsRows(listType, rows);
     }
 
     saveListRowsFromFile(type: OperationType, listType: ListType, file: File): Observable<any> {
-        return this.operationTypeManagementService.findListsService(type).saveListsRowsFromFile(listType, file);
+        return this.paymentListsService.saveListsRowsFromFile(listType, file);
     }
 }

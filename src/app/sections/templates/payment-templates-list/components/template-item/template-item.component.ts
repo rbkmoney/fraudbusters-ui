@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 
-import { TemplateModel } from '../../../../../api/fb-management/swagger-codegen/model/templateModel';
+import { Template } from '../../../../../api/fb-management/swagger-codegen/model/template';
 import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../tokens';
 
 @Component({
@@ -11,7 +11,7 @@ import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../tokens';
 })
 export class TemplateItemComponent {
     @Input()
-    template: TemplateModel;
+    template: Template;
 
     @Output()
     editItem = new EventEmitter<string>();

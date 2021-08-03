@@ -1,0 +1,6 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
+    <fb-historical-data-refunds-header></fb-historical-data-refunds-header>
+    <div *ngFor="let refund of refunds" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <fb-historical-data-refunds-item [payment]="refund"></fb-historical-data-refunds-item>
+    </div>
+</div>

@@ -10,20 +10,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { PaymentDefaultReferencesService } from '../../../api/payments/default-references';
 import { HeadlineModule } from '../../../shared/components/headline';
 import { TemplateIdModule } from '../../../shared/components/inputs/template-id';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { DefaultReferencesService } from '../default-references.service';
-import { CreateDefaultP2pReferenceComponent, CreateDefaultPaymentReferenceComponent } from './components';
+import { CreateDefaultPaymentReferenceComponent } from './components';
 import { CreateDefaultReferenceRoutingModule } from './create-default-reference-routing.module';
 import { CreateDefaultReferenceComponent } from './create-default-reference.component';
+import { CreateDefaultPaymentReferenceService } from './services/create-default-payment-reference.service';
 
 @NgModule({
-    declarations: [
-        CreateDefaultReferenceComponent,
-        CreateDefaultPaymentReferenceComponent,
-        CreateDefaultP2pReferenceComponent,
-    ],
+    declarations: [CreateDefaultReferenceComponent, CreateDefaultPaymentReferenceComponent],
     imports: [
         CreateDefaultReferenceRoutingModule,
         MatCardModule,
@@ -40,6 +38,11 @@ import { CreateDefaultReferenceComponent } from './create-default-reference.comp
         HeadlineModule,
     ],
     exports: [CreateDefaultReferenceComponent],
-    providers: [DefaultReferencesService, ErrorHandlerService],
+    providers: [
+        DefaultReferencesService,
+        ErrorHandlerService,
+        CreateDefaultPaymentReferenceService,
+        PaymentDefaultReferencesService,
+    ],
 })
 export class CreateDefaultReferenceModule {}

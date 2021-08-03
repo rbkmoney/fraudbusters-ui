@@ -9,7 +9,6 @@ import { MatFormFieldAppearance } from '@angular/material/form-field/form-field'
 import { debounceTime, shareReplay, switchMap } from 'rxjs/operators';
 
 import { TemplatesService } from '../../../../sections/template/services/templates/templates.service';
-import { OperationType } from '../../../constants/operation-type';
 import { CustomFormControlComponent } from '../custom-form-control/custom-form-control.component';
 
 @Component({
@@ -19,13 +18,12 @@ import { CustomFormControlComponent } from '../custom-form-control/custom-form-c
     providers: [TemplatesService],
 })
 export class TemplateIdComponent extends CustomFormControlComponent {
-    @Input() operationType: OperationType;
     @Input() floatLabelType: FloatLabelType = 'always';
     @Input() appearanceType: MatFormFieldAppearance = 'legacy';
 
     templates$ = this.formControl.valueChanges.pipe(
         debounceTime(300),
-        switchMap((v) => this.templatesService.getTemplatesName(this.operationType, v)),
+        switchMap((v) => this.templatesService.getTemplatesName(v)),
         shareReplay(1)
     );
 

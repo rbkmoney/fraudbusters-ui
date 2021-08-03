@@ -1,11 +1,6 @@
 <mat-toolbar>
     <mat-toolbar-row>
         <h3>Emulation template</h3>
-        <mat-form-field appearance="fill">
-            <mat-select [(value)]="this.operationType">
-                <mat-option *ngFor="let typeItem of operationTypes" [value]="typeItem">{{ typeItem }}</mat-option>
-            </mat-select>
-        </mat-form-field>
         <button mat-stroked-button color="primary" (click)="emulate()">Emulate</button>
     </mat-toolbar-row>
 </mat-toolbar>
@@ -13,7 +8,7 @@
 <mat-card>
     <mat-card-content>
         <div class="list-values" fxLayout fxLayoutAlign="center center">
-            <div *ngIf="isPaymentReference()" fxFlex="100">
+            <div fxFlex="100">
                 <div fxFlex="50">
                     <mat-form-field floatLabel="always" class="full-width">
                         <input
@@ -33,19 +28,6 @@
                             label="shopId"
                             [(ngModel)]="filter.shopId"
                             name="shopId"
-                        />
-                    </mat-form-field>
-                </div>
-            </div>
-            <div *ngIf="isP2pReference()" fxFlex="100">
-                <div fxFlex="50">
-                    <mat-form-field floatLabel="always" class="full-width">
-                        <input
-                            matInput
-                            placeholder="Identity ID"
-                            label="identityId"
-                            [(ngModel)]="filter.identityId"
-                            name="identityId"
                         />
                     </mat-form-field>
                 </div>

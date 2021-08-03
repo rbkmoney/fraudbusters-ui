@@ -5,16 +5,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, merge, NEVER, of, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
+import { GroupReference } from '../../../../api/fb-management/swagger-codegen/model/groupReference';
+import { PaymentGroupsReferencesService } from '../../../../api/payments/groups-references';
 import { ConfirmActionDialogComponent } from '../../../../shared/components/confirm-action-dialog';
-import { OperationType } from '../../../../shared/constants/operation-type';
 import { progress } from '../../../../shared/operators';
-import { OperationTypeManagementService } from '../../../../shared/services/operation-type-management.service';
-import { P2pGroupReferenceModel } from '../../model/p2p-groups-reference';
-import { PaymentGroupReferenceModel } from '../../model/payment-groups-reference';
 
 export interface RemoveReferenceParams {
-    type: OperationType;
-    reference: PaymentGroupReferenceModel | P2pGroupReferenceModel;
+    reference: GroupReference;
 }
 
 @Injectable()
@@ -35,18 +32,15 @@ export class RemoveReferenceService {
             ])
         ),
         switchMap(([params]) =>
-            this.operationTypeManagementService
-                .findGroupsReferenceService(params.type)
-                .deleteGroupReference(params.reference)
-                .pipe(
-                    catchError((error: HttpErrorResponse) => {
-                        this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-                            duration: 1500,
-                        });
-                        this.hasError$.next();
-                        return NEVER;
-                    })
-                )
+            this.paymentGroupsReferencesService.deleteGroupReference(params.reference).pipe(
+                catchError((error: HttpErrorResponse) => {
+                    this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
+                        duration: 1500,
+                    });
+                    this.hasError$.next();
+                    return NEVER;
+                })
+            )
         ),
         shareReplay(1)
     );
@@ -55,7 +49,7 @@ export class RemoveReferenceService {
 
     constructor(
         private dialog: MatDialog,
-        private operationTypeManagementService: OperationTypeManagementService,
+        private paymentGroupsReferencesService: PaymentGroupsReferencesService,
         private snackBar: MatSnackBar
     ) {}
 

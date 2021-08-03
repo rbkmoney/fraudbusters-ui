@@ -10,16 +10,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
-import { P2pTemplateReferencesTableComponent } from './p2p-template-references-table/p2p-template-references-table.component';
 import { PaymentTemplateReferencesTableComponent } from './payment-template-references-table/payment-template-references-table.component';
 import { TemplateReferencesSearchComponent } from './template-references-search/template-references-search.component';
 
 @NgModule({
-    declarations: [
-        PaymentTemplateReferencesTableComponent,
-        P2pTemplateReferencesTableComponent,
-        TemplateReferencesSearchComponent,
-    ],
+    declarations: [PaymentTemplateReferencesTableComponent, TemplateReferencesSearchComponent],
     imports: [
         CommonModule,
         FlexModule,
@@ -32,10 +27,6 @@ import { TemplateReferencesSearchComponent } from './template-references-search/
         MatMenuModule,
         MatButtonModule,
     ],
-    exports: [
-        PaymentTemplateReferencesTableComponent,
-        P2pTemplateReferencesTableComponent,
-        TemplateReferencesSearchComponent,
-    ],
+    exports: [PaymentTemplateReferencesTableComponent, TemplateReferencesSearchComponent],
 })
 export class TemplateReferencesModule {}

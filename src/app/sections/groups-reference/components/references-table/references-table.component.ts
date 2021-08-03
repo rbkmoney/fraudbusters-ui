@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 
+import { GroupReference } from '../../../../api/fb-management/swagger-codegen/model/groupReference';
 import { SortOrder } from '../../../../shared/constants/sort-order';
 import { Action, ActionType } from '../../model/action';
-import { P2pGroupReferenceModel } from '../../model/p2p-groups-reference';
 import { PaymentGroupReferenceModel } from '../../model/payment-groups-reference';
 
 @Component({
@@ -17,7 +17,7 @@ export class ReferencesTableComponent {
     action: EventEmitter<Action> = new EventEmitter();
 
     @Input()
-    references: PaymentGroupReferenceModel[] | P2pGroupReferenceModel[];
+    references: PaymentGroupReferenceModel[];
 
     @Input()
     displayedColumns: string[];
@@ -33,7 +33,7 @@ export class ReferencesTableComponent {
         }
     }
 
-    removeReference(reference: PaymentGroupReferenceModel | P2pGroupReferenceModel): void {
+    removeReference(reference: GroupReference): void {
         this.action.emit({ type: ActionType.removeReference, reference });
     }
 }

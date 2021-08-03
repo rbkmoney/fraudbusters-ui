@@ -1,6 +1,5 @@
+import { GroupReference } from '../../../api/fb-management/swagger-codegen/model/groupReference';
 import { SortOrder } from '../../../shared/constants/sort-order';
-import { P2pGroupReferenceModel } from './p2p-groups-reference';
-import { PaymentGroupReferenceModel } from './payment-groups-reference';
 
 export enum ActionType {
     createReference = 'createReference',
@@ -10,6 +9,6 @@ export enum ActionType {
 
 export interface Action {
     type: ActionType;
-    reference?: PaymentGroupReferenceModel | P2pGroupReferenceModel;
+    reference?: GroupReference;
     sortDirection?: SortOrder;
 }

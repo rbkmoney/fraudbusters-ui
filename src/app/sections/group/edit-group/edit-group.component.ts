@@ -4,10 +4,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { PaymentGroupsService } from '../../../api/payments/groups';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { TemplatesService } from '../../template/services/templates/templates.service';
-import { GroupsService } from '../groups.service';
 import { Group } from '../model/group';
 import { GroupUtilsService } from '../utils/group-utils.service';
 
@@ -25,7 +25,7 @@ export class EditGroupComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private groupsService: GroupsService,
+        private groupsService: PaymentGroupsService,
         private errorHandlerService: ErrorHandlerService,
         private templatesService: TemplatesService,
         private groupUtilsService: GroupUtilsService,
@@ -34,7 +34,7 @@ export class EditGroupComponent implements OnInit {
 
     ngOnInit(): void {
         this.preloadData();
-        this.groupsService.getGroupById(this.operationType, this.editGroupId).subscribe(
+        this.groupsService.getGroupById(this.editGroupId).subscribe(
             (group) => {
                 this.editGroup = group;
             },
@@ -52,7 +52,7 @@ export class EditGroupComponent implements OnInit {
     }
 
     save(): void {
-        this.groupsService.saveGroup(this.operationType, this.editGroup).subscribe(
+        this.groupsService.save(this.editGroup).subscribe(
             (id) => {
                 this.snackBar.open(`Saved success: ${id}`, 'OK', {
                     duration: 1500,
@@ -75,7 +75,7 @@ export class EditGroupComponent implements OnInit {
     }
 
     doFilter(value): void {
-        this.templatesService.getTemplatesName(this.operationType, value).subscribe(
+        this.templatesService.getTemplatesName(value).subscribe(
             (names) => {
                 this.options = names;
             },

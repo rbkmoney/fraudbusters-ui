@@ -3,12 +3,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { catchError, map, scan, switchMap } from 'rxjs/operators';
 
-import { P2pReferenceModel } from '../../api/fb-management/swagger-codegen/model/p2pReferenceModel';
-import { PaymentReferenceModel } from '../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
+import { PaymentReference } from '../../api/fb-management/swagger-codegen/model/paymentReference';
+import { PaymentReferencesService } from '../../api/payments/references';
 import { OperationType } from '../../shared/constants/operation-type';
 import { SortOrder } from '../../shared/constants/sort-order';
 import { HttpSearchResponse } from '../../shared/model/http-search-response';
-import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { FilterReference } from './model/filter-reference';
 
@@ -16,12 +15,12 @@ import { FilterReference } from './model/filter-reference';
 export class ReferencesService {
     filterReference$ = new BehaviorSubject<FilterReference>({ type: OperationType.Payment });
     isLoadMoreSubject$ = new BehaviorSubject<boolean>(false);
-    lastRefSubject$ = new Subject<PaymentReferenceModel>();
-    references$ = new Observable<PaymentReferenceModel[] | P2pReferenceModel[]>();
+    lastRefSubject$ = new Subject<PaymentReference>();
+    references$ = new Observable<PaymentReference[]>();
     isLoadMore$ = new Observable<boolean>();
 
     constructor(
-        private operationReferenceService: OperationTypeManagementService,
+        private paymentReferencesService: PaymentReferencesService,
         private errorHandlerService: ErrorHandlerService,
         private snackBar: MatSnackBar
     ) {
@@ -61,8 +60,8 @@ export class ReferencesService {
         this.filterReference$.next(filter);
     }
 
-    getReferences(filter: FilterReference): Observable<HttpSearchResponse<PaymentReferenceModel | P2pReferenceModel>> {
-        return this.operationReferenceService.findReferenceService(filter.type).findReferences({
+    getReferences(filter: FilterReference): Observable<HttpSearchResponse<PaymentReference>> {
+        return this.paymentReferencesService.findReferences({
             searchValue: filter.search,
             lastId: filter.lastInListName,
             size: filter.size,
@@ -73,14 +72,11 @@ export class ReferencesService {
         });
     }
 
-    deleteReference(type: OperationType, reference: P2pReferenceModel | PaymentReferenceModel): Observable<string> {
-        return this.operationReferenceService.findReferenceService(type).deleteReference(reference);
+    deleteReference(reference: PaymentReference): Observable<string> {
+        return this.paymentReferencesService.deleteReference(reference);
     }
 
-    saveReferences(
-        type: OperationType,
-        references: P2pReferenceModel[] | PaymentReferenceModel[]
-    ): Observable<string[]> {
-        return this.operationReferenceService.findReferenceService(type).saveReferences(references);
+    saveReferences(references: PaymentReference[]): Observable<string[]> {
+        return this.paymentReferencesService.saveReferences(references);
     }
 }

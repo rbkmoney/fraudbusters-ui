@@ -1,0 +1,63 @@
+<form fxflexfill [formGroup]="form">
+    <div fxLayoutGap="10px grid" fxFlexFill fxLayout.lt-sm="column" class="row-margin">
+        <mat-form-field floatLabel="always" appearance="fill" class="date-picker">
+            <input
+                placeholder="from"
+                matInput
+                label="startCountTime"
+                name="startCountTime"
+                [ngxMatDatetimePicker]="pickerFrom"
+                formControlName="from"
+            />
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker showSeconds="true" #pickerFrom></ngx-mat-datetime-picker>
+        </mat-form-field>
+        <mat-form-field floatLabel="always" appearance="fill" class="date-picker">
+            <input
+                placeholder="to"
+                matInput
+                label="startCountTime"
+                name="startCountTime"
+                [ngxMatDatetimePicker]="pickerTo"
+                formControlName="to"
+            />
+            <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker showSeconds="true" #pickerTo></ngx-mat-datetime-picker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="party id" formControlName="partyId" type="string" autocomplete="false" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="shop id" formControlName="shopId" type="string" autocomplete="false" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="card token" formControlName="cardToken" type="string" autocomplete="false" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="country" formControlName="country" type="string" autocomplete="false" />
+        </mat-form-field>
+    </div>
+    <div fxLayoutGap="10px grid" fxFlexFill fxLayout.lt-sm="column" class="row-margin">
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="status" formControlName="status" type="string" autocomplete="false" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="id" formControlName="paymentId" type="string" autocomplete="false" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <input
+                matInput
+                placeholder="fingerprint"
+                formControlName="fingerprint"
+                type="string"
+                autocomplete="false"
+            />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="email" formControlName="email" type="string" autocomplete="false" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="terminal" formControlName="terminal" type="string" autocomplete="false" />
+        </mat-form-field>
+    </div>
+</form>

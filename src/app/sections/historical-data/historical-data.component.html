@@ -1,0 +1,16 @@
+<div class="mat-headline">Historical data</div>
+<div fxLayout="column" fxLayoutGap="8px">
+    <nav mat-tab-nav-bar>
+        <a
+            mat-tab-link
+            *ngFor="let link of links"
+            [routerLink]="link.path"
+            routerLinkActive
+            #rla="routerLinkActive"
+            [active]="rla.isActive || hasActiveFragments(link.otherActiveUrlFragments)"
+        >
+            {{ link.name }}
+        </a>
+    </nav>
+    <router-outlet></router-outlet>
+</div>

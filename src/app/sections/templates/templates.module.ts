@@ -16,22 +16,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { P2pTemplatesModule, PaymentTemplatesModule } from '../../api';
+import { PaymentTemplatesModule } from '../../api';
 import { ConfirmActionDialogModule } from '../../shared/components/confirm-action-dialog';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
 import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
 import { SharedPipesModule } from '../../shared/pipes';
-import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
-import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
-import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
-import { P2pGroupsService } from '../../shared/services/groups/p2p-groups.service';
-import { PaymentGroupsService } from '../../shared/services/groups/payment-groups.service';
-import { P2pListsService } from '../../shared/services/lists/p2p-lists.service';
-import { PaymentListsService } from '../../shared/services/lists/payment-lists.service';
-import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
-import { P2pReferencesService } from '../../shared/services/reference/p2p-references.service';
-import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
-import { P2pTemplatesComponent } from './components/p2p-templates/p2p-templates.component';
 import { PaymentTemplatesComponent } from './components/payment-templates/payment-templates.component';
 import { TemplatesSearchComponent } from './components/templates-search/templates-search.component';
 import { PaymentTemplatesListModule } from './payment-templates-list';
@@ -61,23 +50,11 @@ import { TemplatesComponent } from './templates.component';
         MatProgressSpinnerModule,
         MatProgressBarModule,
         PaymentTemplatesModule,
-        P2pTemplatesModule,
         PaymentTemplatesListModule,
         ShowMorePanelModule,
     ],
-    declarations: [TemplatesComponent, P2pTemplatesComponent, PaymentTemplatesComponent, TemplatesSearchComponent],
+    declarations: [TemplatesComponent, PaymentTemplatesComponent, TemplatesSearchComponent],
     // TODO: need to refactor these services
-    providers: [
-        OperationTypeManagementService,
-        PaymentGroupsService,
-        P2pGroupsService,
-        PaymentReferencesService,
-        P2pReferencesService,
-        PaymentGroupsReferenceService,
-        P2pGroupsReferenceService,
-        PaymentListsService,
-        P2pListsService,
-        PaymentEmulationTemplateService,
-    ],
+    providers: [],
 })
 export class TemplatesModule {}

@@ -3493,20 +3493,7 @@
         },
         "CreateTemplateResponse": {
             "type": "object",
-            "properties": {
-                "errors": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "id": {
-                    "type": "string"
-                },
-                "template": {
-                    "type": "string"
-                }
-            },
+            "properties": {},
             "title": "CreateTemplateResponse"
         },
         "DefaultP2pReferenceModel": {

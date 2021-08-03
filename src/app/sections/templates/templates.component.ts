@@ -7,16 +7,5 @@ import { LAYOUT_GAP_M } from '../../tokens';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TemplatesComponent {
-    links = [
-        {
-            path: 'payments',
-            name: 'Payments',
-        },
-        {
-            path: 'p2p',
-            name: 'Peer To Peer',
-        },
-    ];
-
     constructor(@Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
 }

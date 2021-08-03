@@ -5,8 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, merge, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
+import { PaymentGroupsReferencesService } from '../../../api/payments/groups-references';
 import { progress } from '../../../shared/operators';
-import { PaymentGroupsReferenceService } from '../../../shared/services/groups-reference/payment-groups-reference.service';
 
 @Injectable()
 export class CreatePaymentReferenceService {
@@ -33,7 +33,7 @@ export class CreatePaymentReferenceService {
 
     constructor(
         private fb: FormBuilder,
-        private referenceService: PaymentGroupsReferenceService,
+        private referenceService: PaymentGroupsReferencesService,
         private snackBar: MatSnackBar
     ) {
         this.addItem();

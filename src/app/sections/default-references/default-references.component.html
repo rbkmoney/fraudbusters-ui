@@ -1,16 +1,4 @@
 <div class="mat-headline">Default references</div>
 <div fxLayout="column" fxLayoutGap="8px">
-    <nav mat-tab-nav-bar>
-        <a
-            mat-tab-link
-            *ngFor="let link of links"
-            [routerLink]="link.path"
-            routerLinkActive
-            #rla="routerLinkActive"
-            [active]="rla.isActive"
-        >
-            {{ link.name }}
-        </a>
-    </nav>
     <router-outlet></router-outlet>
 </div>

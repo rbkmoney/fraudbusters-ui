@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { OperationType } from '../../../../../shared/constants/operation-type';
 import { LAYOUT_GAP_M } from '../../../../../tokens';
 import { CreateDefaultPaymentReferenceService } from '../../services/create-default-payment-reference.service';
 
@@ -11,7 +10,6 @@ import { CreateDefaultPaymentReferenceService } from '../../services/create-defa
 })
 export class CreateDefaultPaymentReferenceComponent {
     form = this.createDefaultPaymentReferenceService.form;
-    operationType = OperationType;
     inProgress$ = this.createDefaultPaymentReferenceService.inProgress$;
 
     constructor(

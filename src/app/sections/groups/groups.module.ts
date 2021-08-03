@@ -17,23 +17,12 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { P2pTemplatesModule, PaymentTemplatesModule } from '../../api';
-import { PaymentEmulationTemplateService } from '../../shared/services/emulation/payment-emulation-template-service';
-import { P2pGroupsReferenceService } from '../../shared/services/groups-reference/p2p-groups-reference.service';
-import { PaymentGroupsReferenceService } from '../../shared/services/groups-reference/payment-groups-reference.service';
-import { P2pGroupsService } from '../../shared/services/groups/p2p-groups.service';
-import { PaymentGroupsService } from '../../shared/services/groups/payment-groups.service';
-import { P2pListsService } from '../../shared/services/lists/p2p-lists.service';
-import { PaymentListsService } from '../../shared/services/lists/payment-lists.service';
-import { OperationTypeManagementService } from '../../shared/services/operation-type-management.service';
-import { P2pReferencesService } from '../../shared/services/reference/p2p-references.service';
-import { PaymentReferencesService } from '../../shared/services/reference/payment-references.service';
+import { PaymentTemplatesModule } from '../../api';
+import { PaymentGroupsModule } from '../../api/payments/groups';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
-import { TemplatesService } from '../template/services/templates/templates.service';
 import { GroupsRoutingModule } from './groups-routing.module';
 import { GroupsComponent } from './groups.component';
-import { GroupsService } from './groups.service';
 import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-dialog.component';
 
 @NgModule({
@@ -58,24 +47,9 @@ import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-d
         FlexLayoutModule,
         FormsModule,
         PaymentTemplatesModule,
-        P2pTemplatesModule,
         ReactiveFormsModule,
+        PaymentGroupsModule,
     ],
-    providers: [
-        GroupsService,
-        SearchFieldService,
-        P2pGroupsService,
-        PaymentGroupsService,
-        ErrorHandlerService,
-        PaymentReferencesService,
-        PaymentEmulationTemplateService,
-        P2pListsService,
-        TemplatesService,
-        PaymentListsService,
-        P2pReferencesService,
-        P2pGroupsReferenceService,
-        PaymentGroupsReferenceService,
-        OperationTypeManagementService,
-    ],
+    providers: [SearchFieldService, ErrorHandlerService],
 })
 export class GroupsModule {}

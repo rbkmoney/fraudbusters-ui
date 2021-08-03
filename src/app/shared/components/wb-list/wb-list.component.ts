@@ -8,14 +8,13 @@ import { Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
+import { PaymentListsService } from '../../../api/payments/lists/payment-lists.service';
 import { ConfigService } from '../../../config';
 import { ListType } from '../../constants/list-type';
-import { OperationType } from '../../constants/operation-type';
 import { SortOrder } from '../../constants/sort-order';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
 import { SearchFieldService } from '../../services/utils/search-field.service';
 import { RemoveRowListDialogComponent } from './remove-row-list/remove-row-list-dialog.component';
-import { WbListService } from './wb-list.service';
 
 @Component({
     selector: 'fb-wb-list',
@@ -28,13 +27,10 @@ export class WbListComponent implements OnInit {
 
     listsRows = [];
     searchValue: FormControl = new FormControl('');
-    operationType: OperationType;
-    operationTypes;
     listNames: string[] = [];
     selectedListNames: string[] = [];
 
     paymentColumns = ['listName', 'partyId', 'shopId', 'value', 'insertTime'];
-    p2pColumns = ['listName', 'partyId', 'shopId', 'value', 'insertTime'];
 
     private SIZE = this.configService.pageSize;
 
@@ -42,7 +38,7 @@ export class WbListComponent implements OnInit {
         private router: Router,
         private errorHandlerService: ErrorHandlerService,
         private searchFieldService: SearchFieldService,
-        private listService: WbListService,
+        private listService: PaymentListsService,
         private snackBar: MatSnackBar,
         private dialog: MatDialog,
         private configService: ConfigService
@@ -55,8 +51,6 @@ export class WbListComponent implements OnInit {
     sortType = SortOrder.DESC;
 
     ngOnInit(): void {
-        this.operationTypes = Object.keys(OperationType);
-        this.operationType = this.operationTypes[0];
         this.getListNames();
         this.searchValue.valueChanges.pipe(debounceTime(300)).subscribe(() => {
             this.search();
@@ -64,11 +58,7 @@ export class WbListComponent implements OnInit {
     }
 
     selectionChange(): void {
-        if (this.operationType === OperationType.Payment) {
-            this.displayedColumns.next(this.initColumns(this.paymentColumns));
-        } else {
-            this.displayedColumns.next(this.initColumns(this.p2pColumns));
-        }
+        this.displayedColumns.next(this.initColumns(this.paymentColumns));
         this.search();
     }
 
@@ -77,7 +67,7 @@ export class WbListComponent implements OnInit {
     }
 
     getListNames(): void {
-        this.listService.getNames((OperationType as any)[this.operationType], this.listType).subscribe(
+        this.listService.getNames(this.listType).subscribe(
             (names) => {
                 this.listNames = names;
                 this.selectedListNames = this.listNames;
@@ -93,18 +83,17 @@ export class WbListComponent implements OnInit {
         this.searchWithSort(null, this.sortType, null);
     }
 
-    private searchWithSort(lastInListName, sortOrder: SortOrder, sortFieldValue): void {
+    private searchWithSort(lastInListName, sortOrder: SortOrder, sortFieldValueNew): void {
         this.listService
-            .findLists(
-                this.selectedListNames,
-                this.listType,
-                (OperationType as any)[this.operationType],
-                this.SIZE,
-                this.searchFieldService.formatField(this.searchValue.value),
-                lastInListName,
-                sortOrder,
-                sortFieldValue
-            )
+            .findListRows({
+                searchValue: this.searchFieldService.formatField(this.searchValue.value),
+                lastId: lastInListName,
+                size: this.SIZE,
+                sortOrder: sortOrder ? sortOrder : SortOrder.ASC,
+                sortFieldValue: sortFieldValueNew,
+                listNames: this.selectedListNames,
+                listType: this.listType,
+            })
             .subscribe(
                 (response) => {
                     if (!!!lastInListName) {
@@ -121,7 +110,7 @@ export class WbListComponent implements OnInit {
     }
 
     navigateToNew(): void {
-        this.router.navigate([`/list/${this.listType}/new`], { fragment: this.operationType });
+        this.router.navigate([`/list/${this.listType}/new`]);
     }
 
     sortData(sort: Sort): void {
@@ -132,7 +121,7 @@ export class WbListComponent implements OnInit {
     openDialog(listRecordRow): void {
         const dialogRef = this.dialog.open(RemoveRowListDialogComponent, {
             width: '350px',
-            data: { listRecord: listRecordRow, operationType: this.operationType, listType: this.listType },
+            data: { listRecord: listRecordRow, listType: this.listType },
         });
 
         dialogRef.afterClosed().subscribe((result) => {

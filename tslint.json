@@ -44,5 +44,8 @@
         "no-console": [true, "log", "dir"],
         "no-duplicate-imports": [true, { "allow-namespace-imports": true }],
         "increment-decrement": true
+    },
+    "linterOptions": {
+        "exclude": ["src/app/api/fb-management/swagger-codegen/**"]
     }
 }

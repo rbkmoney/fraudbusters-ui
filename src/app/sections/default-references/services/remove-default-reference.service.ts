@@ -5,16 +5,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, merge, NEVER, of, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
-import { P2pReferenceModel } from '../../../api/fb-management/swagger-codegen/model/p2pReferenceModel';
-import { PaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
+import { PaymentReference } from '../../../api/fb-management/swagger-codegen/model/paymentReference';
+import { PaymentDefaultReferencesService } from '../../../api/payments/default-references';
 import { ConfirmActionDialogComponent } from '../../../shared/components/confirm-action-dialog';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { progress } from '../../../shared/operators';
-import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
 
 export interface RemoveReferenceParams {
     type: OperationType;
-    reference: PaymentReferenceModel | P2pReferenceModel;
+    reference: PaymentReference;
 }
 
 @Injectable()
@@ -33,18 +32,15 @@ export class RemoveDefaultReferenceService {
             ])
         ),
         switchMap(([params]) =>
-            this.operationTypeManagementService
-                .findReferenceService(params.type)
-                .deleteDefaultReference(params.reference)
-                .pipe(
-                    catchError((error: HttpErrorResponse) => {
-                        this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
-                            duration: 1500,
-                        });
-                        this.hasError$.next();
-                        return NEVER;
-                    })
-                )
+            this.paymentDefaultReferencesService.delete(params.reference).pipe(
+                catchError((error: HttpErrorResponse) => {
+                    this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
+                        duration: 1500,
+                    });
+                    this.hasError$.next();
+                    return NEVER;
+                })
+            )
         ),
         shareReplay(1)
     );
@@ -53,7 +49,7 @@ export class RemoveDefaultReferenceService {
 
     constructor(
         private dialog: MatDialog,
-        private operationTypeManagementService: OperationTypeManagementService,
+        private paymentDefaultReferencesService: PaymentDefaultReferencesService,
         private snackBar: MatSnackBar
     ) {}
 

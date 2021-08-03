@@ -21,7 +21,7 @@ import { scanAction, scanFetchResult } from './operators';
 export abstract class PartialFetcher<R, P> {
     private action$ = new Subject<FetchAction<P>>();
 
-    readonly fetchResultChanges$: Observable<{ result: R[]; hasMore: boolean; count: number }>;
+    fetchResultChanges$: Observable<{ result: R[]; hasMore: boolean; count: number }>;
 
     readonly searchResult$: Observable<R[]>;
     readonly hasMore$: Observable<boolean>;
@@ -85,7 +85,7 @@ export abstract class PartialFetcher<R, P> {
         return this.action$.pipe(scanAction, debounceActionTime ? debounceTime(debounceActionTime) : tap(), share());
     }
 
-    private getFetchResult(actionWithParams$: Observable<FetchAction<P>>): Observable<FetchResult<R>> {
+    protected getFetchResult(actionWithParams$: Observable<FetchAction<P>>): Observable<FetchResult<R>> {
         const fetchFn = this.fetch.bind(this) as FetchFn<P, R>;
         return actionWithParams$.pipe(
             scanFetchResult(fetchFn),

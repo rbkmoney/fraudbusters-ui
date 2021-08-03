@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../../auth';
-import { CreateP2pReferenceComponent, CreatePaymentReferenceComponent } from './components';
+import { CreatePaymentReferenceComponent } from './components';
 import { CreateReferenceComponent } from './create-reference.component';
 
 @NgModule({
@@ -15,12 +15,6 @@ import { CreateReferenceComponent } from './create-reference.component';
                     {
                         path: 'payment',
                         component: CreatePaymentReferenceComponent,
-                        canActivate: [AuthGuard],
-                        data: { roles: [Roles.fraudOfficer] },
-                    },
-                    {
-                        path: 'p2p',
-                        component: CreateP2pReferenceComponent,
                         canActivate: [AuthGuard],
                         data: { roles: [Roles.fraudOfficer] },
                     },

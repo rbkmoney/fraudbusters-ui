@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
-import { P2pReferenceModel } from '../../../api/fb-management/swagger-codegen/model/p2pReferenceModel';
-import { PaymentReferenceModel } from '../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
+import { PaymentReference } from '../../../api/fb-management/swagger-codegen/model/paymentReference';
+import { PaymentDefaultReferencesService } from '../../../api/payments/default-references';
 import { ConfigService } from '../../../config';
 import { OperationType } from '../../../shared/constants/operation-type';
 import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDelay } from '../../../shared/operators';
-import { OperationTypeManagementService } from '../../../shared/services/operation-type-management.service';
 import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
 
 export interface FetchDefaultReferencesParams {
@@ -25,26 +24,20 @@ export interface FetchDefaultReferencesParams {
 }
 
 @Injectable()
-export class FetchDefaultReferencesService extends PartialFetcher<
-    PaymentReferenceModel | P2pReferenceModel,
-    FetchDefaultReferencesParams
-> {
+export class FetchDefaultReferencesService extends PartialFetcher<PaymentReference, FetchDefaultReferencesParams> {
     inProgress$ = this.doAction$.pipe(booleanDelay(), shareReplay(1));
     private SIZE = this.configService.pageSize;
 
     constructor(
-        private operationTypeManagementService: OperationTypeManagementService,
+        private paymentDefaultReferencesService: PaymentDefaultReferencesService,
         private configService: ConfigService
     ) {
         super();
     }
 
-    protected fetch(
-        params: FetchDefaultReferencesParams,
-        lastId?: string
-    ): Observable<FetchResult<PaymentReferenceModel | P2pReferenceModel>> {
-        const { searchValue, sortOrder, sortFieldValue, sortBy, id, name, size, type } = params;
-        return this.operationTypeManagementService.findReferenceService(type).findDefaultReferences({
+    protected fetch(params: FetchDefaultReferencesParams, lastId?: string): Observable<FetchResult<PaymentReference>> {
+        const { searchValue, sortOrder, sortFieldValue, sortBy, id, name, size } = params;
+        return this.paymentDefaultReferencesService.filter({
             searchValue: searchValue || '',
             sortFieldValue: sortFieldValue || '',
             sortOrder: sortOrder || SortOrder.ASC,

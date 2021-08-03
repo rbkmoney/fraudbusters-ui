@@ -1,2 +1,1 @@
-export * from './payment-templates';
-export * from './p2p-templates';
+export * from './payments/templates';

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
 
 import { SortOrder } from '../../shared/constants/sort-order';
+import { SearchFieldService } from '../../shared/services/utils/search-field.service';
 import { AuditService } from './audit.service';
 import { Filter } from './model/filter';
 
@@ -32,13 +33,17 @@ export class AuditComponent implements OnInit {
 
     displayedColumns = ['insertTime', 'initiator', 'objectType', 'commandType', 'text'];
 
-    constructor(private auditService: AuditService, private route: ActivatedRoute) {
+    constructor(
+        private auditService: AuditService,
+        private searchFieldService: SearchFieldService,
+        private route: ActivatedRoute
+    ) {
         combineLatest([this.commandsTypes$, this.objectsTypes$, this.route.queryParams]).subscribe((params) => {
             this.filter = {
                 user: !params[2].userId ? '' : params[2].userId,
                 commandTypes: !params[2].commandTypes ? params[0] : JSON.parse(params[2].commandTypes),
                 objectTypes: !params[2].objectTypes ? params[1] : JSON.parse(params[2].objectTypes),
-                from: !params[2].dateFrom ? auditService.todayFromTime() : new Date(params[2].dateFrom),
+                from: !params[2].dateFrom ? this.searchFieldService.todayFromTime() : new Date(params[2].dateFrom),
                 to: !params[2].dateTo ? new Date() : new Date(params[2].dateTo),
             };
             this.auditService.mergeQueryParam({

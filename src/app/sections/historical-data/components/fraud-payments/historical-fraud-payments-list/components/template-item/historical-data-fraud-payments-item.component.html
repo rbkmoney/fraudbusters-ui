@@ -1,0 +1,29 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <div fxLayout fxFlexFill [fxLayoutGap]="layoutGapM">
+            <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.id }}</div>
+            <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.merchantInfo.partyId }}</div>
+            <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.merchantInfo.shopId }}</div>
+            <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.amount }}</div>
+            <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.currency }}</div>
+            <div class="fb-body-2" fxFlex>{{ fraudPayment.payment.clientInfo.email }}</div>
+            <div class="fb-body-2" fxFlex="160px">
+                {{ fraudPayment.payment.eventTime | date: 'yyyy-MM-dd HH:mm:ss' }}
+            </div>
+        </div>
+    </mat-expansion-panel-header>
+    <div class="panel-content" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <mat-divider></mat-divider>
+        <div class="row">
+            <div class="column">
+                <div fxFlex>Fingerprint:</div>
+                <div fxFlex>{{ fraudPayment.payment.clientInfo.fingerprint }}</div>
+            </div>
+            <div fxLayout="column">
+                <div fxFlex>Terminal:</div>
+                <div fxFlex>{{ fraudPayment.payment.provider.terminalId }}</div>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+    </div>
+</mat-expansion-panel>

@@ -6,7 +6,6 @@ import { Papa } from 'ngx-papaparse';
 import { EMPTY, merge, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 
-import { OperationType } from '../../../../shared/constants/operation-type';
 import { progress } from '../../../../shared/operators';
 import { CsvUtilsService } from '../../../../shared/services/utils/csv-utils.service';
 import { ReferencesService } from '../../references.service';
@@ -20,7 +19,7 @@ export class CreatePaymentReferenceService {
 
     created$ = this.create$.pipe(
         switchMap(() =>
-            this.referenceService.saveReferences(OperationType.Payment, this.forms.value).pipe(
+            this.referenceService.saveReferences(this.forms.value).pipe(
                 catchError((error: HttpErrorResponse) => {
                     if (error.status === 422) {
                         this.snackBar.open(`Unknown template ids: ${error.error}`, 'ERROR');

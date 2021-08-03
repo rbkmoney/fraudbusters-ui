@@ -10,14 +10,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { PaymentGroupsReferencesService } from '../../api/payments/groups-references';
 import { HeadlineModule } from '../../shared/components/headline';
 import { TemplateIdModule } from '../../shared/components/inputs/template-id';
-import { CreateP2pReferenceComponent, CreatePaymentReferenceComponent } from './components';
+import { CreatePaymentReferenceComponent } from './components';
 import { CreateGroupReferenceRoutingModule } from './create-group-reference-routing.module';
 import { CreateGroupReferenceComponent } from './create-group-reference.component';
 
 @NgModule({
-    declarations: [CreateGroupReferenceComponent, CreatePaymentReferenceComponent, CreateP2pReferenceComponent],
+    declarations: [CreateGroupReferenceComponent, CreatePaymentReferenceComponent],
     imports: [
         CreateGroupReferenceRoutingModule,
         CommonModule,
@@ -34,5 +35,6 @@ import { CreateGroupReferenceComponent } from './create-group-reference.componen
         MatSnackBarModule,
     ],
     exports: [CreateGroupReferenceComponent],
+    providers: [PaymentGroupsReferencesService],
 })
 export class CreateGroupReferenceModule {}

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 
-import { PaymentReferenceModel } from '../../../../api/fb-management/swagger-codegen/model/paymentReferenceModel';
+import { PaymentReference } from '../../../../api/fb-management/swagger-codegen/model/paymentReference';
 import { SortOrder } from '../../../constants/sort-order';
 import { Action, ActionType } from '../action';
 
@@ -16,7 +16,7 @@ export class PaymentTemplateReferencesTableComponent {
     action: EventEmitter<Action> = new EventEmitter();
 
     @Input()
-    references: PaymentReferenceModel[];
+    references: PaymentReference[];
 
     displayedColumns: string[] = ['id', 'templateID', 'partyID', 'shopID', 'updatedAt', 'actions'];
 
@@ -31,15 +31,15 @@ export class PaymentTemplateReferencesTableComponent {
         }
     }
 
-    removeReference(reference: PaymentReferenceModel): void {
+    removeReference(reference: PaymentReference): void {
         this.action.emit({ type: ActionType.removeReference, reference });
     }
 
-    editReference(reference: PaymentReferenceModel) {
+    editReference(reference: PaymentReference) {
         this.action.emit({ type: ActionType.editReference, reference });
     }
 
-    goToTempalte(reference: PaymentReferenceModel) {
+    goToTempalte(reference: PaymentReference) {
         this.action.emit({ type: ActionType.goToTemplate, reference });
     }
 }
