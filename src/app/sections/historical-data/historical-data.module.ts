@@ -48,6 +48,7 @@ import { FetchHistoricalFraudPaymentsService } from './services/fetch-historical
 import { FetchHistoricalInspectResultsService } from './services/fetch-historical-inspect-results.service';
 import { FetchHistoricalPaymentsService } from './services/fetch-historical-payments.service';
 import { FetchHistoricalRefundsService } from './services/fetch-historical-refunds.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
     declarations: [
@@ -86,6 +87,7 @@ import { FetchHistoricalRefundsService } from './services/fetch-historical-refun
         ShowMorePanelModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatTooltipModule,
         NgxMatTimepickerModule,
         NgxMatNativeDateModule,
         NgxMatDatetimePickerModule,

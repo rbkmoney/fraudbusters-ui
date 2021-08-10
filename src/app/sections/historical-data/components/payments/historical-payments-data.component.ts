@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchHistoricalPaymentsService } from '../../services/fetch-historical-payments.service';
+import { Payment } from '../../../../api/fb-management/swagger-codegen/model/payment';
 
 @Component({
     templateUrl: 'historical-payments-data.component.html',
@@ -12,6 +13,8 @@ export class HistoricalPaymentsDataComponent {
     payments$ = this.fetchPaymentsService.searchResult$;
     inProgress$ = this.fetchPaymentsService.inProgress$;
     hasMore$ = this.fetchPaymentsService.hasMore$;
+
+    selectedPayments$: Array<Payment> = new Array<Payment>();
 
     constructor(
         private fetchPaymentsService: FetchHistoricalPaymentsService,
@@ -26,6 +29,14 @@ export class HistoricalPaymentsDataComponent {
 
     fetchMore(event) {
         this.fetchPaymentsService.fetchMore(this.initParams(event));
+    }
+
+    checkPayments($event) {
+        this.selectedPayments$ = $event;
+    }
+
+    createDataSet() {
+        console.log(this.selectedPayments$);
     }
 
     private initParams(event) {
