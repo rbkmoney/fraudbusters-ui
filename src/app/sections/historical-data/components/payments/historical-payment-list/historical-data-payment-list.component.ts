@@ -22,7 +22,10 @@ export class HistoricalDataPaymentListComponent {
 
     onChange($event) {
         if (this.selectedPayments.includes($event)) {
-            this.selectedPayments.splice(this.selectedPayments.findIndex((value) => Object.is(value, $event)));
+            this.selectedPayments.splice(
+                this.selectedPayments.findIndex((value) => Object.is(value, $event)),
+                1
+            );
         } else {
             this.selectedPayments.push($event);
         }
