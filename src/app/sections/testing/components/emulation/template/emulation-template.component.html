@@ -1,0 +1,56 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <h3>Emulation template</h3>
+            <button mat-stroked-button color="primary" (click)="emulate()">Emulate</button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-card>
+        <mat-card-content>
+            <div class="list-values" fxLayout fxLayoutAlign="center center">
+                <div fxFlex="100">
+                    <div fxFlex="50">
+                        <mat-form-field floatLabel="always" class="full-width">
+                            <input
+                                matInput
+                                placeholder="Party ID"
+                                label="partyId"
+                                [(ngModel)]="filter.partyId"
+                                name="partyId"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="50">
+                        <mat-form-field floatLabel="always" class="full-width">
+                            <input
+                                matInput
+                                placeholder="Shop ID"
+                                label="shopId"
+                                [(ngModel)]="filter.shopId"
+                                name="shopId"
+                            />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout>
+                <div fxFlex="100">
+                    <table mat-table [dataSource]="templates$ | async" class="fb-table">
+                        <ng-container matColumnDef="id">
+                            <td mat-cell *matCellDef="let element" fxFlex="200px">{{ element.id }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="template">
+                            <td mat-cell *matCellDef="let element" fxLayout="column" fxLayoutGap="8px">
+                                <div *ngFor="let rule of element.template | templateToRules">
+                                    <code>{{ rule }}</code>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <tr mat-row *matRowDef="let row; columns: ['id', 'template']"></tr>
+                    </table>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

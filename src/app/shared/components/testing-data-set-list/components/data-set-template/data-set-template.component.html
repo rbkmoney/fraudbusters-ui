@@ -1,0 +1,43 @@
+<mat-card>
+    <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapL">
+        <form [formGroup]="form" fxLayout="column" [fxLayoutGap]="layoutGapL">
+            <!--            <div fxLayout="row">-->
+            <!--                <mat-form-field [attr.readonly]="true" class="full-width" floatLabel="always">-->
+            <!--                    <input matInput placeholder="Party" formControlName="party" />-->
+            <!--                </mat-form-field>-->
+            <!--                <mat-form-field [attr.readonly]="true" class="full-width" floatLabel="always">-->
+            <!--                    <input matInput placeholder="Shop" formControlName="shop" />-->
+            <!--                </mat-form-field>-->
+            <!--            </div>-->
+            <!--            <div fxLayout="row">-->
+            <mat-form-field floatLabel="always">
+                <textarea
+                    required
+                    matInput
+                    placeholder="Templates rules"
+                    formControlName="template"
+                    matTextareaAutosize
+                    matAutosizeMinRows="5"
+                    matAutosizeMaxRows="20"
+                ></textarea>
+            </mat-form-field>
+            <!--            </div>-->
+        </form>
+        <div fxLayout fxLayoutAlign="end" [fxLayoutGap]="layoutGapM">
+            <button mat-button color="accent" [disabled]="inProgress$ | async" (click)="validateTemplate()">
+                Validate
+            </button>
+            <button
+                mat-button
+                color="primary"
+                [disabled]="form.invalid || (inProgress$ | async)"
+                (click)="testTemplate()"
+            >
+                Test
+            </button>
+        </div>
+    </mat-card-content>
+    <mat-card-footer *ngIf="inProgress$ | async">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+</mat-card>

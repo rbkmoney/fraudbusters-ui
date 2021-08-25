@@ -74,16 +74,16 @@ export class MenuModel {
             roles: [Roles.fraudOfficer],
         },
         {
-            displayName: 'Emulation template',
-            iconName: 'accessibility_new',
-            route: 'emulation/template',
-            roles: [Roles.fraudOfficer, Roles.fraudMonitoring, Roles.fraudSupport],
-        },
-        {
             displayName: 'Historical data',
             iconName: 'history',
             route: 'historical-data/payments',
             roles: [Roles.fraudOfficer, Roles.fraudMonitoring],
+        },
+        {
+            displayName: 'Testing',
+            iconName: 'bug_report',
+            route: 'testing/data-sets',
+            roles: [Roles.fraudOfficer],
         },
         {
             displayName: 'Audit',

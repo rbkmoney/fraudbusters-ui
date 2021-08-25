@@ -1,0 +1,19 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapL">
+    <div fxLayout fxLayoutAlign="start center" [fxLayoutGap]="layoutGapM">
+        <mat-icon (click)="back()">keyboard_backspace</mat-icon>
+        <h3 class="fb-headline">Testing data set</h3>
+    </div>
+    <fb-data-set-template
+        *ngIf="dataSet$ | async as dataSet"
+        [dataSet]="dataSet"
+        (valueChanges)="updateSet($event)"
+    ></fb-data-set-template>
+</div>
+<div fxLayout="column" [fxLayoutGap]="layoutGapL">
+    <div fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <fb-testing-data-data-set-list
+            *ngIf="dataSet$ | async as dataSet"
+            [dataSet]="dataSet"
+        ></fb-testing-data-data-set-list>
+    </div>
+</div>

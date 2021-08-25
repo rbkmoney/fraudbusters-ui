@@ -16,9 +16,7 @@ export class HistoricalFraudPaymentsDataComponent {
     constructor(
         private fetchHistoricalFraudPaymentsService: FetchHistoricalFraudPaymentsService,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
-    ) {
-        this.fetchHistoricalFraudPaymentsService.search({});
-    }
+    ) {}
 
     search(event) {
         this.fetchHistoricalFraudPaymentsService.search(this.initParams(event));

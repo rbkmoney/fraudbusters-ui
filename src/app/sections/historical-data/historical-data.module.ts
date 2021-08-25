@@ -49,6 +49,7 @@ import { FetchHistoricalInspectResultsService } from './services/fetch-historica
 import { FetchHistoricalPaymentsService } from './services/fetch-historical-payments.service';
 import { FetchHistoricalRefundsService } from './services/fetch-historical-refunds.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { DataSetService } from '../../api/payments/data-set';
 
 @NgModule({
     declarations: [
@@ -107,6 +108,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         HistoricalDataService,
         DatePipe,
         SearchFieldService,
+        DataSetService,
     ],
 })
 export class HistoricalDataModule {}

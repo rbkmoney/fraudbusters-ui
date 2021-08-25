@@ -16,9 +16,7 @@ export class HistoricalRefundsDataComponent {
     constructor(
         private fetchPaymentsSefetchHistoricalRefundsServicevice: FetchHistoricalRefundsService,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
-    ) {
-        this.fetchPaymentsSefetchHistoricalRefundsServicevice.search({});
-    }
+    ) {}
 
     search(event) {
         this.fetchPaymentsSefetchHistoricalRefundsServicevice.search(this.initParams(event));

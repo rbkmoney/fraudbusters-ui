@@ -1,0 +1,6 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapM" fxLayoutGap="12px" [style.margin-top]="'20px'">
+    <fb-data-set-payment-header></fb-data-set-payment-header>
+    <div *ngFor="let dataSetRow of dataSet.rows" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <fb-data-set-payment-item [checkedDataSetRow]="dataSetRow"></fb-data-set-payment-item>
+    </div>
+</div>

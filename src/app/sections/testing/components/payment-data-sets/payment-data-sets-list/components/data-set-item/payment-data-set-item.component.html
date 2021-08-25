@@ -1,0 +1,23 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header #exppanel>
+        <div fxLayout fxFlexFill [fxLayoutGap]="layoutGapM">
+            <div class="fb-body-2" fxFlex="100px">{{ dataSet.id }}</div>
+            <div class="fb-body-2" fxFlex>{{ dataSet.name }}</div>
+            <div class="fb-body-2" fxFlex>{{ dataSet.lastModificationInitiator }}</div>
+            <div class="fb-body-2" fxFlex>{{ dataSet.lastModificationAt | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
+        </div>
+    </mat-expansion-panel-header>
+    <div class="panel-content" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <mat-divider></mat-divider>
+        <div class="row">
+            <div fxFlex>Rows:</div>
+            <div fxFlex>{{ dataSet.rows }}</div>
+        </div>
+        <mat-divider></mat-divider>
+        <fb-actions
+            [id]="dataSet.id"
+            (editItem)="editItem.emit($event)"
+            (deleteItem)="deleteItem.emit($event)"
+        ></fb-actions>
+    </div>
+</mat-expansion-panel>

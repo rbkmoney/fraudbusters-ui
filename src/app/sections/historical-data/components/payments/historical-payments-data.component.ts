@@ -3,6 +3,9 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchHistoricalPaymentsService } from '../../services/fetch-historical-payments.service';
 import { Payment } from '../../../../api/fb-management/swagger-codegen/model/payment';
+import { DataSetService } from '../../../../api/payments/data-set';
+import { ProfileService } from '../../../../container/services/profile/profile.service';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: 'historical-payments-data.component.html',
@@ -17,11 +20,12 @@ export class HistoricalPaymentsDataComponent {
     selectedPayments$: Array<Payment> = new Array<Payment>();
 
     constructor(
+        private router: Router,
+        private profileService: ProfileService,
         private fetchPaymentsService: FetchHistoricalPaymentsService,
+        private dataSetService: DataSetService,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
-    ) {
-        this.fetchPaymentsService.search({});
-    }
+    ) {}
 
     search(event) {
         this.fetchPaymentsService.search(this.initParams(event));
@@ -36,7 +40,14 @@ export class HistoricalPaymentsDataComponent {
     }
 
     createDataSet() {
-        console.log(this.selectedPayments$);
+        this.dataSetService
+            .saveDataSets({
+                name: this.profileService.getUsername() + '_' + new Date().toISOString(),
+                rows: this.selectedPayments$.map((val) => ({
+                    payment: val,
+                })),
+            })
+            .subscribe((value) => this.router.navigate([`../data-sets/${value}/testing`]));
     }
 
     private initParams(event) {
