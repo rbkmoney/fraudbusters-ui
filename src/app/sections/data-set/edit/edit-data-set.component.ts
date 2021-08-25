@@ -10,18 +10,9 @@ import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditDataSetComponent {
-    dataSet$ = this.route.params.pipe(
-        pluck('id'),
-        switchMap(([id]) => {
-            return this.dataSetService.getById(id);
-        }),
-        shareReplay(1)
-    );
-
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private dataSetService: DataSetService,
         @Inject(LAYOUT_GAP_L) public layoutGapL: string,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {}

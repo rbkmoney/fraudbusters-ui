@@ -22,20 +22,12 @@ import { TestingDataSetComponent } from './testing/testing-data-set.component';
                         canActivate: [AuthGuard],
                         data: { roles: [Roles.fraudOfficer] },
                     },
-                    // {
-                    //     path: ':id',
-                    //     component: EditDataSetComponent,
-                    //     canActivate: [AuthGuard],
-                    //     data: { roles: [Roles.fraudOfficer] },
-                    //     children: [
-                    //         {
-                    //             path: 'testing',
-                    //             component: TestingDataSetComponent,
-                    //             canActivate: [AuthGuard],
-                    //             data: { roles: [Roles.fraudOfficer] },
-                    //         },
-                    //     ],
-                    // },
+                    {
+                        path: ':id',
+                        component: EditDataSetComponent,
+                        canActivate: [AuthGuard],
+                        data: { roles: [Roles.fraudOfficer] },
+                    },
                     {
                         path: ':id/testing',
                         component: TestingDataSetComponent,
