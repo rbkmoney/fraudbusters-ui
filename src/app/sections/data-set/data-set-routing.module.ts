@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../auth';
+import { CreateDataSetComponent } from './create/create-data-set.component';
 import { DataSetComponent } from './data-set.component';
 import { EditDataSetComponent } from './edit/edit-data-set.component';
-import { CreateDataSetComponent } from './create/create-data-set.component';
 import { TestingDataSetComponent } from './testing/testing-data-set.component';
 
 @NgModule({

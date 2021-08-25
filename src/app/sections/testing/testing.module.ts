@@ -24,22 +24,22 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { DataSetService } from '../../api/payments/data-set';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
 import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
 import { ShowMoreContinuationPanelModule } from '../../shared/components/show-more-panel-continuation';
+import { TestingDataSetListModule } from '../../shared/components/testing-data-set-list';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { DataSetService } from '../../api/payments/data-set';
-import { TestingComponent } from './testing.component';
-import { TestingModule } from './testing-routing.module';
+import { EmulationModule } from './components/emulation';
+import { PaymentDataSetsListModule } from './components/payment-data-sets/payment-data-sets-list';
 import { PaymentDataSetsComponent } from './components/payment-data-sets/payment-data-sets.component';
 import { DataSetsSearchComponent } from './components/search/data-sets-search.component';
 import { FetchDataSetsService } from './services/payment-data-sets/fetch-data-sets.service';
 import { RemoveDataSetsService } from './services/payment-data-sets/remove-data-sets.service';
-import { EmulationModule } from './components/emulation';
-import { TestingDataSetListModule } from '../../shared/components/testing-data-set-list';
-import { PaymentDataSetsListComponent } from './components/payment-data-sets/payment-data-sets-list/payment-data-sets-list.component';
-import { PaymentDataSetsListModule } from './components/payment-data-sets/payment-data-sets-list';
+import { TestingModule } from './testing-routing.module';
+import { TestingComponent } from './testing.component';
 
 @NgModule({
     declarations: [TestingComponent, PaymentDataSetsComponent, DataSetsSearchComponent],

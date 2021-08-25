@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
-import { filterParameters } from '../../../shared/utils/filter-params';
-import { DataSetsResponse } from '../../fb-management/swagger-codegen/model/dataSetsResponse';
-import { HttpRequestModel } from '../../../shared/model/http-request-model';
 import { SearchDataSetParams } from '../../../sections/testing/components/payment-data-sets/search-data-set-params';
-import { DataSet } from '../../fb-management/swagger-codegen/model/dataSet';
+import { HttpRequestModel } from '../../../shared/model/http-request-model';
+import { filterParameters } from '../../../shared/utils/filter-params';
 import { ApplyRuleOnHistoricalDataSetRequest } from '../../fb-management/swagger-codegen/model/applyRuleOnHistoricalDataSetRequest';
 import { CheckedDataSet } from '../../fb-management/swagger-codegen/model/checkedDataSet';
+import { DataSet } from '../../fb-management/swagger-codegen/model/dataSet';
+import { DataSetsResponse } from '../../fb-management/swagger-codegen/model/dataSetsResponse';
 
 @Injectable()
 export class DataSetService {

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 
+import { LAYOUT_GAP_M } from '../../../../../tokens';
 import { EmulationTemplateService } from '../../../services/emulation/emulation-template.service';
 import { PaymentEmulateFilter } from './model/payment-emulate-filter';
-import { LAYOUT_GAP_M } from '../../../../../tokens';
 
 @Component({
     templateUrl: './emulation-template.component.html',

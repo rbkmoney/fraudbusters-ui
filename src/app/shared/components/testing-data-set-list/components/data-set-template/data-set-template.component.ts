@@ -2,11 +2,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { TestingDataSetService } from '../../services/data-set/testing-data-set.service';
-import { ErrorHandlerService } from '../../../../services/utils/error-handler.service';
+
+import { CheckedDataSet } from '../../../../../api/fb-management/swagger-codegen/model/checkedDataSet';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../../../tokens';
 import { checkValidateResponse } from '../../../../services/utils/check-validation-response';
-import { CheckedDataSet } from '../../../../../api/fb-management/swagger-codegen/model/checkedDataSet';
+import { ErrorHandlerService } from '../../../../services/utils/error-handler.service';
+import { TestingDataSetService } from '../../services/data-set/testing-data-set.service';
 
 @Component({
     selector: 'fb-data-set-template',

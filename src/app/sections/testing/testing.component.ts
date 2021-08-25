@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { hasActiveFragments } from 'src/app/shared/utils/has-active-fragments';
 
 import { LAYOUT_GAP_S } from '../../tokens';
-import { hasActiveFragments } from 'src/app/shared/utils/has-active-fragments';
 
 @Component({
     templateUrl: 'testing.component.html',

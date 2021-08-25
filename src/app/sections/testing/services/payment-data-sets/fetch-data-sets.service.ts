@@ -1,14 +1,14 @@
+import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
+
+import { DataSet } from '../../../../api/fb-management/swagger-codegen/model/dataSet';
+import { DataSetService } from '../../../../api/payments/data-set';
 import { ConfigService } from '../../../../config';
 import { SortOrder } from '../../../../shared/constants/sort-order';
 import { booleanDelay } from '../../../../shared/operators';
-import { DataSetService } from '../../../../api/payments/data-set';
-import { DataSet } from '../../../../api/fb-management/swagger-codegen/model/dataSet';
 import { FetchResultContinuation } from '../../../../shared/utils/partial-fetcher/fetch-result-continuation';
-import { FetchPaymentParams } from '../../../historical-data/services/fetch-historical.service';
-import { DatePipe } from '@angular/common';
 import { PartialFetcherContinuation } from '../../../../shared/utils/partial-fetcher/partial-fetcher-continuation';
 
 export interface FetchDataSetsParams {

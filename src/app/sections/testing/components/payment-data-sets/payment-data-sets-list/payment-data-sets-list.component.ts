@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
-import { LAYOUT_GAP_M } from '../../../../../tokens';
+
 import { DataSet } from '../../../../../api/fb-management/swagger-codegen/model/dataSet';
+import { LAYOUT_GAP_M } from '../../../../../tokens';
 
 @Component({
     selector: 'fb-payment-data-sets-list',

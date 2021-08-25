@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { LAYOUT_GAP_M } from '../../../../tokens';
-import { FetchHistoricalPaymentsService } from '../../services/fetch-historical-payments.service';
 import { Payment } from '../../../../api/fb-management/swagger-codegen/model/payment';
 import { DataSetService } from '../../../../api/payments/data-set';
 import { ProfileService } from '../../../../container/services/profile/profile.service';
-import { Router } from '@angular/router';
+import { LAYOUT_GAP_M } from '../../../../tokens';
+import { FetchHistoricalPaymentsService } from '../../services/fetch-historical-payments.service';
 
 @Component({
     templateUrl: 'historical-payments-data.component.html',

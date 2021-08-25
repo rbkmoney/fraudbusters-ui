@@ -18,9 +18,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { PaymentEmulateModule } from '../../../../../api/payments/emulate';
 import { SharedPipesModule } from '../../../../../shared/pipes';
 import { ErrorHandlerService } from '../../../../../shared/services/utils/error-handler.service';
+import { EmulationTemplateService } from '../../../services/emulation/emulation-template.service';
 import { EmulationTemplateRoutingModule } from './emulation-template-routing.module';
 import { EmulationTemplateComponent } from './emulation-template.component';
-import { EmulationTemplateService } from '../../../services/emulation/emulation-template.service';
 
 @NgModule({
     declarations: [EmulationTemplateComponent],

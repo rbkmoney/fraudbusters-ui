@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Output } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 import { LAYOUT_GAP_M } from '../../../../../../../tokens';
-import { Payment } from '../../../../../../../api/fb-management/swagger-codegen/model/payment';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
     selector: 'fb-historical-data-payment-header',

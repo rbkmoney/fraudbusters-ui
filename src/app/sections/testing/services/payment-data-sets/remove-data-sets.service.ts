@@ -4,10 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, merge, NEVER, of, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
-import { ConfirmActionDialogComponent } from '../../../../shared/components/confirm-action-dialog';
-import { progress } from '../../../../shared/operators';
+
 import { DataSet } from '../../../../api/fb-management/swagger-codegen/model/dataSet';
 import { DataSetService } from '../../../../api/payments/data-set';
+import { ConfirmActionDialogComponent } from '../../../../shared/components/confirm-action-dialog';
+import { progress } from '../../../../shared/operators';
 
 export interface RemoveReferenceParams {
     dataSet: DataSet;

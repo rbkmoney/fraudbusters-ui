@@ -7,10 +7,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 
 import { ListHeaderModule } from '../../../../../shared/components/list-header';
 import { SharedPipesModule } from '../../../../../shared/pipes';
+import { ActionsComponent } from './components/actions/actions.component';
 import { PaymentDataSetHeaderComponent } from './components/data-set-header/payment-data-set-header.component';
 import { PaymentDataSetItemComponent } from './components/data-set-item/payment-data-set-item.component';
 import { PaymentDataSetsListComponent } from './payment-data-sets-list.component';
-import { ActionsComponent } from './components/actions/actions.component';
 
 @NgModule({
     imports: [

@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { TemplatesComponent } from '../templates/templates.component';
+import { RouterModule } from '@angular/router';
+
 import { AuthGuard, Roles } from '../../auth';
-import { PaymentTemplatesComponent } from '../templates/components/payment-templates/payment-templates.component';
-import { TestingComponent } from './testing.component';
-import { HistoricalInspectResultsDataComponent } from '../historical-data/components/inspect-results/historical-inspect-results-data.component';
-import { PaymentDataSetsComponent } from './components/payment-data-sets/payment-data-sets.component';
 import { EmulationTemplateComponent } from './components/emulation/template/emulation-template.component';
+import { PaymentDataSetsComponent } from './components/payment-data-sets/payment-data-sets.component';
+import { TestingComponent } from './testing.component';
 
 @NgModule({
     imports: [

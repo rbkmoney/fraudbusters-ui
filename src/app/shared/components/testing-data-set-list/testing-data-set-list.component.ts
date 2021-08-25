@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
-import { LAYOUT_GAP_M } from '../../../tokens';
+
 import { CheckedDataSet } from '../../../api/fb-management/swagger-codegen/model/checkedDataSet';
+import { LAYOUT_GAP_M } from '../../../tokens';
 
 @Component({
     selector: 'fb-testing-data-data-set-list',

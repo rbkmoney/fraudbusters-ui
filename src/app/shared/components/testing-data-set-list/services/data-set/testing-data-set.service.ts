@@ -3,11 +3,11 @@ import { FormBuilder } from '@angular/forms';
 import { merge, Subject } from 'rxjs';
 import { shareReplay, switchMap } from 'rxjs/operators';
 
-import { progress } from '../../../../operators';
-import { DataSetService } from '../../../../../api/payments/data-set';
-import { ApplyRuleOnHistoricalDataSetRequest } from '../../../../../api/fb-management/swagger-codegen/model/applyRuleOnHistoricalDataSetRequest';
 import { PaymentTemplatesService } from '../../../../../api';
+import { ApplyRuleOnHistoricalDataSetRequest } from '../../../../../api/fb-management/swagger-codegen/model/applyRuleOnHistoricalDataSetRequest';
 import { CheckedDataSet } from '../../../../../api/fb-management/swagger-codegen/model/checkedDataSet';
+import { DataSetService } from '../../../../../api/payments/data-set';
+import { progress } from '../../../../operators';
 
 @Injectable()
 export class TestingDataSetService {
