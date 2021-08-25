@@ -1,6 +1,6 @@
 export enum ThemePaletteEnum {
     Primary = 'primary',
-    Accent = 'accent',
+    Pending = 'pending',
     Success = 'success',
     Warn = 'warn',
     Blue = 'blue',

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchDataSetsService } from '../../services/payment-data-sets/fetch-data-sets.service';
 import { RemoveDataSetsService } from '../../services/payment-data-sets/remove-data-sets.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     templateUrl: 'payment-data-sets.component.html',
@@ -12,6 +13,9 @@ import { RemoveDataSetsService } from '../../services/payment-data-sets/remove-d
 })
 export class PaymentDataSetsComponent {
     dataSets$ = this.fetchDataSetsService.searchResult$;
+
+    private readonly yyyyMMDdHHMmSs = 'yyyy-MM-dd HH:mm:ss';
+
     inProgress$ = this.fetchDataSetsService.inProgress$;
     hasMore$ = this.fetchDataSetsService.hasMore$;
 
@@ -19,6 +23,7 @@ export class PaymentDataSetsComponent {
         private router: Router,
         private fetchDataSetsService: FetchDataSetsService,
         private removeDataSetsService: RemoveDataSetsService,
+        public datePipe: DatePipe,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.removeDataSetsService.removed$.subscribe(() => {
@@ -53,8 +58,8 @@ export class PaymentDataSetsComponent {
     private initParams(event) {
         return {
             searchValue: event.searchValue,
-            from: event.from,
-            to: event.to,
+            from: this.datePipe.transform(new Date(event.from), this.yyyyMMDdHHMmSs),
+            to: this.datePipe.transform(new Date(event.to), this.yyyyMMDdHHMmSs),
         };
     }
 }

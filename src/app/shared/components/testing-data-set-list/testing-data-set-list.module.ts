@@ -12,6 +12,8 @@ import { ListHeaderModule } from '../list-header';
 import { DataSetPaymentHeaderComponent } from './components/data-set-payment-header/data-set-payment-header.component';
 import { DataSetPaymentItemComponent } from './components/data-set-payment-item/data-set-payment-item.component';
 import { TestingDataSetListComponent } from './testing-data-set-list.component';
+import { TagModule } from '../tag';
+import { ResultStatusToColorPipe } from './components/data-set-payment-item/result-status-to-color.pipe';
 
 @NgModule({
     imports: [
@@ -22,8 +24,14 @@ import { TestingDataSetListComponent } from './testing-data-set-list.component';
         SharedPipesModule,
         MatButtonModule,
         ListHeaderModule,
+        TagModule,
     ],
-    declarations: [TestingDataSetListComponent, DataSetPaymentItemComponent, DataSetPaymentHeaderComponent],
+    declarations: [
+        TestingDataSetListComponent,
+        DataSetPaymentItemComponent,
+        DataSetPaymentHeaderComponent,
+        ResultStatusToColorPipe,
+    ],
     exports: [TestingDataSetListComponent],
     providers: [TemplateService, PaymentTemplatesService],
 })

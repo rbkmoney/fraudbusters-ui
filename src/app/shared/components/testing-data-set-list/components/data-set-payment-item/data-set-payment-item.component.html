@@ -2,20 +2,76 @@
     <mat-expansion-panel-header #exppanel>
         <div fxLayout fxFlexFill [fxLayoutGap]="layoutGapM">
             <div class="fb-body-2" fxFlex>{{ checkedDataSetRow.payment.paymentId }}</div>
-            <div class="fb-body-2" fxFlex>{{ checkedDataSetRow.resultStatus }}</div>
+            <div class="fb-body-2" fxFlex>
+                <fb-tag
+                    [color]="checkedDataSetRow.resultStatus | resultStatusToColor"
+                    [title]="checkedDataSetRow.resultStatus"
+                ></fb-tag>
+            </div>
             <div class="fb-body-2" fxFlex>{{ checkedDataSetRow.ruleChecked }}</div>
+            <div class="fb-body-2" fxFlex>{{ checkedDataSetRow.payment.amount }}</div>
+            <div class="fb-body-2" fxFlex>{{ checkedDataSetRow.payment.currency }}</div>
+            <div class="fb-body-2" fxFlex>{{ checkedDataSetRow.payment.clientInfo.email }}</div>
             <div class="fb-body-2" fxFlex>{{ checkedDataSetRow.payment.eventTime | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
         </div>
     </mat-expansion-panel-header>
     <div class="panel-content" fxLayout="column" [fxLayoutGap]="layoutGapM">
-        <mat-divider></mat-divider>.
+        <mat-divider></mat-divider>
         <div class="row">
-            <div fxFlex>Payment system:</div>
-            <div fxFlex>{{ checkedDataSetRow.payment.paymentSystem }}</div>
+            <div class="fb-body-2" fxFlex="15%">Party id:</div>
+            <div fxFlex>{{ checkedDataSetRow.payment.merchantInfo.partyId }}</div>
         </div>
         <div class="row">
-            <div fxFlex>Card token:</div>
+            <div class="fb-body-2" fxFlex="15%">Shop id:</div>
+            <div fxFlex>{{ checkedDataSetRow.payment.merchantInfo.shopId }}</div>
+        </div>
+        <mat-divider *ngIf="checkedDataSetRow.resultStatus == 'notify'"></mat-divider>
+        <div class="row" *ngIf="checkedDataSetRow.resultStatus == 'notify'">
+            <div class="fb-body-2" fxFlex="15%">Notifications:</div>
+            <div fxFlex>{{ checkedDataSetRow.notificationRule }}</div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="row">
+            <div class="fb-body-2" fxFlex="15%">Fingerprint:</div>
+            <div fxFlex>{{ checkedDataSetRow.payment.clientInfo.fingerprint }}</div>
+        </div>
+        <div class="row">
+            <div class="fb-body-2" fxFlex="15%">Ip:</div>
+            <div fxFlex>{{ checkedDataSetRow.payment.clientInfo.ip }}</div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="row">
+            <div class="fb-body-2" fxFlex="15%">Card token:</div>
             <div fxFlex>{{ checkedDataSetRow.payment.cardToken }}</div>
+        </div>
+        <div class="row">
+            <div class="fb-body-2" fxFlex="15%">Pan:</div>
+            <div fxFlex>{{ checkedDataSetRow.payment.bin }}****{{ checkedDataSetRow.payment.lastDigits }}</div>
+        </div>
+        <div class="row">
+            <div class="fb-body-2" fxFlex="15%">Status:</div>
+            <div fxFlex>{{ checkedDataSetRow.payment.status }}</div>
+        </div>
+        <div class="row">
+            <div class="fb-body-2" fxFlex="15%">Payment country:</div>
+            <div fxFlex>{{ checkedDataSetRow.payment.paymentCountry }}</div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="row">
+            <div class="fb-body-2" fxFlex="15%">Payment country:</div>
+            <div fxFlex>{{ checkedDataSetRow.payment.provider.providerId }}</div>
+        </div>
+        <div class="row">
+            <div class="fb-body-2" fxFlex="15%">Provider id:</div>
+            <div fxFlex>{{ checkedDataSetRow.payment.provider.providerId }}</div>
+        </div>
+        <div class="row">
+            <div class="fb-body-2" fxFlex="15%">Terminal id:</div>
+            <div fxFlex>{{ checkedDataSetRow.payment.provider.terminalId }}</div>
+        </div>
+        <div class="row">
+            <div class="fb-body-2" fxFlex="15%">Bank country:</div>
+            <div fxFlex>{{ checkedDataSetRow.payment.provider.country }}</div>
         </div>
         <mat-divider></mat-divider>
     </div>

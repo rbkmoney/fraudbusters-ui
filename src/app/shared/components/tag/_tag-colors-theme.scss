@@ -18,6 +18,10 @@
             background-color: map-get($theme, warn-base);
         }
 
+        &-pending {
+            background-color: map-get($theme, pending-base);
+        }
+
         &-blue {
             background-color: map-get($theme, blue-base);
         }
