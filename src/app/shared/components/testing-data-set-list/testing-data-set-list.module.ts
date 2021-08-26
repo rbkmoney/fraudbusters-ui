@@ -9,11 +9,11 @@ import { PaymentTemplatesService } from '../../../api';
 import { SharedPipesModule } from '../../pipes';
 import { TemplateService } from '../create-template/services/template/template.service';
 import { ListHeaderModule } from '../list-header';
+import { TagModule } from '../tag';
 import { DataSetPaymentHeaderComponent } from './components/data-set-payment-header/data-set-payment-header.component';
 import { DataSetPaymentItemComponent } from './components/data-set-payment-item/data-set-payment-item.component';
-import { TestingDataSetListComponent } from './testing-data-set-list.component';
-import { TagModule } from '../tag';
 import { ResultStatusToColorPipe } from './components/data-set-payment-item/result-status-to-color.pipe';
+import { TestingDataSetListComponent } from './testing-data-set-list.component';
 
 @NgModule({
     imports: [
