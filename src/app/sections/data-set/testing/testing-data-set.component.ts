@@ -31,7 +31,6 @@ export class TestingDataSetComponent {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private testingDataSetService: TestingDataSetService,
         private dataSetService: DataSetService,
         @Inject(LAYOUT_GAP_L) public layoutGapL: string,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
