@@ -1,0 +1,94 @@
+::ng-deep {
+    form {
+        .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon-button,
+        .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button {
+            margin-left: -30px;
+            font-size: revert;
+            height: 1.5em;
+            width: 1.5em;
+        }
+
+        .mat-form-field:not(.mat-form-field-appearance-legacy)
+            .mat-form-field-prefix
+            .mat-datepicker-toggle-default-icon,
+        .mat-form-field:not(.mat-form-field-appearance-legacy)
+            .mat-form-field-suffix
+            .mat-datepicker-toggle-default-icon {
+            display: inherit;
+        }
+
+        mat-form-field.date-picker {
+            div {
+                .mat-form-field-flex {
+                    padding: 0;
+                    background-color: transparent;
+                }
+            }
+        }
+
+        .mat-form-field-wrapper {
+            padding: 0;
+            margin: 0;
+        }
+
+        .mat-form-field-appearance-outline .mat-form-field-flex {
+            margin-top: 0;
+        }
+
+        div.row-margin {
+            margin: 0 !important;
+        }
+
+        .mat-toolbar {
+            .mat-form-field-appearance .mat-form-field-flex {
+                background: none;
+                padding: 0 0 0 0;
+            }
+
+            .mat-form-field-appearance .mat-select-arrow-wrapper {
+                transform: none;
+            }
+
+            a img {
+                vertical-align: bottom;
+                padding-bottom: 3px;
+            }
+        }
+
+        .mat-form-field .mat-form-field-prefix .mat-icon-button,
+        .mat-form-field .mat-form-field-suffix .mat-icon-button {
+            margin-left: -30px;
+            font-size: revert;
+            height: 1.5em;
+            width: 1.5em;
+        }
+
+        .mat-form-field .mat-form-field-prefix .mat-datepicker-toggle-default-icon,
+        .mat-form-field .mat-form-field-suffix .mat-datepicker-toggle-default-icon {
+            display: inherit;
+            width: 1.5em;
+        }
+
+        mat-form-field.date-picker {
+            div {
+                .mat-form-field-flex {
+                    padding: 0;
+                    background-color: transparent;
+                }
+            }
+        }
+
+        .mat-form-field-wrapper {
+            padding: 0;
+            margin: 0;
+        }
+
+        .mat-form-field-appearance-outline .mat-form-field-flex {
+            margin-top: 0;
+        }
+
+        div.row-margin {
+            margin: 0 !important;
+        }
+    }
+}

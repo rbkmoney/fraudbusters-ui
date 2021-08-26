@@ -12,6 +12,7 @@ import { TestingDataSetService } from '../../services/data-set/testing-data-set.
 @Component({
     selector: 'fb-data-set-template',
     templateUrl: './data-set-template.component.html',
+    styleUrls: ['data-set-template.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [TestingDataSetService],
 })
@@ -39,7 +40,12 @@ export class DataSetTemplateComponent implements OnInit {
 
     ngOnInit() {
         if (this.dataSet) {
-            this.form.setValue({ template: this.dataSet.template });
+            this.form.setValue({
+                template: this.dataSet.template,
+                party: this.dataSet.merchantInfo.partyId,
+                shop: this.dataSet.merchantInfo.shopId,
+                checkingTimestamp: this.dataSet.checkingTimestamp,
+            });
         }
         this.tested$.subscribe(
             (checkedSetId) => {
@@ -68,7 +74,13 @@ export class DataSetTemplateComponent implements OnInit {
     }
 
     testTemplate() {
-        this.testingDataSetService.testTemplate(this.form.get('template').value, this.dataSet);
+        this.testingDataSetService.testTemplate(
+            this.form.get('template').value,
+            this.dataSet,
+            !!this.form.get('checkingTimestamp') ? this.form.get('checkingTimestamp').value : null,
+            this.form.get('party').value,
+            this.form.get('shop').value
+        );
     }
 
     validateTemplate() {

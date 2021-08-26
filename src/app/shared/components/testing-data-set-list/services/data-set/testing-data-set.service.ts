@@ -12,9 +12,10 @@ import { progress } from '../../../../operators';
 @Injectable()
 export class TestingDataSetService {
     static defaultParams = {
-        // party: '',
-        // shop: '',
+        party: '',
+        shop: '',
         template: '',
+        checkingTimestamp: null,
     };
 
     private test$ = new Subject<ApplyRuleOnHistoricalDataSetRequest>();
@@ -42,11 +43,22 @@ export class TestingDataSetService {
 
     form = this.fb.group(TestingDataSetService.defaultParams);
 
-    testTemplate(templateValue: string, data: CheckedDataSet) {
+    testTemplate(
+        templateValue: string,
+        data: CheckedDataSet,
+        ruleSetTimestamp?: Date,
+        partyId?: string,
+        shopId?: string
+    ) {
         this.test$.next({
             dataSetId: +data.testDataSetId,
             template: templateValue,
             records: data.rows.map((value) => value.payment),
+            reference: {
+                partyId,
+                shopId,
+            },
+            ruleSetTimestamp,
         });
     }
 

@@ -1,15 +1,28 @@
 <mat-card>
-    <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapL">
+    <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapM">
         <form [formGroup]="form" fxLayout="column" [fxLayoutGap]="layoutGapL">
-            <!--            <div fxLayout="row">-->
-            <!--                <mat-form-field [attr.readonly]="true" class="full-width" floatLabel="always">-->
-            <!--                    <input matInput placeholder="Party" formControlName="party" />-->
-            <!--                </mat-form-field>-->
-            <!--                <mat-form-field [attr.readonly]="true" class="full-width" floatLabel="always">-->
-            <!--                    <input matInput placeholder="Shop" formControlName="shop" />-->
-            <!--                </mat-form-field>-->
-            <!--            </div>-->
-            <!--            <div fxLayout="row">-->
+            <div fxLayout="row" [fxLayoutGap]="layoutGapL">
+                <mat-form-field floatLabel="always" class="date-picker" [fxLayoutGap]="layoutGapL" fxFlex="25%">
+                    <input
+                        placeholder="Timestamp for start (Cascading test)"
+                        matInput
+                        label="startCountTime"
+                        name="startCountTime"
+                        [ngxMatDatetimePicker]="pickerFrom"
+                        formControlName="checkingTimestamp"
+                    />
+                    <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                    <ngx-mat-datetime-picker showSeconds="true" #pickerFrom></ngx-mat-datetime-picker>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" [fxLayoutGap]="layoutGapM">
+                <mat-form-field floatLabel="always" fxFlex="25%">
+                    <input matInput placeholder="Party id (Cascading test)" formControlName="party" />
+                </mat-form-field>
+                <mat-form-field floatLabel="always" fxFlex="25%">
+                    <input matInput placeholder="Shop id (Cascading test)" formControlName="shop" />
+                </mat-form-field>
+            </div>
             <mat-form-field floatLabel="always">
                 <textarea
                     required
@@ -17,11 +30,10 @@
                     placeholder="Templates rules"
                     formControlName="template"
                     matTextareaAutosize
-                    matAutosizeMinRows="5"
+                    matAutosizeMinRows="10"
                     matAutosizeMaxRows="20"
                 ></textarea>
             </mat-form-field>
-            <!--            </div>-->
         </form>
         <div fxLayout fxLayoutAlign="end" [fxLayoutGap]="layoutGapM">
             <button mat-button color="accent" [disabled]="inProgress$ | async" (click)="validateTemplate()">

@@ -9,6 +9,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { DataSetTemplateComponent } from './data-set-template.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
 
 @NgModule({
     declarations: [DataSetTemplateComponent],
@@ -22,6 +30,12 @@ import { DataSetTemplateComponent } from './data-set-template.component';
         MatFormFieldModule,
         MatInputModule,
         MatProgressBarModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatTooltipModule,
+        NgxMatTimepickerModule,
+        NgxMatNativeDateModule,
+        NgxMatDatetimePickerModule,
     ],
 })
 export class DataSetTemplateModule {}
