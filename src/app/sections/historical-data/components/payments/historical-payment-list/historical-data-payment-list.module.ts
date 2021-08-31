@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 
@@ -19,6 +20,7 @@ import { HistoricalDataPaymentListComponent } from './historical-data-payment-li
         MatDividerModule,
         SharedPipesModule,
         MatButtonModule,
+        MatCheckboxModule,
         ListHeaderModule,
     ],
     declarations: [

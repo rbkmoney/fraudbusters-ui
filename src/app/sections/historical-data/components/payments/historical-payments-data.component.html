@@ -1,9 +1,16 @@
 <div fxLayout="column" [fxLayoutGap]="layoutGapM">
     <fb-history-data-search (valueChanges)="search($event)"></fb-history-data-search>
+    <div fxLayout fxLayoutAlign="end start">
+        <button mat-button color="primary" (click)="createDataSet()" [disabled]="selectedPayments$.length == 0">
+            CREATE NEW DATASET
+        </button>
+    </div>
     <div *ngIf="payments$ | async as payments; else Empty" fxLayout="column" [fxLayoutGap]="layoutGapM">
         <fb-historical-data-payment-list
             *ngIf="payments.length > 0; else Empty"
             [payments]="payments"
+            [selectedPayments]="selectedPayments$"
+            (changed)="checkPayments($event)"
         ></fb-historical-data-payment-list>
         <fb-show-more-continuation-panel
             *ngIf="hasMore$ | async"

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
-import { PaymentEmulateFilter } from '../../../sections/emulation/template/model/payment-emulate-filter';
+import { PaymentEmulateFilter } from '../../../sections/testing/components/emulation/template/model/payment-emulate-filter';
 import { EmulateResponse } from '../../fb-management/swagger-codegen/model/emulateResponse';
 import { Template } from '../../fb-management/swagger-codegen/model/template';
 

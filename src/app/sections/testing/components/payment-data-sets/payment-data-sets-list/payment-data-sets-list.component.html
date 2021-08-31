@@ -1,0 +1,10 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
+    <fb-payment-data-set-header></fb-payment-data-set-header>
+    <div *ngFor="let dataSet of dataSets" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <fb-payment-data-set-item
+            [dataSet]="dataSet"
+            (editItem)="goToDataSet.emit($event)"
+            (deleteItem)="deleteItem.emit($event)"
+        ></fb-payment-data-set-item>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AuthGuard, Roles } from '../../../auth';
+import { AuthGuard, Roles } from '../../../../../auth';
 import { EmulationTemplateComponent } from './emulation-template.component';
 
 @NgModule({

@@ -16,9 +16,7 @@ export class HistoricalInspectResultsDataComponent {
     constructor(
         private fetchHistoricalInspectResultsService: FetchHistoricalInspectResultsService,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
-    ) {
-        this.fetchHistoricalInspectResultsService.search({});
-    }
+    ) {}
 
     search(event) {
         this.fetchHistoricalInspectResultsService.search(this.initParams(event));

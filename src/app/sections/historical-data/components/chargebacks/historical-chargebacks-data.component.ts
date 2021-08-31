@@ -16,9 +16,7 @@ export class HistoricalChargebacksDataComponent {
     constructor(
         private fetchHistoricalChargebacksService: FetchHistoricalChargebacksService,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
-    ) {
-        this.fetchHistoricalChargebacksService.search({});
-    }
+    ) {}
 
     search(event) {
         this.fetchHistoricalChargebacksService.search(this.initParams(event));

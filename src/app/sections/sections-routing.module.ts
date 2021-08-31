@@ -61,7 +61,15 @@ const routes: Routes = [
     },
     {
         path: 'emulation',
-        loadChildren: () => import('./emulation').then((m) => m.EmulationModule),
+        loadChildren: () => import('./testing/components/emulation').then((m) => m.EmulationModule),
+    },
+    {
+        path: 'testing',
+        loadChildren: () => import('./testing').then((m) => m.DataSetsModule),
+    },
+    {
+        path: 'data-sets',
+        loadChildren: () => import('./data-set').then((m) => m.DataSetModule),
     },
     {
         path: 'audit',

@@ -1,6 +1,9 @@
 <mat-expansion-panel>
-    <mat-expansion-panel-header>
+    <mat-expansion-panel-header #exppanel>
         <div fxLayout fxFlexFill [fxLayoutGap]="layoutGapM">
+            <div class="fb-body-checkbox" fxFlex="30px" (click)="!exppanel._toggle()">
+                <mat-checkbox color="primary" (change)="emmitChange()" [checked]="enabled"> </mat-checkbox>
+            </div>
             <div class="fb-body-2" fxFlex>{{ payment.id }}</div>
             <div class="fb-body-2" fxFlex>{{ payment.merchantInfo.partyId }}</div>
             <div class="fb-body-2" fxFlex>{{ payment.merchantInfo.shopId }}</div>

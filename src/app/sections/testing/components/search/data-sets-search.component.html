@@ -1,0 +1,31 @@
+<form fxflexfill [formGroup]="form">
+    <div fxLayoutGap="10px grid" fxFlexFill fxLayout.lt-sm="column" class="row-margin">
+        <mat-form-field floatLabel="always" appearance="fill" class="date-picker">
+            <input
+                placeholder="from"
+                matInput
+                label="startCountTime"
+                name="startCountTime"
+                [ngxMatDatetimePicker]="pickerFrom"
+                formControlName="from"
+            />
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker showSeconds="true" #pickerFrom></ngx-mat-datetime-picker>
+        </mat-form-field>
+        <mat-form-field floatLabel="always" appearance="fill" class="date-picker">
+            <input
+                placeholder="to"
+                matInput
+                label="startCountTime"
+                name="startCountTime"
+                [ngxMatDatetimePicker]="pickerTo"
+                formControlName="to"
+            />
+            <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker showSeconds="true" #pickerTo></ngx-mat-datetime-picker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="name" formControlName="searchValue" type="string" autocomplete="false" />
+        </mat-form-field>
+    </div>
+</form>

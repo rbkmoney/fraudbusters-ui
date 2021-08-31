@@ -24,7 +24,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { DataSetService } from '../../api/payments/data-set';
 import { HistoricalDataService } from '../../api/payments/historical-data';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
 import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
@@ -86,6 +88,7 @@ import { FetchHistoricalRefundsService } from './services/fetch-historical-refun
         ShowMorePanelModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatTooltipModule,
         NgxMatTimepickerModule,
         NgxMatNativeDateModule,
         NgxMatDatetimePickerModule,
@@ -105,6 +108,7 @@ import { FetchHistoricalRefundsService } from './services/fetch-historical-refun
         HistoricalDataService,
         DatePipe,
         SearchFieldService,
+        DataSetService,
     ],
 })
 export class HistoricalDataModule {}

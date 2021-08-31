@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 
-import { EmulationTemplateService } from './emulation-template.service';
+import { LAYOUT_GAP_M } from '../../../../../tokens';
+import { EmulationTemplateService } from '../../../services/emulation/emulation-template.service';
 import { PaymentEmulateFilter } from './model/payment-emulate-filter';
 
 @Component({
@@ -13,7 +14,10 @@ export class EmulationTemplateComponent {
 
     filter: PaymentEmulateFilter;
 
-    constructor(private emulationTemplateService: EmulationTemplateService) {
+    constructor(
+        private emulationTemplateService: EmulationTemplateService,
+        @Inject(LAYOUT_GAP_M) public layoutGapM: string
+    ) {
         this.initFilter();
     }
 
