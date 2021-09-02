@@ -38,7 +38,7 @@ import { PaymentDataSetsComponent } from './components/payment-data-sets/payment
 import { DataSetsSearchComponent } from './components/search/data-sets-search.component';
 import { FetchDataSetsService } from './services/payment-data-sets/fetch-data-sets.service';
 import { RemoveDataSetsService } from './services/payment-data-sets/remove-data-sets.service';
-import { TestingModule } from './testing-routing.module';
+import { TestingRoutingModule } from './testing-routing.module';
 import { TestingComponent } from './testing.component';
 
 @NgModule({
@@ -74,11 +74,11 @@ import { TestingComponent } from './testing.component';
         NgxMatNativeDateModule,
         NgxMatDatetimePickerModule,
         ShowMoreContinuationPanelModule,
-        TestingModule,
+        TestingRoutingModule,
         EmulationModule,
         TestingDataSetListModule,
         PaymentDataSetsListModule,
     ],
     providers: [DatePipe, SearchFieldService, DataSetService, FetchDataSetsService, RemoveDataSetsService],
 })
-export class DataSetsModule {}
+export class TestingModule {}

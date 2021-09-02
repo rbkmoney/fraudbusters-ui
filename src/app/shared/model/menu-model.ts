@@ -28,19 +28,8 @@ export class MenuModel {
         {
             displayName: 'Groups',
             iconName: 'group_work',
+            route: 'groups',
             roles: [Roles.fraudOfficer],
-            children: [
-                {
-                    displayName: 'List',
-                    route: 'groups',
-                    roles: [Roles.fraudOfficer],
-                },
-                {
-                    displayName: 'References',
-                    route: 'groups-reference',
-                    roles: [Roles.fraudOfficer],
-                },
-            ],
         },
         {
             displayName: 'Lists',

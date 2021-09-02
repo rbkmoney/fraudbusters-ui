@@ -3,9 +3,9 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { PaymentGroupsService } from '../../../api/payments/groups';
-import { OperationType } from '../../../shared/constants/operation-type';
-import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { PaymentGroupsService } from '../../../../../api/payments/groups';
+import { OperationType } from '../../../../../shared/constants/operation-type';
+import { ErrorHandlerService } from '../../../../../shared/services/utils/error-handler.service';
 
 export interface DialogData {
     id: string;

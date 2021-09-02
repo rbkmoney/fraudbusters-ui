@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
-import { Group } from '../../../sections/groups/model/group';
+import { Group } from '../../../sections/groups/components/payments-groups/model/group';
 import { GroupsResponse } from '../../fb-management/swagger-codegen/model/groupsResponse';
 
 @Injectable()
