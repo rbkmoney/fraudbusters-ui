@@ -17,8 +17,6 @@ export class DefaultPaymentReferencesComponent {
     inProgress$ = this.fetchDefaultReferencesService.inProgress$;
     hasMore$ = this.fetchDefaultReferencesService.hasMore$;
 
-    private OPERATION_TYPE: OperationType = OperationType.Payment;
-
     constructor(
         private router: Router,
         private fetchDefaultReferencesService: FetchDefaultReferencesService,
@@ -26,17 +24,16 @@ export class DefaultPaymentReferencesComponent {
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.removeDefaultReferenceService.removed$.subscribe(() => {
-            this.fetchDefaultReferencesService.search({ type: this.OPERATION_TYPE, isGlobal: false, isDefault: false });
+            this.fetchDefaultReferencesService.search({ isGlobal: false, isDefault: false });
         });
     }
 
     createReference() {
-        this.router.navigate(['/default-reference/new/payment']);
+        this.router.navigate(['/default-references/new/payment']);
     }
 
     search(searchValue: string) {
         this.fetchDefaultReferencesService.search({
-            type: this.OPERATION_TYPE,
             searchValue,
             isGlobal: false,
             isDefault: false,
@@ -45,7 +42,6 @@ export class DefaultPaymentReferencesComponent {
 
     fetchMore(sortFieldValue: string) {
         this.fetchDefaultReferencesService.fetchMore({
-            type: this.OPERATION_TYPE,
             sortFieldValue,
             isGlobal: false,
             isDefault: false,
@@ -58,7 +54,6 @@ export class DefaultPaymentReferencesComponent {
 
     removeReference(reference: PaymentReference) {
         this.removeDefaultReferenceService.removeReference({
-            type: this.OPERATION_TYPE,
             reference,
         });
     }

@@ -12,7 +12,6 @@ import { OperationType } from '../../../shared/constants/operation-type';
 import { progress } from '../../../shared/operators';
 
 export interface RemoveReferenceParams {
-    type: OperationType;
     reference: PaymentReference;
 }
 

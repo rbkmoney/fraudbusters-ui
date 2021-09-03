@@ -16,15 +16,7 @@ const routes: Routes = [
         loadChildren: () => import('./template').then((m) => m.TemplateModule),
     },
     {
-        path: 'references',
-        loadChildren: () => import('./references').then((m) => m.ReferencesModule),
-    },
-    {
         path: 'default-references',
-        loadChildren: () => import('./default-references').then((m) => m.DefaultReferencesModule),
-    },
-    {
-        path: 'default-reference',
         loadChildren: () => import('./default-reference').then((m) => m.DefaultReferenceModule),
     },
     {

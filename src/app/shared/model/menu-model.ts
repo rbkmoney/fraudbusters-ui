@@ -6,24 +6,8 @@ export class MenuModel {
         {
             displayName: 'Templates',
             iconName: 'business',
+            route: 'templates',
             roles: [Roles.fraudOfficer],
-            children: [
-                {
-                    displayName: 'List',
-                    route: 'templates',
-                    roles: [Roles.fraudOfficer],
-                },
-                {
-                    displayName: 'References',
-                    route: 'references',
-                    roles: [Roles.fraudOfficer],
-                },
-                {
-                    displayName: 'Default reference',
-                    route: 'default-references',
-                    roles: [Roles.fraudOfficer],
-                },
-            ],
         },
         {
             displayName: 'Groups',

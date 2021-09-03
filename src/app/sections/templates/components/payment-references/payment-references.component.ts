@@ -24,7 +24,7 @@ export class PaymentReferencesComponent {
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.removeReferenceService.removed$.subscribe(() => {
-            this.fetchReferencesService.search({ type: OperationType.Payment, isGlobal: false, isDefault: false });
+            this.fetchReferencesService.search({ isGlobal: false, isDefault: false });
         });
     }
 
@@ -34,7 +34,6 @@ export class PaymentReferencesComponent {
 
     search(searchValue: string) {
         this.fetchReferencesService.search({
-            type: OperationType.Payment,
             searchValue,
             isGlobal: false,
             isDefault: false,
@@ -43,7 +42,6 @@ export class PaymentReferencesComponent {
 
     fetchMore(sortFieldValue: string) {
         this.fetchReferencesService.fetchMore({
-            type: OperationType.Payment,
             sortFieldValue,
             isGlobal: false,
             isDefault: false,
@@ -51,7 +49,7 @@ export class PaymentReferencesComponent {
     }
 
     goToTemplate(id: string) {
-        this.router.navigate([`/template/${id}`], { fragment: OperationType.Payment });
+        this.router.navigate([`/template/${id}`]);
     }
 
     removeReference(reference: PaymentReference) {

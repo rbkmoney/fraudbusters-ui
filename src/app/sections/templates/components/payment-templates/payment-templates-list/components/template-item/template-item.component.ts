@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 
-import { Template } from '../../../../../api/fb-management/swagger-codegen/model/template';
-import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../tokens';
+import { Template } from '../../../../../../../api/fb-management/swagger-codegen/model/template';
+import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../../../../../../tokens';
 
 @Component({
     selector: 'fb-template-item',
