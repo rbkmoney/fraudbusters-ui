@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchHistoricalFraudPaymentsService } from '../../services/fetch-historical-fraud-payments.service';
-import { Router } from '@angular/router';
 
 @Component({
     templateUrl: 'historical-fraud-payments-data.component.html',

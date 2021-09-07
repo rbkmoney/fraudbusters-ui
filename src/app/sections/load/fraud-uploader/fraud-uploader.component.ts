@@ -1,13 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 import { PaymentLoadDataService } from '../../../api/payments/load-data';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 import { UploadStatus } from './constants/upload-status';
 import { UploadFile } from './model/upload-file';
-import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
-import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './fraud-uploader.component.html',
