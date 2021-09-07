@@ -22,12 +22,6 @@ export class MenuModel {
             roles: [Roles.fraudOfficer, Roles.fraudMonitoring],
         },
         {
-            displayName: 'Load fraud',
-            iconName: 'publish',
-            route: 'load/fraud',
-            roles: [Roles.fraudOfficer],
-        },
-        {
             displayName: 'Historical data',
             iconName: 'history',
             route: 'historical-data/payments',

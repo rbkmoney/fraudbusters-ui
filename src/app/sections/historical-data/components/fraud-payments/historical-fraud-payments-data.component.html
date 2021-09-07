@@ -1,5 +1,8 @@
 <div fxLayout="column" [fxLayoutGap]="layoutGapM">
     <fb-history-data-search (valueChanges)="search($event)"></fb-history-data-search>
+    <div fxLayout fxLayoutAlign="end start">
+        <button mat-button color="primary" (click)="loadFraudPayments()">LOAD FRAUD PAYMENTS</button>
+    </div>
     <div *ngIf="fraudPayments$ | async as item; else Empty" fxLayout="column" [fxLayoutGap]="layoutGapM">
         <fb-historical-data-fraud-payments-list
             *ngIf="item.length > 0; else Empty"
