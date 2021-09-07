@@ -33,4 +33,4 @@ import { TestingComponent } from './testing.component';
     ],
     exports: [RouterModule],
 })
-export class TestingModule {}
+export class TestingRoutingModule {}

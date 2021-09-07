@@ -6,72 +6,20 @@ export class MenuModel {
         {
             displayName: 'Templates',
             iconName: 'business',
+            route: 'templates',
             roles: [Roles.fraudOfficer],
-            children: [
-                {
-                    displayName: 'List',
-                    route: 'templates',
-                    roles: [Roles.fraudOfficer],
-                },
-                {
-                    displayName: 'References',
-                    route: 'references',
-                    roles: [Roles.fraudOfficer],
-                },
-                {
-                    displayName: 'Default reference',
-                    route: 'default-references',
-                    roles: [Roles.fraudOfficer],
-                },
-            ],
         },
         {
             displayName: 'Groups',
             iconName: 'group_work',
+            route: 'groups',
             roles: [Roles.fraudOfficer],
-            children: [
-                {
-                    displayName: 'List',
-                    route: 'groups',
-                    roles: [Roles.fraudOfficer],
-                },
-                {
-                    displayName: 'References',
-                    route: 'groups-reference',
-                    roles: [Roles.fraudOfficer],
-                },
-            ],
         },
         {
             displayName: 'Lists',
             iconName: 'list_alt',
+            route: 'lists',
             roles: [Roles.fraudOfficer, Roles.fraudMonitoring],
-            children: [
-                {
-                    displayName: 'White',
-                    route: 'lists/white',
-                    iconName: 'panorama_fish_eye',
-                    roles: [Roles.fraudOfficer, Roles.fraudMonitoring],
-                },
-                {
-                    displayName: 'Black',
-                    route: 'lists/black',
-                    iconName: 'lens',
-                    roles: [Roles.fraudOfficer, Roles.fraudMonitoring],
-                },
-                {
-                    displayName: 'Grey',
-                    route: 'lists/grey',
-                    iconName: 'tonality',
-                    roles: [Roles.fraudOfficer, Roles.fraudMonitoring],
-                },
-            ],
-        },
-        {
-            displayName: 'Load fraud',
-            iconName: 'publish',
-            route: 'load/fraud',
-            roles: [Roles.fraudOfficer],
         },
         {
             displayName: 'Historical data',

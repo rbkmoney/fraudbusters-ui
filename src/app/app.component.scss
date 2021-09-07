@@ -335,4 +335,9 @@
     .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
         line-height: 34px;
     }
+
+    .mat-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-form-field-flex {
+        background: none;
+        padding-top: 0;
+    }
 }

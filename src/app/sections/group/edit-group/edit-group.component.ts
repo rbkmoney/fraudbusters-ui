@@ -5,7 +5,6 @@ import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { PaymentGroupsService } from '../../../api/payments/groups';
-import { OperationType } from '../../../shared/constants/operation-type';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { TemplatesService } from '../../template/services/templates/templates.service';
 import { Group } from '../model/group';
@@ -19,7 +18,6 @@ export class EditGroupComponent implements OnInit {
     editGroupId: string;
     editGroup: Group = { groupId: '', priorityTemplates: [] };
     displayedColumns: string[] = ['id', 'priority', 'edit'];
-    operationType: OperationType;
     options: string[] = [];
 
     constructor(
@@ -43,9 +41,6 @@ export class EditGroupComponent implements OnInit {
     }
 
     private preloadData(): void {
-        this.route.fragment.subscribe((fragment: string) => {
-            this.operationType = OperationType[fragment];
-        });
         this.route.params.subscribe(({ id }) => {
             this.editGroupId = id;
         });

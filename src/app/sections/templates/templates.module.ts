@@ -17,13 +17,24 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { PaymentTemplatesModule } from '../../api';
+import { PaymentDefaultReferencesService } from '../../api/payments/default-references';
+import { PaymentEmulateService } from '../../api/payments/emulate';
+import { PaymentGroupsReferencesService } from '../../api/payments/groups-references';
+import { PaymentReferencesService } from '../../api/payments/references';
 import { ConfirmActionDialogModule } from '../../shared/components/confirm-action-dialog';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
+import { PaymentReferencesListModule } from '../../shared/components/payment-references-list';
 import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
+import { TemplateReferencesSearchComponent } from '../../shared/components/template-references/template-references-search/template-references-search.component';
 import { SharedPipesModule } from '../../shared/pipes';
+import { DefaultReferenceModule } from '../default-reference';
+import { ReferenceModule } from '../reference';
+import { DefaultPaymentReferencesComponent } from './components/payment-dafeult-references/default-payment-references.component';
+import { PaymentReferencesComponent } from './components/payment-references/payment-references.component';
+import { PaymentTemplatesListModule } from './components/payment-templates/payment-templates-list';
 import { PaymentTemplatesComponent } from './components/payment-templates/payment-templates.component';
 import { TemplatesSearchComponent } from './components/templates-search/templates-search.component';
-import { PaymentTemplatesListModule } from './payment-templates-list';
+import { FetchDefaultReferencesService } from './services/fetch-default-references.service';
 import { TemplatesRoutingModule } from './templates-routing.module';
 import { TemplatesComponent } from './templates.component';
 
@@ -52,9 +63,24 @@ import { TemplatesComponent } from './templates.component';
         PaymentTemplatesModule,
         PaymentTemplatesListModule,
         ShowMorePanelModule,
+        DefaultReferenceModule,
+        ReferenceModule,
+        PaymentReferencesListModule,
     ],
-    declarations: [TemplatesComponent, PaymentTemplatesComponent, TemplatesSearchComponent],
-    // TODO: need to refactor these services
-    providers: [],
+    declarations: [
+        TemplatesComponent,
+        PaymentTemplatesComponent,
+        TemplatesSearchComponent,
+        PaymentReferencesComponent,
+        DefaultPaymentReferencesComponent,
+        TemplateReferencesSearchComponent,
+    ],
+    providers: [
+        PaymentReferencesService,
+        PaymentDefaultReferencesService,
+        PaymentGroupsReferencesService,
+        PaymentEmulateService,
+        FetchDefaultReferencesService,
+    ],
 })
 export class TemplatesModule {}

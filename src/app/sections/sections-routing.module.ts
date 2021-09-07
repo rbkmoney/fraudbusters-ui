@@ -16,15 +16,7 @@ const routes: Routes = [
         loadChildren: () => import('./template').then((m) => m.TemplateModule),
     },
     {
-        path: 'references',
-        loadChildren: () => import('./references').then((m) => m.ReferencesModule),
-    },
-    {
         path: 'default-references',
-        loadChildren: () => import('./default-references').then((m) => m.DefaultReferencesModule),
-    },
-    {
-        path: 'default-reference',
         loadChildren: () => import('./default-reference').then((m) => m.DefaultReferenceModule),
     },
     {
@@ -38,10 +30,6 @@ const routes: Routes = [
     {
         path: 'group',
         loadChildren: () => import('./group').then((m) => m.GroupModule),
-    },
-    {
-        path: 'groups-reference',
-        loadChildren: () => import('./groups-reference').then((m) => m.GroupsReferenceModule),
     },
     {
         path: 'create-group-reference',
@@ -65,7 +53,7 @@ const routes: Routes = [
     },
     {
         path: 'testing',
-        loadChildren: () => import('./testing').then((m) => m.DataSetsModule),
+        loadChildren: () => import('./testing').then((m) => m.TestingModule),
     },
     {
         path: 'data-sets',

@@ -5,7 +5,6 @@ import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { PaymentGroupsService } from '../../../api/payments/groups';
-import { OperationType } from '../../../shared/constants/operation-type';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
 import { TemplatesService } from '../../template/services/templates/templates.service';
 import { Group } from '../model/group';
@@ -18,7 +17,6 @@ import { GroupUtilsService } from '../utils/group-utils.service';
 export class CreateGroupComponent implements OnInit {
     newGroup: Group = { groupId: '', priorityTemplates: [] };
     displayedColumns: string[] = ['id', 'priority', 'edit'];
-    operationType: OperationType;
     options: string[] = [];
 
     constructor(
@@ -37,7 +35,6 @@ export class CreateGroupComponent implements OnInit {
 
     private preloadData(): void {
         this.route.fragment.subscribe((fragment: string) => {
-            this.operationType = OperationType[fragment];
             this.templatesService.getTemplatesName('').subscribe(
                 (names) => {
                     this.options = names;
@@ -69,7 +66,7 @@ export class CreateGroupComponent implements OnInit {
     }
 
     navigateToEdit(id): void {
-        this.router.navigate([`../group/${id}`], { fragment: this.operationType.toString() });
+        this.router.navigate([`../group/${id}`]);
     }
 
     sortData(sort: Sort, group: Group): void {

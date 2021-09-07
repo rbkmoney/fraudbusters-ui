@@ -1,9 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 import { PaymentLoadDataService } from '../../../api/payments/load-data';
 import { ErrorHandlerService } from '../../../shared/services/utils/error-handler.service';
+import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 import { UploadStatus } from './constants/upload-status';
 import { UploadFile } from './model/upload-file';
 
@@ -17,9 +19,12 @@ export class FraudUploaderComponent {
     uploadFiles = new Map<string, UploadFile>();
 
     constructor(
+        private router: Router,
         private fraudUploadService: PaymentLoadDataService,
         private errorHandlerService: ErrorHandlerService,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
+        @Inject(LAYOUT_GAP_L) public layoutGapL: string,
+        @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {}
 
     uploadFileToActivity(): void {
@@ -113,5 +118,9 @@ export class FraudUploaderComponent {
 
     isLoadSuccess(name: string): boolean {
         return !!this.uploadFiles.get(name) && this.uploadFiles.get(name).status === UploadStatus.success;
+    }
+
+    back() {
+        this.router.navigate([`/historical-data/fraud-payments`]);
     }
 }

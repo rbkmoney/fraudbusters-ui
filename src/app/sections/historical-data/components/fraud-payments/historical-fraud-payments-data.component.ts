@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchHistoricalFraudPaymentsService } from '../../services/fetch-historical-fraud-payments.service';
@@ -14,6 +15,7 @@ export class HistoricalFraudPaymentsDataComponent {
     hasMore$ = this.fetchHistoricalFraudPaymentsService.hasMore$;
 
     constructor(
+        private router: Router,
         private fetchHistoricalFraudPaymentsService: FetchHistoricalFraudPaymentsService,
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {}
@@ -24,6 +26,10 @@ export class HistoricalFraudPaymentsDataComponent {
 
     fetchMore(event) {
         this.fetchHistoricalFraudPaymentsService.fetchMore(this.initParams(event));
+    }
+
+    loadFraudPayments() {
+        this.router.navigate([`/load/fraud`]);
     }
 
     private initParams(event) {
