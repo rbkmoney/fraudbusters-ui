@@ -7,26 +7,6 @@ import { GreyListComponent } from './components/grey-list/grey-list.component';
 import { WhiteListComponent } from './components/white-list/white-list.component';
 import { ListsComponent } from './lists.component';
 
-const routes: Routes = [
-    {
-        path: '',
-        redirectTo: 'emulation/template',
-        pathMatch: 'full',
-    },
-    {
-        path: 'black',
-        loadChildren: () => import('./components/black-list').then((m) => m.BlackListModule),
-    },
-    {
-        path: 'grey',
-        loadChildren: () => import('./components/grey-list').then((m) => m.GreyListModule),
-    },
-    {
-        path: 'white',
-        loadChildren: () => import('./components/white-list').then((m) => m.WhiteListModule),
-    },
-];
-
 @NgModule({
     imports: [
         RouterModule.forChild([
