@@ -8,7 +8,6 @@ import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
 import { PaymentReference } from '../../../api/fb-management/swagger-codegen/model/paymentReference';
 import { PaymentDefaultReferencesService } from '../../../api/payments/default-references';
 import { ConfirmActionDialogComponent } from '../../../shared/components/confirm-action-dialog';
-import { OperationType } from '../../../shared/constants/operation-type';
 import { progress } from '../../../shared/operators';
 
 export interface RemoveReferenceParams {

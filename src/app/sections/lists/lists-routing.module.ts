@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TemplatesComponent } from '../templates/templates.component';
+
 import { AuthGuard, Roles } from '../../auth';
-import { PaymentTemplatesComponent } from '../templates/components/payment-templates/payment-templates.component';
-import { PaymentReferencesComponent } from '../templates/components/payment-references/payment-references.component';
-import { DefaultPaymentReferencesComponent } from '../templates/components/payment-dafeult-references/default-payment-references.component';
-import { ListsComponent } from './lists.component';
-import { WhiteListComponent } from './components/white-list/white-list.component';
-import { GreyListComponent } from './components/grey-list/grey-list.component';
 import { BlackListComponent } from './components/black-list/black-list.component';
+import { GreyListComponent } from './components/grey-list/grey-list.component';
+import { WhiteListComponent } from './components/white-list/white-list.component';
+import { ListsComponent } from './lists.component';
 
 const routes: Routes = [
     {

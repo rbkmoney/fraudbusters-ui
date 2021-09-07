@@ -5,7 +5,6 @@ import { shareReplay } from 'rxjs/operators';
 import { PaymentReference } from '../../../api/fb-management/swagger-codegen/model/paymentReference';
 import { PaymentDefaultReferencesService } from '../../../api/payments/default-references';
 import { ConfigService } from '../../../config';
-import { OperationType } from '../../../shared/constants/operation-type';
 import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDelay } from '../../../shared/operators';
 import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
