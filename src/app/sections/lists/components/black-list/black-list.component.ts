@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { ListType } from '../../../shared/constants/list-type';
+import { ListType } from '../../../../shared/constants/list-type';
 
 @Component({
     templateUrl: './black-list.component.html',

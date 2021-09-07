@@ -36,7 +36,6 @@ import { ReferenceModule } from '../reference';
 import { DefaultPaymentReferencesComponent } from './components/payment-dafeult-references/default-payment-references.component';
 import { FetchDefaultReferencesService } from './services/fetch-default-references.service';
 import { TemplateReferencesSearchComponent } from '../../shared/components/template-references/template-references-search/template-references-search.component';
-import { PaymentReferencesListComponent } from '../../shared/components/payment-references-list/payment-references-list.component';
 import { PaymentReferencesListModule } from '../../shared/components/payment-references-list';
 
 @NgModule({

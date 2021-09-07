@@ -18,27 +18,8 @@ export class MenuModel {
         {
             displayName: 'Lists',
             iconName: 'list_alt',
+            route: 'lists',
             roles: [Roles.fraudOfficer, Roles.fraudMonitoring],
-            children: [
-                {
-                    displayName: 'White',
-                    route: 'lists/white',
-                    iconName: 'panorama_fish_eye',
-                    roles: [Roles.fraudOfficer, Roles.fraudMonitoring],
-                },
-                {
-                    displayName: 'Black',
-                    route: 'lists/black',
-                    iconName: 'lens',
-                    roles: [Roles.fraudOfficer, Roles.fraudMonitoring],
-                },
-                {
-                    displayName: 'Grey',
-                    route: 'lists/grey',
-                    iconName: 'tonality',
-                    roles: [Roles.fraudOfficer, Roles.fraudMonitoring],
-                },
-            ],
         },
         {
             displayName: 'Load fraud',

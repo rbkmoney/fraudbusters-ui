@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AuthGuard, Roles } from '../../../auth';
-import { AddRowGreyListComponent } from './add-row-grey-list/add-row-grey-list.component';
-import { GreyListComponent } from './grey-list.component';
+import { AuthGuard, Roles } from '../../../../auth';
+import { AddRowWhiteListComponent } from './add-row-white-list/add-row-white-list.component';
+import { WhiteListComponent } from './white-list.component';
 
 @NgModule({
     imports: [
         RouterModule.forChild([
             {
                 path: '',
-                component: GreyListComponent,
+                component: WhiteListComponent,
                 canActivate: [AuthGuard],
                 data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring] },
                 children: [
                     {
                         path: 'new',
-                        component: AddRowGreyListComponent,
+                        component: AddRowWhiteListComponent,
                         canActivate: [AuthGuard],
                         data: { roles: [Roles.fraudOfficer, Roles.fraudMonitoring] },
                     },
@@ -26,4 +26,4 @@ import { GreyListComponent } from './grey-list.component';
     ],
     exports: [RouterModule],
 })
-export class GreyListRoutingModule {}
+export class WhiteListRoutingModule {}

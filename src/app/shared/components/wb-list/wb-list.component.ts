@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,6 +15,7 @@ import { SortOrder } from '../../constants/sort-order';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
 import { SearchFieldService } from '../../services/utils/search-field.service';
 import { RemoveRowListDialogComponent } from './remove-row-list/remove-row-list-dialog.component';
+import { LAYOUT_GAP_M } from '../../../tokens';
 
 @Component({
     selector: 'fb-wb-list',
@@ -41,7 +42,8 @@ export class WbListComponent implements OnInit {
         private listService: PaymentListsService,
         private snackBar: MatSnackBar,
         private dialog: MatDialog,
-        private configService: ConfigService
+        private configService: ConfigService,
+        @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {
         this.displayedColumns.next([]);
     }
