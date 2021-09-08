@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchNotificationsService } from '../../services/fetch-notifications.service';
 

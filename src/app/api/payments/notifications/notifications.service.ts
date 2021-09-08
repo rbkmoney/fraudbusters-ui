@@ -3,13 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
-import { SearchDataSetParams } from '../../../sections/testing/components/payment-data-sets/search-data-set-params';
-import { HttpRequestModel } from '../../../shared/model/http-request-model';
-import { filterParameters } from '../../../shared/utils/filter-params';
-import { ApplyRuleOnHistoricalDataSetRequest } from '../../fb-management/swagger-codegen/model/applyRuleOnHistoricalDataSetRequest';
-import { CheckedDataSet } from '../../fb-management/swagger-codegen/model/checkedDataSet';
-import { DataSet } from '../../fb-management/swagger-codegen/model/dataSet';
-import { DataSetsResponse } from '../../fb-management/swagger-codegen/model/dataSetsResponse';
+import { ChannelListResponse } from '../../fb-management/swagger-codegen/model/channelListResponse';
 import { NotificationListResponse } from '../../fb-management/swagger-codegen/model/notificationListResponse';
 
 @Injectable()
@@ -20,5 +14,9 @@ export class NotificationsService {
 
     getNotifications(): Observable<NotificationListResponse> {
         return this.http.get<NotificationListResponse>(`${this.fbEndpoint}`);
+    }
+
+    getChannels(): Observable<ChannelListResponse> {
+        return this.http.get<ChannelListResponse>(`${this.fbEndpoint}/channels`);
     }
 }

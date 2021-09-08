@@ -10,9 +10,9 @@ import { MatMenuModule, _MatMenuDirectivesModule } from '@angular/material/menu'
 
 import { ListHeaderModule } from '../../../../../shared/components/list-header';
 import { SharedPipesModule } from '../../../../../shared/pipes';
-import { NotificationHeaderComponent } from './components/notification-header/notification-header.component';
-import { NotificationItemComponent } from './components/notification-item/notification-item.component';
-import { PeriodicalNotificationsListComponent } from './periodical-notifications-list.component';
+import { ChannelsListComponent } from './channels-list.component';
+import { ChannelHeaderComponent } from './components/channel-header/channel-header.component';
+import { ChannelItemComponent } from './components/channel-item/channel-item.component';
 
 @NgModule({
     imports: [
@@ -28,7 +28,7 @@ import { PeriodicalNotificationsListComponent } from './periodical-notifications
         MatButtonModule,
         ListHeaderModule,
     ],
-    declarations: [PeriodicalNotificationsListComponent, NotificationHeaderComponent, NotificationItemComponent],
-    exports: [PeriodicalNotificationsListComponent],
+    declarations: [ChannelsListComponent, ChannelItemComponent, ChannelHeaderComponent],
+    exports: [ChannelsListComponent],
 })
-export class PeriodicalNotificationsListModule {}
+export class ChannelsListModule {}

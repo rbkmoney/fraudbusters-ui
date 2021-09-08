@@ -1,0 +1,20 @@
+<mat-card class="fb-list-item" fxLayout fxFlexFill fxLayoutAlign="center center" [fxLayoutGap]="layoutGapM">
+    <div class="fb-body-2" fxFlex>{{ channel.name }}</div>
+    <div class="fb-body-2" fxFlex>{{ channel.type }}</div>
+    <div class="fb-body-2" fxFlex>{{ channel.subject }}</div>
+    <div class="fb-body-2" fxFlex>{{ channel.count }}</div>
+    <div class="fb-body-2" fxFlex="160px">{{ channel.createdAt | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
+    <ng-container>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="editItem.emit($event)">
+                <span>Disable notification</span>
+            </button>
+            <button mat-menu-item (click)="deleteItem.emit($event)">
+                <span>Go to notification settings</span>
+            </button>
+        </mat-menu>
+    </ng-container>
+</mat-card>

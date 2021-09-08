@@ -2,12 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../auth';
-import { NotificationsComponent } from './notifications.component';
-import { PaymentTemplatesComponent } from '../templates/components/payment-templates/payment-templates.component';
-import { PaymentReferencesComponent } from '../templates/components/payment-references/payment-references.component';
-import { DefaultPaymentReferencesComponent } from '../templates/components/payment-dafeult-references/default-payment-references.component';
-import { PeriodicalNotificationComponent } from './components/periodical/periodical-notification.component';
 import { ChannelsComponent } from './components/channels/channels.component';
+import { PeriodicalNotificationComponent } from './components/periodical/periodical-notification.component';
+import { NotificationsComponent } from './notifications.component';
 
 @NgModule({
     imports: [

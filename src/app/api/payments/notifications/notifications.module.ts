@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { NotificationsService } from './notifications.service';
 
 @NgModule({

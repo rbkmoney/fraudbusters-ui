@@ -15,18 +15,19 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
+
+import { NotificationsService } from '../../api/payments/notifications';
 import { ConfirmActionDialogModule } from '../../shared/components/confirm-action-dialog';
 import { EmptySearchResultModule } from '../../shared/components/empty-search-result';
 import { ShowMorePanelModule } from '../../shared/components/show-more-panel';
 import { SharedPipesModule } from '../../shared/pipes';
-import { NotificationsRoutingModule } from './notifications-routing.module';
-import { NotificationsComponent } from './notifications.component';
-import { PeriodicalNotificationComponent } from './components/periodical/periodical-notification.component';
+import { ChannelsListModule } from './components/channels/channels-list';
 import { ChannelsComponent } from './components/channels/channels.component';
 import { PeriodicalSearchComponent } from './components/periodical-search/periodical-search.component';
+import { PeriodicalNotificationComponent } from './components/periodical/periodical-notification.component';
 import { PeriodicalNotificationsListModule } from './components/periodical/periodical-notifications-list';
-import { FetchNotificationsService } from './services/fetch-notifications.service';
-import { NotificationsService } from '../../api/payments/notifications';
+import { NotificationsRoutingModule } from './notifications-routing.module';
+import { NotificationsComponent } from './notifications.component';
 
 @NgModule({
     imports: [
@@ -52,6 +53,7 @@ import { NotificationsService } from '../../api/payments/notifications';
         MatProgressBarModule,
         ShowMorePanelModule,
         PeriodicalNotificationsListModule,
+        ChannelsListModule,
     ],
     declarations: [
         NotificationsComponent,

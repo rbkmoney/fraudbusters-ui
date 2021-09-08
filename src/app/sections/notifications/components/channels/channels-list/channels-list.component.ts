@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 
-import { Notification } from '../../../../../api/fb-management/swagger-codegen/model/notification';
+import { Channel } from '../../../../../api/fb-management/swagger-codegen/model/channel';
 import { LAYOUT_GAP_M } from '../../../../../tokens';
 
 @Component({
-    selector: 'fb-periodical-notifications-list',
-    templateUrl: 'periodical-notifications-list.component.html',
+    selector: 'fb-channels-list',
+    templateUrl: 'channels-list.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PeriodicalNotificationsListComponent {
+export class ChannelsListComponent {
     @Input()
-    notifications: Notification[];
+    channels: Channel[];
 
     @Output()
     editItem = new EventEmitter<string>();
