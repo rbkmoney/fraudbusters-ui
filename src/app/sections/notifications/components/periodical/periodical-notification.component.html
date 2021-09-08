@@ -1,0 +1,23 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
+    <div fxLayout fxLayoutAlign="space-between center">
+        <fb-periodical-search (valueChanges)="search($event)"></fb-periodical-search>
+        <button mat-button color="primary" (click)="addNotification()">ADD NOTIFICATION</button>
+    </div>
+    <div *ngIf="notifications$ | async as notifications">
+        <fb-periodical-notifications-list
+            *ngIf="notifications.length; else Empty"
+            [notifications]="notifications"
+        ></fb-periodical-notifications-list>
+    </div>
+    <fb-show-more-panel
+        *ngIf="hasMore$ | async"
+        [isLoading]="inProgress$ | async"
+        (showMore)="fetchMore()"
+    ></fb-show-more-panel>
+    <div *ngIf="inProgress$ | async" fxLayout fxLayoutAlign="center">
+        <mat-progress-spinner color="primary" mode="indeterminate" diameter="48"></mat-progress-spinner>
+    </div>
+    <ng-template #Empty>
+        <fb-empty-search-result *ngIf="!(inProgress$ | async)"></fb-empty-search-result>
+    </ng-template>
+</div>

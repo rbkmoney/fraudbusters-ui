@@ -30,6 +30,10 @@
             "x-displayName": "Notifications"
         },
         {
+            "name": "channel",
+            "x-displayName": "Channels"
+        },
+        {
             "name": "group",
             "x-displayName": "Groups"
         },
@@ -206,6 +210,32 @@
             }
         },
         "/notifications": {
+            "get": {
+                "summary": "Получение списка нотификаций",
+                "operationId": "getNotifications",
+                "tags": ["notification"],
+                "responses": {
+                    "200": {
+                        "description": "Notifications list",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotificationListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
             "post": {
                 "summary": "Создание нотификации",
                 "operationId": "createOrUpdateNotification",
@@ -221,7 +251,7 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Created row in list",
+                        "description": "Created notification",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -249,20 +279,12 @@
                 "tags": ["notification"],
                 "parameters": [
                     {
-                        "name": "name",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "$ref": "#/components/parameters/notificationId"
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Removed notification"
-                    },
                     "204": {
-                        "description": "No Content"
+                        "description": "Notification was removed"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -276,7 +298,7 @@
                 }
             }
         },
-        "/notifications/validate": {
+        "/notifications/validation": {
             "post": {
                 "summary": "Проверка нотификации",
                 "operationId": "validateNotification",
@@ -292,7 +314,7 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Created row in list",
+                        "description": "Validation result",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -313,11 +335,72 @@
                 }
             }
         },
+        "/notifications/{name}/status": {
+            "put": {
+                "summary": "Изменение статуса нотификации",
+                "operationId": "updateNotificationStatus",
+                "tags": ["notification"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/notificationId"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NotificationStatus"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Status was updated"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
         "/notifications/channels": {
+            "get": {
+                "summary": "Получение списка каналов для нотификаций",
+                "operationId": "getChannels",
+                "tags": ["channel"],
+                "responses": {
+                    "200": {
+                        "description": "Channels list",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChannelListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
             "post": {
                 "summary": "Создание канала для нотификаций",
                 "operationId": "createChannel",
-                "tags": ["notification"],
+                "tags": ["channel"],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -329,7 +412,7 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Created row in list",
+                        "description": "Created channel",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -354,7 +437,7 @@
             "delete": {
                 "summary": "Удалить канал для нотификации",
                 "operationId": "removeChannel",
-                "tags": ["notification"],
+                "tags": ["channel"],
                 "parameters": [
                     {
                         "name": "name",
@@ -366,11 +449,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Removed notification"
-                    },
                     "204": {
-                        "description": "No Content"
+                        "description": "Channel was removed"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -2541,7 +2621,7 @@
             "Notification": {
                 "type": "object",
                 "properties": {
-                    "alertchanel": {
+                    "channel": {
                         "type": "string"
                     },
                     "createdAt": {
@@ -2551,16 +2631,10 @@
                     "frequency": {
                         "type": "string"
                     },
-                    "groupbyparams": {
-                        "type": "string"
-                    },
                     "name": {
                         "type": "string"
                     },
                     "period": {
-                        "type": "string"
-                    },
-                    "queryText": {
                         "type": "string"
                     },
                     "status": {
@@ -2570,15 +2644,24 @@
                     "subject": {
                         "type": "string"
                     },
-                    "templateType": {
-                        "type": "string"
-                    },
-                    "templateValue": {
+                    "type": {
                         "type": "string"
                     },
                     "updatedAt": {
                         "type": "string",
                         "format": "date-time"
+                    }
+                }
+            },
+            "NotificationListResponse": {
+                "type": "object",
+                "required": ["result"],
+                "properties": {
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Notification"
+                        }
                     }
                 }
             },
@@ -2605,6 +2688,15 @@
                     }
                 }
             },
+            "NotificationStatus": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "enum": ["CREATED", "ACTIVE", "ARCHIVE"]
+                    }
+                }
+            },
             "Channel": {
                 "type": "object",
                 "properties": {
@@ -2628,6 +2720,18 @@
                     "type": {
                         "type": "string",
                         "enum": ["mail"]
+                    }
+                }
+            },
+            "ChannelListResponse": {
+                "type": "object",
+                "required": ["result"],
+                "properties": {
+                    "result": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Channel"
+                        }
                     }
                 }
             },
@@ -3511,6 +3615,16 @@
                 "schema": {
                     "type": "integer",
                     "format": "int32"
+                }
+            },
+            "notificationId": {
+                "name": "notificationId",
+                "in": "path",
+                "description": "Идентификатор нотификации",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "format": "int64"
                 }
             },
             "continuationId": {

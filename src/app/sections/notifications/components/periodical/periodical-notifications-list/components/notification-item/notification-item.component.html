@@ -1,0 +1,23 @@
+<mat-card class="fb-list-item" fxLayout fxFlexFill fxLayoutAlign="center center" [fxLayoutGap]="layoutGapM">
+    <div class="fb-body-2" fxFlex>{{ notification.name }}</div>
+    <div class="fb-body-2" fxFlex>{{ notification.type }}</div>
+    <div class="fb-body-2" fxFlex>{{ notification.period }}</div>
+    <div class="fb-body-2" fxFlex>{{ notification.channel }}</div>
+    <div class="fb-body-2" fxFlex>{{ notification.frequency }}</div>
+    <div class="fb-body-2" fxFlex>{{ notification.status }}</div>
+    <div class="fb-body-2" fxFlex="200px">{{ notification.subject }}</div>
+    <div class="fb-body-2" fxFlex="160px">{{ notification.updatedAt | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
+    <ng-container>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="editItem.emit($event)">
+                <span>Disable notification</span>
+            </button>
+            <button mat-menu-item (click)="deleteItem.emit($event)">
+                <span>Go to notification settings</span>
+            </button>
+        </mat-menu>
+    </ng-container>
+</mat-card>

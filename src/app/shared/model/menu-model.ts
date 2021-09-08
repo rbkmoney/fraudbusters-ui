@@ -34,6 +34,12 @@ export class MenuModel {
             roles: [Roles.fraudOfficer],
         },
         {
+            displayName: 'Notifications',
+            iconName: 'notifications',
+            route: 'notifications',
+            roles: [Roles.fraudOfficer],
+        },
+        {
             displayName: 'Audit',
             iconName: 'wysiwyg',
             route: 'audit',

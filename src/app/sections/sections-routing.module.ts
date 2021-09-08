@@ -60,6 +60,10 @@ const routes: Routes = [
         loadChildren: () => import('./data-set').then((m) => m.DataSetModule),
     },
     {
+        path: 'notifications',
+        loadChildren: () => import('./notifications').then((m) => m.TemplatesModule),
+    },
+    {
         path: 'audit',
         loadChildren: () => import('./audit').then((m) => m.AuditModule),
     },
