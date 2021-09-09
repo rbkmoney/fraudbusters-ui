@@ -1,0 +1,7 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapL">
+    <div fxLayout fxLayoutAlign="start center" [fxLayoutGap]="layoutGapM">
+        <mat-icon (click)="back()">keyboard_backspace</mat-icon>
+        <h3 class="fb-headline">Edit channel</h3>
+    </div>
+    <fb-create-channel *ngIf="channel$ | async as channel" [channel]="channel"></fb-create-channel>
+</div>

@@ -20,7 +20,9 @@ export class ChannelsComponent {
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {}
 
-    addChannel() {}
+    addChannel() {
+        this.router.navigate([`/channel/new`]);
+    }
 
     search(searchValue: string) {
         return this.fetchChannelsService.search({ searchValue });

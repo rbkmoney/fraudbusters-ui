@@ -20,10 +20,16 @@ export class PeriodicalNotificationComponent {
         @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {}
 
-    addNotification() {}
+    addNotification() {
+        this.router.navigate([`/notification/new`]);
+    }
 
     search(searchValue: string) {
         return this.fetchNotificationsService.search({ searchValue });
+    }
+
+    editNotification(id: number) {
+        this.router.navigate([`/notification/${id}`]);
     }
 
     fetchMore() {}

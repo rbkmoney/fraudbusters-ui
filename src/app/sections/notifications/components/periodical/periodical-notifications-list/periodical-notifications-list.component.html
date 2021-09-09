@@ -3,8 +3,7 @@
     <div *ngFor="let notification of notifications" fxLayout="column" [fxLayoutGap]="layoutGapM">
         <fb-notification-item
             [notification]="notification"
-            (editItem)="editItem.emit($event)"
-            (deleteItem)="deleteItem.emit($event)"
+            (editItem)="editItem.emit(notification.id)"
         ></fb-notification-item>
     </div>
 </div>

@@ -14,10 +14,10 @@ export class NotificationItemComponent {
     notification: Notification;
 
     @Output()
-    editItem = new EventEmitter<string>();
+    editItem = new EventEmitter<number>();
 
     @Output()
-    deleteItem = new EventEmitter<string>();
+    deleteItem = new EventEmitter<number>();
 
     constructor(@Inject(LAYOUT_GAP_S) public layoutGapS: string, @Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
 }

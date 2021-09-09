@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChannelModule } from './channel';
 
 const routes: Routes = [
     {
@@ -58,6 +59,14 @@ const routes: Routes = [
     {
         path: 'data-sets',
         loadChildren: () => import('./data-set').then((m) => m.DataSetModule),
+    },
+    {
+        path: 'notification',
+        loadChildren: () => import('./notification').then((m) => m.NotificationModule),
+    },
+    {
+        path: 'channel',
+        loadChildren: () => import('./channel').then((m) => m.ChannelModule),
     },
     {
         path: 'notifications',

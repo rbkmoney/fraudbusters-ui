@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { ConfigService } from '../../../config';
 import { ChannelListResponse } from '../../fb-management/swagger-codegen/model/channelListResponse';
 import { NotificationListResponse } from '../../fb-management/swagger-codegen/model/notificationListResponse';
+import { Notification } from '../../fb-management/swagger-codegen/model/notification';
+import { Channel } from '../../fb-management/swagger-codegen/model/channel';
 
 @Injectable()
 export class NotificationsService {
@@ -16,7 +18,19 @@ export class NotificationsService {
         return this.http.get<NotificationListResponse>(`${this.fbEndpoint}`);
     }
 
+    getNotification(id: string): Observable<Notification> {
+        return this.http.get<Notification>(`${this.fbEndpoint}/${id}`);
+    }
+
+    save(notification: Notification): Observable<any> {
+        return new Observable<any>();
+    }
+
     getChannels(): Observable<ChannelListResponse> {
         return this.http.get<ChannelListResponse>(`${this.fbEndpoint}/channels`);
+    }
+
+    getChannel(id: string): Observable<Channel> {
+        return this.http.get<Channel>(`${this.fbEndpoint}/channels/${id}`);
     }
 }

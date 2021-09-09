@@ -13,7 +13,7 @@ export class PeriodicalNotificationsListComponent {
     notifications: Notification[];
 
     @Output()
-    editItem = new EventEmitter<string>();
+    editItem = new EventEmitter<number>();
 
     @Output()
     deleteItem = new EventEmitter<string>();

@@ -1,0 +1,25 @@
+<mat-card>
+    <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapL">
+        <form [formGroup]="form" fxLayout="column" [fxLayoutGap]="layoutGapL">
+            <mat-form-field [attr.readonly]="!!notification" class="full-width" floatLabel="always">
+                <input required matInput placeholder="Id" formControlName="id" />
+            </mat-form-field>
+            <mat-form-field [attr.readonly]="!!notification" class="full-width" floatLabel="always">
+                <input required matInput placeholder="Name" formControlName="name" />
+            </mat-form-field>
+        </form>
+        <div fxLayout fxLayoutAlign="end" [fxLayoutGap]="layoutGapM">
+            <button
+                mat-button
+                color="primary"
+                [disabled]="form.invalid || (inProgress$ | async)"
+                (click)="saveNotification()"
+            >
+                {{ notification ? 'Save' : 'Create' }}
+            </button>
+        </div>
+    </mat-card-content>
+    <mat-card-footer *ngIf="inProgress$ | async">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+</mat-card>

@@ -7,6 +7,7 @@
         <fb-periodical-notifications-list
             *ngIf="notifications.length; else Empty"
             [notifications]="notifications"
+            (editItem)="editNotification($event)"
         ></fb-periodical-notifications-list>
     </div>
     <fb-show-more-panel
