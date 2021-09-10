@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 
 import { OperationType } from '../../../../shared/constants/operation-type';
 import { LAYOUT_GAP_M } from '../../../../tokens';
-import { Action, ActionType } from '../../model/action';
 import { FetchReferencesService } from '../../services/fetch-references/fetch-references.service';
 import { RemoveReferenceService } from '../../services/remove-reference/remove-reference.service';
+import { Action, ActionType } from '../../model/action';
 
 @Component({
     selector: 'fb-payment-references',

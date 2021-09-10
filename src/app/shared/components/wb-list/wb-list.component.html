@@ -1,6 +1,6 @@
 <div fxLayout="column" [fxLayoutGap]="layoutGapM">
     <div fxLayout fxLayoutAlign="space-between center">
-        <div fxLayout>
+        <div fxLayoutGap="10px grid">
             <mat-form-field class="multi-select" appearance="outline">
                 <mat-select [(value)]="this.selectedListNames" (selectionChange)="selectionChange()" multiple>
                     <mat-option *ngFor="let name of listNames" value="{{ name }}">{{ name }}</mat-option>
