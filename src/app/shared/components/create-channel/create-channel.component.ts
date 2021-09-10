@@ -2,9 +2,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+
+import { Channel } from '../../../api/fb-management/swagger-codegen/model/channel';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
-import { Channel } from '../../../api/fb-management/swagger-codegen/model/channel';
 import { ChannelService } from './services/channel.service';
 
 @Component({

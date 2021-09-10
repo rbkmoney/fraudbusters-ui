@@ -1,14 +1,13 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
 
 import { SortOrder } from '../../shared/constants/sort-order';
 import { SearchFieldService } from '../../shared/services/utils/search-field.service';
+import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../tokens';
 import { AuditService } from './audit.service';
 import { Filter } from './model/filter';
-import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../tokens';
 
 @Component({
     templateUrl: './audit.component.html',

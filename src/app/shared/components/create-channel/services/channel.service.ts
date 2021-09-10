@@ -3,10 +3,10 @@ import { FormBuilder } from '@angular/forms';
 import { merge, Subject } from 'rxjs';
 import { shareReplay, switchMap } from 'rxjs/operators';
 
-import { progress } from '../../../operators';
-import { NotificationsService } from '../../../../api/payments/notifications';
-import { Notification } from '../../../../api/fb-management/swagger-codegen/model/notification';
 import { Channel } from '../../../../api/fb-management/swagger-codegen/model/channel';
+import { Notification } from '../../../../api/fb-management/swagger-codegen/model/notification';
+import { NotificationsService } from '../../../../api/payments/notifications';
+import { progress } from '../../../operators';
 
 @Injectable()
 export class ChannelService {

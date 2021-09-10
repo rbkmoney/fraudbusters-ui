@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../../config';
-import { ChannelListResponse } from '../../fb-management/swagger-codegen/model/channelListResponse';
-import { NotificationListResponse } from '../../fb-management/swagger-codegen/model/notificationListResponse';
-import { Notification } from '../../fb-management/swagger-codegen/model/notification';
 import { Channel } from '../../fb-management/swagger-codegen/model/channel';
+import { ChannelListResponse } from '../../fb-management/swagger-codegen/model/channelListResponse';
+import { Notification } from '../../fb-management/swagger-codegen/model/notification';
+import { NotificationListResponse } from '../../fb-management/swagger-codegen/model/notificationListResponse';
 
 @Injectable()
 export class NotificationsService {

@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard, Roles } from '../../auth';
-import { NotificationComponent } from './notification.component';
-import { EditNotificationComponent } from './components/edit-notification/edit-notification.component';
 import { CreateNotificationComponent } from './components/create-notification/create-notification.component';
+import { EditNotificationComponent } from './components/edit-notification/edit-notification.component';
+import { NotificationComponent } from './notification.component';
 
 @NgModule({
     imports: [

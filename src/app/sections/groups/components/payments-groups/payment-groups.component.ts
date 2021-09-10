@@ -10,10 +10,10 @@ import { debounceTime } from 'rxjs/operators';
 import { PaymentGroupsService } from '../../../../api/payments/groups';
 import { ErrorHandlerService } from '../../../../shared/services/utils/error-handler.service';
 import { SearchFieldService } from '../../../../shared/services/utils/search-field.service';
+import { LAYOUT_GAP_M } from '../../../../tokens';
 import { PriorityIdModel } from './model/priority-id-model';
 import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-dialog.component';
 import { GroupUtilsService } from './utils/group-utils.service';
-import { LAYOUT_GAP_M } from '../../../../tokens';
 
 @Component({
     templateUrl: './payment-groups.component.html',

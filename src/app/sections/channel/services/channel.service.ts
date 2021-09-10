@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NotificationsService } from '../../../api/payments/notifications';
+
 import { Notification } from '../../../api/fb-management/swagger-codegen/model/notification';
+import { NotificationsService } from '../../../api/payments/notifications';
 
 @Injectable()
 export class ChannelService {

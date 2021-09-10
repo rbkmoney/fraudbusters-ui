@@ -2,10 +2,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+
+import { Notification } from '../../../api/fb-management/swagger-codegen/model/notification';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
 import { NotificationService } from './services/notification.service';
-import { Notification } from '../../../api/fb-management/swagger-codegen/model/notification';
 
 @Component({
     selector: 'fb-create-notification',

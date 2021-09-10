@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, pluck, shareReplay, switchMap } from 'rxjs/operators';
 
-import { NotificationService } from '../../services/notification.service';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../../tokens';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
     templateUrl: './edit-notification.component.html',

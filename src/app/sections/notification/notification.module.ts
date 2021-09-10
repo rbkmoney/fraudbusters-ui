@@ -11,14 +11,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { PaymentTemplatesModule } from '../../api';
+import { NotificationsService } from '../../api/payments/notifications';
+import { CreateNotificationModule } from '../../shared/components/create-notification/create-notification.module';
 import { ErrorHandlerService } from '../../shared/services/utils/error-handler.service';
-import { NotificationComponent } from './notification.component';
-import { NotificationService } from './services/notification.service';
+import { CreateNotificationComponent } from './components/create-notification/create-notification.component';
 import { EditNotificationComponent } from './components/edit-notification/edit-notification.component';
 import { NotificationRoutingModule } from './notification-routing.module';
-import { CreateNotificationModule } from '../../shared/components/create-notification/create-notification.module';
-import { NotificationsService } from '../../api/payments/notifications';
-import { CreateNotificationComponent } from './components/create-notification/create-notification.component';
+import { NotificationComponent } from './notification.component';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
     declarations: [NotificationComponent, EditNotificationComponent, CreateNotificationComponent],
