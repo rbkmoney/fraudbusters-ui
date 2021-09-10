@@ -13,16 +13,9 @@ import { LAYOUT_GAP_M, LAYOUT_GAP_S } from '../../tokens';
 @Component({
     templateUrl: './audit.component.html',
     styleUrls: ['./audit.component.scss'],
-    animations: [
-        trigger('indicatorRotate', [
-            state('collapsed', style({ transform: 'rotate(0deg)' })),
-            state('expanded', style({ transform: 'rotate(180deg)' })),
-            transition('expanded <=> collapsed', animate('400ms cubic-bezier(0.4,0.0,0.2,1)')),
-        ]),
-    ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AuditComponent implements OnInit {
+export class AuditComponent {
     filter: Filter;
 
     logs$ = this.auditService.logs$;
@@ -59,8 +52,6 @@ export class AuditComponent implements OnInit {
             this.auditService.searchFilter$.next(this.filter);
         });
     }
-
-    ngOnInit(): void {}
 
     sortData(sort: Sort): void {
         this.auditService.sort$.next(sort.direction === 'asc' ? SortOrder.ASC : SortOrder.DESC);
