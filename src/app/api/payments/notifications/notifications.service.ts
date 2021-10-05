@@ -30,8 +30,10 @@ export class NotificationsService {
         return new Observable<any>();
     }
 
-    getChannels(): Observable<ChannelListResponse> {
-        return this.http.get<ChannelListResponse>(`${this.fbEndpoint}/channels`);
+    getChannels(params: SearchNotificationParams): Observable<ChannelListResponse> {
+        return this.http.get<ChannelListResponse>(`${this.fbEndpoint}/channels`, {
+            params: filterParameters(params),
+        });
     }
 
     getChannel(id: string): Observable<Channel> {

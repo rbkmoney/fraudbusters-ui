@@ -11,19 +11,25 @@ import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetch
 
 export interface FetchChannelsParams {
     searchValue?: string;
-    sortOrder?: SortOrder;
-    pageSize?: number;
+    lastId?: string;
+    size?: number;
 }
 
 @Injectable()
 export class FetchChannelsService extends PartialFetcher<Channel, FetchChannelsParams> {
     inProgress$ = this.doAction$.pipe(booleanDebounceTime(), shareReplay(1));
+    private SIZE = this.configService.pageSize;
 
     constructor(private notificationsService: NotificationsService, private configService: ConfigService) {
         super();
     }
 
-    protected fetch(params: FetchChannelsParams, lastId?: string): Observable<FetchResult<Channel>> {
-        return this.notificationsService.getChannels();
+    protected fetch(params: FetchChannelsParams, id?: string): Observable<FetchResult<Channel>> {
+        const { searchValue, size, lastId } = params;
+        return this.notificationsService.getChannels({
+            searchValue: searchValue || '',
+            size: size ? size : this.SIZE,
+            ...(lastId ? { lastId } : {}),
+        });
     }
 }
