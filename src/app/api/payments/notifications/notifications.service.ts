@@ -7,6 +7,8 @@ import { Channel } from '../../fb-management/swagger-codegen/model/channel';
 import { ChannelListResponse } from '../../fb-management/swagger-codegen/model/channelListResponse';
 import { Notification } from '../../fb-management/swagger-codegen/model/notification';
 import { NotificationListResponse } from '../../fb-management/swagger-codegen/model/notificationListResponse';
+import { SearchNotificationParams } from '../../../sections/notifications/search-notifications-params';
+import { filterParameters } from '../../../shared/utils/filter-params';
 
 @Injectable()
 export class NotificationsService {
@@ -14,8 +16,10 @@ export class NotificationsService {
 
     constructor(private http: HttpClient, private configService: ConfigService) {}
 
-    getNotifications(): Observable<NotificationListResponse> {
-        return this.http.get<NotificationListResponse>(`${this.fbEndpoint}`);
+    getNotifications(params: SearchNotificationParams): Observable<NotificationListResponse> {
+        return this.http.get<NotificationListResponse>(`${this.fbEndpoint}`, {
+            params: filterParameters(params),
+        });
     }
 
     getNotification(id: string): Observable<Notification> {
