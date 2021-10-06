@@ -1,11 +1,16 @@
 <mat-card>
-    <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapL">
-        <form [formGroup]="form" fxLayout="column" [fxLayoutGap]="layoutGapL">
-            <mat-form-field [attr.readonly]="!!channel" class="full-width" floatLabel="always">
-                <input required matInput placeholder="Id" formControlName="id" />
-            </mat-form-field>
-            <mat-form-field [attr.readonly]="!!channel" class="full-width" floatLabel="always">
+    <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <form [formGroup]="form" [fxLayoutGap]="layoutGapM">
+            <mat-form-field fxFlex="25" appearance="outline">
                 <input required matInput placeholder="Name" formControlName="name" />
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <mat-select placeholder="Channel type" formControlName="type">
+                    <mat-option *ngFor="let channel of channelTypes" [value]="channel">{{ channel }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <input required matInput placeholder="Destinations" formControlName="destination" />
             </mat-form-field>
         </form>
         <div fxLayout fxLayoutAlign="end" [fxLayoutGap]="layoutGapM">
@@ -13,7 +18,7 @@
                 mat-button
                 color="primary"
                 [disabled]="form.invalid || (inProgress$ | async)"
-                (click)="saveNotification()"
+                (click)="saveChannel()"
             >
                 {{ channel ? 'Save' : 'Create' }}
             </button>

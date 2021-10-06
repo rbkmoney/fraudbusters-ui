@@ -1,11 +1,35 @@
 <mat-card>
-    <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapL">
-        <form [formGroup]="form" fxLayout="column" [fxLayoutGap]="layoutGapL">
-            <mat-form-field [attr.readonly]="!!notification" class="full-width" floatLabel="always">
-                <input required matInput placeholder="Id" formControlName="id" />
+    <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <form [formGroup]="form" [fxLayoutGap]="layoutGapM">
+            <mat-form-field fxFlex="25" appearance="outline">
+                <input matInput placeholder="Notification name" formControlName="name" autocomplete="false" />
             </mat-form-field>
-            <mat-form-field [attr.readonly]="!!notification" class="full-width" floatLabel="always">
-                <input required matInput placeholder="Name" formControlName="name" />
+            <mat-form-field fxFlex="25" appearance="outline">
+                <mat-select placeholder="Notification type" formControlName="type">
+                    <mat-option *ngFor="let template of notificationsTemplates$ | async" value="{{ template.id }}">{{
+                        template.name
+                    }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <mat-select placeholder="Channel" formControlName="channel">
+                    <mat-option *ngFor="let channel of notificationsChannels$ | async" value="{{ channel.name }}">{{
+                        channel.name
+                    }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <input matInput placeholder="Subject" formControlName="subject" autocomplete="false" />
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <mat-select placeholder="Period" formControlName="period">
+                    <mat-option *ngFor="let name of periods" value="{{ name }}">{{ name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <mat-select placeholder="Frequency" formControlName="frequency">
+                    <mat-option *ngFor="let name of frequencies" value="{{ name }}">{{ name }}</mat-option>
+                </mat-select>
             </mat-form-field>
         </form>
         <div fxLayout fxLayoutAlign="end" [fxLayoutGap]="layoutGapM">

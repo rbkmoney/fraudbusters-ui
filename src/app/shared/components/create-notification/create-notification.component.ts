@@ -21,6 +21,11 @@ export class CreateNotificationComponent implements OnInit {
 
     saved$ = this.notificationService.saved$;
     inProgress$ = this.notificationService.inProgress$;
+    notificationsTemplates$ = this.notificationService.notificationsTemplates$;
+    notificationsChannels$ = this.notificationService.notificationsChannels$;
+
+    periods = ['1d', '7d', '30d'];
+    frequencies = ['1m', '10m', '60m'];
 
     constructor(
         private router: Router,
@@ -55,8 +60,13 @@ export class CreateNotificationComponent implements OnInit {
 
     saveNotification() {
         this.notificationService.saveNotification({
-            id: this.form.getRawValue().id,
+            channel: this.form.getRawValue().channel,
+            frequency: this.form.getRawValue().frequency,
+            period: this.form.getRawValue().period,
+            subject: this.form.getRawValue().subject,
+            templateId: this.form.getRawValue().type,
             name: this.form.getRawValue().name,
+            createdAt: new Date(Date.now()),
         });
     }
 

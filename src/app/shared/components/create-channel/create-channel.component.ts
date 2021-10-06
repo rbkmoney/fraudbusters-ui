@@ -7,6 +7,7 @@ import { Channel } from '../../../api/fb-management/swagger-codegen/model/channe
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
 import { ChannelService } from './services/channel.service';
+import { ChannelType } from '../../../api/fb-management/swagger-codegen/model/channelType';
 
 @Component({
     selector: 'fb-create-channel',
@@ -18,6 +19,8 @@ export class CreateChannelComponent implements OnInit {
     @Input() channel: Channel;
 
     form = this.channelService.form;
+
+    channelTypes = Object.values(ChannelType.TypeEnum);
 
     saved$ = this.channelService.saved$;
     inProgress$ = this.channelService.inProgress$;
@@ -33,8 +36,12 @@ export class CreateChannelComponent implements OnInit {
 
     ngOnInit() {
         if (this.channel) {
-            this.form.setValue({ name: this.channel.name });
-            this.form.get('id').disable();
+            this.form.setValue({
+                name: this.channel.name,
+                type: this.channel.type,
+                destination: this.channel.destination,
+            });
+            this.form.get('name').disable();
         }
         this.saved$.subscribe(
             (channel) => {
@@ -46,22 +53,20 @@ export class CreateChannelComponent implements OnInit {
                     this.snackBar.open(`Notification has been created`, 'OK', {
                         duration: 3000,
                     });
-                    this.navigateToEdit(channel.id);
+                    this.back();
                 }
             },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
         );
     }
 
-    saveNotification() {
-        this.channelService.saveNotification({
-            id: this.form.getRawValue().id,
+    saveChannel() {
+        this.channelService.saveChannel({
+            destination: this.form.getRawValue().destination,
             name: this.form.getRawValue().name,
+            type: this.form.getRawValue().type,
+            createdAt: new Date(Date.now()),
         });
-    }
-
-    navigateToEdit(id) {
-        this.router.navigate([`../channel/${id}`]);
     }
 
     back() {

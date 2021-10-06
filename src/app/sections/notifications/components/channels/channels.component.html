@@ -4,7 +4,12 @@
         <button mat-button color="primary" (click)="addChannel()">ADD CHANNEL</button>
     </div>
     <div *ngIf="channels$ | async as channels">
-        <fb-channels-list *ngIf="channels.length; else Empty" [channels]="channels"></fb-channels-list>
+        <fb-channels-list
+            *ngIf="channels.length; else Empty"
+            [channels]="channels"
+            (editItem)="goToChannel($event)"
+            (deleteItem)="removeChannel($event)"
+        ></fb-channels-list>
     </div>
     <fb-show-more-panel
         *ngIf="hasMore$ | async"

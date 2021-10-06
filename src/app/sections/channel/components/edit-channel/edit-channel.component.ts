@@ -12,7 +12,7 @@ import { ChannelService } from '../../services/channel.service';
 export class EditChannelComponent {
     channel$ = this.route.params.pipe(
         pluck('id'),
-        switchMap(([id]) => {
+        switchMap((id) => {
             return this.channelService.getChannelById(id);
         }),
         pluck('result'),

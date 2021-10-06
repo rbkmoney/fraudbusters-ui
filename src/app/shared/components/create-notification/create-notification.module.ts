@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { CreateNotificationComponent } from './create-notification.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     declarations: [CreateNotificationComponent],
@@ -22,6 +23,7 @@ import { CreateNotificationComponent } from './create-notification.component';
         MatFormFieldModule,
         MatInputModule,
         MatProgressBarModule,
+        MatSelectModule,
     ],
 })
 export class CreateNotificationModule {}

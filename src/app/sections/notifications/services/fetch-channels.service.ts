@@ -5,7 +5,6 @@ import { shareReplay } from 'rxjs/operators';
 import { Channel } from '../../../api/fb-management/swagger-codegen/model/channel';
 import { NotificationsService } from '../../../api/payments/notifications';
 import { ConfigService } from '../../../config';
-import { SortOrder } from '../../../shared/constants/sort-order';
 import { booleanDebounceTime } from '../../../shared/operators';
 import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
 

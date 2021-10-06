@@ -8,11 +8,11 @@
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="editItem.emit($event)">
-                <span>Disable notification</span>
+            <button mat-menu-item (click)="editItem.emit(channel.name)">
+                <span>Edit channel</span>
             </button>
-            <button mat-menu-item (click)="deleteItem.emit($event)">
-                <span>Go to notification settings</span>
+            <button mat-menu-item (click)="deleteItem.emit(channel)">
+                <span>Remove channel</span>
             </button>
         </mat-menu>
     </ng-container>

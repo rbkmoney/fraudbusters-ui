@@ -16,7 +16,7 @@ export class ChannelsListComponent {
     editItem = new EventEmitter<string>();
 
     @Output()
-    deleteItem = new EventEmitter<string>();
+    deleteItem = new EventEmitter<Channel>();
 
     constructor(@Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
 }

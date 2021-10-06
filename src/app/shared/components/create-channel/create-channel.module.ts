@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { CreateChannelComponent } from './create-channel.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     declarations: [CreateChannelComponent],
@@ -22,6 +23,7 @@ import { CreateChannelComponent } from './create-channel.component';
         MatFormFieldModule,
         MatInputModule,
         MatProgressBarModule,
+        MatSelectModule,
     ],
 })
 export class CreateChannelModule {}
