@@ -12,29 +12,6 @@ import { progress } from '../../../operators';
 
 @Injectable()
 export class NotificationService {
-    private SIZE = this.configService.pageSize;
-
-    static defaultParams = {
-        name: '',
-        type: '',
-        subject: '',
-        period: '',
-        frequency: '',
-        channel: '',
-        id: null,
-    };
-
-    private save$ = new Subject<Notification>();
-
-    saved$ = this.save$.pipe(
-        switchMap((notification) => this.notificationsService.save(notification)),
-        shareReplay(1)
-    );
-
-    inProgress$ = progress(merge(this.save$), this.saved$);
-    notificationsTemplates$: Observable<Array<NotificationTemplate>>;
-    notificationsChannels$: Observable<Array<Channel>>;
-
     constructor(
         private fb: FormBuilder,
         private notificationsService: NotificationsService,
@@ -46,6 +23,28 @@ export class NotificationService {
             size: this.SIZE,
         });
     }
+
+    static defaultParams = {
+        name: '',
+        type: '',
+        subject: '',
+        period: '',
+        frequency: '',
+        channel: '',
+        id: null,
+    };
+    private SIZE = this.configService.pageSize;
+
+    private save$ = new Subject<Notification>();
+
+    saved$ = this.save$.pipe(
+        switchMap((notification) => this.notificationsService.save(notification)),
+        shareReplay(1)
+    );
+
+    inProgress$ = progress(merge(this.save$), this.saved$);
+    notificationsTemplates$: Observable<Array<NotificationTemplate>>;
+    notificationsChannels$: Observable<Array<Channel>>;
 
     form = this.fb.group(NotificationService.defaultParams);
 

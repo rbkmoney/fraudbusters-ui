@@ -4,10 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, merge, NEVER, of, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
+
+import { Notification } from '../../../api/fb-management/swagger-codegen/model/notification';
 import { NotificationsService } from '../../../api/payments/notifications';
 import { ConfirmActionDialogComponent } from '../../../shared/components/confirm-action-dialog';
 import { progress } from '../../../shared/operators';
-import { Notification } from '../../../api/fb-management/swagger-codegen/model/notification';
 
 @Injectable()
 export class ArchiveNotificationService {

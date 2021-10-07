@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { LAYOUT_GAP_M } from '../../../../tokens';
-import { FetchNotificationsService } from '../../services/fetch-notifications.service';
-import { ArchiveNotificationService } from '../../services/archive-notification.service';
 import { Notification } from '../../../../api/fb-management/swagger-codegen/model/notification';
+import { LAYOUT_GAP_M } from '../../../../tokens';
+import { ArchiveNotificationService } from '../../services/archive-notification.service';
+import { FetchNotificationsService } from '../../services/fetch-notifications.service';
 
 @Component({
     templateUrl: 'periodical-notification.component.html',

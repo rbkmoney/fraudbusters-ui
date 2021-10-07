@@ -9,13 +9,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule, _MatMenuDirectivesModule } from '@angular/material/menu';
 
 import { ListHeaderModule } from '../../../../../shared/components/list-header';
+import { TagModule } from '../../../../../shared/components/tag';
 import { SharedPipesModule } from '../../../../../shared/pipes';
 import { NotificationHeaderComponent } from './components/notification-header/notification-header.component';
 import { NotificationItemComponent } from './components/notification-item/notification-item.component';
-import { PeriodicalNotificationsListComponent } from './periodical-notifications-list.component';
-import { ResultStatusToColorPipe } from '../../../../../shared/components/testing-data-set-list/components/data-set-payment-item/result-status-to-color.pipe';
-import { TagModule } from '../../../../../shared/components/tag';
 import { NotificationStatusToColorPipe } from './components/notification-item/notification-status-to-color.pipe';
+import { PeriodicalNotificationsListComponent } from './periodical-notifications-list.component';
 
 @NgModule({
     imports: [
