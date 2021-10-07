@@ -58,6 +58,10 @@ export class NotificationsService {
         });
     }
 
+    getChannel(name: string): Observable<Channel> {
+        return this.http.get<Channel>(`${this.fbEndpoint}/channels/${name}`);
+    }
+
     removeChannel(name: string): Observable<string> {
         return this.http.delete(`${this.fbEndpoint}/channels/${name}`, { responseType: 'text' });
     }

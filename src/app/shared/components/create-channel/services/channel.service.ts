@@ -13,7 +13,7 @@ export class ChannelService {
     static defaultParams = {
         destination: '',
         name: '',
-        type: ChannelType.TypeEnum.Mail,
+        type: ChannelType.Mail,
     };
 
     private save$ = new Subject<Channel>();

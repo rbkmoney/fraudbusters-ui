@@ -20,7 +20,7 @@ export class CreateChannelComponent implements OnInit {
 
     form = this.channelService.form;
 
-    channelTypes = Object.values(ChannelType.TypeEnum);
+    channelTypes = Object.values(ChannelType);
 
     saved$ = this.channelService.saved$;
     inProgress$ = this.channelService.inProgress$;
@@ -46,11 +46,11 @@ export class CreateChannelComponent implements OnInit {
         this.saved$.subscribe(
             (channel) => {
                 if (this.channel) {
-                    this.snackBar.open(`Saved success: ${channel.id}`, 'OK', {
+                    this.snackBar.open(`Saved success: ${channel.name}`, 'OK', {
                         duration: 3000,
                     });
                 } else {
-                    this.snackBar.open(`Notification has been created`, 'OK', {
+                    this.snackBar.open(`Channel has been created`, 'OK', {
                         duration: 3000,
                     });
                     this.back();
