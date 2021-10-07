@@ -4,7 +4,9 @@
     <div class="fb-body-2 wrap" fxFlex>{{ notification.period }}</div>
     <div class="fb-body-2 wrap" fxFlex>{{ notification.channel }}</div>
     <div class="fb-body-2 wrap" fxFlex>{{ notification.frequency }}</div>
-    <div class="fb-body-2 wrap" fxFlex>{{ notification.status }}</div>
+    <div class="fb-body-2 wrap" fxFlex>
+        <fb-tag [color]="notification.status | notificationStatusToColor" [title]="notification.status"></fb-tag>
+    </div>
     <div class="fb-body-2 wrap" fxFlex="240px">{{ notification.subject }}</div>
     <div class="fb-body-2 wrap" fxFlex="160px">{{ notification.createdAt | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
     <ng-container>
