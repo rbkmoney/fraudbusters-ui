@@ -6,7 +6,8 @@ import { Notification } from '../../../api/fb-management/swagger-codegen/model/n
 import { NotificationsService } from '../../../api/payments/notifications';
 import { ConfigService } from '../../../config';
 import { booleanDebounceTime } from '../../../shared/operators';
-import { FetchResult, PartialFetcher } from '../../../shared/utils/partial-fetcher';
+import { FetchResultContinuation } from '../../../shared/utils/partial-fetcher/fetch-result-continuation';
+import { PartialFetcherContinuation } from '../../../shared/utils/partial-fetcher/partial-fetcher-continuation';
 
 export interface FetchNotificationsParams {
     searchValue?: string;
@@ -15,7 +16,7 @@ export interface FetchNotificationsParams {
 }
 
 @Injectable()
-export class FetchNotificationsService extends PartialFetcher<Notification, FetchNotificationsParams> {
+export class FetchNotificationsService extends PartialFetcherContinuation<Notification, FetchNotificationsParams> {
     inProgress$ = this.doAction$.pipe(booleanDebounceTime(), shareReplay(1));
     private SIZE = this.configService.pageSize;
 
@@ -23,7 +24,7 @@ export class FetchNotificationsService extends PartialFetcher<Notification, Fetc
         super();
     }
 
-    protected fetch(params: FetchNotificationsParams, id?: string): Observable<FetchResult<Notification>> {
+    protected fetch(params: FetchNotificationsParams, id?: string): Observable<FetchResultContinuation<Notification>> {
         const { searchValue, size, lastId } = params;
         return this.notificationsService.getNotifications({
             searchValue: searchValue || '',

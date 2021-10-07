@@ -69,7 +69,7 @@ const routes: Routes = [
     },
     {
         path: 'notifications',
-        loadChildren: () => import('./notifications').then((m) => m.TemplatesModule),
+        loadChildren: () => import('./notifications').then((m) => m.NotificationsModule),
     },
     {
         path: 'audit',

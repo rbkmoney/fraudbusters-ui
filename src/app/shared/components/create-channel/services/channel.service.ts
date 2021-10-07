@@ -4,9 +4,9 @@ import { merge, Subject } from 'rxjs';
 import { shareReplay, switchMap } from 'rxjs/operators';
 
 import { Channel } from '../../../../api/fb-management/swagger-codegen/model/channel';
+import { ChannelType } from '../../../../api/fb-management/swagger-codegen/model/channelType';
 import { NotificationsService } from '../../../../api/payments/notifications';
 import { progress } from '../../../operators';
-import { ChannelType } from '../../../../api/fb-management/swagger-codegen/model/channelType';
 
 @Injectable()
 export class ChannelService {

@@ -4,29 +4,30 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { combineLatest, merge, NEVER, of, Subject } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap } from 'rxjs/operators';
-
-import { Channel } from '../../../api/fb-management/swagger-codegen/model/channel';
 import { NotificationsService } from '../../../api/payments/notifications';
 import { ConfirmActionDialogComponent } from '../../../shared/components/confirm-action-dialog';
 import { progress } from '../../../shared/operators';
+import { Notification } from '../../../api/fb-management/swagger-codegen/model/notification';
 
 @Injectable()
-export class RemoveChannelsService {
-    private removeChannel$ = new Subject<Channel>();
+export class ArchiveNotificationService {
+    private archiveNotification$ = new Subject<Notification>();
     private hasError$ = new Subject();
 
-    removed$ = this.removeChannel$.pipe(
-        switchMap((channel) =>
+    archive$ = this.archiveNotification$.pipe(
+        switchMap((notification) =>
             combineLatest([
-                of(channel),
+                of(notification),
                 this.dialog
-                    .open(ConfirmActionDialogComponent, { data: { title: `Remove reference ${channel.name}?` } })
+                    .open(ConfirmActionDialogComponent, {
+                        data: { title: `Archive notification ${notification.name}?` },
+                    })
                     .afterClosed()
                     .pipe(filter((r) => r === 'confirm')),
             ])
         ),
-        switchMap(([channel]) =>
-            this.notificationsService.removeChannel(channel.name).pipe(
+        switchMap(([notification]) =>
+            this.notificationsService.save(notification).pipe(
                 catchError((error: HttpErrorResponse) => {
                     this.snackBar.open(`${error.status}: ${error.message}`, 'OK', {
                         duration: 1500,
@@ -39,7 +40,7 @@ export class RemoveChannelsService {
         shareReplay(1)
     );
 
-    inProgress$ = progress(this.removeChannel$, merge(this.hasError$, this.removed$));
+    inProgress$ = progress(this.archiveNotification$, merge(this.hasError$, this.archive$));
 
     constructor(
         private dialog: MatDialog,
@@ -47,7 +48,8 @@ export class RemoveChannelsService {
         private snackBar: MatSnackBar
     ) {}
 
-    removeChannel(channel: Channel) {
-        this.removeChannel$.next(channel);
+    archiveNotification(notification: Notification) {
+        notification.status = 'ARCHIVE';
+        this.archiveNotification$.next(notification);
     }
 }

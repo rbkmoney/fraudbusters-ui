@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ConfigService } from '../../../config';
 import { SearchNotificationParams } from '../../../sections/notifications/search-notifications-params';
+import { HttpRequestModel } from '../../../shared/model/http-request-model';
 import { filterParameters } from '../../../shared/utils/filter-params';
 import { Channel } from '../../fb-management/swagger-codegen/model/channel';
 import { ChannelListResponse } from '../../fb-management/swagger-codegen/model/channelListResponse';
 import { Notification } from '../../fb-management/swagger-codegen/model/notification';
 import { NotificationListResponse } from '../../fb-management/swagger-codegen/model/notificationListResponse';
-import { NotificationTemplateListResponse } from '../../fb-management/swagger-codegen/model/notificationTemplateListResponse';
-import { map } from 'rxjs/operators';
 import { NotificationTemplate } from '../../fb-management/swagger-codegen/model/notificationTemplate';
-import { HttpRequestModel } from '../../../shared/model/http-request-model';
+import { NotificationTemplateListResponse } from '../../fb-management/swagger-codegen/model/notificationTemplateListResponse';
 
 @Injectable()
 export class NotificationsService {

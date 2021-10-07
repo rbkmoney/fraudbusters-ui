@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { Channel } from '../../../../api/fb-management/swagger-codegen/model/channel';
 import { LAYOUT_GAP_M } from '../../../../tokens';
 import { FetchChannelsService } from '../../services/fetch-channels.service';
-import { NotificationsService } from '../../../../api/payments/notifications';
 import { RemoveChannelsService } from '../../services/remove-channels.service';
-import { Channel } from '../../../../api/fb-management/swagger-codegen/model/channel';
 
 @Component({
     templateUrl: 'channels.component.html',
@@ -44,5 +43,5 @@ export class ChannelsComponent {
         this.router.navigate([`/channel/${id}`]);
     }
 
-    fetchMore(sortFieldValue: string) {}
+    fetchMore() {}
 }

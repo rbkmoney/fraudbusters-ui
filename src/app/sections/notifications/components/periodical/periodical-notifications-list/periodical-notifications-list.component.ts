@@ -16,7 +16,7 @@ export class PeriodicalNotificationsListComponent {
     editItem = new EventEmitter<number>();
 
     @Output()
-    deleteItem = new EventEmitter<string>();
+    sendToArchiveItem = new EventEmitter<Notification>();
 
     constructor(@Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
 }

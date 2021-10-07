@@ -3,18 +3,20 @@
         <fb-periodical-search (valueChanges)="search($event)"></fb-periodical-search>
         <button mat-button color="primary" (click)="addNotification()">ADD NOTIFICATION</button>
     </div>
-    <div *ngIf="notifications$ | async as notifications">
+    <div fxLayout="column" [fxLayoutGap]="layoutGapM" *ngIf="notifications$ | async as notifications">
         <fb-periodical-notifications-list
             *ngIf="notifications.length; else Empty"
             [notifications]="notifications"
             (editItem)="editNotification($event)"
+            (sendToArchiveItem)="sendToArchiveNotification($event)"
         ></fb-periodical-notifications-list>
+        <fb-show-more-panel
+            *ngIf="hasMore$ | async"
+            [isLoading]="inProgress$ | async"
+            (showMore)="fetchMore(notifications[notifications.length - 1].id)"
+        ></fb-show-more-panel>
     </div>
-    <fb-show-more-panel
-        *ngIf="hasMore$ | async"
-        [isLoading]="inProgress$ | async"
-        (showMore)="fetchMore()"
-    ></fb-show-more-panel>
+
     <div *ngIf="inProgress$ | async" fxLayout fxLayoutAlign="center">
         <mat-progress-spinner color="primary" mode="indeterminate" diameter="48"></mat-progress-spinner>
     </div>

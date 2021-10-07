@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { merge, Observable, Subject } from 'rxjs';
-import { map, shareReplay, switchMap } from 'rxjs/operators';
+import { shareReplay, switchMap } from 'rxjs/operators';
 
-import { Notification } from '../../../../api/fb-management/swagger-codegen/model/notification';
-import { NotificationsService } from '../../../../api/payments/notifications';
-import { progress } from '../../../operators';
-import { NotificationTemplate } from '../../../../api/fb-management/swagger-codegen/model/notificationTemplate';
-import { ListResponse } from '../../../../api/fb-management/swagger-codegen/model/listResponse';
-import { NotificationTemplateListResponse } from '../../../../api/fb-management/swagger-codegen/model/notificationTemplateListResponse';
 import { Channel } from '../../../../api/fb-management/swagger-codegen/model/channel';
+import { Notification } from '../../../../api/fb-management/swagger-codegen/model/notification';
+import { NotificationTemplate } from '../../../../api/fb-management/swagger-codegen/model/notificationTemplate';
+import { NotificationsService } from '../../../../api/payments/notifications';
 import { ConfigService } from '../../../../config';
+import { progress } from '../../../operators';
 
 @Injectable()
 export class NotificationService {
@@ -23,6 +21,7 @@ export class NotificationService {
         period: '',
         frequency: '',
         channel: '',
+        id: null,
     };
 
     private save$ = new Subject<Notification>();

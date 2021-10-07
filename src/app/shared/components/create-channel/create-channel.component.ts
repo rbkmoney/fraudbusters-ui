@@ -4,10 +4,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { Channel } from '../../../api/fb-management/swagger-codegen/model/channel';
+import { ChannelType } from '../../../api/fb-management/swagger-codegen/model/channelType';
 import { LAYOUT_GAP_L, LAYOUT_GAP_M } from '../../../tokens';
 import { ErrorHandlerService } from '../../services/utils/error-handler.service';
 import { ChannelService } from './services/channel.service';
-import { ChannelType } from '../../../api/fb-management/swagger-codegen/model/channelType';
 
 @Component({
     selector: 'fb-create-channel',

@@ -12,7 +12,7 @@ import { NotificationService } from '../../services/notification.service';
 export class EditNotificationComponent {
     notification$ = this.route.params.pipe(
         pluck('id'),
-        switchMap(([id]) => {
+        switchMap((id) => {
             return this.notificationService.getNotificationById(id);
         }),
         pluck('result'),

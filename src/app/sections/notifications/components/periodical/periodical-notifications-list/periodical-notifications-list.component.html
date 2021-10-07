@@ -4,6 +4,7 @@
         <fb-notification-item
             [notification]="notification"
             (editItem)="editItem.emit(notification.id)"
+            (sendToArchiveItem)="sendToArchiveItem.emit(notification)"
         ></fb-notification-item>
     </div>
 </div>

@@ -63,4 +63,4 @@ import { NotificationsComponent } from './notifications.component';
     ],
     providers: [NotificationsService],
 })
-export class TemplatesModule {}
+export class NotificationsModule {}

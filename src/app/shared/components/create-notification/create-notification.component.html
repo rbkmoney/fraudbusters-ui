@@ -1,19 +1,22 @@
 <mat-card>
     <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapM">
         <form [formGroup]="form" [fxLayoutGap]="layoutGapM">
+            <mat-form-field *ngIf="false">
+                <input matInput placeholder="Id" formControlName="id" autocomplete="false" />
+            </mat-form-field>
             <mat-form-field fxFlex="25" appearance="outline">
                 <input matInput placeholder="Notification name" formControlName="name" autocomplete="false" />
             </mat-form-field>
             <mat-form-field fxFlex="25" appearance="outline">
                 <mat-select placeholder="Notification type" formControlName="type">
-                    <mat-option *ngFor="let template of notificationsTemplates$ | async" value="{{ template.id }}">{{
+                    <mat-option *ngFor="let template of notificationsTemplates$ | async" [value]="template.id">{{
                         template.name
                     }}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field fxFlex="25" appearance="outline">
                 <mat-select placeholder="Channel" formControlName="channel">
-                    <mat-option *ngFor="let channel of notificationsChannels$ | async" value="{{ channel.name }}">{{
+                    <mat-option *ngFor="let channel of notificationsChannels$ | async" [value]="channel.name">{{
                         channel.name
                     }}</mat-option>
                 </mat-select>

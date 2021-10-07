@@ -17,7 +17,7 @@ export class NotificationItemComponent {
     editItem = new EventEmitter<number>();
 
     @Output()
-    deleteItem = new EventEmitter<number>();
+    sendToArchiveItem = new EventEmitter<Notification>();
 
     constructor(@Inject(LAYOUT_GAP_S) public layoutGapS: string, @Inject(LAYOUT_GAP_M) public layoutGapM: string) {}
 }

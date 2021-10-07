@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
+import { Channel } from '../../../api/fb-management/swagger-codegen/model/channel';
 import { NotificationsService } from '../../../api/payments/notifications';
 import { FetchResult } from '../../../shared/utils/partial-fetcher';
-import { Channel } from '../../../api/fb-management/swagger-codegen/model/channel';
 
 @Injectable()
 export class ChannelService {

@@ -38,8 +38,15 @@ export class CreateNotificationComponent implements OnInit {
 
     ngOnInit() {
         if (this.notification) {
-            this.form.setValue({ id: this.notification.id, template: this.notification.name });
-            this.form.get('id').disable();
+            this.form.setValue({
+                channel: this.notification.channel,
+                frequency: this.notification.frequency,
+                period: this.notification.period,
+                subject: this.notification.subject,
+                type: this.notification.templateId,
+                name: this.notification.name,
+                id: this.notification.id,
+            });
         }
         this.saved$.subscribe(
             (template) => {
@@ -51,7 +58,7 @@ export class CreateNotificationComponent implements OnInit {
                     this.snackBar.open(`Notification has been created`, 'OK', {
                         duration: 3000,
                     });
-                    this.navigateToEdit(template.id);
+                    this.back();
                 }
             },
             (error: HttpErrorResponse) => this.errorHandlerService.handleError(error, this.snackBar)
@@ -60,6 +67,7 @@ export class CreateNotificationComponent implements OnInit {
 
     saveNotification() {
         this.notificationService.saveNotification({
+            id: this.form.getRawValue().id,
             channel: this.form.getRawValue().channel,
             frequency: this.form.getRawValue().frequency,
             period: this.form.getRawValue().period,
@@ -67,11 +75,8 @@ export class CreateNotificationComponent implements OnInit {
             templateId: this.form.getRawValue().type,
             name: this.form.getRawValue().name,
             createdAt: new Date(Date.now()),
+            status: 'ACTIVE',
         });
-    }
-
-    navigateToEdit(id) {
-        this.router.navigate([`../notification/${id}`]);
     }
 
     back() {
