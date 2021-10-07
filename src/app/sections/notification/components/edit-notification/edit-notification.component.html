@@ -1,0 +1,10 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapL">
+    <div fxLayout fxLayoutAlign="start center" [fxLayoutGap]="layoutGapM">
+        <mat-icon (click)="back()">keyboard_backspace</mat-icon>
+        <h3 class="fb-headline">Edit notification</h3>
+    </div>
+    <fb-create-notification
+        *ngIf="notification$ | async as notification"
+        [notification]="notification"
+    ></fb-create-notification>
+</div>

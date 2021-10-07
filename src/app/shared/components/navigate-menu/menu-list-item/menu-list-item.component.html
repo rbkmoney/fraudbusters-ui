@@ -1,24 +1,11 @@
 <div *ngIf="display()">
     <a
         mat-list-item
+        [routerLink]="item.route"
+        [routerLinkActive]="['active']"
         [ngStyle]="{ 'padding-left': depth * 16 + 'px' }"
-        (click)="onItemSelected(item)"
-        [ngClass]="{ active: isActiveRoute(), expanded: expanded }"
     >
         <mat-icon class="routeIcon">{{ item.iconName }}</mat-icon>
         {{ item.displayName }}
-
-        <span fxFlex></span>
-        <div class="arrow" *ngIf="!item.children && isActiveRoute()">
-            <div class="point"></div>
-        </div>
-
-        <span fxFlex *ngIf="item.children && item.children.length">
-            <span fxFlex></span>
-            <mat-icon [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'"> expand_more </mat-icon>
-        </span>
     </a>
-    <div *ngIf="expanded">
-        <fb-menu-list-item *ngFor="let child of item.children" [item]="child" [depth]="depth + 1"> </fb-menu-list-item>
-    </div>
 </div>

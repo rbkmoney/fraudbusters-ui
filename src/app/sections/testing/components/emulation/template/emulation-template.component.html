@@ -1,39 +1,17 @@
 <div fxLayout="column" [fxLayoutGap]="layoutGapM">
-    <mat-toolbar>
-        <mat-toolbar-row>
-            <h3>Emulation template</h3>
-            <button mat-stroked-button color="primary" (click)="emulate()">Emulate</button>
-        </mat-toolbar-row>
-    </mat-toolbar>
-
+    <div fxLayout fxLayoutAlign="space-between center">
+        <div fxLayoutGap="10px grid">
+            <mat-form-field class="search fb-full-width" appearance="outline">
+                <input matInput placeholder="Party ID" label="partyId" [(ngModel)]="filter.partyId" name="partyId" />
+            </mat-form-field>
+            <mat-form-field class="search fb-full-width" appearance="outline">
+                <input matInput placeholder="Shop ID" label="shopId" [(ngModel)]="filter.shopId" name="shopId" />
+            </mat-form-field>
+        </div>
+        <button mat-button color="primary" (click)="emulate()">Emulate</button>
+    </div>
     <mat-card>
         <mat-card-content>
-            <div class="list-values" fxLayout fxLayoutAlign="center center">
-                <div fxFlex="100">
-                    <div fxFlex="50">
-                        <mat-form-field floatLabel="always" class="full-width">
-                            <input
-                                matInput
-                                placeholder="Party ID"
-                                label="partyId"
-                                [(ngModel)]="filter.partyId"
-                                name="partyId"
-                            />
-                        </mat-form-field>
-                    </div>
-                    <div fxFlex="50">
-                        <mat-form-field floatLabel="always" class="full-width">
-                            <input
-                                matInput
-                                placeholder="Shop ID"
-                                label="shopId"
-                                [(ngModel)]="filter.shopId"
-                                name="shopId"
-                            />
-                        </mat-form-field>
-                    </div>
-                </div>
-            </div>
             <div fxLayout>
                 <div fxFlex="100">
                     <table mat-table [dataSource]="templates$ | async" class="fb-table">

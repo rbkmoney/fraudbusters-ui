@@ -60,6 +60,18 @@ const routes: Routes = [
         loadChildren: () => import('./data-set').then((m) => m.DataSetModule),
     },
     {
+        path: 'notification',
+        loadChildren: () => import('./notification').then((m) => m.NotificationModule),
+    },
+    {
+        path: 'channel',
+        loadChildren: () => import('./channel').then((m) => m.ChannelModule),
+    },
+    {
+        path: 'notifications',
+        loadChildren: () => import('./notifications').then((m) => m.NotificationsModule),
+    },
+    {
         path: 'audit',
         loadChildren: () => import('./audit').then((m) => m.AuditModule),
     },

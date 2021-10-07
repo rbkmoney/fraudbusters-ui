@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,6 +10,7 @@ import { debounceTime } from 'rxjs/operators';
 import { PaymentGroupsService } from '../../../../api/payments/groups';
 import { ErrorHandlerService } from '../../../../shared/services/utils/error-handler.service';
 import { SearchFieldService } from '../../../../shared/services/utils/search-field.service';
+import { LAYOUT_GAP_M } from '../../../../tokens';
 import { PriorityIdModel } from './model/priority-id-model';
 import { RemoveGroupDialogComponent } from './remove-group-dialog/remove-group-dialog.component';
 import { GroupUtilsService } from './utils/group-utils.service';
@@ -33,7 +34,8 @@ export class PaymentGroupsComponent implements OnInit {
         private groupUtilsService: GroupUtilsService,
         private snackBar: MatSnackBar,
         public dialog: MatDialog,
-        public searchFieldService: SearchFieldService
+        public searchFieldService: SearchFieldService,
+        @Inject(LAYOUT_GAP_M) public layoutGapM: string
     ) {}
 
     ngOnInit(): void {

@@ -1,0 +1,10 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
+    <fb-channel-header></fb-channel-header>
+    <div *ngFor="let channel of channels" fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <fb-channel-item
+            [channel]="channel"
+            (editItem)="editItem.emit($event)"
+            (deleteItem)="deleteItem.emit($event)"
+        ></fb-channel-item>
+    </div>
+</div>

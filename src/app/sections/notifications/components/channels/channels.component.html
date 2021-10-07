@@ -1,0 +1,25 @@
+<div fxLayout="column" [fxLayoutGap]="layoutGapM">
+    <div fxLayout fxLayoutAlign="space-between center">
+        <fb-periodical-search (valueChanges)="search($event)"></fb-periodical-search>
+        <button mat-button color="primary" (click)="addChannel()">ADD CHANNEL</button>
+    </div>
+    <div *ngIf="channels$ | async as channels">
+        <fb-channels-list
+            *ngIf="channels.length; else Empty"
+            [channels]="channels"
+            (editItem)="goToChannel($event)"
+            (deleteItem)="removeChannel($event)"
+        ></fb-channels-list>
+    </div>
+    <fb-show-more-panel
+        *ngIf="hasMore$ | async"
+        [isLoading]="inProgress$ | async"
+        (showMore)="fetchMore()"
+    ></fb-show-more-panel>
+    <div *ngIf="inProgress$ | async" fxLayout fxLayoutAlign="center">
+        <mat-progress-spinner color="primary" mode="indeterminate" diameter="48"></mat-progress-spinner>
+    </div>
+    <ng-template #Empty>
+        <fb-empty-search-result *ngIf="!(inProgress$ | async)"></fb-empty-search-result>
+    </ng-template>
+</div>

@@ -15,7 +15,7 @@ export class EditTemplateComponent {
     template$ = this.route.params.pipe(
         pluck('id'),
         withLatestFrom(this.operationType$),
-        switchMap(([id, type]) => {
+        switchMap(([id]) => {
             return this.templateService.getTemplates(1, id);
         }),
         pluck('result'),

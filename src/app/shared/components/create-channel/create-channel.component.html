@@ -1,0 +1,30 @@
+<mat-card>
+    <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <form [formGroup]="form" [fxLayoutGap]="layoutGapM">
+            <mat-form-field fxFlex="25" appearance="outline">
+                <input required matInput placeholder="Name" formControlName="name" />
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <mat-select placeholder="Channel type" formControlName="type">
+                    <mat-option *ngFor="let channel of channelTypes" [value]="channel">{{ channel }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <input required matInput placeholder="Destinations" formControlName="destination" />
+            </mat-form-field>
+        </form>
+        <div fxLayout fxLayoutAlign="end" [fxLayoutGap]="layoutGapM">
+            <button
+                mat-button
+                color="primary"
+                [disabled]="form.invalid || (inProgress$ | async)"
+                (click)="saveChannel()"
+            >
+                {{ channel ? 'Save' : 'Create' }}
+            </button>
+        </div>
+    </mat-card-content>
+    <mat-card-footer *ngIf="inProgress$ | async">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+</mat-card>

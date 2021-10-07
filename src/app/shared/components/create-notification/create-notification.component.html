@@ -1,0 +1,52 @@
+<mat-card>
+    <mat-card-content fxLayout="column" [fxLayoutGap]="layoutGapM">
+        <form [formGroup]="form" [fxLayoutGap]="layoutGapM">
+            <mat-form-field *ngIf="false">
+                <input matInput placeholder="Id" formControlName="id" autocomplete="false" />
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <input matInput placeholder="Notification name" formControlName="name" autocomplete="false" />
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <mat-select placeholder="Notification type" formControlName="type">
+                    <mat-option *ngFor="let template of notificationsTemplates$ | async" [value]="template.id">{{
+                        template.name
+                    }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <mat-select placeholder="Channel" formControlName="channel">
+                    <mat-option *ngFor="let channel of notificationsChannels$ | async" [value]="channel.name">{{
+                        channel.name
+                    }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <input matInput placeholder="Subject" formControlName="subject" autocomplete="false" />
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <mat-select placeholder="Period" formControlName="period">
+                    <mat-option *ngFor="let name of periods" value="{{ name }}">{{ name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="25" appearance="outline">
+                <mat-select placeholder="Frequency" formControlName="frequency">
+                    <mat-option *ngFor="let name of frequencies" value="{{ name }}">{{ name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+        <div fxLayout fxLayoutAlign="end" [fxLayoutGap]="layoutGapM">
+            <button
+                mat-button
+                color="primary"
+                [disabled]="form.invalid || (inProgress$ | async)"
+                (click)="saveNotification()"
+            >
+                {{ notification ? 'Save' : 'Create' }}
+            </button>
+        </div>
+    </mat-card-content>
+    <mat-card-footer *ngIf="inProgress$ | async">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+</mat-card>
