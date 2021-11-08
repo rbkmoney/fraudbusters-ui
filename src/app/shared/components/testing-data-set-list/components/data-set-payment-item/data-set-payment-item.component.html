@@ -5,7 +5,7 @@
             <div class="fb-body-2" fxFlex>
                 <fb-tag
                     [color]="checkedDataSetRow.resultStatus | resultStatusToColor"
-                    [title]="checkedDataSetRow.resultStatus"
+                    [title]="!!checkedDataSetRow.resultStatus ? checkedDataSetRow.resultStatus : 'unknown'"
                 ></fb-tag>
             </div>
             <div class="fb-body-2" fxFlex>{{ checkedDataSetRow.ruleChecked }}</div>
